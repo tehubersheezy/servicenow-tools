@@ -1,0 +1,42 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Screen Shortcut API",
+    "description": "The 'screen shortcut' service will return a screen for a defined shortcut key",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/sg/shortcut": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sysparm_key",
+            "in": "query",
+            "description": "Shortcut key",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

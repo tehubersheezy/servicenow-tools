@@ -1,0 +1,77 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CICD Import from Source Control API",
+    "description": "CI/CD service to automate import from source control",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_cicd/sc/import": {
+      "post": {
+        "description": "Import application based on installation plan",
+        "parameters": [
+          {
+            "name": "repo_url",
+            "in": "query",
+            "description": "URL of git remote repository",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "branch_name",
+            "in": "query",
+            "description": "Name of the branch to import initially",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "credential_sys_id",
+            "in": "query",
+            "description": "The sys_id of the basic/SSH credential",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "mid_server_sys_id",
+            "in": "query",
+            "description": "The sys_id of the midserver (ecc_agent) used for connection",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "auto_upgrade_base_app",
+            "in": "query",
+            "description": "Auto upgrade base application during operation",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

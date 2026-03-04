@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Application service utils API",
+    "description": "Former \"Service Mapping\" API. Reused for application service.",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/service_mapping/getMapNavigationUrl/{service_counters_id}": {
+      "get": {
+        "description": "Get url of service map by sys_id in sa_service_counters",
+        "parameters": [
+          {
+            "name": "service_counters_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

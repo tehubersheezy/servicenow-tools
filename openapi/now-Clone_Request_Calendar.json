@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Clone Request Calendar",
+    "description": "Rest Api to get conflicts from DC",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/clone_request_calendar/clone/{instanceId}/{start_date}/{end_date}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "start_date",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "end_date",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

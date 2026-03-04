@@ -1,0 +1,83 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "sn_exp_framework",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/sn_exp_framework/context": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "exp_param_name",
+            "in": "query",
+            "description": "Name of the experiment Parameter",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "fallback_variant",
+            "in": "query",
+            "description": "FallBack Variant in case of the Experiment is not valid or opted out",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/sn_exp_framework/feedback": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "exp_param_name",
+            "in": "query",
+            "description": "Name of the experiment Parameter",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

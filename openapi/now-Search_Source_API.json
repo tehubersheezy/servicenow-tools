@@ -1,0 +1,269 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Search Source API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/search/custommatch": {
+      "get": {
+        "description": "Custom match search API. Search through custom matchers to find a single match.",
+        "parameters": [
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword to search for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_context_config_id",
+            "in": "query",
+            "description": "The sys_id of Search Application Context Config to use",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/search/exactmatch": {
+      "get": {
+        "description": "Exact match search API. Search through number field of all qualifying tables for term.",
+        "parameters": [
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword to search for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_context_config_id",
+            "in": "query",
+            "description": "The sys_id of Search Application Context Config to use",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/search/itemlookup": {
+      "get": {
+        "description": "Item lookup search API. Lookup item based on table name and item sys_id.",
+        "parameters": [
+          {
+            "name": "sysparm_table_name",
+            "in": "query",
+            "description": "The table name to look up",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_item_sys_id",
+            "in": "query",
+            "description": "The item sys_id to look up",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/search/sources": {
+      "get": {
+        "description": "Get search sources of an application",
+        "parameters": [
+          {
+            "name": "sysparm_search_context_config_id",
+            "in": "query",
+            "description": "Search context config id",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/search/sources/textsearch": {
+      "get": {
+        "description": "Perform text search against multiple search sources using provided term without interleaving",
+        "parameters": [
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) to search for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "Max number of records to returns for each search source",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_page",
+            "in": "query",
+            "description": "Page of records to return",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_sources",
+            "in": "query",
+            "description": "Search sources to search against",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/search/sources/{sys_id}/textsearch": {
+      "get": {
+        "description": "Perform text search against a single search source using provided term",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) to search for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "Max number of records to returns for each search source",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_page",
+            "in": "query",
+            "description": "Page of records to return",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/search/textsearch": {
+      "get": {
+        "description": "Perform text search using provided term",
+        "parameters": [
+          {
+            "name": "sysparm_search_context_config_id",
+            "in": "query",
+            "description": "Search context config id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) to search for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_next_token",
+            "in": "query",
+            "description": "Token used to retrieve the next set of search results",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_sources",
+            "in": "query",
+            "description": "List of search source ids (comma separated)",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

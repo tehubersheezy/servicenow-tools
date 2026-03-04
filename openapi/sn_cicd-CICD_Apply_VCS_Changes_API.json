@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CICD Apply VCS Changes API",
+    "description": "CICD service to start applying the remote changes",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_cicd/sc/apply_changes": {
+      "post": {
+        "description": "Start applying remote changes from source control",
+        "parameters": [
+          {
+            "name": "app_sys_id",
+            "in": "query",
+            "description": "Unique sys_id of the application (sys_id or scope required)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "app_scope",
+            "in": "query",
+            "description": "Scope of the application",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "branch_name",
+            "in": "query",
+            "description": "Branch name in source control to switch to",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "auto_upgrade_base_app",
+            "in": "query",
+            "description": "Auto upgrade base application",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Import Set API",
+    "description": "Allows you to interact with Import Sets",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": "https://docs.servicenow.com/?context=CSHelp:REST-Import-Set-API"
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/import/{stagingTableName}": {
+      "post": {
+        "description": "Create a record in an Import Set staging table",
+        "parameters": [
+          {
+            "name": "stagingTableName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/import/{stagingTableName}/insertMultiple": {
+      "post": {
+        "description": "Insert Multiple Records from same request",
+        "parameters": [
+          {
+            "name": "stagingTableName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/import/{stagingTableName}/{sys_id}": {
+      "get": {
+        "description": "Retrieve an Import Set record",
+        "parameters": [
+          {
+            "name": "stagingTableName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

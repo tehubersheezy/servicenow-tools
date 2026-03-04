@@ -1,0 +1,43 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "user_role_inheritance",
+    "description": "REST API for retrieving details of the User Roles inheritance",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/global/user_role_inheritance": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_sysid",
+            "in": "query",
+            "description": "sys_id of the user for which we are getting details of role inheritance",
+            "required": true,
+            "schema": {},
+            "example": "user_sysid=681b365ec0a80164000fb0b05854a0cd05854a0cd"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

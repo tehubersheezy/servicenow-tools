@@ -1,0 +1,527 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CI Lifecycle Management API",
+    "description": "Allows to perform lifecycle management on array of CIs",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/cilifecyclemgmt/actions": {
+      "post": {
+        "description": "Add CI Action",
+        "parameters": [
+          {
+            "name": "requestorId",
+            "in": "query",
+            "description": "Requestor Id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysIds",
+            "in": "query",
+            "description": "List of sys_ids",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "actionName",
+            "in": "query",
+            "description": "CI Action Name",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "oldActionNames",
+            "in": "query",
+            "description": "List of old Action Names that ALL CIs should be in",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "leaseTime",
+            "in": "query",
+            "description": "Lease Time in HH:MM:SS",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Remove CI Action",
+        "parameters": [
+          {
+            "name": "requestorId",
+            "in": "query",
+            "description": "Requestor Id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysIds",
+            "in": "query",
+            "description": "List of sys_ids",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "actionName",
+            "in": "query",
+            "description": "CI Action Name",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/actions/{sys_id}": {
+      "get": {
+        "description": "Get CI Actions",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/compatActions": {
+      "get": {
+        "description": "Compatible Actions",
+        "parameters": [
+          {
+            "name": "actionName",
+            "in": "query",
+            "description": "CI Action name",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "otherActionName",
+            "in": "query",
+            "description": "Other CI Action name",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/distinctStatuses": {
+      "post": {
+        "description": "Set Distinct Operational States",
+        "parameters": [
+          {
+            "name": "requestorId",
+            "in": "query",
+            "description": "Requestor Id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysIds",
+            "in": "query",
+            "description": "List of sys_ids",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "opsLabels",
+            "in": "query",
+            "description": "List of operational status labels to be set",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "oldOpsLabels",
+            "in": "query",
+            "description": "List of old operational status labels that each CI should be in",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/leases/{sys_id}": {
+      "patch": {
+        "description": "Extend Lease",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "requestorId",
+            "in": "query",
+            "description": "Requestor Id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "actionName",
+            "in": "query",
+            "description": "CI Action Name",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "leaseTime",
+            "in": "query",
+            "description": "Lease Time in HH:MM:SS",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/leases/{sys_id}/expired": {
+      "get": {
+        "description": "Lease Expired",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "requestorId",
+            "in": "query",
+            "description": "Requestor Id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "actionName",
+            "in": "query",
+            "description": "CI Action Name",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/notAllowedAction": {
+      "get": {
+        "description": "Not Allowed Action",
+        "parameters": [
+          {
+            "name": "ciClass",
+            "in": "query",
+            "description": "CI class",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "opsLabel",
+            "in": "query",
+            "description": "Operational status label",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "actionName",
+            "in": "query",
+            "description": "CI Action name",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/notAllowedOpsTransition": {
+      "get": {
+        "description": "Not Allowed Operational Transition",
+        "parameters": [
+          {
+            "name": "ciClass",
+            "in": "query",
+            "description": "CI class",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "opsLabel",
+            "in": "query",
+            "description": "Operational status label",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "transitionOpsLabel",
+            "in": "query",
+            "description": "Operational status label to transition to",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/operators": {
+      "post": {
+        "description": "Register Operator",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/operators/{req_id}": {
+      "delete": {
+        "description": "Unregister Operator",
+        "parameters": [
+          {
+            "name": "req_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/requestors/{req_id}/valid": {
+      "get": {
+        "description": "Validate Requestor",
+        "parameters": [
+          {
+            "name": "req_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/statuses": {
+      "post": {
+        "description": "Set Operational State",
+        "parameters": [
+          {
+            "name": "requestorId",
+            "in": "query",
+            "description": "Requestor Id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysIds",
+            "in": "query",
+            "description": "List of sys_ids",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "opsLabel",
+            "in": "query",
+            "description": "Operational status label",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "oldOpsLabels",
+            "in": "query",
+            "description": "List of old operational status labels that each CI should be in",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/cilifecyclemgmt/statuses/{sys_id}": {
+      "get": {
+        "description": "Get Operational State",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

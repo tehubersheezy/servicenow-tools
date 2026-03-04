@@ -1,0 +1,113 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Reporting API :: Favorites",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/reporting/favorites": {
+      "get": {
+        "description": "Retrieve the list of favorite reports",
+        "parameters": [
+          {
+            "name": "sysparm_contains",
+            "in": "query",
+            "description": "List of comma-separated terms to search for",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sortby",
+            "in": "query",
+            "description": "Name of the column to order by",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sortdir",
+            "in": "query",
+            "description": "Direction of ordering: asc/desc",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_page",
+            "in": "query",
+            "description": "Starting page (1-based)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_per_page",
+            "in": "query",
+            "description": "Items per page",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Remove a report from favorites",
+        "parameters": [
+          {
+            "name": "sysparm_uuid",
+            "in": "query",
+            "description": "Sys ID of the report to remove from favorites",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

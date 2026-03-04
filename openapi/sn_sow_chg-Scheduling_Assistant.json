@@ -1,0 +1,139 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Scheduling Assistant",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_sow_chg/scheduling_assistant/scheduleassistcard/{table_name}/{sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "table_name",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "beginning_of_week",
+            "in": "query",
+            "description": "Specify the milisecond value for beginning of the week ",
+            "required": false,
+            "schema": {},
+            "example": "1662097116717"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Specify start date for your change implementation",
+            "required": false,
+            "schema": {},
+            "example": "2022-01-01 00:00:00"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_sow_chg/scheduling_assistant/scheduleassistconfig/{table_name}/{sys_id}": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "table_name",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Required to provide the end date for giving the slots",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "beginning_of_week",
+            "in": "query",
+            "description": "Specify the milisecond value for beginning of the week ",
+            "required": false,
+            "schema": {},
+            "example": "1662097116717"
+          },
+          {
+            "name": "beginning_of_week",
+            "in": "query",
+            "description": "Specify the milisecond value for beginning of the week ",
+            "required": false,
+            "schema": {},
+            "example": "1662097116717"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Specify start date for your change implementation",
+            "required": false,
+            "schema": {},
+            "example": "2022-01-01 00:00:00"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Specify start date for your change implementation",
+            "required": false,
+            "schema": {},
+            "example": "2022-01-01 00:00:00"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

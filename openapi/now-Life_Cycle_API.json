@@ -1,0 +1,92 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Life Cycle API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/life_cycle_api/validate": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "cmdb_ci"
+          },
+          {
+            "name": "life_cycle_stage_status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "test"
+          },
+          {
+            "name": "life_cycle_stage",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "deploy"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/life_cycle_api/value": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "cmdb_ci"
+          },
+          {
+            "name": "life_cycle_stage",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "deploy"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

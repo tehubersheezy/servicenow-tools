@@ -1,0 +1,83 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Geomap Rest API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/geomap": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "mapSysId",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "93b8a3a2d7101200bd4a4ebfae61033a"
+          },
+          {
+            "name": "mapKey",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "us"
+          },
+          {
+            "name": "useLatLon",
+            "in": "query",
+            "description": "Boolean value to fetch latitude and longitude data",
+            "required": false,
+            "schema": {},
+            "example": "false"
+          },
+          {
+            "name": "isManual",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "false"
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {},
+            "example": "location"
+          },
+          {
+            "name": "table",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {},
+            "example": "incident"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

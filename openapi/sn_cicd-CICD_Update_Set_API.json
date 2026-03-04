@@ -1,0 +1,258 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CICD Update Set API",
+    "description": "CI/CD service to retrieve, preview, commit, or back out an update set",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_cicd/update_set/back_out": {
+      "post": {
+        "description": "Back out an update set",
+        "parameters": [
+          {
+            "name": "update_set_id",
+            "in": "query",
+            "description": "The unique sys_id of the update set",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "rollback_installs",
+            "in": "query",
+            "description": "true to rollback the batch installation performed during the update set commit, default to true",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/update_set/commit/{remote_update_set_id}": {
+      "post": {
+        "description": "Commit an update set",
+        "parameters": [
+          {
+            "name": "remote_update_set_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/update_set/commitMultiple": {
+      "post": {
+        "description": "Commit multiple update sets in order",
+        "parameters": [
+          {
+            "name": "remote_update_set_ids",
+            "in": "query",
+            "description": "A comma separated list of retrieved update set ids",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/update_set/create": {
+      "post": {
+        "description": "Create an update set",
+        "parameters": [
+          {
+            "name": "update_set_name",
+            "in": "query",
+            "description": "The name of the update set",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Description of the update set",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sys_id",
+            "in": "query",
+            "description": "The unique sys_id of the application (sys_id or scope required)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "scope",
+            "in": "query",
+            "description": "The scope of the application",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/update_set/preview/{remote_update_set_id}": {
+      "post": {
+        "description": "Preview an update set",
+        "parameters": [
+          {
+            "name": "remote_update_set_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/update_set/retrieve": {
+      "post": {
+        "description": "Retrieve an update set",
+        "parameters": [
+          {
+            "name": "update_set_id",
+            "in": "query",
+            "description": "The update set id on the source",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "update_source_id",
+            "in": "query",
+            "description": "The unique id of the remote instance record",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "update_source_instance_id",
+            "in": "query",
+            "description": "The instance id of the remote instance",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "auto_preview",
+            "in": "query",
+            "description": "Auto preview after retrieve",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "cleanup_retrieved",
+            "in": "query",
+            "description": "Removed existing retrieved update set",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

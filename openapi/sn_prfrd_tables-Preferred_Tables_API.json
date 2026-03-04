@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Preferred Tables API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_prfrd_tables/tables/list": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "include_preferred_tables",
+            "in": "query",
+            "description": "Set the flag to get the preferred tables in response.",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          },
+          {
+            "name": "context",
+            "in": "query",
+            "description": "It is mandatory parameter to get the tables, decides table is extendible or not.",
+            "required": false,
+            "schema": {},
+            "example": "Extension"
+          },
+          {
+            "name": "search_query",
+            "in": "query",
+            "description": "Encoded query to filter the response. (N/A preferred tables list)",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "include_out_scope",
+            "in": "query",
+            "description": "Set this flag to get the out-scope tables in response.",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          },
+          {
+            "name": "app_scope",
+            "in": "query",
+            "description": "app-scope is mandatory to get in-scope or out-scope tables.",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "include_exact_match",
+            "in": "query",
+            "description": "Exact Table match",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of tables per list to be displayed in list. (N/A for preferred tables)",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Order in which in-scope or out-scope tables display. (N/A for preferred tables)",
+            "required": false,
+            "schema": {},
+            "example": "label"
+          },
+          {
+            "name": "extact_match_query",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "include_in_scope",
+            "in": "query",
+            "description": "Set this flag to get the in-scope tables in response.",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - navigation [ref=e2]:
+        - generic [ref=e4]:
+          - text: 
+          - heading "REST API Explorer" [level=1] [ref=e5]
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - separator [ref=e8]
+          - generic [ref=e9]:
+            - link "" [ref=e10] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e11]: 
+            - generic [ref=e12]:
+              - heading "REST API Explorer" [level=4] [ref=e13]
+              - paragraph [ref=e14]: The REST API Explorer allows you to quickly construct requests to access the ServiceNow inbound REST API.
+              - paragraph [ref=e15]: Table information from your instance is used to provide a list of endpoints, methods and variables. You can use this information to build REST requests for integrations.
+              - button "Explore" [ref=e16] [cursor=pointer]
+        - separator [ref=e17]

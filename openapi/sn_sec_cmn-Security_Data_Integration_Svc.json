@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Security Data Integration Svc",
+    "description": "API to process request body for a Security Data Integration",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_sec_cmn/security_data_integration_svc": {
+      "post": {
+        "description": "API to process request body for a Security Data Integration",
+        "parameters": [
+          {
+            "name": "attachmentFileName",
+            "in": "query",
+            "description": "The name of the attachment that will be created with this call",
+            "required": true,
+            "schema": {},
+            "example": "myWSPayload.xml"
+          },
+          {
+            "name": "integrationName",
+            "in": "query",
+            "description": "The name of the Security Data Integration to be used. ",
+            "required": true,
+            "schema": {},
+            "example": "Your Security Data Integration"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {},
+            "text/plain": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

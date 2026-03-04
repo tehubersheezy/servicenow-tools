@@ -1,0 +1,51 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CMDB Workspace API",
+    "description": "An API for the CMDB Workspace scoped app that require the use of global scope.",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/cmdb_workspace_api/encodedquery": {
+      "get": {
+        "description": "Returns a friendly display name of an encoded query.",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "query",
+            "description": "The table name (not display name) used in the operation. ",
+            "required": false,
+            "schema": {},
+            "example": "table=cmdb_ci_linux_server"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "The encodedquery associated with the GlideRecord",
+            "required": false,
+            "schema": {},
+            "example": "query=nameLIKElnux^ORnameLIKElin"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

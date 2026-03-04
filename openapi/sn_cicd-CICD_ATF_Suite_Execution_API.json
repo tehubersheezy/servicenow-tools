@@ -1,0 +1,121 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CICD ATF Suite Execution API",
+    "description": "CI/CD service to start executing an ATF suite as well as getting progress and results of test runs ",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_cicd/testsuite/results/{result_id}": {
+      "get": {
+        "description": "Given a result Id - Get ATF Suite Execution Results",
+        "parameters": [
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/testsuite/run": {
+      "post": {
+        "description": "Start a ATF suite, given a Suite ID or Suite Name",
+        "parameters": [
+          {
+            "name": "test_suite_sys_id",
+            "in": "query",
+            "description": "Sys Id of the test suite (test suite sys_id or test suite name required)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "test_suite_name",
+            "in": "query",
+            "description": "Name of the test suite",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "browser_name",
+            "in": "query",
+            "description": "Client Constraint Browser name for client test runner",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "browser_version",
+            "in": "query",
+            "description": "Client constraint Browser version starts with for client test runner",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "os_name",
+            "in": "query",
+            "description": "Client constraint OS name for client test runner",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "os_version",
+            "in": "query",
+            "description": "Client constraint OS version Starts with for client test runner",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "run_in_cloud",
+            "in": "query",
+            "description": "Execute in Cloud Runner",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "is_performance_run",
+            "in": "query",
+            "description": "Execute as Performance Run",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

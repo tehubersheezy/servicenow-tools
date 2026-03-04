@@ -1,0 +1,440 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e19]:
+    - navigation [ref=e2]:
+      - generic [ref=e4]:
+        - text: 
+        - heading "REST API Explorer" [level=1] [ref=e5]
+    - generic [ref=e20]:
+      - navigation [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: Namespace
+            - combobox "Namespace" [ref=e29]:
+              - option "crypto"
+              - option "fluent"
+              - option "global"
+              - option "kmf"
+              - option "mid"
+              - option "now" [selected]
+              - option "now_email_client"
+              - option "sn_admin_center"
+              - option "sn_ads_setup"
+              - option "sn_aes_notificatio"
+              - option "sn_app_eng_studio"
+              - option "sn_app_intake"
+              - option "sn_appclient"
+              - option "sn_bm_client"
+              - option "sn_change_cab"
+              - option "sn_chg_model_ui"
+              - option "sn_chg_rest"
+              - option "sn_chg_soc"
+              - option "sn_ci_gs_content"
+              - option "sn_cicd"
+              - option "sn_cmdb_ws"
+              - option "sn_codesearch"
+              - option "sn_collab_request"
+              - option "sn_config_hub"
+              - option "sn_cs_builder"
+              - option "sn_decision_table"
+              - option "sn_deploy_pipeline"
+              - option "sn_devstudio"
+              - option "sn_docker_spoke"
+              - option "sn_employee"
+              - option "sn_environment"
+              - option "sn_escm_rte"
+              - option "sn_ex_sp"
+              - option "sn_flow_diagram"
+              - option "sn_g_app_creator"
+              - option "sn_gd_guidance"
+              - option "sn_glider"
+              - option "sn_instance_clone"
+              - option "sn_kmf"
+              - option "sn_mab_api"
+              - option "sn_mif"
+              - option "sn_ml_ui"
+              - option "sn_mtg_cab"
+              - option "sn_nb_action"
+              - option "sn_nlu_workbench"
+              - option "sn_now_list_common"
+              - option "sn_nowassist_admin"
+              - option "sn_nowassist_diagn"
+              - option "sn_oe_sfs"
+              - option "sn_pa_designer"
+              - option "sn_pdf_table_bldr"
+              - option "sn_pipeline"
+              - option "sn_portal_starte_0"
+              - option "sn_prfrd_tables"
+              - option "sn_publications"
+              - option "sn_role_builder"
+              - option "sn_sc"
+              - option "sn_sec_cmn"
+              - option "sn_secops_setup"
+              - option "sn_si_aw"
+              - option "sn_skill_cfg_page"
+              - option "sn_slm_timer"
+              - option "sn_sns"
+              - option "sn_sow_chg"
+              - option "sn_sow_interceptor"
+              - option "sn_sow_itsm_common"
+              - option "sn_sow_on_call"
+              - option "sn_sow_problem"
+              - option "sn_studio_commons"
+              - option "sn_table_bldr_wzd"
+              - option "sn_table_builder"
+              - option "sn_templated_snip"
+              - option "sn_ti"
+              - option "sn_try_build_agent"
+              - option "sn_udc"
+              - option "sn_uibtk_api"
+              - option "sn_uxa_commons"
+              - option "sn_uxa_req_manager"
+              - option "sn_vul"
+              - option "sn_wn"
+              - option "sn_workspace_sta_0"
+              - option "sn_wwna"
+              - option "snc"
+          - generic "APIName" [ref=e30]:
+            - generic [ref=e32]: API Name
+            - combobox "API Name" [ref=e34]:
+              - option "ACE Contents"
+              - option "AI Search Assist (Internal API)"
+              - option "AI Search Assist Action (Internal API)"
+              - option "ATF Agent"
+              - option "ActivitySubscriptions"
+              - option "Advance Chat Settings"
+              - option "Agent Initiated Message"
+              - option "Aggregate API"
+              - option "Application Service"
+              - option "Application Service Internal API"
+              - option "Application service utils API"
+              - option "Attachment API"
+              - option "CI Lifecycle Management API"
+              - option "CI Lifecycle Manager"
+              - option "CMDB Data Ingestion API"
+              - option "CMDB Instance API"
+              - option "CMDB Meta API"
+              - option "CMDB UI API (Internal API)"
+              - option "CMDB Workspace API"
+              - option "CSDM Application Service (Internal API)"
+              - option "CSM Attachment API"
+              - option "Change Request Calendar (Internal API)"
+              - option "Check Plugin Installation"
+              - option "Client Extension Point Service"
+              - option "Clone Auth API"
+              - option "Clone Request Calendar"
+              - option "Collaboration Chat Teams Processor"
+              - option "ContextDocURLService"
+              - option "Contextual Search (Internal API)"
+              - option "Contextual Search Actions (Internal API)"
+              - option "Conversation Consumer Account"
+              - option "Conversation Member API"
+              - option "Conversation Message Resource"
+              - option "Conversation Server Preview"
+              - option "Copy Assessments"
+              - option "Data Classification"
+              - option "Documents Generation API"
+              - option "Email API"
+              - option "Export Query"
+              - option "FollowNotifications"
+              - option "Generative AI Feedback"
+              - option "Geomap Rest API"
+              - option "Get Core UI logo source"
+              - option "Glide Signals"
+              - option "Global FIle Management"
+              - option "Global Text Search API"
+              - option "GraphQL API"
+              - option "Guided Setup API (Internal API)"
+              - option "Guided Tours"
+              - option "IDE Build Service"
+              - option "Identification and Reconciliation API"
+              - option "Import Set API"
+              - option "ImportProgressChecker"
+              - option "Initiate Message"
+              - option "Interaction API"
+              - option "Interactive Analysis (Internal API)"
+              - option "Knowledge"
+              - option "Life Cycle API"
+              - option "List Query"
+              - option "Live Agent Support API"
+              - option "MID Telemetry API"
+              - option "ML Instance Validation"
+              - option "Manual_CI"
+              - option "Map Page Rest"
+              - option "Mobile Aggregation API"
+              - option "Mobile Alert API"
+              - option "Mobile Applet Launcher API"
+              - option "Mobile Badge Count API"
+              - option "Mobile Card Builder API"
+              - option "Mobile Chat Launcher API"
+              - option "Mobile Condition Builder API"
+              - option "Mobile Custom Map API"
+              - option "Mobile Data Visualization API"
+              - option "Mobile Debugger API"
+              - option "Mobile Deep Link API"
+              - option "Mobile Document Prefetch API"
+              - option "Mobile Events API"
+              - option "Mobile Favorites API"
+              - option "Mobile GenAI API"
+              - option "Mobile Icons API"
+              - option "Mobile Impersonation API"
+              - option "Mobile Language API"
+              - option "Mobile Offline API"
+              - option "Mobile Pagination API"
+              - option "Mobile Push Notification API"
+              - option "Mobile REST API"
+              - option "Mobile Record Document API"
+              - option "Mobile Reference Inputs API"
+              - option "Mobile Reference List API"
+              - option "Mobile Script Includes API"
+              - option "Mobile Search API"
+              - option "Mobile Search Autocomplete API"
+              - option "Mobile Section API"
+              - option "Mobile Studio"
+              - option "Mobile Theme API"
+              - option "Mobile Universal Link API"
+              - option "Mobile User Client API"
+              - option "Model Explainability"
+              - option "NLQ Api"
+              - option "NLU (Internal API)"
+              - option "Next Best Action"
+              - option "Nextwave Client"
+              - option "OG Conversational Cache Service"
+              - option "OG Conversational RAG Service"
+              - option "Oauth JWKS API"
+              - option "OnCallRotation"
+              - option "OneExtend"
+              - option "PA Indicator Breakdowns"
+              - option "PAR CoreUI Migration"
+              - option "PAR CoreUI Migration Utils"
+              - option "PAR Migrate Classic Dashboard Layout"
+              - option "PAR Scheduled Export"
+              - option "Page Inspector"
+              - option "Performance Analyzer Page"
+              - option "Predictive Intelligence"
+              - option "Push Installation API"
+              - option "Push Mobile Operations API"
+              - option "Related List Edit"
+              - option "Related List Item Filter"
+              - option "Reporting API"
+              - 'option "Reporting API :: Favorites"'
+              - option "Reporting Alias API"
+              - option "Reporting Table Description API"
+              - option "SG Custom Map"
+              - option "SLA (Internal API)"
+              - option "SNHelpService"
+              - option "SaBusinessService"
+              - option "Schedule Page API"
+              - option "Scorecards API"
+              - option "Screen Shortcut API"
+              - option "Search Source API"
+              - option "Skill Management"
+              - option "Slack Bots Config"
+              - option "Slack team name"
+              - option "Splunk Token"
+              - option "Stream Attachment Utils API"
+              - option "Suggestion API"
+              - option "Syntax Editor"
+              - option "Table API" [selected]
+              - option "Table Batch API"
+              - option "Template Spokes Details"
+              - option "TimeAgo"
+              - option "Tool Execution"
+              - option "Tracked Config Files"
+              - option "UA GCF"
+              - option "UAAppEngineLicensingService"
+              - option "UI Extension Point Service"
+              - option "UI GlideRecord API"
+              - option "VA Web Client Settings"
+              - option "VA bot uninstall"
+              - option "Virtual Agent Design"
+              - option "Workflow Studio API"
+              - option "Workspace Administration"
+              - option "Wrap Up API"
+              - option "branding"
+              - option "passwordexclusionlist"
+              - option "sn_exp_framework"
+              - option "sncEntryPointSelector"
+          - generic [ref=e35]:
+            - generic [ref=e36]: API Version
+            - combobox "API Version" [ref=e38]:
+              - option "latest" [selected]
+              - option "v1"
+              - option "v2"
+        - list [ref=e40]:
+          - listitem [ref=e41]:
+            - generic [ref=e42]: 
+            - link "Retrieve records from a table (GET)" [ref=e43] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e44]: Retrieve records from a table (GET)
+          - listitem [ref=e45]:
+            - text: 
+            - link "Create a record (POST)" [ref=e46] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e47]: Create a record (POST)
+          - listitem [ref=e48]:
+            - text: 
+            - link "Retrieve a record (GET)" [ref=e49] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e50]: Retrieve a record (GET)
+          - listitem [ref=e51]:
+            - text: 
+            - link "Modify a record (PUT)" [ref=e52] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e53]: Modify a record (PUT)
+          - listitem [ref=e54]:
+            - text: 
+            - link "Delete a record (DELETE)" [ref=e55] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e56]: Delete a record (DELETE)
+          - listitem [ref=e57]:
+            - text: 
+            - link "Update a record (PATCH)" [ref=e58] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e59]: Update a record (PATCH)
+        - list [ref=e61]:
+          - listitem [ref=e62]:
+            - link "Export OpenAPI Specification (YAML)" [ref=e63] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e64]: Export OpenAPI Specification (YAML)
+          - listitem [ref=e65]:
+            - link "Export OpenAPI Specification (JSON)" [ref=e66] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e67]: Export OpenAPI Specification (JSON)
+      - generic [ref=e70]:
+        - generic "load-message" [ref=e71]:
+          - generic [ref=e73]: 
+          - text: Loading Tables...
+          - button "Close" [ref=e74] [cursor=pointer]: 
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - heading [level=4] [ref=e78]:
+              - generic [ref=e79]: Table API
+            - button "You are on a dropdown menu." [ref=e81] [cursor=pointer]: 
+          - generic [ref=e82]: Allows you to perform create, read, update and delete (CRUD) operations on existing tables
+          - separator [ref=e83]
+          - generic [ref=e85]: Retrieve records from a table
+        - generic [ref=e86]: "GET https://dev301473.service-now.com/api/now/table/{tableName}"
+        - generic [ref=e89]:
+          - heading "Prepare request" [level=4] [ref=e91]
+          - generic [ref=e92]:
+            - generic [ref=e93]:
+              - generic [ref=e95]: Path parameters
+              - generic [ref=e96]:
+                - generic [ref=e97]:
+                  - generic [ref=e98]: Name
+                  - generic [ref=e99]: Value
+                - generic [ref=e101]:
+                  - generic [ref=e103]:
+                    - generic [ref=e104]: 
+                    - text: tableName
+                  - generic [ref=e106]:
+                    - generic [ref=e107]: tableName
+                    - combobox "-- Select a table -- tableName" [ref=e108]
+                    - button [ref=e109] [cursor=pointer]:
+                      - generic [ref=e110]: "-- Select a table --"
+                      - generic [ref=e112]: 
+                    - text:  
+                    - combobox [ref=e113]
+            - generic [ref=e116]: Query parameters
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - generic [ref=e120]: Name
+                - generic [ref=e121]: Value
+                - generic [ref=e122]: Description
+              - generic [ref=e123]:
+                - generic [ref=e125]: sysparm_query
+                - textbox "sysparm_query" [ref=e127]
+                - generic [ref=e129]: An encoded query string used to filter the results
+              - generic [ref=e130]:
+                - generic [ref=e132]: sysparm_display_value
+                - textbox "sysparm_display_value" [ref=e134]
+                - generic [ref=e136]: "Return field display values (true), actual values (false), or both (all) (default: false)"
+              - generic [ref=e137]:
+                - generic [ref=e139]: sysparm_exclude_reference_link
+                - textbox "sysparm_exclude_reference_link" [ref=e141]
+                - generic [ref=e143]: "True to exclude Table API links for reference fields (default: false)"
+              - generic [ref=e144]:
+                - generic [ref=e146]: sysparm_suppress_pagination_header
+                - textbox "sysparm_suppress_pagination_header" [ref=e148]
+                - generic [ref=e150]: "True to supress pagination header (default: false)"
+              - generic [ref=e151]:
+                - generic [ref=e153]: sysparm_fields
+                - generic [ref=e155]:
+                  - generic [ref=e156]:
+                    - textbox "sysparm_fields" [disabled] [ref=e157]
+                    - generic [ref=e158]:
+                      - button "Configure sysparm_fields" [disabled]: 
+                  - text:    
+                - generic [ref=e160]: A comma-separated list of fields to return in the response
+              - generic [ref=e161]:
+                - generic [ref=e163]: sysparm_limit
+                - combobox "sysparm_limit" [ref=e165]:
+                  - option "1 (Limited to 1 result for testing)" [selected]
+                  - option "10 (Limited to 10 results for testing)"
+                - generic [ref=e167]: "The maximum number of results returned per page (default: 10,000)"
+              - generic [ref=e168]:
+                - generic [ref=e170]: sysparm_view
+                - textbox "sysparm_view" [ref=e172]
+                - generic [ref=e174]: Render the response according to the specified UI view (overridden by sysparm_fields)
+              - generic [ref=e175]:
+                - generic [ref=e177]: sysparm_query_category
+                - textbox "sysparm_query_category" [ref=e179]
+                - generic [ref=e181]: Name of the query category (read replica category) to use for queries
+              - generic [ref=e182]:
+                - generic [ref=e184]: sysparm_query_no_domain
+                - textbox "sysparm_query_no_domain" [ref=e186]
+                - generic [ref=e188]: "True to access data across domains if authorized (default: false)"
+              - generic [ref=e189]:
+                - generic [ref=e191]: sysparm_no_count
+                - textbox "sysparm_no_count" [ref=e193]
+                - generic [ref=e195]: "Do not execute a select count(*) on table (default: false)"
+            - button "Add query parameter" [ref=e200] [cursor=pointer]
+            - generic [ref=e202]: Request headers
+            - generic [ref=e204]:
+              - generic [ref=e205]:
+                - generic [ref=e206]: Name
+                - generic [ref=e207]: Value
+                - generic [ref=e208]: Description
+              - generic [ref=e209]:
+                - generic [ref=e211]: Request format
+                - combobox "Request format" [ref=e213]:
+                  - option "application/json" [selected]
+                  - option "application/xml"
+                  - option "text/xml"
+                - generic [ref=e215]: Format of REST request body
+              - generic [ref=e216]:
+                - generic [ref=e218]: Response format
+                - combobox "Response format" [ref=e220]:
+                  - option "application/json" [selected]
+                  - option "application/xml"
+                  - option "text/xml"
+                - generic [ref=e222]: Format of REST response body
+              - generic [ref=e223]:
+                - generic [ref=e225]: Authorization
+                - combobox "Authorization" [ref=e227]:
+                  - option "Send as me" [selected]
+                - generic [ref=e229]: Send the request as the current user. To send the request with another user’s credentials use the provided code samples, such as cURL.
+            - button "Add header" [ref=e234] [cursor=pointer]
+            - button "Send" [ref=e236] [cursor=pointer]
+            - generic [ref=e238]: Code Samples
+            - generic [ref=e239]:
+              - generic [ref=e241]: Use the provided code samples to send this request from commonly used languages.
+              - generic [ref=e242]:
+                - generic:
+                  - generic [ref=e243]:
+                    - link "[ServiceNow Script]" [ref=e244] [cursor=pointer]:
+                      - /url: "#code_modal"
+                    - link "[cURL]" [ref=e245] [cursor=pointer]:
+                      - /url: "#code_modal"
+                    - link "[Python]" [ref=e246] [cursor=pointer]:
+                      - /url: "#code_modal"
+                    - link "[Ruby]" [ref=e247] [cursor=pointer]:
+                      - /url: "#code_modal"
+                    - link "[JavaScript]" [ref=e248] [cursor=pointer]:
+                      - /url: "#code_modal"
+                    - link "[Perl]" [ref=e249] [cursor=pointer]:
+                      - /url: "#code_modal"
+                    - link "[Powershell]" [ref=e250] [cursor=pointer]:
+                      - /url: "#code_modal"
+                  - text: 
+  - status [ref=e251]

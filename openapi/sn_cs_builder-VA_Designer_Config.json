@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "VA Designer Config",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_cs_builder/va_designer_config": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "roles",
+            "in": "query",
+            "description": "List of roles to check if the user has",
+            "required": false,
+            "schema": {},
+            "example": "admin,maint,virtual_agent_admin"
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "description": "Optional param to specify view being requested (e.g., \"preview\")",
+            "required": false,
+            "schema": {},
+            "example": "preview"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "List of fields to retrieve from the VA Designer Config REST API",
+            "required": false,
+            "schema": {},
+            "example": "USER_SYS_ID,USER_IS_ADMIN,AVAILABLE_SCOPES_BY_ID,LOCALIZATION_FRAMEWORK_ENABLED"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

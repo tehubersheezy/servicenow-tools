@@ -1,0 +1,174 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CICD App Repo API",
+    "description": "CI/CD service to interact with the App Repo",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_cicd/app_repo/install": {
+      "post": {
+        "description": "Install an application from the App Repo",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "query",
+            "description": "The unique sys_id of the application (sys_id or scope required)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "scope",
+            "in": "query",
+            "description": "The scope of the application",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "The version of the application",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "auto_upgrade_base_app",
+            "in": "query",
+            "description": "Auto upgrade the base application if it is true",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "base_app_version",
+            "in": "query",
+            "description": "Version of the base application",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/app_repo/publish": {
+      "post": {
+        "description": "Publish an application to the App Repo",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "query",
+            "description": "The unique sys_id of the application (sys_id or scope required)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "scope",
+            "in": "query",
+            "description": "The scope of the application",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "The version of the application",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "dev_notes",
+            "in": "query",
+            "description": "The release notes",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_cicd/app_repo/rollback": {
+      "post": {
+        "description": "Rollback an application to prior version",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "query",
+            "description": "The unique sys_id of the application (sys_id or scope required)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "scope",
+            "in": "query",
+            "description": "The scope of the application",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "The expected version after rollback",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

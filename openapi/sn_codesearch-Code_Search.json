@@ -1,0 +1,116 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Code Search",
+    "description": "Search a predefined list of tables and fields for strings of code.",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_codesearch/code_search/search": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "search_group",
+            "in": "query",
+            "description": "The Search Group definition to use when searching.",
+            "required": false,
+            "schema": {},
+            "example": "sn_codesearch.Default Search Group"
+          },
+          {
+            "name": "term",
+            "in": "query",
+            "description": "The term to search for.",
+            "required": true,
+            "schema": {},
+            "example": "AbstractAjaxProcessor"
+          },
+          {
+            "name": "current_app",
+            "in": "query",
+            "description": "Setting search_all_scopes to false limits results to only files with this scope.",
+            "required": false,
+            "schema": {},
+            "example": "sn_codesearch"
+          },
+          {
+            "name": "search_all_scopes",
+            "in": "query",
+            "description": "Include results from scopes outside the one specified in current_app.",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          },
+          {
+            "name": "extended_matching",
+            "in": "query",
+            "description": "Override the default value for the group, returns additional fields with context",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of results to return. Can not go over global maximum.",
+            "required": false,
+            "schema": {},
+            "example": "150"
+          },
+          {
+            "name": "table",
+            "in": "query",
+            "description": "The specific table to search in. Must also provide search group when using this.",
+            "required": false,
+            "schema": {},
+            "example": "sys_script_include"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_codesearch/code_search/tables": {
+      "get": {
+        "description": "Can return the list of tables that would be searched for a given search group.",
+        "parameters": [
+          {
+            "name": "search_group",
+            "in": "query",
+            "description": "The Search Group definition to use when searching.",
+            "required": false,
+            "schema": {},
+            "example": "sn_codesearch.Default Search Group"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

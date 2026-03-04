@@ -1,0 +1,282 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Scorecards API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/pa/scorecards": {
+      "get": {
+        "description": "Retrieve list of Scorecards",
+        "parameters": [
+          {
+            "name": "sysparm_uuid",
+            "in": "query",
+            "description": "the scope of the scorecard or list of breakdown scorecards, or a comma-separated list of scopes",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_breakdown",
+            "in": "query",
+            "description": "sys_id of the breakdown for a list of breakdown scorecards",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_breakdown_relation",
+            "in": "query",
+            "description": "sys_id of the breakdown relation for a list of related breakdown scorecards",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_elements_filter",
+            "in": "query",
+            "description": "sys_id of the elements filter to be applied to the list of breakdown scorecards",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_display",
+            "in": "query",
+            "description": "true/false to return scorecards whose indicators have 'Publish on Scorecards' checked resp. unchecked, 'all' to ignore the value of 'Publish on Scorecards', default to true",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_favorites",
+            "in": "query",
+            "description": "true to return only scorecards that are the user's favorite",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_key",
+            "in": "query",
+            "description": "true to return only scorecards of Key indicators",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_target",
+            "in": "query",
+            "description": "true to return only scorecards that have a target",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_contains",
+            "in": "query",
+            "description": "matches scorecards by name or description, use comma separated list of strings",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_tags",
+            "in": "query",
+            "description": "matches scorecards by tag sysids, use comma separated list of sysids",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_per_page",
+            "in": "query",
+            "description": "pages by this amount, defaults to 10, maximum is 100",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_page",
+            "in": "query",
+            "description": "page of list of scorecards, defaults to 1",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sortby",
+            "in": "query",
+            "description": "field to sort by, one of VALUE, CHANGE, CHANGEPERC, GAP, GAPPERC, NAME, ORDER, DEFAULT, INDICATOR_GROUP, FREQUENCY, TARGET, DATE, DIRECTION",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sortdir",
+            "in": "query",
+            "description": "use value ASC to sort in ascending order, use DESC to sort in descending order",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_display_value",
+            "in": "query",
+            "description": "true/false to return display value or reference field, or 'all' to return both, defaults to all",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_exclude_reference_link",
+            "in": "query",
+            "description": "true to not return Link Information for Reference Fields",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_scores",
+            "in": "query",
+            "description": "true to include scores for each scorecard, requires the presence of sysparm_uuid",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_from",
+            "in": "query",
+            "description": "start date in ISO-8601 format for which to return scores",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_to",
+            "in": "query",
+            "description": "end date in ISO-8601 format for which to return scores",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_step",
+            "in": "query",
+            "description": "positive integer indicating the gap between score dates, default to 1",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "maximum number of scores to return, -1 means to return all scores, default to -1",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_available_breakdowns",
+            "in": "query",
+            "description": "true to include all available breakdowns for a scorecard",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_available_aggregates",
+            "in": "query",
+            "description": "true to include all available aggregates for a scorecard",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_realtime",
+            "in": "query",
+            "description": "true to include the realtime score",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_target_color_scheme",
+            "in": "query",
+            "description": "true to include the target color scheme",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_forecast_scores",
+            "in": "query",
+            "description": "true to include the forecast scores",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_trendline_scores",
+            "in": "query",
+            "description": "true to include the trendline scores",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_include_prediction_interval",
+            "in": "query",
+            "description": "true to include the prediction intervals at default 95%",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Select a Scorecard as favorite",
+        "parameters": [
+          {
+            "name": "sysparm_uuid",
+            "in": "query",
+            "description": "The identification of the scorecard the user wants to select as a favorite",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deselect a Scorecard as favorite",
+        "parameters": [
+          {
+            "name": "sysparm_uuid",
+            "in": "query",
+            "description": "The identification of the scorecard the user wants to deselect as a favorite",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

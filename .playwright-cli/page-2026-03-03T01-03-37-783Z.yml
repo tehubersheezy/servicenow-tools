@@ -1,0 +1,127 @@
+- generic [ref=e13]:
+  - generic:
+    - navigation "Global skip links":
+      - link "Skip to main content" [ref=e15] [cursor=pointer]:
+        - /url: javascript:void(0);
+      - link "Open accessibility preferences" [ref=e17] [cursor=pointer]:
+        - /url: javascript:void(0);
+  - generic [ref=e19]:
+    - navigation "Primary" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - button "My ServiceNow landing page" [ref=e26]:
+            - img "ServiceNow Service Management" [ref=e27] [cursor=pointer]
+          - navigation "Unpinned All menu"
+          - navigation "Unpinned Favorites menu"
+          - navigation "Unpinned History menu"
+          - navigation "Unpinned Workspaces menu"
+          - navigation "Unpinned Admin menu"
+          - navigation "More menus"
+          - menu [ref=e28]:
+            - menuitem "All" [ref=e29] [cursor=pointer]
+            - menuitem "Favorites" [ref=e30] [cursor=pointer]
+            - menuitem "History" [ref=e31] [cursor=pointer]
+            - menuitem "More menus" [ref=e32] [cursor=pointer]:
+              - img [ref=e34]
+        - generic [ref=e37]:
+          - generic [ref=e38]: Unified Navigation App | ServiceNow
+          - button "Create favorite for Unified Navigation App | ServiceNow" [ref=e39] [cursor=pointer]:
+            - img [ref=e41]
+        - generic [ref=e46]:
+          - button "Scope selectors" [ref=e47] [cursor=pointer]:
+            - img [ref=e49]
+          - button "Sidebar discussions" [ref=e50] [cursor=pointer]:
+            - img [ref=e52]
+          - button "Show help" [ref=e54] [cursor=pointer]:
+            - img [ref=e56]
+          - button "Overflow Menus" [ref=e59] [cursor=pointer]:
+            - img [ref=e61]
+          - 'button "System Administrator: Available" [ref=e63] [cursor=pointer]':
+            - generic [ref=e65]:
+              - img "System Administrator is Available" [ref=e67]
+              - img [ref=e69]
+    - main [ref=e76]:
+      - img "Loading" [ref=e81]
+      - iframe [ref=e83]:
+        - generic [active] [ref=f1e1]:
+          - generic [ref=f1e2]:
+            - region
+            - region
+          - generic [ref=f1e3]:
+            - generic [ref=f1e4]:
+              - generic [ref=f1e5]:
+                - generic [ref=f1e6]: ServiceNow Studio
+                - generic [ref=f1e7]:
+                  - generic [ref=f1e8]:
+                    - generic [ref=f1e9]: Build smarter and deploy faster
+                    - generic [ref=f1e10]:
+                      - text: Access all the tools you need in one unified,
+                      - text: intuitive development environment.
+                  - button [ref=f1e11] [cursor=pointer]:
+                    - img [ref=f1e12]
+              - img [ref=f1e19]
+            - generic [ref=f1e203]:
+              - generic [ref=f1e204]: GO FURTHER
+              - generic [ref=f1e205]: Power your workflow applications
+            - generic [ref=f1e207]:
+              - generic [ref=f1e208]:
+                - generic [ref=f1e209]:
+                  - generic [ref=f1e210]:
+                    - generic [ref=f1e211]: Develop apps as code
+                    - generic [ref=f1e212]: Create and edit ServiceNow apps using modern software development practices, enabling Git, code reviews, and build-time validation.
+                  - button "Open ServiceNow IDE" [ref=f1e213] [cursor=pointer]:
+                    - generic [ref=f1e214]:
+                      - img [ref=f1e215]
+                      - generic [ref=f1e218]: Open ServiceNow IDE
+                - img [ref=f1e221]
+              - generic [ref=f1e305]:
+                - generic [ref=f1e306]:
+                  - generic [ref=f1e307]:
+                    - generic [ref=f1e308]: Create request-based apps quickly
+                    - generic [ref=f1e309]: A guided and curated environment for creating forms and assigning automations to them. No-code required.
+                  - button "Open Creator Studio" [ref=f1e310] [cursor=pointer]:
+                    - generic [ref=f1e311]:
+                      - img [ref=f1e312]
+                      - generic [ref=f1e315]: Open Creator Studio
+                - img [ref=f1e318]
+              - generic [ref=f1e343]:
+                - generic [ref=f1e344]:
+                  - generic [ref=f1e345]:
+                    - generic [ref=f1e346]: Build low-code apps quickly
+                    - generic [ref=f1e347]: Create apps from scratch or by using templates. Safely scale cross-enterprise experiences that users love on a single platform.
+                  - button "Open App Engine Studio" [ref=f1e348] [cursor=pointer]:
+                    - generic [ref=f1e349]:
+                      - img [ref=f1e350]
+                      - generic [ref=f1e353]: Open App Engine Studio
+                - img [ref=f1e356]
+              - generic [ref=f1e378]:
+                - generic [ref=f1e379]:
+                  - generic [ref=f1e380]:
+                    - generic [ref=f1e381]: Connect flows to automate repetitive tasks
+                    - generic [ref=f1e382]: Streamline approvals, tasks, and notifications by using with natural language to create conditional flows.
+                  - button "Open Workflow Studio" [ref=f1e383] [cursor=pointer]:
+                    - generic [ref=f1e384]:
+                      - img [ref=f1e385]
+                      - generic [ref=f1e388]: Open Workflow Studio
+                - img [ref=f1e391]
+              - generic [ref=f1e444]:
+                - generic [ref=f1e445]:
+                  - generic [ref=f1e446]:
+                    - generic [ref=f1e447]: Customize user experiences
+                    - generic [ref=f1e448]: Craft modern UI experiences by piecing together base components.
+                  - button "Open UI Builder" [ref=f1e449] [cursor=pointer]:
+                    - generic [ref=f1e450]:
+                      - img [ref=f1e451]
+                      - generic [ref=f1e454]: Open UI Builder
+                - img [ref=f1e457]
+              - generic [ref=f1e519]:
+                - generic [ref=f1e520]:
+                  - generic [ref=f1e521]:
+                    - generic [ref=f1e522]: Build mobile business apps
+                    - generic [ref=f1e523]: Configure and create engaging mobile experiences rapidly for employees and agents
+                  - button "Open Mobile App Builder" [ref=f1e524] [cursor=pointer]:
+                    - generic [ref=f1e525]:
+                      - img [ref=f1e526]
+                      - generic [ref=f1e529]: Open Mobile App Builder
+                - img [ref=f1e532]
+          - status [ref=f1e568]

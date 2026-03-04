@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SG Custom Map",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/sg_custom_map/token": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "query",
+            "description": "SG Custom map provider Id",
+            "required": true,
+            "schema": {},
+            "example": "ed7e3233c33220105e8fbb62ef40dd4a"
+          },
+          {
+            "name": "documentId",
+            "in": "query",
+            "description": "SG Custom map screenId",
+            "required": true,
+            "schema": {},
+            "example": "ed7e3233c33220105e8fbb62ef40dd4a"
+          },
+          {
+            "name": "externalId",
+            "in": "query",
+            "description": "MappedId externalID",
+            "required": true,
+            "schema": {},
+            "example": "servicenow-demo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SLA Timer Config API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_slm_timer/sla/timer": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "config_ids",
+            "in": "query",
+            "description": "A comma seperated list or array of SLA Timer Configurations sys_ids ",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "task_ids",
+            "in": "query",
+            "description": "A comma seperated list or array of Task sys_ids",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

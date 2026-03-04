@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Guided App Creator API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_g_app_creator/guided_app_creator_api/excel_spreadsheet_columns": {
+      "get": {
+        "description": "Returns the column information for a Excel spreadsheet attachment",
+        "parameters": [
+          {
+            "name": "headerRow",
+            "in": "query",
+            "description": "The row number for the header row",
+            "required": false,
+            "schema": {},
+            "example": "headerRow=7"
+          },
+          {
+            "name": "attachmentSysId",
+            "in": "query",
+            "description": "Attachment sys_id for an Excel Spreadsheet",
+            "required": true,
+            "schema": {},
+            "example": "attachmentSysId=681b365ec0a80164000fb0b05854a0cd05854a0cd"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

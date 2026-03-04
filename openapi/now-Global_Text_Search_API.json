@@ -1,0 +1,65 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Global Text Search API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/globalsearch/groups": {
+      "get": {
+        "description": "Get an ordered list of all of the search groups available to the current user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/globalsearch/search": {
+      "get": {
+        "description": "Search group[s] with a keyword-based query",
+        "parameters": [
+          {
+            "name": "sysparm_groups",
+            "in": "query",
+            "description": "A comma-separated list of ids of the groups to search within (default searches all groups)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search",
+            "in": "query",
+            "description": "The keyword(s) to search for",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

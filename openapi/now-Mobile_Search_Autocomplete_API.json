@@ -1,0 +1,106 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Mobile Search Autocomplete API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/sg/search/autocomplete": {
+      "get": {
+        "description": "Search suggestions for mobile",
+        "parameters": [
+          {
+            "name": "sysparm_search_config",
+            "in": "query",
+            "description": "The search config id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword to fetch search suggestions for",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_app_config",
+            "in": "query",
+            "description": "The search application configuration id",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_nass_enabled",
+            "in": "query",
+            "description": "NASS enabled",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete recent search term for mobile",
+        "parameters": [
+          {
+            "name": "sysparm_search_config",
+            "in": "query",
+            "description": "The search config id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword to fetch search suggestions for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_app_config",
+            "in": "query",
+            "description": "The search application configuration id",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_nass_enabled",
+            "in": "query",
+            "description": "NASS enabled",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

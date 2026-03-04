@@ -1,0 +1,67 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "List Query",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/list_query": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sysparm_operator",
+            "in": "query",
+            "description": "The query operator",
+            "required": false,
+            "schema": {},
+            "example": "="
+          },
+          {
+            "name": "sysparm_field",
+            "in": "query",
+            "description": "The name for the field/column to be queried",
+            "required": false,
+            "schema": {},
+            "example": "caller_id"
+          },
+          {
+            "name": "sysparm_sys_id",
+            "in": "query",
+            "description": "The sys_id of the record selected",
+            "required": false,
+            "schema": {},
+            "example": "32GUID32GUID32GUID32GUID32GUID32"
+          },
+          {
+            "name": "sysparm_table",
+            "in": "query",
+            "description": "Table name",
+            "required": false,
+            "schema": {},
+            "example": "incident"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

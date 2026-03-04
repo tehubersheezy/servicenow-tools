@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Table Wizard",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_table_bldr_wzd/app/excel_spreadsheet_columns": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "attachmentSysId",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "sheetNumber",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "headerRow",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "headerRow=7"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_table_bldr_wzd/app/sheet_info/{attachmentId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "attachmentId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

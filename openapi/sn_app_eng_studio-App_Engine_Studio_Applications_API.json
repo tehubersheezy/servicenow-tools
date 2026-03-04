@@ -1,0 +1,393 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "App Engine Studio Applications API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_app_eng_studio/applications": {
+      "get": {
+        "description": "Retrieves a list of applications the user can modify (or has created)",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of applications to return",
+            "required": false,
+            "schema": {},
+            "example": "limit=10"
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "description": "The order in which to sort the requested field / data by",
+            "required": false,
+            "schema": {},
+            "example": "sort_order=asc OR sort_order=desc (desc is the default if no sort_order is passed into the API call)"
+          },
+          {
+            "name": "search_term",
+            "in": "query",
+            "description": "Search term to filter applications by",
+            "required": false,
+            "schema": {},
+            "example": "search_term=my-app"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "0-index based start index of record to return",
+            "required": false,
+            "schema": {},
+            "example": "offset=0 OR offset=10"
+          },
+          {
+            "name": "allow_template_apps",
+            "in": "query",
+            "description": "Return template apps in applications list (true/false, defaults to false).",
+            "required": false,
+            "schema": {},
+            "example": "allow_template_apps=true"
+          },
+          {
+            "name": "sort_field",
+            "in": "query",
+            "description": "The field in which to sort the request on",
+            "required": false,
+            "schema": {},
+            "example": "sort_field=name OR sort_field=updated"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/apps/template_source_apps": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/creator_taxonomies": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/deployment_request": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/details": {
+      "post": {
+        "description": "Creates a record that holds metadata relating to an App Engine Studio app.",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/object_templates_permission": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/publish_search_config": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/role_details/{role_sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "role_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/sys_app_info/{property}/list/{operation}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "property",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "operation",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/{application_version}/deployment_request": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "application_version",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_app_eng_studio/applications/{application_sys_id}/{table_name}/files/{object_sys_ids}": {
+      "get": {
+        "description": "Gets single applications files for a given table. object_ids are comma seperated",
+        "parameters": [
+          {
+            "name": "application_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "table_name",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "object_sys_ids",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,982 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AppManager(Internal API)",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_appclient/appmanager/app/install": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "query",
+            "description": "source app id of the application",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "customization_version",
+            "in": "query",
+            "description": "customization version",
+            "required": false,
+            "schema": {},
+            "example": "1.0.0"
+          },
+          {
+            "name": "load_demo_data",
+            "in": "query",
+            "description": "flag to load demo data",
+            "required": false,
+            "schema": {},
+            "example": "true|false"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "version of an app",
+            "required": true,
+            "schema": {},
+            "example": "1.0.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/app/repair": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "query",
+            "description": "version of an app",
+            "required": true,
+            "schema": {},
+            "example": "1.0.0"
+          },
+          {
+            "name": "customization_version",
+            "in": "query",
+            "description": "customization version",
+            "required": false,
+            "schema": {},
+            "example": "1.0.0"
+          },
+          {
+            "name": "load_demo_data",
+            "in": "query",
+            "description": "flag to load demo data",
+            "required": false,
+            "schema": {},
+            "example": "true|false"
+          },
+          {
+            "name": "app_id",
+            "in": "query",
+            "description": "source app id of the application",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/app/update": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "load_demo_data",
+            "in": "query",
+            "description": "flag to load demo data",
+            "required": false,
+            "schema": {},
+            "example": "true|false"
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "version of an app",
+            "required": true,
+            "schema": {},
+            "example": "1.0.0"
+          },
+          {
+            "name": "app_id",
+            "in": "query",
+            "description": "source app id of the application",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "customization_version",
+            "in": "query",
+            "description": "customization version",
+            "required": false,
+            "schema": {},
+            "example": "1.0.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/app/{appID}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "appID",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/app_info_from_store/{sourceAppId}/{version}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sourceAppId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/apps": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "Number of records to skip from the response",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "search_key",
+            "in": "query",
+            "description": "search criteria",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "The maximum number of results returned per page (default: 10,000)",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "tab_context",
+            "in": "query",
+            "description": "Valid options:- 1. available_for_you 2. installed 3. updates",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/batch/dependencies": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sysparam_data",
+            "in": "query",
+            "description": "apps data to get dependencies info",
+            "required": false,
+            "schema": {},
+            "example": "{\"name\":\"Governance, Risk, and Compliance\",\"product_id\":\"grc_core\",\"packages\":[{\"id\":\"com.snc.grc_profile_dep\",\"is_plugin\":true,\"type\":\"plugin\",\"load_demo_data\":false},{\"id\":\"com.snc.grc.common\",\"is_plugin\":true,\"type\":\"plugin\",\"load_demo_data\":false}],\"i"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/batch/{batchId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/dependencies": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "query",
+            "description": "scope of the app",
+            "required": true,
+            "schema": {},
+            "example": "sn_clin_core"
+          },
+          {
+            "name": "first_level_only",
+            "in": "query",
+            "description": "Send only first level dependency required (default: true if no value sent)",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/filters": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/get_page_config": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/installations": {
+      "get": {
+        "description": "API to list all inprogress  installations",
+        "parameters": [
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "The maximum number of results returned per page (default: 10,000)",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "Number of records to skip from the response",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/installations/{trackerId}": {
+      "get": {
+        "description": "API to list all inprogress  installations",
+        "parameters": [
+          {
+            "name": "trackerId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/loadDemoData": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/manifest": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "query",
+            "description": "version of an app",
+            "required": true,
+            "schema": {},
+            "example": "1.0.0"
+          },
+          {
+            "name": "source_app_id",
+            "in": "query",
+            "description": "Source App Id of app",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/pendingbatchinstallations": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/plugin/activate": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "plugin_id",
+            "in": "query",
+            "description": "Id of the plugin",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "customization_version",
+            "in": "query",
+            "description": "customization version",
+            "required": false,
+            "schema": {},
+            "example": "1.0.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/plugin/repair": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "plugin_id",
+            "in": "query",
+            "description": "Id of the plugin",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "load_demo_data",
+            "in": "query",
+            "description": "flag to load demo data",
+            "required": false,
+            "schema": {},
+            "example": "true|false"
+          },
+          {
+            "name": "customization_version",
+            "in": "query",
+            "description": "customization version",
+            "required": false,
+            "schema": {},
+            "example": "1.0.0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/plugin/rollback": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/plugin/{pluginId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/pluginpreinstallinfo": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/plugins": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "active",
+            "in": "query",
+            "description": "flag to filter by installation state",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "Number of records to skip from the response",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "tab_context",
+            "in": "query",
+            "description": "Valid options:- 1. available_for_you 2. installed 3. updates",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "search_key",
+            "in": "query",
+            "description": "search criteria",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "The maximum number of results returned per page (default: 10,000)",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/product/install": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/product/{productId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "source of the product",
+            "required": true,
+            "schema": {},
+            "example": "platform | store"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/products": {
+      "post": {
+        "description": "API to fetch all the products ",
+        "parameters": [
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "Number of records to skip from the response",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "The maximum number of results returned per page (default: 10,000)",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "search_key",
+            "in": "query",
+            "description": "search criteria",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/progress/app/{appId}": {
+      "get": {
+        "description": "API to list all inprogress  installations",
+        "parameters": [
+          {
+            "name": "appId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/progress/{trackerId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "trackerId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/register_tracker_info": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/schedule": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "schedule_id",
+            "in": "query",
+            "description": "Current schedule id",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "description": "Schedule action type",
+            "required": true,
+            "schema": {},
+            "example": "create_schedule, update_schedule, delete_schedule, validate_slot, get_all_schedules, get_schedule_stats"
+          },
+          {
+            "name": "scheduled_time",
+            "in": "query",
+            "description": "App Schedule date time in format yyyy-mm-dd hh:mm:ss",
+            "required": false,
+            "schema": {},
+            "example": "2022-02-02 02:20:00"
+          },
+          {
+            "name": "source_app_id",
+            "in": "query",
+            "description": "App source app id or plugin id",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "appCount",
+            "in": "query",
+            "description": "No. of apps to be scheduled",
+            "required": false,
+            "schema": {},
+            "example": "2"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/sn_appclient/appmanager/sync_apps": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "tracker_id",
+            "in": "query",
+            "description": "Tracker id for store apps sync",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

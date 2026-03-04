@@ -1,0 +1,1392 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OnCallRotation",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/on_call_rota/addextracoverage": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "rota_id",
+            "in": "query",
+            "description": "Single cmn_rota sys_id",
+            "required": false,
+            "schema": {},
+            "example": "rota_id=af3a3aeaeb201100fcfb858ad106fe09"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "The end date to filter rotas by",
+            "required": false,
+            "schema": {},
+            "example": "end_date='2015-01-31'"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "The start date to filter rotas by",
+            "required": false,
+            "schema": {},
+            "example": "start_date=2015-01-31"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/addoverride": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "roster_id",
+            "in": "query",
+            "description": "A Roster (cmn_rota_roster) sys_id",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "start_date_time",
+            "in": "query",
+            "description": "The start date time value",
+            "required": true,
+            "schema": {},
+            "example": "2016-01-06 13:03:00"
+          },
+          {
+            "name": "end_date_time",
+            "in": "query",
+            "description": "The end date time value",
+            "required": true,
+            "schema": {},
+            "example": "2016-01-06 14:03:00"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "A User (sys_user) sys_id",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/addtimeoff": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "end_date_time",
+            "in": "query",
+            "description": "The end date time value",
+            "required": true,
+            "schema": {},
+            "example": "2016-01-06 14:03:00"
+          },
+          {
+            "name": "start_date_time",
+            "in": "query",
+            "description": "The start date time value",
+            "required": true,
+            "schema": {},
+            "example": "2016-01-06 13:03:00"
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "A single Group (sys_user_group) sys_id",
+            "required": false,
+            "schema": {},
+            "example": "287ebd7da9fe198100f92cc8d1d2154e"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "A User (sys_user) sys_id",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/contact_preferences/comm_types": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/contact_preferences/save": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/contact_preferences/{contact_pref_sys_id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "contact_pref_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/contact_preferences/{type}/{sysId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creation_wizard/deleteRoster": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creation_wizard/deleteShift": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creation_wizard/escalationpanel": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creation_wizard/getPreviewDetails": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creation_wizard/getRostersAndMemberDetails": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creation_wizard/getShifts/{group_sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creation_wizard/shiftStateUpdate": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/creationwizard/save": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/deleteCoverage": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/deleteUserContactPreference/{contact_preference_sys_id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "contact_preference_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/deleteUserPreference/{user_preference_sys_id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_preference_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalation_path": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalations": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalations/default/{rota_sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "rota_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalations/sets/{escalation_set_sys_id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "escalation_set_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalations/steps/{escalation_step_sys_id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "escalation_step_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalations/{escalation_set_sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "escalation_set_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalations/{escalation_set_sys_id}/steps/incrementescalationlevel": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "escalation_set_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/escalationsets": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getEscalationById": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getEscalations": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getNextRotas": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getOnCallShiftTemplates": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getUserContactOverrides/{groupSysId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "groupSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getUserContactPerAttemptPreferences/{group_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getUserDevicesAndContacts": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getUserPreference": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getrostersbyrotas": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getrostersbyrotas/{rota_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "rota_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "rota_ids",
+            "in": "query",
+            "description": "Array of Rota Sys Ids",
+            "required": false,
+            "schema": {},
+            "example": "rota_ids=71992362eb601100fcfb858ad106fe16,3b192362eb601100fcfb858ad106fe45"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getrotasbygroup": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/getrotasbygroup/{group_ids}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_ids",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/glidestack/{action}": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/group": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/group/members/{group_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/group/on_call/members": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "rota_ids",
+            "in": "query",
+            "description": "Array of Rota Sys Ids",
+            "required": false,
+            "schema": {},
+            "example": "rota_ids=71992362eb601100fcfb858ad106fe16,3b192362eb601100fcfb858ad106fe45"
+          },
+          {
+            "name": "end_date_time",
+            "in": "query",
+            "description": "The end date time value",
+            "required": true,
+            "schema": {},
+            "example": "2016-01-06 14:03:00"
+          },
+          {
+            "name": "roster_ids",
+            "in": "query",
+            "description": "Array of Roster Sys Ids",
+            "required": false,
+            "schema": {},
+            "example": "roster_ids=35992362eb601100fcfb858ad106fe16,338ee762eb601100fcfb858ad106feca"
+          },
+          {
+            "name": "start_date_time",
+            "in": "query",
+            "description": "The start date time value",
+            "required": true,
+            "schema": {},
+            "example": "2016-01-06 13:03:00"
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "A single Group (sys_user_group) sys_id",
+            "required": false,
+            "schema": {},
+            "example": "287ebd7da9fe198100f92cc8d1d2154e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/oncallgroups": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/overrideEscalation": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/pending_actions": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/replaceCoverage": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/resetEscalation": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/rotaUserICalendar/{group_id}/{rota_id}/{user_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "rota_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "rota_id",
+            "in": "header",
+            "description": "Provide the sys_id of the rotation",
+            "required": true,
+            "schema": {},
+            "example": "98ec5fdcd7011200f2d224837e610317"
+          },
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "Provide the sys_id of the user that is a member of the rotation",
+            "required": true,
+            "schema": {},
+            "example": "800b174138d089c868d09de320f9833b"
+          },
+          {
+            "name": "group_id",
+            "in": "header",
+            "description": "Provide the group for the provided rotation",
+            "required": true,
+            "schema": {},
+            "example": "0a52d3dcd7011200f2d224837e6103f2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "text/calendar": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/rotas": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/saveUserContactPreference": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/searchoncallgroups": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/sections": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/spans": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/subscribeCalendar/{tiny_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "tiny_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "ni.nolog.token",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "text/calendar": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/whoisoncall": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "rota_ids",
+            "in": "query",
+            "description": "Array of Rota Sys Ids",
+            "required": false,
+            "schema": {},
+            "example": "rota_ids=71992362eb601100fcfb858ad106fe16,3b192362eb601100fcfb858ad106fe45"
+          },
+          {
+            "name": "roster_ids",
+            "in": "query",
+            "description": "Array of Roster Sys Ids",
+            "required": false,
+            "schema": {},
+            "example": "roster_ids=35992362eb601100fcfb858ad106fe16,338ee762eb601100fcfb858ad106feca"
+          },
+          {
+            "name": "group_ids",
+            "in": "query",
+            "description": "The group sys_ids to filter rotas by",
+            "required": false,
+            "schema": {},
+            "example": "group_ids=d625dccec0a8016700a222a0f7900d06,287ebd7da9fe198100f92cc8d1d2154e"
+          },
+          {
+            "name": "date_time",
+            "in": "query",
+            "description": "The date time value",
+            "required": false,
+            "schema": {},
+            "example": "2016-01-06 14:03:00"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/on_call_rota/workbench/group/{groupSysId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "groupSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

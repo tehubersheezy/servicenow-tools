@@ -1,0 +1,447 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Conversation Consumer Account",
+    "description": "",
+    "version": "v1"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/v1/cs/consumerAccount/conversation": {
+      "post": {
+        "description": "Fetch conversations tied to the user based on conversation type and count",
+        "parameters": [
+          {
+            "name": "conversationType",
+            "in": "query",
+            "description": "Type of Conversation",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of conversations to fetch",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "ID of the user",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/read": {
+      "post": {
+        "description": "Update last read message for a consumer account",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "query",
+            "description": "Message ID to mark as read",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "description": "VA Conversation Id",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_deviceType",
+            "in": "query",
+            "description": "Device type",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "identifier",
+            "in": "query",
+            "description": "identifier , can be portal/ app/ page id",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/unreadConversation": {
+      "get": {
+        "description": "Get unread messages which are associated with the currently logged in user's consumer account.",
+        "parameters": [
+          {
+            "name": "portal",
+            "in": "query",
+            "description": "Portal Name",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "Number of Messages",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_return_only",
+            "in": "query",
+            "description": "Return only the count or only the preview",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "client_type",
+            "in": "query",
+            "description": "client type to be included for mobile",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/unreadConversationCount": {
+      "get": {
+        "description": "Get unread conversation count which are associated with the currently logged in user's consumer account.",
+        "parameters": [
+          {
+            "name": "sysparm_deviceType",
+            "in": "query",
+            "description": "Device Type",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/unreadMessage": {
+      "get": {
+        "description": "Get unread messages which are associated with the currently logged in user's consumer account.",
+        "parameters": [
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "Number of Messages",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_return_only",
+            "in": "query",
+            "description": "Return only the count or only the preview",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "portal",
+            "in": "query",
+            "description": "Portal Name",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/{consumerAccountId}/conversation": {
+      "post": {
+        "description": "Fetch conversations tied to the consumer account based on conversation type and count",
+        "parameters": [
+          {
+            "name": "consumerAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "closedConversationCount",
+            "in": "query",
+            "description": "Number of closed conversations to fetch",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "activeConversationCount",
+            "in": "query",
+            "description": "Number of active conversations to fetch",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "notificationConversationCount",
+            "in": "query",
+            "description": "Number of notification conversations to fetch",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "archivedChatEnabled",
+            "in": "query",
+            "description": "Include archived chats in the unread count",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "description": "conversation currently active on client",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/{consumerAccountId}/message": {
+      "get": {
+        "description": "Get all topics and messages which are associated to this consumer account.",
+        "parameters": [
+          {
+            "name": "consumerAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "lastMessageId",
+            "in": "query",
+            "description": "Last Message Id",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "Number of Messages",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sort",
+            "in": "query",
+            "description": "asc/desc order of messages",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_age",
+            "in": "query",
+            "description": "older/newer messages (only applicable when lastMessageId is provided)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_deviceType",
+            "in": "query",
+            "description": "Device Type",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "description": "VA Conversation ID",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/{consumerAccountId}/nowAssist/latest/auxiliary": {
+      "get": {
+        "description": "Fetch all of the latest auxiliary information for a given conversation",
+        "parameters": [
+          {
+            "name": "consumerAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "description": "VA Conversation ID",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/v1/cs/consumerAccount/{consumerAccountId}/sync": {
+      "get": {
+        "description": "Fetch all messages since a serial number for a given session.",
+        "parameters": [
+          {
+            "name": "consumerAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "snCsSessionId",
+            "in": "query",
+            "description": "VA Session ID",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "serialNumber",
+            "in": "query",
+            "description": "Last serial number received",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "description": "VA Conversation ID",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Fetch all messages since a serial number for a given session and update the last read status",
+        "parameters": [
+          {
+            "name": "consumerAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "snCsSessionId",
+            "in": "query",
+            "description": "VA Session ID",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "serialNumber",
+            "in": "query",
+            "description": "Last serial number received/read",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "conversationId",
+            "in": "query",
+            "description": "VA Conversation ID",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

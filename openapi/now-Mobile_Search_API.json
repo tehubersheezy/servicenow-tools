@@ -1,0 +1,262 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Mobile Search API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/sg/search": {
+      "get": {
+        "description": "Search for mobile",
+        "parameters": [
+          {
+            "name": "sysparm_search_config",
+            "in": "query",
+            "description": "The search config id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) to search for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_app_config",
+            "in": "query",
+            "description": "The search application configuration id",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_nass_enabled",
+            "in": "query",
+            "description": "NASS enabled",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_multi_content_enabled",
+            "in": "query",
+            "description": "Multi-content enabled",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_channel",
+            "in": "query",
+            "description": "The AMB channel that synthesized results are published over",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_evam_definition_id",
+            "in": "query",
+            "description": "EVAM definition ID",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_deployment_channel_id",
+            "in": "query",
+            "description": "Deployment channel ID",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_purview",
+            "in": "query",
+            "description": "Search Purview",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sources",
+            "in": "query",
+            "description": "Search source ids (comma separated)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_next_token",
+            "in": "query",
+            "description": "Search next token",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_disable_spell_check",
+            "in": "query",
+            "description": "Disable spell check",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/sg/search/analytics/publish/autocomplete": {
+      "post": {
+        "description": "Publish a search analytics event of type 'autocomplete'",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/sg/search/analytics/publish/refinement": {
+      "put": {
+        "description": "Publish a search analytics event of type 'Refinement'",
+        "parameters": [
+          {
+            "name": "sysparm_search_config",
+            "in": "query",
+            "description": "The search config id",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_context_application_id",
+            "in": "query",
+            "description": "The search context config application id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) to search for",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/sg/search/analytics/publish/resultclicked": {
+      "put": {
+        "description": "Publish a search analytics event of type 'ResultClicked'",
+        "parameters": [
+          {
+            "name": "sysparm_search_config",
+            "in": "query",
+            "description": "The search config id",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_context_application_id",
+            "in": "query",
+            "description": "The search context config application id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) to search for",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_click_rank",
+            "in": "query",
+            "description": "The user click rank value",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/sg/search/genius/{poll_id}": {
+      "get": {
+        "description": "Query for Genius Results for Mobile Search",
+        "parameters": [
+          {
+            "name": "poll_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

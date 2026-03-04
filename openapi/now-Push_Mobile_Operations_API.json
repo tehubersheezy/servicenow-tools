@@ -1,0 +1,189 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Push Mobile Operations API",
+    "description": "Allows mobile applications to manage notifications",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/push/{platform}/{pushApplicationName}/badge/count/state": {
+      "put": {
+        "description": "Enable/disable sending badge count for push notifications to user",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "pushApplicationName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/push/{platform}/{pushApplicationName}/notification/remove": {
+      "delete": {
+        "description": "Delete push notifications",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "pushApplicationName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "Comma separated string of types",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "mobileRequestIds",
+            "in": "query",
+            "description": "Comma separated string of requestIds",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/push/{platform}/{pushApplicationName}/notification/status/{state}": {
+      "put": {
+        "description": "Read/Unread push notifications",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "pushApplicationName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/push/{platform}/{pushApplicationName}/notifications": {
+      "get": {
+        "description": "Fetch Push notifications for mobile",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "pushApplicationName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "Comma separated string of types",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "Limit number of notifications received",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "Number of rows to skip when retrieving notifications",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

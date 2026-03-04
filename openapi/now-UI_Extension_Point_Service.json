@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "UI Extension Point Service",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/uiextension/{name}": {
+      "get": {
+        "description": "Get the HTML output from running a UIExtensionPoint",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_scope",
+            "in": "query",
+            "description": "The scope of the extension point",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_variables",
+            "in": "query",
+            "description": "A JSON object with key:value pairs to pass as variables into the macro",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

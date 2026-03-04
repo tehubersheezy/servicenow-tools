@@ -1,0 +1,32 @@
+{
+  "totalExported": 302,
+  "totalSkipped": 0,
+  "errorCount": 5,
+  "errors": [
+    {
+      "ns": "crypto",
+      "api": "",
+      "error": "no export link"
+    },
+    {
+      "ns": "fluent",
+      "api": "",
+      "error": "no export link"
+    },
+    {
+      "ns": "kmf",
+      "api": "",
+      "error": "no export link"
+    },
+    {
+      "ns": "sn_environment",
+      "api": "",
+      "error": "no export link"
+    },
+    {
+      "ns": "sn_ti",
+      "api": "MITRE ATT&CK REST API",
+      "error": "page.waitForEvent: Timeout 20000ms exceeded while waiting for event \"download\"\n=========================== logs ========"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Reporting API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/reporting": {
+      "get": {
+        "description": "Retrieve the list of reports",
+        "parameters": [
+          {
+            "name": "sysparm_contains",
+            "in": "query",
+            "description": "List of comma-separated terms to search for",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sortby",
+            "in": "query",
+            "description": "Name of the column to order by",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sortdir",
+            "in": "query",
+            "description": "Direction of ordering: asc/desc",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_page",
+            "in": "query",
+            "description": "Starting paging (1-based)",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_per_page",
+            "in": "query",
+            "description": "Items per page",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Glide Signals",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/analytics/events": {
+      "post": {
+        "description": "Analytics API to track Events",
+        "parameters": [
+          {
+            "name": "sysparm_event_action",
+            "in": "query",
+            "description": "Event Action",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_event_priority",
+            "in": "query",
+            "description": "Event Priority",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_track_async",
+            "in": "query",
+            "description": "Track Async",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/analytics/updateContext": {
+      "post": {
+        "description": "API to Set Context Attributes on the Glide Session Properties",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

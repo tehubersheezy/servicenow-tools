@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Glider Relay",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/sn_glider/relay": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "extUrl",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {},
+              "application/x-git-upload-pack-result": {},
+              "application/x-git-receive-pack-result": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "extUrl",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {},
+            "application/x-git-upload-pack-request": {},
+            "application/x-git-receive-pack-request": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {},
+              "application/x-git-upload-pack-result": {},
+              "application/x-git-receive-pack-result": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

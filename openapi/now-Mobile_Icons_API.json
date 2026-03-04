@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Mobile Icons API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/sg/font/glyphs": {
+      "get": {
+        "description": "Get font glyphs",
+        "parameters": [
+          {
+            "name": "family_id",
+            "in": "query",
+            "description": "Id of the font family",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/sg/icon/families": {
+      "get": {
+        "description": "Get icon families",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Optional location where icon family is allowed",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/sg/icon/images": {
+      "get": {
+        "description": "Get icon images",
+        "parameters": [
+          {
+            "name": "family_id",
+            "in": "query",
+            "description": "Id of the icon images family",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

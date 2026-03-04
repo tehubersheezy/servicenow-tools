@@ -1,0 +1,148 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Identification and Reconciliation API",
+    "description": "Allows to perform identification and reconciliation of input payload",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/identifyreconcile": {
+      "post": {
+        "description": "Create or Update CI",
+        "parameters": [
+          {
+            "name": "sysparm_data_source",
+            "in": "query",
+            "description": "Data Source calling the API",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/identifyreconcile/enhanced": {
+      "post": {
+        "description": "Create or Update CI Enhanced",
+        "parameters": [
+          {
+            "name": "sysparm_data_source",
+            "in": "query",
+            "description": "Data Source calling the API",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "options",
+            "in": "query",
+            "description": "A comma-separated list of key:value pairs of Enhanced IRE options. For example: partial_payload:true,partial_commits:true",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/identifyreconcile/query": {
+      "post": {
+        "description": "Identify CI",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/identifyreconcile/queryEnhanced": {
+      "post": {
+        "description": "Identify CI Enhanced",
+        "parameters": [
+          {
+            "name": "sysparm_data_source",
+            "in": "query",
+            "description": "Data Source calling the API",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "options",
+            "in": "query",
+            "description": "A comma-separated list of key:value pairs of Enhanced IRE options. For example: partial_payload:true,partial_commits:true",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

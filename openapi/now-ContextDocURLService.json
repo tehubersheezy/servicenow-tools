@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ContextDocURLService",
+    "description": "Converts help resourceid to a help url with version. Redirects to SNC doc site.",
+    "version": "v1"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/v1/context_doc_url/{resourceid}": {
+      "get": {
+        "description": "Converts help resourceid to a help url with version. Redirects to SNC doc site.",
+        "parameters": [
+          {
+            "name": "resourceid",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "text/xml": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

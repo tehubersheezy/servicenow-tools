@@ -1,0 +1,97 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Suggestion API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev301473.service-now.com/"
+    }
+  ],
+  "paths": {
+    "/api/now/search/sp_suggestions": {
+      "get": {
+        "description": "SERVICE PORTAL API: Get suggestions for a term",
+        "parameters": [
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) for suggestions",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_sp_portal_id",
+            "in": "query",
+            "description": "Service portal id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_suggestions_limit",
+            "in": "query",
+            "description": "Suggestions limit",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_sources",
+            "in": "query",
+            "description": "Array of search sources to use. If not provided - uses all scope sources",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/now/search/suggestions": {
+      "get": {
+        "description": "SCOPED APPLICATION API: Get suggestions for a term",
+        "parameters": [
+          {
+            "name": "sysparm_term",
+            "in": "query",
+            "description": "The keyword(s) for suggestions",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_context_config_id",
+            "in": "query",
+            "description": "Search context config id",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_search_sources",
+            "in": "query",
+            "description": "Array of search sources to use. If not provided - uses all scope sources",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
