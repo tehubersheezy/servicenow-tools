@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AI Assets Inventory API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_ai_governance/assets/{asset_class}": {
+      "get": {
+        "description": "REST API utility for querying AI asset inventory with multiple filters.",
+        "parameters": [
+          {
+            "name": "asset_class",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_governance/assets/{sys_id}/details": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

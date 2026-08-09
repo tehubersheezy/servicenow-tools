@@ -1,0 +1,182 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AI Cost Value",
+    "description": "",
+    "version": "v1"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_ai_value/ai_cost_value/v1/config/history": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/config/status": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/query": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/top-ai-systems-usage": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/top-skills": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/top-skills/productivity": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/top-skills/savings": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/usage-insights": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/confirm": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/init": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/other-vendor": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      },
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/other-vendor/undo": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/preview": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/savings-rate": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/savings-rate/history": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/vendor-rate": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/vendor-rate/undo": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_value/ai_cost_value/v1/wizard/vendor-rates": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

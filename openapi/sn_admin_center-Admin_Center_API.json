@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -25,81 +25,39 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_admin_center/adminx/business_objectives": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_admin_center/adminx/check_updates": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_admin_center/adminx/getHideEntitledWidgetFlag": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_admin_center/adminx/landing_page_instance_upgrade_data": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

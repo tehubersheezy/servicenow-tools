@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -25,49 +25,25 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/generative/wwna_action_poll": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/generative/wwna_skill_config": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

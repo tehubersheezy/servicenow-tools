@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -25,16 +25,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/model": {
@@ -48,16 +39,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/model/{modelId}/{language}/topics": {
@@ -77,16 +59,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/model_status/{modelId}": {
@@ -100,32 +73,14 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/models": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/nlu/model/{modelId}/validate": {
@@ -146,16 +101,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/request_translation": {
@@ -169,32 +115,14 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/skills": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/translation_status/{topicId}": {
@@ -208,16 +136,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/virtual_agent_design/{userId}/preferences": {
@@ -238,17 +157,11 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

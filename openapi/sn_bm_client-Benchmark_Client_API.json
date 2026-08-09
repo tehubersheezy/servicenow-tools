@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -25,48 +25,21 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/categories": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/clientAutoDetectErrors": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/conditions": {
@@ -80,16 +53,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/export_pdf": {
@@ -103,48 +67,21 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/group_tabs_by_category": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/indicator_scores": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/indicators": {
@@ -160,32 +97,14 @@
             "example": ""
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/optoutfeedbackoptions": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/saveoptoutfeedback": {
@@ -199,16 +118,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_bm_client/benchmark_client_api/toggleOptInStatus": {
@@ -222,17 +132,11 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

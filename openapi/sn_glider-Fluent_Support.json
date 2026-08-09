@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -18,16 +18,7 @@
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "description": "",
@@ -39,16 +30,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "description": "",
@@ -60,17 +42,23 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
+        "responses": {}
+      }
+    },
+    "/api/sn_glider/fluent_support/table_relationship_exporter": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
           }
-        }
+        },
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

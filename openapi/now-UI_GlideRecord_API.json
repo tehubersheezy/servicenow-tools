@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -95,16 +95,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "description": "Update multiple record",
@@ -130,16 +121,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "description": "Create a record",
@@ -200,16 +182,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/ui/glideRecord/{tableName}/{sys_id}": {
@@ -257,16 +230,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "put": {
         "description": "Update a record",
@@ -333,16 +297,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "description": "Delete a record",
@@ -360,17 +315,11 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

@@ -1,32 +1,11 @@
 {
-  "totalExported": 302,
+  "generatedAt": "2026-08-09T15:52:53.975Z",
+  "instance": "https://dev421992.service-now.com",
+  "format": "json",
+  "versions": "latest",
+  "namespaceCount": 90,
+  "totalExported": 342,
   "totalSkipped": 0,
-  "errorCount": 5,
-  "errors": [
-    {
-      "ns": "crypto",
-      "api": "",
-      "error": "no export link"
-    },
-    {
-      "ns": "fluent",
-      "api": "",
-      "error": "no export link"
-    },
-    {
-      "ns": "kmf",
-      "api": "",
-      "error": "no export link"
-    },
-    {
-      "ns": "sn_environment",
-      "api": "",
-      "error": "no export link"
-    },
-    {
-      "ns": "sn_ti",
-      "api": "MITRE ATT&CK REST API",
-      "error": "page.waitForEvent: Timeout 20000ms exceeded while waiting for event \"download\"\n=========================== logs ========"
-    }
-  ]
+  "errorCount": 0,
+  "errors": []
 }

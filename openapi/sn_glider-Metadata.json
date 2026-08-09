@@ -10,16 +10,16 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
-    "/api/sn_glider/metadata/customize/{scope}": {
+    "/api/sn_glider/metadata/customize-global/{scopeId}": {
       "post": {
         "description": "Prepare file(s) for customization by creating customizations in a given scope",
         "parameters": [
           {
-            "name": "scope",
+            "name": "scopeId",
             "in": "path",
             "required": true,
             "schema": {}
@@ -32,16 +32,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_glider/metadata/files/table/{table}/scope/{scope}": {
@@ -61,22 +52,34 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_glider/metadata/unload": {
+    "/api/sn_glider/metadata/unload/{sysId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_glider/metadata/unload/{scopeId}": {
       "post": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "scopeId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {},
@@ -84,40 +87,11 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
-      }
-    },
-    "/api/sn_glider/metadata/unload/file/{file}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "file",
-            "in": "path",
-            "required": true,
-            "schema": {}
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "External Taxonomy REST API Access",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_grc_taxonomy/external_taxonomy/deleteExternalTaxonomy": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_taxonomy/external_taxonomy/getClassMapping/{providerId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_taxonomy/external_taxonomy/getExternalTaxonomy/{providerId}/{status}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_taxonomy/external_taxonomy/getProviderInfo": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_taxonomy/external_taxonomy/getTaxonomyClasses/{providerId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_taxonomy/external_taxonomy/mapTaxonomy": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_taxonomy/external_taxonomy/upsert": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

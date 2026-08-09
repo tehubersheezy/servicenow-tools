@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -18,16 +18,14 @@
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
+      }
+    },
+    "/api/sn_glider/applications/get_sys_scope_applications": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     },
     "/api/sn_glider/applications/ide/{app_id}/version/update-available": {
@@ -41,16 +39,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_glider/applications/{app_id}": {
@@ -64,17 +53,25 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
+        "responses": {}
+      }
+    },
+    "/api/sn_glider/applications/{app_id}/is_fluent_app": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
           }
-        }
+        ],
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

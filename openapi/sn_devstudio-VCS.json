@@ -3,31 +3,22 @@
   "info": {
     "title": "VCS",
     "description": "",
-    "version": "v1"
+    "version": "latest"
   },
   "externalDocs": {
     "url": ""
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
-    "/api/sn_devstudio/v1/vcs/apps": {
+    "/api/sn_devstudio/vcs/apps": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "description": "",
@@ -39,19 +30,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}": {
+    "/api/sn_devstudio/vcs/apps/{appId}": {
       "get": {
         "description": "",
         "parameters": [
@@ -62,16 +44,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "patch": {
         "description": "",
@@ -90,19 +63,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/changes": {
+    "/api/sn_devstudio/vcs/apps/{appId}/changes": {
       "get": {
         "description": "",
         "parameters": [
@@ -121,19 +85,10 @@
             "example": "true | false"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/changes/changedFilesDisplayLimit": {
+    "/api/sn_devstudio/vcs/apps/{appId}/changes/changedFilesDisplayLimit": {
       "get": {
         "description": "",
         "parameters": [
@@ -144,19 +99,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/changes/status": {
+    "/api/sn_devstudio/vcs/apps/{appId}/changes/status": {
       "get": {
         "description": "",
         "parameters": [
@@ -167,19 +113,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/changes/updateSetHistory": {
+    "/api/sn_devstudio/vcs/apps/{appId}/changes/updateSetHistory": {
       "get": {
         "description": "",
         "parameters": [
@@ -190,19 +127,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/records/filter": {
+    "/api/sn_devstudio/vcs/apps/{appId}/records/filter": {
       "post": {
         "description": "",
         "parameters": [
@@ -220,19 +148,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos": {
       "post": {
         "description": "",
         "parameters": [
@@ -250,19 +169,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}": {
       "put": {
         "description": "",
         "parameters": [
@@ -286,16 +196,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "description": "",
@@ -313,19 +214,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/apply": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/apply": {
       "post": {
         "description": "",
         "parameters": [
@@ -349,19 +241,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/branches": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/branches": {
       "get": {
         "description": "",
         "parameters": [
@@ -378,16 +261,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "description": "",
@@ -412,19 +286,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/branches/switch": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/branches/switch": {
       "put": {
         "description": "",
         "parameters": [
@@ -448,19 +313,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/changes": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/changes": {
       "get": {
         "description": "",
         "parameters": [
@@ -477,19 +333,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/commits": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/commits": {
       "post": {
         "description": "",
         "parameters": [
@@ -513,19 +360,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/history": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/history": {
       "get": {
         "description": "",
         "parameters": [
@@ -542,19 +380,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/refresh": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/refresh": {
       "post": {
         "description": "",
         "parameters": [
@@ -578,19 +407,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/stash_previews": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/stash_previews": {
       "post": {
         "description": "",
         "parameters": [
@@ -614,19 +434,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/stash_previews/apply": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/stash_previews/apply": {
       "post": {
         "description": "",
         "parameters": [
@@ -650,19 +461,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/stash_previews/current": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/stash_previews/current": {
       "get": {
         "description": "",
         "parameters": [
@@ -679,19 +481,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/stashes": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/stashes": {
       "get": {
         "description": "",
         "parameters": [
@@ -708,19 +501,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/stashes/{stashId}": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/stashes/{stashId}": {
       "get": {
         "description": "",
         "parameters": [
@@ -743,16 +527,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "delete": {
         "description": "",
@@ -776,19 +551,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/repos/{repoId}/tags": {
+    "/api/sn_devstudio/vcs/apps/{appId}/repos/{repoId}/tags": {
       "get": {
         "description": "",
         "parameters": [
@@ -805,16 +571,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "description": "",
@@ -839,19 +596,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/status": {
+    "/api/sn_devstudio/vcs/apps/{appId}/status": {
       "get": {
         "description": "",
         "parameters": [
@@ -862,19 +610,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/apps/{appId}/tracker/{trackerId}": {
+    "/api/sn_devstudio/vcs/apps/{appId}/tracker/{trackerId}": {
       "put": {
         "description": "",
         "parameters": [
@@ -898,51 +637,24 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/appsall": {
+    "/api/sn_devstudio/vcs/appsall": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/default_branch_name": {
+    "/api/sn_devstudio/vcs/default_branch_name": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/dependencies/plugins/{pluginId}": {
+    "/api/sn_devstudio/vcs/dependencies/plugins/{pluginId}": {
       "get": {
         "description": "",
         "parameters": [
@@ -953,51 +665,24 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/remote_default_branch_name": {
+    "/api/sn_devstudio/vcs/remote_default_branch_name": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/storeapps": {
+    "/api/sn_devstudio/vcs/storeapps": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_devstudio/v1/vcs/transactions/{transactionId}": {
+    "/api/sn_devstudio/vcs/transactions/{transactionId}": {
       "get": {
         "description": "",
         "parameters": [
@@ -1008,17 +693,11 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

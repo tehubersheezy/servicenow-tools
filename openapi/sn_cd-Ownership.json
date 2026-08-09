@@ -1,0 +1,149 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Ownership",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_cd/ownership/my_audiences": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sysparm_query",
+            "in": "query",
+            "description": "The query string to append to the ownership query",
+            "required": false,
+            "schema": {},
+            "example": "nameCONTAINSuser^ORDERBYname^EQ"
+          },
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "The pagination page to start from",
+            "required": false,
+            "schema": {},
+            "example": "0"
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "How many results to return for each response",
+            "required": false,
+            "schema": {},
+            "example": "20"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_cd/ownership/my_pages": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sysparm_query",
+            "in": "query",
+            "description": "The query string to append to the ownership query",
+            "required": false,
+            "schema": {},
+            "example": "nameCONTAINSuser^ORDERBYname^EQ"
+          },
+          {
+            "name": "instance",
+            "in": "query",
+            "description": "A Service Portal Widget Instance (sp_instance) sys_id",
+            "required": false,
+            "schema": {},
+            "example": "a2db2e566b69151050bdc141ee44af20"
+          },
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "The pagination page to start from",
+            "required": false,
+            "schema": {},
+            "example": "0"
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "How many results to return for each response",
+            "required": false,
+            "schema": {},
+            "example": "20"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_cd/ownership/my_topics": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "taxonomy",
+            "in": "query",
+            "description": "A Content Taxonomy (taxonomy) sys_id",
+            "required": true,
+            "schema": {},
+            "example": "1f5d5a40c3203010069aec4b7d40dd93"
+          },
+          {
+            "name": "sysparm_query",
+            "in": "query",
+            "description": "The query string to append to the ownership query",
+            "required": false,
+            "schema": {},
+            "example": "nameCONTAINSuser^ORDERBYname^EQ"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A Service Portal page (sp_page) sys_id",
+            "required": false,
+            "schema": {},
+            "example": "4fb26c9cc3d030102ec1a589a840ddbd"
+          },
+          {
+            "name": "instance",
+            "in": "query",
+            "description": "A Service Portal Widget Instance (sp_instance) sys_id",
+            "required": false,
+            "schema": {},
+            "example": "a2db2e566b69151050bdc141ee44af20"
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "How many results to return for each response",
+            "required": false,
+            "schema": {},
+            "example": "20"
+          },
+          {
+            "name": "sysparm_offset",
+            "in": "query",
+            "description": "The pagination page to start from",
+            "required": false,
+            "schema": {},
+            "example": "0"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

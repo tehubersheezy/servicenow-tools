@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Reconcile Duplicate Task API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_ai_governance/reconcile_tasks/{task_sys_id}/details/{detail_sys_id}/convert_to_main": {
+      "post": {
+        "description": "Swap a detail row asset to become the new main asset",
+        "parameters": [
+          {
+            "name": "task_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "detail_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_governance/reconcile_tasks/{task_sys_id}/details/{detail_sys_id}/not_duplicate": {
+      "post": {
+        "description": "Mark a detail row as not a duplicate",
+        "parameters": [
+          {
+            "name": "task_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "detail_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_governance/reconcile_tasks/{task_sys_id}/ignore": {
+      "post": {
+        "description": "Close task as Canceled with no side effects",
+        "parameters": [
+          {
+            "name": "task_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_governance/reconcile_tasks/{task_sys_id}/mark_as_duplicates": {
+      "post": {
+        "description": "Confirm duplicates, set duplicate_of, manage main if unmanaged, close task as co",
+        "parameters": [
+          {
+            "name": "task_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

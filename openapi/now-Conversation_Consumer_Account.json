@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -45,14 +45,7 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/read": {
@@ -93,14 +86,7 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/unreadConversation": {
@@ -134,16 +120,16 @@
             "description": "client type to be included for mobile",
             "required": false,
             "schema": {}
+          },
+          {
+            "name": "isOffglide",
+            "in": "query",
+            "description": "Set to true for offglide callers",
+            "required": false,
+            "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/unreadConversationCount": {
@@ -158,14 +144,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/unreadMessage": {
@@ -194,14 +173,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/{consumerAccountId}/conversation": {
@@ -248,6 +220,13 @@
             "description": "conversation currently active on client",
             "required": false,
             "schema": {}
+          },
+          {
+            "name": "fetchDocuments",
+            "in": "query",
+            "description": "fetch documents for conversations",
+            "required": false,
+            "schema": {}
           }
         ],
         "requestBody": {
@@ -255,14 +234,7 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/{consumerAccountId}/message": {
@@ -318,14 +290,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/{consumerAccountId}/nowAssist/latest/auxiliary": {
@@ -346,14 +311,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/v1/cs/consumerAccount/{consumerAccountId}/sync": {
@@ -388,14 +346,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       },
       "post": {
         "description": "Fetch all messages since a serial number for a given session and update the last read status",
@@ -433,15 +384,11 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

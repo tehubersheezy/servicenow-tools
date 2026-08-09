@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Weekend Console Jira",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/x_912401_weekend_c/jira/issue": {
+      "get": {
+        "description": "One Jira issue, plus the weekend change tasks that reference it.",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "A single Jira issue key.",
+            "required": true,
+            "schema": {},
+            "example": "NET-4451"
+          },
+          {
+            "name": "X-Jira-Url",
+            "in": "header",
+            "description": "Jira base URL. Omit it (with the token) to serve fixtures instead.",
+            "required": false,
+            "schema": {},
+            "example": "https://jira.example.com"
+          },
+          {
+            "name": "X-Jira-Token",
+            "in": "header",
+            "description": "Jira personal access token, sent on to Jira as Bearer auth. Never a query param.",
+            "required": false,
+            "schema": {},
+            "example": "a Jira personal access token"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/x_912401_weekend_c/jira/issues": {
+      "get": {
+        "description": "Batch issues for a set of Jira keys — lists, badges, and the AI report.",
+        "parameters": [
+          {
+            "name": "keys",
+            "in": "query",
+            "description": "Comma-separated Jira issue keys.",
+            "required": true,
+            "schema": {},
+            "example": "NET-4451,SEC-3319"
+          },
+          {
+            "name": "detail",
+            "in": "query",
+            "description": "full = also return each issue’s description and comment thread, for the AI repor",
+            "required": false,
+            "schema": {},
+            "example": "full"
+          },
+          {
+            "name": "X-Jira-Token",
+            "in": "header",
+            "description": "Jira personal access token, sent on to Jira as Bearer auth. Never a query param.",
+            "required": false,
+            "schema": {},
+            "example": "a Jira personal access token"
+          },
+          {
+            "name": "X-Jira-Url",
+            "in": "header",
+            "description": "Jira base URL. Omit it (with the token) to serve fixtures instead.",
+            "required": false,
+            "schema": {},
+            "example": "https://jira.example.com"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

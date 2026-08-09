@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -23,14 +23,7 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/guided_setup/content/children/{contentTable}/{parentId}": {
@@ -50,14 +43,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/guided_setup/content/{contentId}": {
@@ -71,14 +57,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/guided_setup/content/{contentId}/root": {
@@ -92,14 +71,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/guided_setup/embedded_help/actions/{content}/{action}": {
@@ -124,14 +96,7 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/guided_setup/nav/{action}": {
@@ -150,14 +115,7 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/now/guided_setup/task/update": {
@@ -169,15 +127,11 @@
             "application/json": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

@@ -3,18 +3,18 @@
   "info": {
     "title": "Wrap Up API",
     "description": "",
-    "version": "v1"
+    "version": "latest"
   },
   "externalDocs": {
     "url": ""
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
-    "/api/now/v1/wrapup/code": {
+    "/api/now/wrapup/code": {
       "post": {
         "description": "Create Wrap Up Codes",
         "parameters": [],
@@ -25,19 +25,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/now/v1/wrapup/code/{code_id}": {
+    "/api/now/wrapup/code/{code_id}": {
       "get": {
         "description": "Retrieve Wrap Up Code by ID",
         "parameters": [
@@ -48,19 +39,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/now/v1/wrapup/segment/agent/{agent_id}/interaction/{interaction_id}": {
+    "/api/now/wrapup/segment/agent/{agent_id}/interaction/{interaction_id}": {
       "get": {
         "description": "Retrieve Segment by Agent ID and Interaction ID",
         "parameters": [
@@ -77,19 +59,10 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/now/v1/wrapup/segment/create": {
+    "/api/now/wrapup/segment/create": {
       "post": {
         "description": "Create Wrap Up Segment",
         "parameters": [],
@@ -100,19 +73,10 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/now/v1/wrapup/segment/update": {
+    "/api/now/wrapup/segment/update": {
       "put": {
         "description": "Update Wrap Up Segment",
         "parameters": [],
@@ -123,19 +87,24 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/now/v1/wrapup/segment/{segment_id}": {
+    "/api/now/wrapup/segment/update/aidetails": {
+      "put": {
+        "description": "Update Wrap Up Segment AI Details",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/wrapup/segment/{segment_id}": {
       "get": {
         "description": "Retrieve Segment by Sys ID/External Segment ID",
         "parameters": [
@@ -146,17 +115,11 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

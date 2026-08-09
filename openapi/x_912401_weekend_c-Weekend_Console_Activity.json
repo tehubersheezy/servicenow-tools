@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Weekend Console Activity",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/x_912401_weekend_c/activity/events": {
+      "get": {
+        "description": "Comments, work notes, state and approval transitions across the weekend window.",
+        "parameters": [
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Window end, UTC 'YYYY-MM-DD HH:MM:SS'.",
+            "required": true,
+            "schema": {},
+            "example": "2026-07-13 03:59:59"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Window start, UTC 'YYYY-MM-DD HH:MM:SS'.",
+            "required": true,
+            "schema": {},
+            "example": "2026-07-10 21:00:00"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

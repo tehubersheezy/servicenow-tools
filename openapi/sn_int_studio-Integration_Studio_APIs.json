@@ -1,0 +1,95 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Integration Studio APIs",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_int_studio/data/getSampleData/{dataSourceId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "dataSourceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/data/partialPreview/{importSetId}/{rteDefId}/{stopAtEntityId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "importSetId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "rteDefId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "stopAtEntityId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/data/preview/{importSetId}/{rteDefId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "importSetId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "rteDefId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/data/rollback": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

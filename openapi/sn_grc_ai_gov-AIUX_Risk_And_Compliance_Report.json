@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AIUX Risk And Compliance Report",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_grc_ai_gov/aiuxriskcompliancereport/AIAssetApprovalTasks": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asset_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "ai_system"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of records to be returned",
+            "required": false,
+            "schema": {},
+            "example": "10"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_ai_gov/aiuxriskcompliancereport/AIAssetTasks": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of records to be returned",
+            "required": false,
+            "schema": {},
+            "example": "10"
+          },
+          {
+            "name": "asset_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "ai_system"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_ai_gov/aiuxriskcompliancereport/aggregated-risk-score": {
+      "get": {
+        "description": "Returns AI asset count grouped by aggregated risk rating for the given asset typ",
+        "parameters": [
+          {
+            "name": "risk_type",
+            "in": "query",
+            "description": "Risk type: inherent or residual. Defaults to residual.",
+            "required": false,
+            "schema": {},
+            "example": "residual"
+          },
+          {
+            "name": "asset_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "ai_system"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_ai_gov/aiuxriskcompliancereport/aiuxriskcompliancereport": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asset_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "ai_system"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_ai_gov/aiuxriskcompliancereport/asset-details": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asset_id",
+            "in": "query",
+            "description": "AI digital asset record sys_id",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_ai_gov/aiuxriskcompliancereport/compliancestatusofregulation": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "airc_asset_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_grc_ai_gov/aiuxriskcompliancereport/heatmap": {
+      "get": {
+        "description": "Returns risk heatmap data (xyCategories + data cells) for the given AI asset typ",
+        "parameters": [
+          {
+            "name": "airc_asset_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "heatmap_type",
+            "in": "query",
+            "description": "Heatmap type: inherent, residual, or target. Defaults to inherent.",
+            "required": false,
+            "schema": {},
+            "example": "inherent"
+          },
+          {
+            "name": "asset_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "ai_system"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Checkpoints API",
+    "description": "Rest API for checkpoints",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_build_agent/checkpoints_api/complete": {
+      "post": {
+        "description": "Marks a checkpoint update set as complete and creates change logs",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/completeParent": {
+      "put": {
+        "description": "Marks the parent update set (related to initial checkpoint) as complete for a gi",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/create": {
+      "post": {
+        "description": "Create a checkpoint",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/createAndFinalize": {
+      "post": {
+        "description": "Validates an existing update set, sets application, marks it complete, creates c",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/createInitialCheckpoint": {
+      "post": {
+        "description": "Create the initial checkpoint",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/createPending": {
+      "post": {
+        "description": "Creates a checkpoint and update set with parent linkage, but does not complete i",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/{conversationId}/getAll": {
+      "get": {
+        "description": "Get all checkpoints for a given conversation",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/{id}/update": {
+      "put": {
+        "description": "Update a checkpoint status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/checkpoints_api/{conversationId}/{id}/restore": {
+      "post": {
+        "description": "Restores a checkpoint by backing out subsequent changes",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

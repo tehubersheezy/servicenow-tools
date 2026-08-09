@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Unified Search Suggestions",
+    "description": "Unified autosuggest, typeahead, and exact match API",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/now/unified_search_suggestions/suggestions": {
+      "get": {
+        "description": "Returns exact match (when applicable) and typeahead suggestions",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

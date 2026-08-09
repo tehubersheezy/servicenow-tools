@@ -1,0 +1,684 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CMDB Integration Studio API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_int_studio/studio/affected_mappings_by_class_update": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/affected_toggle_class": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/application": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/application_feed": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/application_feed/{sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/basic_details/metadata": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/canCopyFeed/{sourceDataSourceId}/{targetDataSourceId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sourceDataSourceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "targetDataSourceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/class": {
+      "put": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      },
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "feed_id",
+            "in": "query",
+            "description": "Application Feed ID",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "entity_id",
+            "in": "query",
+            "description": "Entity ID",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/class/related": {
+      "patch": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/class/{id}/{tempEntitySysId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "tempEntitySysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/cmdb_related_entry": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/data_source": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/entityMapping/{id}/condition": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/feed": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/feed/activate": {
+      "patch": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/feed/deactivate": {
+      "patch": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/field_mapping": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "entity_mapping_id",
+            "in": "query",
+            "description": "sys_id of entity mapping record",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "feed_id",
+            "in": "query",
+            "description": "Application Feed ID",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "field_mapping_id",
+            "in": "query",
+            "description": "Field Mapping Record sys_id",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      },
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      },
+      "patch": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/hasMetadata/{templateStateSysId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "templateStateSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/import_set": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/landing": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/metadata/{appFeedSysId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "appFeedSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/metadata/{templateStateSysId}": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "templateStateSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/non_cmdb_tables": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/operation": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "entity_id",
+            "in": "query",
+            "description": "Entity ID",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      },
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/operation/delete": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/operation/info": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/plugins": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/relationship/handle": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/search_import_set": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/table": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/table/import_log": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "description": "Import log level field",
+            "required": false,
+            "schema": {},
+            "example": "error/debug/activity"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/template/setImportSetId": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/template/{appFeedId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "appFeedId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/template/{appFeedId}/{state}/{importSetId}/{copySourceId}/{previewSize}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "appFeedId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "importSetId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "copySourceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "previewSize",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/toggleEntityMappings": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/ua_event": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_int_studio/studio/validate_data": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

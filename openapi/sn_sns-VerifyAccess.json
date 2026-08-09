@@ -3,18 +3,18 @@
   "info": {
     "title": "VerifyAccess",
     "description": "",
-    "version": "v1"
+    "version": "latest"
   },
   "externalDocs": {
     "url": ""
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
-    "/api/sn_sns/v1/verifyaccess/{table}": {
+    "/api/sn_sns/verifyaccess/{table}": {
       "get": {
         "description": "",
         "parameters": [
@@ -25,17 +25,11 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

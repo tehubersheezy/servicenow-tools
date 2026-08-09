@@ -1,0 +1,408 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Documents API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/now/documents": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/action/{action}/document/{documentSysId}/version/{versionSysId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "documentSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "versionSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/create": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/createDocument": {
+      "post": {
+        "description": "API to create or link document from attachment, DMS repo or cloud.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/delete": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "doc_sys_id",
+            "in": "query",
+            "description": "Sys ID of the document record",
+            "required": true,
+            "schema": {},
+            "example": "2c8c83e277465110df17f120aa5a9971"
+          },
+          {
+            "name": "record_sys_id",
+            "in": "query",
+            "description": "Sys ID of the parent table record",
+            "required": false,
+            "schema": {},
+            "example": "272b522677c25110df17f120aa5a9938"
+          },
+          {
+            "name": "table_name",
+            "in": "query",
+            "description": "Table name of the parent record",
+            "required": false,
+            "schema": {},
+            "example": "incident"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/explore": {
+      "get": {
+        "description": "Retrieve folder and document metadata with filters, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number to fetch. Used for pagination. Any positive integer (default: 1).",
+            "required": false,
+            "schema": {},
+            "example": "2"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max number of results to return per page. Any positive integer (default: 10).",
+            "required": false,
+            "schema": {},
+            "example": "10"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Query to filter documents and folders or search external files and folders",
+            "required": false,
+            "schema": {},
+            "example": "Use ServiceNow encoded query for internal search (e.g., parent_folderISEMPTY^active=true); use plain text for external providers (e.g., hello, change)."
+          },
+          {
+            "name": "table_name",
+            "in": "query",
+            "description": "Table name of the parent record",
+            "required": false,
+            "schema": {},
+            "example": "incident"
+          },
+          {
+            "name": "folder_sys_id",
+            "in": "query",
+            "description": "Starting folder sys_id for hierarchical search when no target record is given.",
+            "required": false,
+            "schema": {},
+            "example": "f1a2b3c4d5e6f70809101112a1b2c3d4"
+          },
+          {
+            "name": "record_sys_id",
+            "in": "query",
+            "description": "Sys ID of the parent table record",
+            "required": false,
+            "schema": {},
+            "example": "272b522677c25110df17f120aa5a9938"
+          },
+          {
+            "name": "is_hierarchical",
+            "in": "query",
+            "description": "Enable hierarchical folder lookup for a reference record (true/false)",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          },
+          {
+            "name": "include_permissions",
+            "in": "query",
+            "description": "boolean to include user permission information in response.",
+            "required": false,
+            "schema": {},
+            "example": "true"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by record type (folder, document)",
+            "required": false,
+            "schema": {},
+            "example": "document"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/permalinkinfo/{linkId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "linkId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/permalinks/{linkId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "linkId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/provider/{provider_id}/items": {
+      "get": {
+        "description": "Retrieve the files or folders from the external provider.",
+        "parameters": [
+          {
+            "name": "provider_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "100"
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": {},
+            "example": "UGFnZWQ9VFJVRSZwX1NvcnRCZWhhdmlvcj0xJnBfRmlsZUxlYWZSZWY9RGVlbmEmcF9JRD05Mzk5"
+          },
+          {
+            "name": "folderId",
+            "in": "query",
+            "description": "optional value to be passed for fetching files under this folderId",
+            "required": false,
+            "schema": {},
+            "example": "012VJLYPAZQGXUEHS2CZE3DCE2L4BDRLDE"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Query to filter documents and folders or search external files and folders",
+            "required": false,
+            "schema": {},
+            "example": "Use ServiceNow encoded query for internal search (e.g., parent_folderISEMPTY^active=true); use plain text for external providers (e.g., hello, change)."
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/saveredacteddocument": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/update": {
+      "put": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/upload": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/versions/{document_sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "document_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/versionstate/{version_sys_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "version_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/{provider_id}/attach": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "provider_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/documents/{document_sys_id}/content": {
+      "get": {
+        "description": "Fetches and streams the default version attachment for the document.",
+        "parameters": [
+          {
+            "name": "document_sys_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/documents/{documentSysId}/syncDown": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "documentSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CICD ATF Test Execution API",
+    "description": "CI/CD service to start executing an ATF test as well as getting progress and results of test runs",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_cicd/tests/atf_environment/ready": {
+      "get": {
+        "description": "Check if the ATF environment is ready to execute tests",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_cicd/tests/run_test": {
+      "post": {
+        "description": "Start a ATF, given a test ID",
+        "parameters": [
+          {
+            "name": "test_sys_id",
+            "in": "query",
+            "description": "Sys Id of the test",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "run_in_cloud",
+            "in": "query",
+            "description": "Execute in Cloud Runner",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "is_performance_run",
+            "in": "query",
+            "description": "Execute as Performance Run",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "capture_node_logs",
+            "in": "query",
+            "description": "Capture node logs for this test run",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "initiator",
+            "in": "query",
+            "description": "Who triggered the run (e.g. ui, cicd, schedule, build_agent)",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_cicd/tests/test/has_ui_steps": {
+      "get": {
+        "description": "Check if the given ATF test has UI steps",
+        "parameters": [
+          {
+            "name": "test_sys_id",
+            "in": "query",
+            "description": "Sys Id of the test",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_cicd/tests/test/results/{result_id}": {
+      "get": {
+        "description": "Given a test result Id - Get ATF Test Execution Results",
+        "parameters": [
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_cicd/tests/test/results/{result_id}/logs": {
+      "get": {
+        "description": "Given a test result Id - Get ATF Node Log Contents",
+        "parameters": [
+          {
+            "name": "result_id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_regex",
+            "in": "query",
+            "description": "Optional grep-style regex (e.g. \"fail|error\"); only matching lines are returned",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "description": "Maximum number of lines to return; omit or 0 for no limit",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

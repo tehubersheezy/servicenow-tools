@@ -1,0 +1,67 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "WDF Mock API",
+    "description": "Mock WDF server discovery and tool invocation endpoints for development",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_build_agent/mcp_dev/ConnectedServers": {
+      "get": {
+        "description": "Returns mock WDF-approved MCP servers for development",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/mcp_dev/ConnectedServers/{serverId}/tools": {
+      "get": {
+        "description": "Returns mock tools for a given MCP server",
+        "parameters": [
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/mcp_dev/ConnectedServers/{serverId}/tools/{toolName}/invoke": {
+      "post": {
+        "description": "Simulates invoking a tool on a mock MCP server",
+        "parameters": [
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "toolName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Build Agent API",
+    "description": "Rest API for build agent extension to interact with Instance",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_build_agent/build_agent_api/attachments": {
+      "post": {
+        "description": "Creates an attachment from base64 data",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/charge-assist": {
+      "post": {
+        "description": "Charge Assist",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/checkPromptLimit": {
+      "get": {
+        "description": "Check Prompt Limit",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations": {
+      "get": {
+        "description": "Retrieves conversations",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "description": "Creates a new conversation",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations/{id}": {
+      "get": {
+        "description": "Fetch a single conversation by sys_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      },
+      "patch": {
+        "description": "Updates a conversation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations/{id}/deactivate": {
+      "post": {
+        "description": "Deactivates a conversation and its associated messages",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations/{id}/messages": {
+      "get": {
+        "description": "Retrieves conversations",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      },
+      "post": {
+        "description": "Appends a single message to the messages in a conversation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations/{id}/messages/revert_to_checkpoint": {
+      "post": {
+        "description": "Deactivates all messages in a conversation after the specified message checkpoin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations/{conversationId}/messages/{messageId}": {
+      "patch": {
+        "description": "Updates an existing message in a conversation",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations/{id}/state": {
+      "put": {
+        "description": "Updates conversation state",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/conversations/{id}/title": {
+      "put": {
+        "description": "Updates conversation title",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/get-user-api-token": {
+      "get": {
+        "description": "Get User API Token",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/getTableSchema/{table}": {
+      "get": {
+        "description": "Tool to get the schema of a table, including fields, types, and mandatory status",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/getVariant": {
+      "get": {
+        "description": "Get Variant",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/isProductAvailable": {
+      "get": {
+        "description": "Check if a product is available on the instance",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/log-genai-event": {
+      "post": {
+        "description": "Log GenAI Event",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/oauth_redirect": {
+      "get": {
+        "description": "OAuth Redirect",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/oauth_refresh_token": {
+      "get": {
+        "description": "OAuth Refresh Token",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/oauth_store_refresh_token": {
+      "post": {
+        "description": "OAuth Store Refresh Token",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/providerConfig": {
+      "get": {
+        "description": "Get build agent provider configuration",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/runQuery/table/{table}/query/{encoded_query}": {
+      "get": {
+        "description": "Tool to execute an encoded query on the specified table and return results",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "encoded_query",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/sysAppInfo": {
+      "post": {
+        "description": "Creates a sys-app-info record for the current application scope with generated_u",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/telemetry": {
+      "post": {
+        "description": "Update build agent telemetry with this API",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/{scopeId}/getIsGeneratedByAI": {
+      "get": {
+        "description": "Get value of isGeneratedByAI from sys_app_info given an app sysId",
+        "parameters": [
+          {
+            "name": "scopeId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Skills API",
+    "description": "Rest API for instance-level Build Agent skill sideloading",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_build_agent/skills_api/summary": {
+      "get": {
+        "description": "Get active instance skill summaries for Build Agent",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/skills_api/{name}": {
+      "get": {
+        "description": "Get skill body by name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/skills_api/{name}/resources": {
+      "get": {
+        "description": "Get a specific resource file from a skill (filename via query param)",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

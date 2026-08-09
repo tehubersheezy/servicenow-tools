@@ -1,0 +1,164 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Data Product API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/now/dataproduct": {
+      "get": {
+        "description": "Get Data Product List",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "description": "Create Data Product",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/dataproduct/compatibleColumnTypes": {
+      "get": {
+        "description": "Get compatible column types",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/now/dataproduct/content/{id}": {
+      "post": {
+        "description": "Create Data Product Content",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/dataproduct/dataContent/{dpId}/{contentId}": {
+      "delete": {
+        "description": "Remove Data Content",
+        "parameters": [
+          {
+            "name": "dpId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "contentId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/dataproduct/state/{id}": {
+      "put": {
+        "description": "Update Data Product State",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/now/dataproduct/tables/schema/{tableName}": {
+      "get": {
+        "description": "Get Table Schema",
+        "parameters": [
+          {
+            "name": "tableName",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/now/dataproduct/{id}": {
+      "get": {
+        "description": "Get Data Product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "Update Data Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      },
+      "delete": {
+        "description": "Delete Data Product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

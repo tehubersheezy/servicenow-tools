@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ItemInheritence",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_grc_workspace/iteminheritence/validateConversion": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "parentTable",
+            "in": "query",
+            "description": "Parent item table name ",
+            "required": true,
+            "schema": {},
+            "example": "sn_compliance_control"
+          },
+          {
+            "name": "selectedRecords",
+            "in": "query",
+            "description": "Selected items record id's to convert",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "parentRecordId",
+            "in": "query",
+            "description": "Parent item table record ",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

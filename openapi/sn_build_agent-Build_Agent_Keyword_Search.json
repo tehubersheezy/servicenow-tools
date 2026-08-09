@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Build Agent Keyword Search",
+    "description": "REST API for keyword search of ServiceNow metadata",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_build_agent/build_agent_keyword_search/getKeywordSearchResult": {
+      "get": {
+        "description": "Execute a keyword search query against ServiceNow metadata and return results ra",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

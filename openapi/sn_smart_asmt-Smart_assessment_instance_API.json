@@ -1,0 +1,498 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Smart assessment instance API",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_smart_asmt/instance/asmt/{asmtInstanceId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asmtInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/asmt/{asmtInstanceId}/user/{userId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asmtInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/cancel/asmt/{asmtInstanceId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asmtInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/combinedAsmt/{combinedAsmtId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "combinedAsmtId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/combinedAsmtCopyStatusCheck/{combinedAsmtId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "combinedAsmtId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/calender/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/checklist/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/dropdown/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/justification/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/number/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/radio/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/reference/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/syncCombinedAsmtQuestion/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/text/{questionId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/question/{questionId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/questions/{sectionInstanceId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "sectionInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of questions to be rendered in single page.",
+            "required": true,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "filtersApplied",
+            "in": "query",
+            "description": "Comma separated list of filters applies while fetching question instances",
+            "required": false,
+            "schema": {},
+            "example": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Denotes the page number of assessment instance.",
+            "required": true,
+            "schema": {},
+            "example": ""
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/reassign/combinedAsmt/{combinedAsmtId}/user/{userId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "combinedAsmtId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/scope/{asmtInstanceId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asmtInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/sections/{asmtInstanceId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asmtInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/submit/asmt/{asmtInstanceId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asmtInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/submit/combinedAsmt/{combinedAsmtId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "combinedAsmtId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/updateAssessors/{assessmentInstanceId}": {
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "assessmentInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/userFilter/combinedAsmt/{combinedAsmtId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "combinedAsmtId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_smart_asmt/instance/userFilter/{asmtInstanceId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "asmtInstanceId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

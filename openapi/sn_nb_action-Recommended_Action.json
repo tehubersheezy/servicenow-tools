@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://dev301473.service-now.com/"
+      "url": "https://dev421992.service-now.com"
     }
   ],
   "paths": {
@@ -25,16 +25,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/actions/get_search_result_actions": {
@@ -48,16 +39,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/actions/{table_name}/{sys_id}/get_recommendation_history": {
@@ -85,16 +67,7 @@
             "example": ""
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/actions/{table_name}/{sys_id}/{action_id}/dismiss_action": {
@@ -127,16 +100,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/actions/{table_name}/{sys_id}/{action_id}/execute": {
@@ -169,16 +133,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/actions/{table_name}/{sys_id}/{action_id}/get_action_detail": {
@@ -204,16 +159,7 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/actions/{table_name}/{sys_id}/{action_id}/start": {
@@ -246,16 +192,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/actions/{table_name}/{sys_id}/{grouping}/{ra_context_id}/get_actions": {
@@ -295,16 +232,7 @@
             "example": ""
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/create_search_result_execution_record": {
@@ -318,16 +246,7 @@
             "text/xml": {}
           }
         },
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/pillpicker/base_elements/{table}/{sys_id}": {
@@ -347,32 +266,14 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/pillpicker/supported_tables": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/pillpicker/var_elements/{table}/{sys_id}/{reference_table}": {
@@ -398,61 +299,21 @@
             "schema": {}
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/api/sn_nb_action/next_best_action/search/default_search_term/{table_name}/{sysId}": {
-      "get": {
+    "/api/sn_nb_action/next_best_action/search/default_search_term": {
+      "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "table_name",
-            "in": "path",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "name": "sysId",
-            "in": "path",
-            "required": true,
-            "schema": {}
-          },
-          {
-            "name": "includeActionDetails",
-            "in": "query",
-            "description": "Set to include search result action details",
-            "required": false,
-            "schema": {},
-            "example": ""
-          },
-          {
-            "name": "contextSysId",
-            "in": "query",
-            "description": "Rule context sys id",
-            "required": false,
-            "schema": {},
-            "example": ""
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        },
+        "responses": {}
       }
     },
     "/api/sn_nb_action/next_best_action/search/{table_name}/get_search_params": {
@@ -474,17 +335,11 @@
             "example": ""
           }
         ],
-        "responses": {
-          "200": {
-            "description": "ok",
-            "content": {
-              "application/json": {},
-              "application/xml": {},
-              "text/xml": {}
-            }
-          }
-        }
+        "responses": {}
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

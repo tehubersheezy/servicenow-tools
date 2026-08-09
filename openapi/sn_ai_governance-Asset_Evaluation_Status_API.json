@@ -1,0 +1,69 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Asset Evaluation Status API",
+    "description": "Get or set the evaluation status for single or multiple AI assets",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_ai_governance/evaluation_status/asset/{assetSysId}": {
+      "get": {
+        "description": "Get evaluation status for a single asset",
+        "parameters": [
+          {
+            "name": "assetSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "description": "Set evaluation status for a single asset",
+        "parameters": [
+          {
+            "name": "assetSysId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    },
+    "/api/sn_ai_governance/evaluation_status/assets": {
+      "get": {
+        "description": "Get evaluation status for multiple assets. Pass asset sys_ids as ?ids=id1,id2,id",
+        "parameters": [],
+        "responses": {}
+      },
+      "put": {
+        "description": "Set evaluation status for multiple assets",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
