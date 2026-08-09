@@ -110,12 +110,15 @@ raw table writes will not.
 
 ## Flows / Subflows / Actions → REST `/api/now/processflow/*`
 
-Flow Designer authoring is the mirror image: **no GraphQL surface**, a scripted
-REST API under `/api/now/processflow/` that the designer SPA drives. (The
-`snWorkflowStudio` GraphQL namespace is only feature-flag / access checks —
-`hasFlowGenerationAccess`, `isPluginInstalled`, `getBuilderVersion` — no
-authoring.) The endpoints are not in `/api/now/doc`, so they don't appear in the
-OpenAPI corpus either; these were captured from the live designer.
+Flow authoring is REST-first: the canvas reads and saves the flow model through
+a scripted REST API under `/api/now/processflow/`, and uses GraphQL only for its
+own UI chrome and edit-locking (`global { snFlowDesigner }`, below). Two GraphQL
+namespaces touch flows and neither authors content: `snWorkflowStudio` is
+feature-flag / access checks (`hasFlowGenerationAccess`, `isPluginInstalled`,
+`getBuilderVersion`), and `snFlowDesigner` is panel layouts + the edit lock. The
+`processflow` endpoints are not in `/api/now/doc`, so they're absent from the
+OpenAPI corpus too; everything here was captured from the live designer and
+re-verified standalone.
 
 The public REST corpus has only adjacent helpers, not authoring:
 `wfa_fluent/activate_flows` (bulk-activate by sys_id) and
@@ -126,19 +129,53 @@ The public REST corpus has only adjacent helpers, not authoring:
 | Verb | Path | Purpose |
 |---|---|---|
 | `POST` | `/api/now/processflow/flow` | **Create** a flow/subflow. Requires at least `{ name, scope, type }` (`type`: `flow` \| `subflow`). Returns the full flow model incl. its new `id`. |
+| `PUT` | `/api/now/processflow/flow` | **Save** — write the whole edited model back to the *collection* URL (the `id` is a field in the body). This is the designer's save call. |
 | `GET` | `/api/now/processflow/flow/{sysid}` | **Read** the complete flow model (see keys below). |
+| `POST` | `/api/now/processflow/versioning/create_version` | Record a version. Body `{ item_sys_id, type: "Save", annotation, favorite }`. Fired alongside each save. |
 | `GET` | `/api/now/processflow/versioning/{sysid}` | Version history for a flow. |
 | `GET` | `/api/now/processflow/field_types` | All pill/field data types (`address_simple`, `approval_rules`, `Array.Boolean`, …). |
 | `GET` | `/api/now/processflow/flow_logic/types` | Available flow-logic blocks (If / For-each / etc.). |
 | `POST` | `/api/now/processflow/action/action_types` | Action-type catalogue for the step picker. |
 | `GET` | `/api/now/processflow/action/field_meta` | Field metadata for building an action. |
 | `GET` | `/api/now/processflow/complexobjecttemplate` | Complex-object (data-structure) templates. |
-| `POST` | `/api/now/processflow/step` | Step (action/trigger instance) authoring — the per-node write path. |
 | `GET` | `/api/now/processflow/domain/current`, `/userpreference`, `/user-activity`, `/usersecurityservice/scope/{sysid}` | Session/context helpers. |
+
+**GraphQL side — `global { snFlowDesigner }`.** The canvas also uses GraphQL for
+its own UI chrome and edit-locking (this is a *different* namespace from the
+feature-flag-only `snWorkflowStudio`):
+
+- `uiSection(name: "…")` — panel layouts the designer renders (`flowEditorHeader`,
+  `flowErrorHandler`, `transformFeatures`, `advancedTriggerOptions`, …) as nested
+  `name/order/elements/sections` trees.
+- `safeEdit(safeEditInput: { read: "<flowId>" })` — **query** the concurrent-edit
+  lock; returns `status { canUserEdit currentEditor }`.
+- `safeEdit(safeEditInput: { upsert: { flowId, lastUpdated } })` — **mutation** to
+  claim the lock; fired when you click *Edit flow*.
 
 AI authoring is a separate scope, `/api/sn_text2flow/v1/build_with_ai/*`
 (`create_flow`, `flow_exists`, `populate_inputs`, `populate_subflow_inputs/outputs`,
 `hashtag_search`) — the "build a flow with natural language" path.
+
+### What the designer sends, in order
+
+Captured live from the canvas (open flow → edit → add trigger → save):
+
+```
+GET   /processflow/flow/{sysid}                         load the model
+POST  /graphql   global{snFlowDesigner{uiSection(…)}}   ×3  panel layouts
+GET   /processflow/versioning/{sysid}                   version history
+GET   /processflow/flow_logic/types                     logic-block catalogue
+POST  /graphql   snFlowDesigner{safeEdit(read:…)}       check the edit lock
+POST  /graphql   snFlowDesigner{safeEdit(upsert:…)}     claim it (on "Edit flow")
+POST  /processflow/versioning/create_version            snapshot on first change
+PUT   /processflow/flow                                 SAVE the whole model
+POST  /processflow/versioning/create_version            {type:"Save"}
+```
+
+The important find: **node edits (adding a trigger/action, setting fields) are
+buffered client-side and never hit the server individually.** Persistence is one
+`PUT /processflow/flow` carrying the entire model — the same read-modify-write
+shape as PAD's `updateProcessData`, not the per-node stream I assumed before.
 
 ### The flow model
 
@@ -168,23 +205,37 @@ curl -u "$SN_USERNAME:$SN_PASSWORD" -X POST \
 # READ
 curl -u "$SN_USERNAME:$SN_PASSWORD" \
   "$SN_INSTANCE_URL/api/now/processflow/flow/<sysid>"
+
+# SAVE  (whole model back to the COLLECTION url — id lives in the body)
+curl -u "$SN_USERNAME:$SN_PASSWORD" -X PUT \
+  -H "Content-Type: application/json" \
+  -d @flow-model.json \
+  "$SN_INSTANCE_URL/api/now/processflow/flow"
 ```
 
-### Verbs that do **not** work — and what to do instead
+### Save is read-modify-write — verified in the UI
 
-On `/api/now/processflow/flow/{sysid}`, `PUT`, `POST`, and `DELETE` all return
-**405 Method not Supported**. So:
+Confirmed by driving the designer directly: create a scratch flow, add a *Record
+Created* trigger in the canvas, hit *Force save*, and watch the network — the
+save is a single **`PUT /api/now/processflow/flow`** carrying the whole model.
+Reproduced it standalone too: `GET` the model, edit `description`, `PUT` it to the
+collection URL → 200, change persisted.
 
-- **The flow record is created empty and built up node-by-node**, not by PUT-ing
-  a whole edited model back. Triggers, actions, and logic are written through the
-  sub-resource endpoints (`/step`, `/action/action_types`, and the snapshot
-  machinery) as the designer adds each node — there is no single "save the whole
-  flow" call. Reproducing a non-trivial flow over the API means replaying those
-  per-node writes; it is materially harder than the PAD `updateProcessData`
-  single-shot mutation.
-- **To delete**, use the Table API — `DELETE /api/now/table/sys_hub_flow/{sysid}`
-  returns 204 (that's how the probe flows here were cleaned up). The processflow
-  API has no delete verb.
+Two corrections to earlier assumptions, both from this live capture:
+
+- **The save verb is `PUT` on the collection URL `/api/now/processflow/flow`, not
+  the item URL.** `PUT`/`POST`/`DELETE` on `/flow/{sysid}` all 405 — that item
+  URL is read-only, which is what misled the first pass. The `id` travels as a
+  field inside the PUT body.
+- **The designer gzips the PUT body** (`Content-Encoding: gzip` — the payload
+  starts with the `1f 8b` magic bytes), but that's only an optimization; the
+  endpoint accepts **plain uncompressed JSON** just as happily (the standalone
+  `PUT` above sent plain JSON and returned 200).
+
+So flow authoring over the API is *not* the per-node grind assumed earlier — it's
+the same whole-model shape as PAD. To **delete**, still use the Table API —
+`DELETE /api/now/table/sys_hub_flow/{sysid}` returns 204; the processflow API has
+no delete verb.
 
 ### Raw fallback
 
@@ -200,15 +251,19 @@ compiler state make raw writes fragile — fine for reading, risky for authoring
 
 | | Playbooks (PAD) | Flows (Flow Designer) |
 |---|---|---|
-| Authoring transport | GraphQL `now { pad }` | REST `/api/now/processflow/*` |
+| Authoring transport | GraphQL `now { pad }` | REST `/api/now/processflow/*` (+ GraphQL `snFlowDesigner` for UI/lock) |
 | Create | `createProcess` (one shot) | `POST /flow` (empty shell) |
-| Update | `updateProcessData` (whole model) | per-node sub-resource writes; no whole-model save |
+| Update | `updateProcessData` (whole model) | `PUT /flow` (whole model, collection URL) |
 | AI generate | `generateProcess` | `/api/sn_text2flow/v1/build_with_ai/*` |
 | Delete | `deleteProcess` | Table API `DELETE sys_hub_flow/{id}` |
 | Read-back | `getProcess` | `GET /flow/{sysid}` |
-| Stability | unversioned, DisplayableString gotcha | unversioned, undocumented, create-then-build-up |
+| Edit lock | — | GraphQL `snFlowDesigner { safeEdit }` |
+| Stability | unversioned, DisplayableString gotcha | unversioned, undocumented, `PUT` on collection URL only |
 
-PAD is the friendlier target: read-modify-write a whole definition in one typed
-mutation. Flow authoring over the API is create-plus-incremental-node-writes —
-for anything beyond scaffolding a flow shell, prefer the Fluent SDK
-(`@servicenow/sdk`, the `now-Workflow_Automation_Fluent_APIs` surface) or the UI.
+Both are read-modify-write against a whole definition — PAD via one typed
+GraphQL mutation, flows via `PUT /processflow/flow`. Neither needs per-node
+calls. Constructing a valid model from scratch is still non-trivial (activity/
+action definitions, snapshots, pill bindings), so for green-field authoring the
+Fluent SDK (`@servicenow/sdk`, the `now-Workflow_Automation_Fluent_APIs`
+surface) is usually cleaner than hand-building the JSON; these APIs shine for
+*programmatic edits* to existing artifacts.
