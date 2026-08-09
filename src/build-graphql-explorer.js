@@ -425,6 +425,9 @@ const TEMPLATE = `<!doctype html>
       font-weight: 600; font-size: 0.8125rem; margin-bottom: 1rem;
     }
     header { flex-wrap: wrap; gap: 0.6rem; }
+    /* Let the title + meta + cross/repo links wrap instead of overflowing the
+       right edge on narrow screens (otherwise the links run off-screen). */
+    .brand { flex-wrap: wrap; white-space: normal; row-gap: 0.15rem; }
     .searchwrap { order: 3; min-width: 100%; }
     .row { padding-top: 0.6rem; padding-bottom: 0.6rem; }
   }
