@@ -436,7 +436,7 @@ const TEMPLATE = `<!doctype html>
 <body>
 <div class="shell">
   <header>
-    <div class="brand"><span class="dot" aria-hidden="true"></span><strong>SN GraphQL Explorer</strong><span class="brand-meta" id="brand-meta"></span><a class="xlink" id="xlink">REST explorer →</a></div>
+    <div class="brand"><span class="dot" aria-hidden="true"></span><strong>SN GraphQL Explorer</strong><span class="brand-meta" id="brand-meta"></span><a class="xlink" id="xlink">REST explorer →</a><a class="xlink repo" href="https://github.com/tehubersheezy/servicenow-tools" target="_blank" rel="noopener">GitHub ↗</a></div>
     <div class="searchwrap">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="text" role="combobox" aria-expanded="true" aria-controls="results"
