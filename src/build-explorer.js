@@ -175,9 +175,11 @@ const TEMPLATE = `<!doctype html>
   /* ---------- Namespace rail ---------- */
   .rail { border-right: 1px solid var(--line); background: var(--panel); overflow-y: auto; padding: 0.75rem 0.5rem 1.5rem; }
   .rail-head {
+    display: flex; align-items: baseline; gap: 0.35rem;
     font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--ink-3); padding: 0.25rem 0.75rem 0.5rem;
   }
+  .rail-legend { margin-left: auto; font-weight: 400; letter-spacing: 0.02em; text-transform: none; white-space: nowrap; }
   #ns-q {
     width: 100%; font: inherit; font-size: 0.8125rem; color: var(--ink);
     padding: 0.32rem 0.75rem; margin: 0 0 0.5rem; border: 1px solid var(--line);
@@ -380,7 +382,7 @@ const TEMPLATE = `<!doctype html>
   </header>
   <div class="app">
     <nav class="rail" aria-label="Namespaces">
-      <div class="rail-head">Namespaces <span id="ns-count"></span></div>
+      <div class="rail-head">Namespaces <span id="ns-count"></span><span class="rail-legend">APIs · endpoints</span></div>
       <input id="ns-q" type="text" aria-label="Filter namespaces" placeholder="Filter namespaces" autocomplete="off" spellcheck="false">
       <ul id="ns-list"></ul>
     </nav>
@@ -453,6 +455,8 @@ var DATA = "__PAYLOAD__";
 
   var nsIndex = {};
   ops.forEach(function (o) { nsIndex[o.api.ns] = (nsIndex[o.api.ns] || 0) + 1; });
+  var nsApis = {};
+  apis.forEach(function (a) { nsApis[a.ns] = (nsApis[a.ns] || 0) + 1; });
   var nsNames = Object.keys(nsIndex).sort(function (a, b) { return nsIndex[b] - nsIndex[a] || a.localeCompare(b); });
 
   // Browse order = the catalogue's shape: biggest namespace first (matching the
@@ -962,7 +966,9 @@ var DATA = "__PAYLOAD__";
       var b = el('button', 'ns-btn');
       b.setAttribute('aria-pressed', state.ns === ns ? 'true' : 'false');
       b.appendChild(el('span', 'n', ns));
-      b.appendChild(el('span', 'c', fmt(nsIndex[ns])));
+      b.appendChild(el('span', 'c', fmt(nsApis[ns]) + ' · ' + fmt(nsIndex[ns])));
+      b.title = ns + ' — ' + fmt(nsApis[ns]) + (nsApis[ns] === 1 ? ' API, ' : ' APIs, ') +
+        fmt(nsIndex[ns]) + (nsIndex[ns] === 1 ? ' endpoint' : ' endpoints');
       b.addEventListener('click', function () {
         state.ns = state.ns === ns ? null : ns;
         renderRail(); renderResults(); writeHash();
