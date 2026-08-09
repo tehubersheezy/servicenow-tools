@@ -1,0 +1,2368 @@
+type now_query {
+  helpRequest: now_helpRequest_Query
+  favoriteArtifacts: now_favoriteArtifacts_Query
+  wrapUpSegment: now_wrapUpSegment_Query
+  sessionUser: now_sessionUser_Query
+  taxonomy: now_taxonomy_Query
+  informationSessionQueries: now_informationSessionQueries_Query
+  quickActions: now_quickActions_Query
+  textCommands: now_textCommands_Query
+  GlidePromin: now_GlidePromin_Query
+  cs: now_cs_Query
+  snFlowSummary: now_snFlowSummary_Query
+  pad: now_pad_Query
+  uxf_user: now_uxf_user_Query
+  informationSessionTabWorkSpaceSetting: now_informationSessionTabWorkSpaceSetting_Query
+  userPreference: now_userPreference_Query
+  customer360Widget: now_customer360Widget_Query
+  paDesigner: now_paDesigner_Query
+  agentChatSetup: now_agentChatSetup_Query
+  interaction: now_interaction_Query
+  resolutionShaperTimeline: now_resolutionShaperTimeline_Query
+  agentChatDynamicTranslation: now_agentChatDynamicTranslation_Query
+  dataExtraction: now_dataExtraction_Query
+}
+
+type now_mutation {
+  helpRequest: now_helpRequest_Mutation
+  favoriteArtifacts: now_favoriteArtifacts_Mutation
+  wrapUpSegment: now_wrapUpSegment_Mutation
+  taxonomy: now_taxonomy_Mutation
+  quickActions: now_quickActions_Mutation
+  textCommands: now_textCommands_Mutation
+  GlidePromin: now_GlidePromin_Mutation
+  cs: now_cs_Mutation
+  pad: now_pad_Mutation
+  userPreference: now_userPreference_Mutation
+  paDesigner: now_paDesigner_Mutation
+  interaction: now_interaction_Mutation
+}
+
+type now_agentChatDynamicTranslation_DynamicTranslationSetupInfo {
+  sysPropertyValue: Boolean
+  configurationCheckResult: Boolean
+}
+
+type now_agentChatDynamicTranslation_Query {
+  dynamicTranslationSetupState(conversationSysId: String): now_agentChatDynamicTranslation_DynamicTranslationSetupInfo
+}
+
+type now_agentChatSetup_AgentChatSetupPropertiesValue {
+  whisperEnabled: String
+  emojiEnabled: String
+  isGenAIEnabled: Boolean
+  thirdPartyIntegration: String
+  multiPartyChatEnabled: String
+  isDynamicTranslationEnabled: Boolean
+}
+
+type now_agentChatSetup_Query {
+  agentChatSetupProperties(interactionSysId: String): now_agentChatSetup_AgentChatSetupPropertiesValue
+}
+
+type now_cs_AutoPilotConversation {
+  sysId: String
+  inAutoPilotMode: Boolean
+}
+
+type now_cs_ChatMetadata {
+  whisperEnabled: String
+  emojiEnabled: String
+  isGenAIEnabled: Boolean
+  thirdPartyIntegration: String
+  multiPartyChatEnabled: String
+  liveProfileSysId: String
+  containerLayoutPerfFix: Boolean
+  profanityIndicatorMessage: String
+  aggressivelyFetchMessageEnabled: Boolean
+}
+
+type now_cs_ChatWindowPosition {
+  sysId: String
+  position: String
+}
+
+type now_cs_Conversation {
+  sysId: String
+  messages(boundaryId: String, limit: Int, before: Boolean): [now_cs_Message]
+  audioTranscriptAttachmentId: String
+}
+
+input now_cs_ConversationLatestSequence {
+  conversationSysId: String
+  sequence: String
+}
+
+type now_cs_ConversationMessagesMap {
+  conversationSysId: String
+  messages: [now_cs_Message]
+}
+
+type now_cs_GetWorkSpaceSettingType {
+  firstColorThreshold: Int
+  secondColorThreshold: Int
+  active: Boolean
+  settings: String
+}
+
+type now_cs_Interaction {
+  conversationSysId: String
+  type: String
+  previousInteractions: [now_cs_PreviousInteraction]
+  interactionMetadata(interactionSysId: String): now_cs_InteractionMetadata
+  """ Deprecated but necessary during upgrade from pre-Vancouver"""
+  phoneInteractionMetadata(interactionSysId: String): now_cs_PhoneInteractionMetadata
+}
+
+type now_cs_InteractionMetadata {
+  audioTranscriptAttachmentId: String
+  conversationSentiment: String
+}
+
+type now_cs_Message {
+  private: Boolean
+  conversationSysId: String
+  initials: String
+  senderLiveProfileSysId: String
+  avatar: String
+  createdAt: String
+  sequence: String
+  system: Boolean
+  messageType: String
+  payload: String
+  createdBy: String
+  agentTranslatedMessage: String
+  status: String
+  internal: Boolean
+  transitory: Boolean
+  isProfane: Boolean
+  senderName: String
+  sentiment: String
+  messageId: String
+  feedback: String
+  messageUpdated: Boolean
+  isBotMessage: Boolean
+  externalChatStatus: String
+}
+
+type now_cs_Mutation {
+  sendMessage(
+    conversationId: String!
+    chatMessage: String!
+    attachments: [String]
+    internal: Boolean
+  ): [now_cs_Message]
+  cancelCurrentTopic(conversationId: String!): now_cs_ScriptableResponse
+}
+
+""" Deprecated but necessary during upgrade from pre-Vancouver"""
+type now_cs_PhoneInteractionMetadata {
+  audioTranscriptAttachmentId: String
+  conversationSentiment: String
+}
+
+type now_cs_PreviousInteraction {
+  sysId: String
+  number: String
+  conversationSysId: String
+  audioTranscriptAttachmentId: String
+  sentiment: String
+  duration: String
+  type: String
+}
+
+type now_cs_Query {
+  conversation(sysId: String!): now_cs_Conversation
+  inAutoPilotMode(conversationId: String!): Boolean
+  interaction(conversationSysId: String!, type: String): now_cs_Interaction
+  positionChatWindow(sysIds: [String]!): [now_cs_ChatWindowPosition]
+  shouldCloseChat(sysId: String!): Boolean
+  autoPilotModeForConversations(conversationIds: [String]!): [now_cs_AutoPilotConversation]
+  conversationsLatestMessages(conversationsLatestSequence: [now_cs_ConversationLatestSequence]!): [now_cs_ConversationMessagesMap]
+  fetchInformationSessionTabWorkSpaceSetting(workspaceId: String): now_cs_GetWorkSpaceSettingType
+  getChatMetadata: now_cs_ChatMetadata
+}
+
+type now_cs_ScriptableResponse {
+  message: String
+  success: Boolean
+}
+
+type now_customer360Widget_AccountDetails {
+  id: String
+  name: String
+  activeEscalation: now_customer360Widget_ActiveEscalation
+}
+
+type now_customer360Widget_ActiveEscalation {
+  id: String
+  number: String
+  state: now_customer360Widget_EscalationState
+}
+
+type now_customer360Widget_EscalationState {
+  value: String
+  displayValue: String
+}
+
+type now_customer360Widget_Field {
+  displayValue: String
+  value: String
+  label: String
+  type: String
+  name: String
+}
+
+type now_customer360Widget_Item {
+  userType: String
+  userTypeLabel: String
+  avatar: String
+  hasValue: String
+  fields: [now_customer360Widget_Field]
+  accountDetails: now_customer360Widget_AccountDetails
+}
+
+type now_customer360Widget_Query {
+  getWidgetData(input: now_customer360Widget_WidgetInput): [now_customer360Widget_Item]
+}
+
+input now_customer360Widget_WidgetInput {
+  table: String!
+  sysId: String!
+  primaryUser: String
+  secondaryUser: String
+  tertiaryUser: String
+  primaryFields: String
+  secondaryFields: String
+  tertiaryFields: String
+}
+
+""" Attachment content type """
+type now_dataExtraction_AttachmentData {
+  attachmentSysId: ID!
+  content(chunked: Boolean): [String]
+}
+
+type now_dataExtraction_AttachmentListField implements now_dataExtraction_Field {
+  name: String!
+  attachmentList: [now_dataExtraction_AttachmentMetadata]!
+}
+
+""" Attachment metadata type """
+type now_dataExtraction_AttachmentMetadata {
+  attachmentSysId: ID!
+  attachmentType: String
+  attachmentName: String!
+  attachmentByteSize: Int
+}
+
+input now_dataExtraction_DependentFieldsInput {
+  label_table: String!
+  labels: [String!]!
+  domain_sys_id: String
+}
+
+""" Dependent data output"""
+type now_dataExtraction_DependentFieldsResult {
+  label: String!
+  dependent_label: String!
+}
+
+type now_dataExtraction_DependentFieldValueMappingRecord {
+  value: String
+  dependent_value: String
+}
+
+input now_dataExtraction_DependentFieldValueMappingsInput {
+  label_table: String!
+  dependent_label: String!
+  domain_sys_id: String
+  pagination_data: now_dataExtraction_PaginationDataInput!
+}
+
+type now_dataExtraction_DependentFieldValueMappingsResult {
+  records: [now_dataExtraction_DependentFieldValueMappingRecord]!
+  pagination_data: now_dataExtraction_PaginationDataOutput!
+}
+
+""" Supported field types"""
+interface now_dataExtraction_Field {
+  name: String!
+}
+
+type now_dataExtraction_MultiValuedField implements now_dataExtraction_Field {
+  name: String!
+  values: [String]!
+}
+
+""" Pagination Data"""
+input now_dataExtraction_PaginationDataInput {
+  batch_count: Int
+  total_number_records_to_process: Int
+  total_extracted_records: Int
+  total_extracted_attachments: Int
+  offset: Int
+  limit: Int
+  table_rotation_info: now_dataExtraction_TableRotationInfoInput
+}
+
+type now_dataExtraction_PaginationDataOutput {
+  batch_count: Int
+  total_number_records_to_process: Int
+  total_extracted_records: Int
+  total_extracted_attachments: Int
+  offset: Int
+  limit: Int
+  table_rotation_info: now_dataExtraction_TableRotationInfoOutput
+}
+
+type now_dataExtraction_Query {
+  """ Get training data"""
+  trainingData(trainingDataExtractionInput: now_dataExtraction_TrainingDataExtractionInput!): now_dataExtraction_TrainingDataExtractionResult
+  """ Get the content of the attachments from their ids"""
+  attachmentData(attachmentSysIdList: [String!]!): [now_dataExtraction_AttachmentData]!
+  """ Identify fields with dependent relationship"""
+  dependentFields(dependentFieldsInput: now_dataExtraction_DependentFieldsInput!): [now_dataExtraction_DependentFieldsResult]
+  """ Get detailed value mappings between the two fields with dependency"""
+  dependentFieldValueMappings(
+    dependentFieldValueMappingsInput: now_dataExtraction_DependentFieldValueMappingsInput!
+  ): now_dataExtraction_DependentFieldValueMappingsResult
+}
+
+type now_dataExtraction_SingleValuedField implements now_dataExtraction_Field {
+  name: String!
+  value: String!
+}
+
+input now_dataExtraction_TableRotationInfoInput {
+  active: Boolean
+  rotation_schedule: String
+  rotation_offset: Int
+}
+
+type now_dataExtraction_TableRotationInfoOutput {
+  active: Boolean
+  rotation_schedule: String
+  rotation_offset: Int
+}
+
+""" Training Data"""
+type now_dataExtraction_TrainingDataBatch {
+  tag: String
+  pagination_data: now_dataExtraction_PaginationDataOutput
+  records: [now_dataExtraction_TrainingDataRecord]!
+}
+
+type now_dataExtraction_TrainingDataExtractionError {
+  errorType: String!
+  errorMessages: [String!]!
+}
+
+input now_dataExtraction_TrainingDataExtractionInput {
+  parameters: String!
+  pagination_data: now_dataExtraction_PaginationDataInput
+}
+
+union now_dataExtraction_TrainingDataExtractionResult = now_dataExtraction_TrainingDataBatch | now_dataExtraction_TrainingDataExtractionError
+
+type now_dataExtraction_TrainingDataRecord {
+  target_sys_id: ID!
+  source_sys_id: ID
+  sys_created_on: String!
+  features: [now_dataExtraction_SingleValuedField]!
+  other_features: [now_dataExtraction_Field]!
+  labels: [now_dataExtraction_SingleValuedField]!
+}
+
+union now_favoriteArtifacts_DeleteFavoriteOrError = now_favoriteArtifacts_DeleteFavoriteSuccess | now_favoriteArtifacts_Error
+
+type now_favoriteArtifacts_DeleteFavoriteSuccess {
+  success: Boolean!
+  message: String
+}
+
+type now_favoriteArtifacts_Error {
+  errorType: now_favoriteArtifacts_ErrorFlavor!
+  message: String
+  header: String
+}
+
+"""## ENUMS"""
+enum now_favoriteArtifacts_ErrorFlavor {
+  QUERY_FAILED
+  MUTATION_FAILED
+  UNAUTHORIZED
+  NOT_FOUND
+  VALIDATION_FAILED
+  UNKNOWN
+}
+
+type now_favoriteArtifacts_FavoritesData {
+  id: String
+  name: String
+  description: String
+  scope: String
+  scopeName: String
+  category: String
+  state: String
+  type: String
+}
+
+"""## UNION TYPES"""
+union now_favoriteArtifacts_FavoritesDataOrError = now_favoriteArtifacts_FavoritesData | now_favoriteArtifacts_Error
+
+"""## OUTPUT TYPES"""
+type now_favoriteArtifacts_FavoritesResult {
+  data: [now_favoriteArtifacts_FavoritesData]
+  resultsExceedLimit: Boolean!
+}
+
+union now_favoriteArtifacts_FavoritesResultOrError = now_favoriteArtifacts_FavoritesResult | now_favoriteArtifacts_Error
+
+"""## MUTATION"""
+type now_favoriteArtifacts_Mutation {
+  createFavorite(
+    name: String!
+    type: String!
+    scope: String
+    category: String
+    artifactId: String
+    artifactTable: String
+  ): now_favoriteArtifacts_FavoritesDataOrError
+  deleteFavorite(artifactId: String!): now_favoriteArtifacts_DeleteFavoriteOrError
+}
+
+"""## QUERY"""
+type now_favoriteArtifacts_Query {
+  getFavorites(category: String, type: String, scope: String, offset: Int, limit: Int): now_favoriteArtifacts_FavoritesResultOrError
+}
+
+type now_GlidePromin_AutomationCenterConfig {
+  isPluginActive: Boolean
+  permissions: now_GlidePromin_Permissions
+}
+
+type now_GlidePromin_DynamicTranslationConfig {
+  isPluginActive: Boolean
+}
+
+type now_GlidePromin_Mutation {
+  linkAutomationReqs(reqIds: [ID!], projectId: ID, findingDefId: ID, source: String): now_GlidePromin_ScriptableResponse
+  unlinkAutomationReqs(reqIds: [ID!], projectId: ID, findingDefId: ID, source: String): now_GlidePromin_ScriptableResponse
+}
+
+type now_GlidePromin_Permissions {
+  canCreate: Boolean
+  canRead: Boolean
+}
+
+type now_GlidePromin_ProcessConfig {
+  clusterAnalysisEnabled: Boolean
+  rootCauseAnalysisEnabled: Boolean
+  worknotesAnalysisEnabled: Boolean
+}
+
+type now_GlidePromin_Query {
+  automationCenterConfig: now_GlidePromin_AutomationCenterConfig
+  dynamicTranslationConfig: now_GlidePromin_DynamicTranslationConfig
+  processConfig(table: String!): now_GlidePromin_ProcessConfig
+}
+
+type now_GlidePromin_ScriptableResponse {
+  message: String
+  success: Boolean
+}
+
+type now_helpRequest_HelpCreationOrUpdationResponse {
+  success: Boolean
+  message: String
+  requestId: String
+  requestNumber: String
+}
+
+type now_helpRequest_HelpRequestAdditionalData {
+  helpRequestedOnInteraction: Boolean
+  assignedTo: String
+}
+
+type now_helpRequest_HelpRequestEligibility {
+  canRequestHelp: Boolean
+  canCancelHelp: Boolean
+  helpRequestedId: String
+  additionalData: now_helpRequest_HelpRequestAdditionalData
+}
+
+type now_helpRequest_Mutation {
+  createHelpRequest(
+    interaction: String!
+    reason_code: String!
+    description: String
+    additional_metadata: String
+  ): now_helpRequest_HelpCreationOrUpdationResponse
+  updateHelpRequest(
+    interaction: String!
+    help_request_id: String!
+    state: String
+    additional_metadata: String
+  ): now_helpRequest_HelpCreationOrUpdationResponse
+  createOrUpdateSupervisorHelpAction(
+    interaction: String!
+    action_sys_id: String
+    action: String
+    help_request: String
+    additional_metadata: String
+  ): now_helpRequest_SupervisorHelpActionCreateOrUpdateResponse
+}
+
+type now_helpRequest_Query {
+  helpRequestEligibility(interaction_id: String!): now_helpRequest_HelpRequestEligibility
+  reasonCodesForInteraction(interaction_id: String!): [now_helpRequest_ReasonCode]
+}
+
+type now_helpRequest_ReasonCode {
+  id: String
+  code: String
+  description: String
+}
+
+type now_helpRequest_SupervisorHelpActionCreateOrUpdateResponse {
+  action_sys_id: String
+  success: Boolean
+  message: String
+}
+
+type now_informationSessionQueries_GetAllTabInfoType {
+  results: [now_informationSessionQueries_TabDetailType]
+}
+
+type now_informationSessionQueries_Query {
+  setLastReadMessage(interactionId: String, userId: String): String
+  updateLastReadMessage(receiver: String, interactionId: String, lastReadMessageId: String): String
+  updateTabClose(receiver: String, interactionId: String, lastReadMessageId: String): String
+  getAllTabDetails(userId: String): now_informationSessionQueries_GetAllTabInfoType
+}
+
+type now_informationSessionQueries_TabDetailType {
+  count: Int
+  interactionId: String
+  lastSeenMessageId: String
+  lastReceivedMessageId: String
+  type: String
+}
+
+type now_informationSessionTabWorkSpaceSetting_Query {
+  setInformationSessionTabWorkspaceSetting(
+    workspaceId: String
+    isSessionTabEnabled: Boolean
+    firstColorThreshold: Int
+    secondColorThreshold: Int
+    thresholdLevels: String
+  ): String
+  disableSessionTabAllWorkspace(tableName: String, isSessionTabFeatureEnabled: Boolean): String
+}
+
+type now_interaction_EndChatResult {
+  status: String!
+  message: String
+}
+
+type now_interaction_Mutation {
+  """implement here..."""
+  endChat(interactionId: String!): now_interaction_EndChatResult
+}
+
+type now_interaction_Query {
+}
+
+type now_pad_AccessControlMetadata {
+  processDefinition: now_pad_ProcessDefinitionAccessControl
+  triggerTables: [now_pad_TriggerTableAccessControl]
+}
+
+input now_pad_ActivitiesInput {
+  insert: [now_pad_ActivityInput!]
+  update: [now_pad_ActivityInput!]
+  remove: [String!]
+}
+
+type now_pad_Activity {
+  sysId: now_pad_DisplayableString
+  active: String
+  label: now_pad_DisplayableString
+  name: now_pad_DisplayableString
+  description: now_pad_DisplayableString
+  activityDefinition: now_pad_DisplayableString
+  activityDefinitionObj: now_pad_ActivityDefinitionObj
+  dataDefinition: now_pad_DataDefinition
+  swimLane: now_pad_DisplayableString
+  processDefinition: now_pad_DisplayableString
+  created: now_pad_DisplayableString
+  updated: now_pad_DisplayableString
+  conditionToRun: now_pad_DisplayableString
+  coordinates: String
+  startRule: now_pad_StartRule
+  lane: now_pad_DisplayableString
+  hydrationState: now_pad_DisplayableString
+  inputs: now_pad_GlideElementGlideVars
+  typeVals: now_pad_GlideElementGlideVars
+  outputs: now_pad_GlideElementGlideVars
+  order: now_pad_DisplayableString
+  restartRule: now_pad_DisplayableString
+  startDelay: now_pad_StartDelay
+  variant: now_pad_DisplayableString
+  aiAgentFields: now_pad_AiAgentFields
+}
+
+type now_pad_ActivityAppObject {
+  sysId: now_pad_DisplayableString
+  activityId: now_pad_DisplayableString
+  targetTable: now_pad_DisplayableString
+  targetRecord: now_pad_DisplayableString
+}
+
+input now_pad_ActivityAppObjectInput {
+  sysId: String
+  activityId: String!
+  targetTable: String!
+  targetRecord: String!
+}
+
+union now_pad_ActivityAppObjectOrError = now_pad_ActivityAppObject | now_pad_Error
+
+input now_pad_ActivityAppObjectsInput {
+  insert: [now_pad_ActivityAppObjectInput!]
+  remove: [now_pad_ActivityAppObjectInput!]
+}
+
+type now_pad_ActivityDefinitionMetaData {
+  elementName: now_pad_DisplayableString
+  dependentOnField: now_pad_DisplayableString
+}
+
+type now_pad_ActivityDefinitionObj {
+  sysId: now_pad_DisplayableString
+  name: now_pad_DisplayableString
+  label: now_pad_DisplayableString
+  badge: now_pad_DisplayableString
+  enableAiAgent: now_pad_DisplayableString
+  aiAgentObjective: now_pad_DisplayableString
+  aiAgentRunAs: now_pad_DisplayableString
+  aiAgentUser: now_pad_DisplayableString
+  aiAgentExecutionMode: now_pad_DisplayableString
+  activityType: now_pad_DisplayableString
+  activityTypeObj: now_pad_ActivityTypeObj
+  source: now_pad_DisplayableString
+  sourceType: now_pad_DisplayableString
+  inputDisplayPreferences: now_pad_DisplayableString
+  experienceDisplayPreferences: now_pad_DisplayableString
+  additionalFunctionality: now_pad_DisplayableString
+  canRead: now_pad_DisplayableBoolean
+  variableMeta: [now_pad_ActivityDefinitionMetaData]
+  inputs: now_pad_GlideElementGlideVars
+  typeVals: now_pad_GlideElementGlideVars
+  subflowDefinition: now_pad_SourceDefinition
+  actionTypeDefinition: now_pad_SourceDefinition
+}
+
+union now_pad_ActivityDefinitionOrError = now_pad_ActivityDefinitionObj | now_pad_Error
+
+input now_pad_ActivityInput {
+  sysId: String
+  activityDefinition: String
+  processDefinition: String
+  dataDefinition: now_pad_DataDefinitionInput
+  label: String
+  name: String
+  description: String
+  coordinates: String
+  assetId: String
+  assetConfigurationId: String
+  type: String
+  swimLane: String
+  lane: String
+  hydrationState: String
+  startRule: now_pad_StartRuleInput
+  startDelay: now_pad_StartDelayInput
+  inputs: now_pad_GlideElementGlideVarsInput
+  typeVals: now_pad_GlideElementGlideVarsInput
+  order: Int
+  conditionToRun: String
+  restartRule: now_pad_DisplayableStringInput
+  variant: String
+  aiAgentFields: now_pad_AiAgentFieldsInput
+}
+
+type now_pad_ActivityInputOutputResult {
+  activitySysId: String
+  inputs: [now_pad_GlideVariable]
+  outputs: [now_pad_ActivityOutput]
+}
+
+union now_pad_ActivityOrError = now_pad_Activity | now_pad_Error
+
+type now_pad_ActivityOutput {
+  name: String
+  label: String
+  type: String
+  typeLabel: String
+  attributes: [String]
+}
+
+type now_pad_ActivityTypeObj {
+  sysId: now_pad_DisplayableString
+  name: now_pad_DisplayableString
+  color: now_pad_DisplayableString
+  icon: now_pad_DisplayableString
+  colorCategoryObj: now_pad_ColorCategoryObj
+}
+
+input now_pad_AdditionalContextInfo {
+  generationRequestId: String
+}
+
+type now_pad_AiAgentFields {
+  aiAgentObjective: now_pad_DisplayableString
+  enableAiAgent: now_pad_DisplayableBoolean
+  aiAgentRunAs: now_pad_DisplayableString
+  aiAgentUser: now_pad_DisplayableString
+  aiAgentExecutionMode: now_pad_DisplayableString
+}
+
+input now_pad_AiAgentFieldsInput {
+  aiAgentObjective: now_pad_DisplayableStringInput
+  enableAiAgent: Boolean
+  aiAgentRunAs: now_pad_DisplayableStringInput
+  aiAgentUser: now_pad_DisplayableStringInput
+  aiAgentExecutionMode: now_pad_DisplayableStringInput
+}
+
+type now_pad_Branch {
+  activityId: String!
+  branchId: String!
+}
+
+input now_pad_BranchInput {
+  activityId: String!
+  branchId: String!
+}
+
+input now_pad_ChoicesInput {
+  label: String
+  value: String
+  sequence: String
+  displayValue: String
+}
+
+type now_pad_ColorCategoryObj {
+  displayName: now_pad_DisplayableString
+  colorCategoryVariable: now_pad_DisplayableString
+}
+
+type now_pad_DataDefinition {
+  sysId: now_pad_DisplayableString
+  name: now_pad_DisplayableString
+  flowDataVariables: now_pad_GlideElementGlideVars
+}
+
+input now_pad_DataDefinitionInput {
+  sysId: String
+  name: String
+  flowDataVariables: now_pad_GlideElementGlideVarsInput
+}
+
+type now_pad_DisplayableBoolean {
+  value: Boolean
+  displayValue: String
+}
+
+type now_pad_DisplayableString {
+  value: String
+  displayValue: String
+}
+
+""" Begin input types"""
+input now_pad_DisplayableStringInput {
+  value: String
+  displayValue: String
+}
+
+type now_pad_DisplayNameForSysId {
+  sysId: String
+  displayName: String
+}
+
+type now_pad_DisplayNamesInTable {
+  tableName: String
+  displayNamesForSysIds: [now_pad_DisplayNameForSysId]
+}
+
+type now_pad_DynamicInfo {
+  actionInternalName: String
+  actionScope: String
+  inputs: [now_pad_DynamicInfoInput]
+}
+
+type now_pad_DynamicInfoInput {
+  name: String
+  value: String
+}
+
+type now_pad_Error {
+  errorType: now_pad_ErrorFlavor!
+  message: String!
+  header: String
+}
+
+""" Begin enums"""
+enum now_pad_ErrorFlavor {
+  QUERY_FAILED
+  MUTATION_FAILED
+  PROCESS_DELETION_FAILED
+  UNAUTHORIZED
+  FEATURE_INACTIVE
+  JSON_PARSE_FAILED
+  UPGRADE_IN_PROGRESS
+  RECORD_NOT_FOUND
+}
+
+type now_pad_FormViewObject {
+  sysId: String
+  title: String
+  name: String
+}
+
+type now_pad_GlideElementGlideVars {
+  variables: [now_pad_GlideVariable]
+}
+
+input now_pad_GlideElementGlideVarsInput {
+  variables: [now_pad_GlideVariableInput]
+}
+
+type now_pad_GlideVariable {
+  variableValue: String
+  variableMapping: String
+  variableName: String
+  glideVarElement: String
+  displayValue: String
+  value: String
+  internalType: String
+  label: String
+  canRead: Boolean
+  canWrite: Boolean
+  isMandatory: Boolean
+  reference: String
+  displayValuesWithPath: [String]
+  hint: String
+  defaultValue: String
+  referenceQualifier: String
+  maxLength: Int
+  order: Int
+}
+
+input now_pad_GlideVariableInput {
+  variableValue: String
+  variableMapping: String
+  variableName: String
+  glideVarElement: String
+  displayValue: String
+  name: String
+  value: String
+  internalType: String
+  label: String
+  mandatory: Boolean
+  maxLength: String
+  choices: [now_pad_ChoicesInput]
+  reference: String
+  referenceQualifier: String
+  choiceTable: now_pad_DisplayableStringInput
+  choiceField: now_pad_DisplayableStringInput
+  hint: String
+  defaultValue: String
+  order: Int
+}
+
+input now_pad_IncludeConfig {
+  includePanelOverrides: Boolean = false
+  includeActivityDefinitions: Boolean = false
+  includeVarMeta: Boolean = true
+}
+
+type now_pad_KnowledgeBase {
+  value: String
+  displayValue: String
+  shortDescription: String
+}
+
+type now_pad_Lane {
+  sysId: now_pad_DisplayableString
+  active: now_pad_DisplayableString
+  updated: now_pad_DisplayableString
+  created: now_pad_DisplayableString
+  processDefinition: now_pad_DisplayableString
+  label: now_pad_DisplayableString
+  name: now_pad_DisplayableString
+  color: now_pad_DisplayableString
+  description: now_pad_DisplayableString
+  startRule: now_pad_LaneStartRule
+  order: now_pad_DisplayableString
+  conditionToRun: now_pad_DisplayableString
+  startDelay: now_pad_StartDelay
+  restartRule: now_pad_DisplayableString
+  permission: now_pad_DisplayableString
+}
+
+input now_pad_LaneInput {
+  sysId: String
+  description: String
+  processDefinition: String
+  color: String
+  startRule: now_pad_LaneStartRuleInput
+  order: Int
+  label: String
+  name: String
+  conditionToRun: String
+  startDelay: now_pad_StartDelayInput
+  restartRule: now_pad_DisplayableStringInput
+  permission: String
+}
+
+input now_pad_LanesInput {
+  insert: [now_pad_LaneInput]
+  update: [now_pad_LaneInput]
+  remove: [String]
+}
+
+type now_pad_LaneStartRule {
+  definition: String
+  vars: now_pad_LaneStartRuleVars
+  startRuleName: String
+  startsAfterLanes: [String]
+  startsAfterActivities: [String]
+  startsAfterBranches: [now_pad_Branch]
+}
+
+input now_pad_LaneStartRuleInput {
+  definition: String
+  vars: now_pad_LaneStartRuleVarsInput
+  startRuleName: String
+  startsAfterLanes: [String!]
+  startsAfterActivities: [String!]
+  startsAfterBranches: [now_pad_BranchInput!]
+}
+
+type now_pad_LaneStartRuleVars {
+  lanes: [String]
+  activities: [String]
+  branches: [now_pad_Branch]
+}
+
+input now_pad_LaneStartRuleVarsInput {
+  lanes: [String!]
+}
+
+type now_pad_Mutation {
+  """ see https://servicenow.sharepoint.com/sites/PlaybookDocs/SitePages/Create-Process-API.aspx"""
+  createProcess(
+    activities: [now_pad_ActivityInput]
+    process: now_pad_ProcessInput
+    lanes: [now_pad_LaneInput]
+    config: now_pad_IncludeConfig
+    additionalContextInfo: now_pad_AdditionalContextInfo
+    triggers: [now_pad_TriggerInstanceDataInput]
+  ): now_pad_ProcessDataOrError
+  """
+  ##### INTERNAL APIS below #####
+   see https://servicenow.sharepoint.com/sites/PlaybookDocs/SitePages/Create-Process-API.aspx#update-process
+  """
+  updateProcessData(
+    activities: now_pad_ActivitiesInput
+    swimlanes: now_pad_SwimLanesInput
+    activityAppObjects: now_pad_ActivityAppObjectsInput
+    process: now_pad_ProcessInput
+    lanes: now_pad_LanesInput
+    variants: now_pad_VariantsInput
+    overrides: now_pad_OverridesInput
+    config: now_pad_IncludeConfig
+    triggers: now_pad_TriggersInput
+  ): now_pad_ProcessDataOrError
+  generateProcess(
+    prompt: String
+    process: now_pad_ProcessInput
+    attachmentId: String
+    kbId: String
+    additionalContextInfo: now_pad_AdditionalContextInfo
+  ): now_pad_ProcessDataSysIdOrError
+  deleteProcess(sysId: String, scope: String): now_pad_SysIdOrError
+  stopGenerationContext(sysId: String): now_pad_SysIdOrError
+}
+
+type now_pad_Override {
+  sysId: now_pad_DisplayableString
+  overrideParent: now_pad_DisplayableString
+  order: now_pad_DisplayableString
+  startRule: now_pad_StartRule
+  variant: now_pad_DisplayableString
+}
+
+input now_pad_OverrideInput {
+  sysId: String
+  overrideParent: String
+  order: Int
+  startRule: now_pad_StartRuleInput
+  variant: String
+}
+
+input now_pad_OverridesInput {
+  insert: [now_pad_OverrideInput!]
+  update: [now_pad_OverrideInput!]
+  remove: [String!]
+}
+
+type now_pad_PanelOverride {
+  tagName: String
+  itemType: String
+  activityDefinitionId: String
+  processTypeId: String
+  name: String
+  additionalFunctionality: String
+}
+
+type now_pad_ParentPlaybooks {
+  parentProcesses: [now_pad_Process]
+}
+
+union now_pad_ParentPlaybooksOrError = now_pad_ParentPlaybooks | now_pad_Error
+
+""" Begin output types"""
+type now_pad_PlaybookSkillsAccessCheck {
+  hasPlaybookGenerationAccess: Boolean
+  hasPlaybookGenerationWithImageAccess: Boolean
+  hasPlaybookRecommendationsAccess: Boolean
+}
+
+type now_pad_Process {
+  sysId: now_pad_DisplayableString
+  active: now_pad_DisplayableString
+  description: now_pad_DisplayableString
+  viewType: now_pad_DisplayableString
+  label: now_pad_DisplayableString
+  name: now_pad_DisplayableString
+  status: now_pad_DisplayableString
+  designerState: now_pad_DisplayableString
+  triggerRecordData: now_pad_TriggerRecordDataOutput
+  updated: now_pad_DisplayableString
+  created: now_pad_DisplayableString
+  restartable: now_pad_DisplayableString
+  processType: now_pad_ProcessType
+  allowAsNested: now_pad_DisplayableBoolean
+  nowAssistPrompt: now_pad_DisplayableString
+  nowAssistAttachmentId: now_pad_DisplayableString
+  nowAssistAttachmentName: now_pad_DisplayableString
+  nowAssistKb: now_pad_KnowledgeBase
+  sysScope: now_pad_DisplayableString
+  schemaVersion: now_pad_DisplayableString
+  snapshot: now_pad_Snapshot
+  runOnPadEngine: now_pad_DisplayableBoolean
+  engineMajorVersion: now_pad_DisplayableString
+  syncState: now_pad_DisplayableString
+  inputs: now_pad_GlideElementGlideVars
+  outputs: now_pad_GlideElementGlideVars
+  accessControlMetadata: now_pad_AccessControlMetadata
+  permission: now_pad_DisplayableString
+  runStrategy: now_pad_DisplayableString
+  runStrategyOnProcessDefinition: now_pad_DisplayableString
+  evaluateVariantChildrenAfter: now_pad_DisplayableString
+  publicAccess: now_pad_DisplayableBoolean
+  executionType: now_pad_DisplayableString
+  launcherTitle: now_pad_DisplayableString
+  launcherDescription: now_pad_DisplayableString
+  launcherShowRecordForm: now_pad_DisplayableBoolean
+  launcherRecordFormView: now_pad_DisplayableString
+  launcherTemplateFields: now_pad_DisplayableString
+  launcherInputs: now_pad_GlideElementGlideVars
+}
+
+type now_pad_ProcessData {
+  activities: [now_pad_Activity]
+  swimlanes: [now_pad_SwimLane]
+  process: now_pad_Process
+  lanes: [now_pad_Lane]
+  variants: [now_pad_Variant]
+  overrides: [now_pad_Override]
+  panelOverrides: [now_pad_PanelOverride]
+  triggers: [now_pad_TriggerInstanceDataOutput]
+}
+
+""" Begin unions"""
+union now_pad_ProcessDataOrError = now_pad_ProcessData | now_pad_Error
+
+union now_pad_ProcessDataSysIdOrError = now_pad_ProcessData | now_pad_SysId | now_pad_Error
+
+type now_pad_ProcessDefinitionAccessControl {
+  canWrite: Boolean
+}
+
+input now_pad_ProcessInput {
+  sysId: String
+  description: String
+  viewType: String
+  label: String
+  designerState: String
+  triggerRecordData: now_pad_TriggerRecordDataInput
+  schemaVersion: Int
+  sysScope: String
+  runStrategy: String
+  restartable: String
+  processType: String
+  allowAsNested: Boolean
+  nowAssistPrompt: String
+  nowAssistAttachmentId: String
+  nowAssistAttachmentName: String
+  nowAssistKb: String
+  inputs: now_pad_GlideElementGlideVarsInput
+  outputs: now_pad_GlideElementGlideVarsInput
+  permission: String
+  evaluateVariantChildrenAfter: String
+  publicAccess: Boolean
+  executionType: String
+  launcherTitle: String
+  launcherDescription: String
+  launcherShowRecordForm: Boolean
+  launcherRecordFormView: String
+  launcherTemplateFields: String
+  launcherInputs: now_pad_GlideElementGlideVarsInput
+}
+
+type now_pad_ProcessType {
+  value: String
+  displayValue: String
+  sysId: now_pad_DisplayableString
+  name: now_pad_DisplayableString
+  stages: now_pad_DisplayableBoolean
+  test: now_pad_DisplayableBoolean
+  optionalActivities: now_pad_DisplayableBoolean
+  activate: now_pad_DisplayableBoolean
+  duplicate: now_pad_DisplayableBoolean
+  canvasView: now_pad_DisplayableString
+  decisions: now_pad_DisplayableBoolean
+  variants: now_pad_DisplayableBoolean
+  allActivities: now_pad_DisplayableBoolean
+  activityPickerOverride: now_pad_DisplayableString
+  triggerSetup: now_pad_DisplayableBoolean
+  publicAccess: now_pad_DisplayableBoolean
+}
+
+type now_pad_Query {
+  getProcess(processDefinitionId: String!, config: now_pad_IncludeConfig): now_pad_ProcessDataOrError
+  getUnsupportedFeatures(processDefinitionId: String!, targetProcessTypeId: String): now_pad_UnsupportedFeaturesOrError
+  """##### INTERNAL APIS below #####"""
+  checkPlaybookSkillsAccess: now_pad_PlaybookSkillsAccessCheck
+  getActivityAppObjects(processDefinitionId: String!): [now_pad_ActivityAppObjectOrError]
+  getFormViewsForTableData(processDefinitionId: String!, queryConditions: String!): [now_pad_FormViewObject]
+  getDynamicInfoObject(isSubflow: Boolean, flowOrActionId: String, inputName: String): now_pad_DynamicInfo
+  getPanelOverrides(processTypeId: String): [now_pad_PanelOverride]
+  hasPlaybookGenerationAccess: Boolean
+  hasPlaybookRecommendationsAccess: Boolean
+  getParentTables(table: String!): [String]!
+  isUpgradeInProgress: Boolean
+  getActivity(activityId: String!, config: now_pad_IncludeConfig): now_pad_ActivityOrError
+  getDisplayNames(sysIdsInTables: [now_pad_SysIdsInTable!]!): [now_pad_DisplayNamesInTable]
+  getActivityDefinitions: [now_pad_ActivityDefinitionOrError]
+  getActivityInputsOutputs(sysId: String!): now_pad_ActivityInputOutputResult
+  getParentPlaybooks(processDefinitionId: String!): now_pad_ParentPlaybooksOrError
+}
+
+type now_pad_Snapshot {
+  value: String
+  created: String
+}
+
+type now_pad_SourceDefinition {
+  name: now_pad_DisplayableString
+  access: now_pad_DisplayableString
+  type: now_pad_DisplayableString
+  sysId: now_pad_DisplayableString
+}
+
+type now_pad_StartDelay {
+  timerAttributes: now_pad_TimerAttributes
+}
+
+input now_pad_StartDelayInput {
+  timerAttributes: now_pad_TimerAttributesInput
+}
+
+type now_pad_StartRule {
+  definition: String
+  vars: now_pad_StartRuleVars
+  startRuleName: String
+  startsAfterLanes: [String]
+  startsAfterActivities: [String]
+  startsAfterBranches: [now_pad_Branch]
+}
+
+input now_pad_StartRuleInput {
+  definition: String
+  vars: now_pad_StartRuleVarsInput
+  startRuleName: String
+  startsAfterLanes: [String!]
+  startsAfterActivities: [String!]
+  startsAfterBranches: [now_pad_BranchInput!]
+}
+
+type now_pad_StartRuleVars {
+  activities: [String]
+  branches: [now_pad_Branch]
+  lanes: [String]
+}
+
+input now_pad_StartRuleVarsInput {
+  activities: [String!]
+  branches: [now_pad_BranchInput!]
+}
+
+type now_pad_SwimLane {
+  sysId: now_pad_DisplayableString
+  updated: now_pad_DisplayableString
+  processDefinition: now_pad_DisplayableString
+  label: now_pad_DisplayableString
+  order: now_pad_DisplayableString
+  active: now_pad_DisplayableString
+  image: now_pad_DisplayableString
+}
+
+input now_pad_SwimLaneInput {
+  sysId: String!
+  processDefinition: String
+  label: String
+  order: Int
+  active: Boolean
+  image: String
+}
+
+input now_pad_SwimLanesInput {
+  insert: [now_pad_SwimLaneInput!]
+  update: [now_pad_SwimLaneInput!]
+  remove: [String!]
+}
+
+type now_pad_SysId {
+  sysId: String
+}
+
+union now_pad_SysIdOrError = now_pad_SysId | now_pad_Error
+
+input now_pad_SysIdsInTable {
+  tableName: String!
+  sysIds: [String!]!
+}
+
+type now_pad_TimerAttributes {
+  sysId: String
+  active: String
+  durationType: String
+  processDefinition: String
+  source: String
+  sourceType: String
+  percentageTimerInputDatetime: now_pad_DisplayableString
+  timerPercentage: now_pad_DisplayableString
+  timerRelativeDurationDatetime: now_pad_DisplayableString
+  timerRelativeDurationOperator: String
+  timerSchedule: String
+  timerDuration: now_pad_DisplayableString
+}
+
+input now_pad_TimerAttributesInput {
+  sysId: String
+  processDefinition: String
+  source: String
+  sourceType: String
+  durationType: String
+  timerSchedule: String
+  timerRelativeDurationOperator: String
+  timerDuration: now_pad_GlideVariableInput
+  percentageTimerInputDatetime: now_pad_GlideVariableInput
+  timerPercentage: now_pad_GlideVariableInput
+  timerRelativeDurationDatetime: now_pad_GlideVariableInput
+  active: Boolean
+}
+
+input now_pad_TriggerInstanceDataInput {
+  sysId: String
+  triggerInstanceId: String
+  triggerDefinition: String
+  triggerType: now_pad_DisplayableStringInput
+  triggerLabel: String
+  inputs: now_pad_GlideElementGlideVarsInput
+}
+
+type now_pad_TriggerInstanceDataOutput {
+  triggerType: now_pad_DisplayableString
+  triggerLabel: String
+  triggerDefinition: String
+  sysId: String
+  triggerInstanceId: String
+  inputs: now_pad_GlideElementGlideVars
+}
+
+""" Keep for backwards compatibility"""
+input now_pad_TriggerRecordDataInput {
+  sysId: String
+  triggerInstanceId: String
+  triggerDefinition: String
+  triggerType: now_pad_DisplayableStringInput
+  triggerLabel: String
+  inputs: now_pad_GlideElementGlideVarsInput
+}
+
+""" Keep for backwards compatibility"""
+type now_pad_TriggerRecordDataOutput {
+  triggerType: now_pad_DisplayableString
+  triggerLabel: String
+  triggerDefinition: String
+  sysId: String
+  triggerInstanceId: String
+  inputs: now_pad_GlideElementGlideVars
+}
+
+input now_pad_TriggersInput {
+  insert: [now_pad_TriggerInstanceDataInput!]
+  update: [now_pad_TriggerInstanceDataInput!]
+  remove: [String!]
+}
+
+type now_pad_TriggerTableAccessControl {
+  tableName: String
+  canRead: Boolean
+}
+
+type now_pad_UnsupportedFeatures {
+  unsupportedFeatures: [String]
+  processTypeId: String
+}
+
+union now_pad_UnsupportedFeaturesOrError = now_pad_UnsupportedFeatures | now_pad_Error
+
+type now_pad_Variant {
+  sysId: now_pad_DisplayableString
+  label: now_pad_DisplayableString
+  condition: now_pad_DisplayableString
+  order: now_pad_DisplayableString
+  favorite: now_pad_DisplayableBoolean
+  color: now_pad_DisplayableString
+  processDefinition: now_pad_DisplayableString
+  parentVariant: now_pad_DisplayableString
+  created: now_pad_DisplayableString
+  updated: now_pad_DisplayableString
+  designerState: now_pad_DisplayableString
+}
+
+input now_pad_VariantInput {
+  sysId: String
+  label: String
+  order: Int
+  condition: String
+  processDefinition: String
+  parentVariant: String
+  favorite: Boolean
+  color: String
+  designerState: String
+}
+
+input now_pad_VariantsInput {
+  insert: [now_pad_VariantInput!]
+  update: [now_pad_VariantInput!]
+  remove: [String!]
+}
+
+type now_paDesigner_ActivityDefinition {
+  value: String
+  activity_type: now_paDesigner_ActivityType
+  badge: String
+  label: String
+  name: String
+  input_display_preferences: String
+  experience_display_preferences: String
+  source_id: String
+  source_type: String
+  flow_subflow_definition: now_paDesigner_SourceDefinition
+  action_type_definition: now_paDesigner_SourceDefinition
+  additional_functionality: String
+  variable_meta: [now_paDesigner_ActivityDefinitionMetaData]
+  enable_ai_agent: String
+  ai_agent_field_display_preferences: String
+}
+
+type now_paDesigner_ActivityDefinitionMetaData {
+  elementName: String
+  dependent_on_field: String
+}
+
+type now_paDesigner_ActivityMacroponentType {
+  value: String
+}
+
+union now_paDesigner_ActivityPositionResult = now_paDesigner_ActivityPositionUpdateResultArray | now_paDesigner_Error
+
+input now_paDesigner_ActivityPositionUpdate {
+  sys_id: String!
+  order: String!
+  lane: String!
+  start_rule: String
+  inputs: [now_paDesigner_ElementMappingInput]
+}
+
+type now_paDesigner_ActivityPositionUpdateResult {
+  sys_id: String!
+  order: String!
+  lane: String
+  start_rule: String
+  inputs: [now_paDesigner_GlideVarValue]
+}
+
+type now_paDesigner_ActivityPositionUpdateResultArray {
+  data: [now_paDesigner_ActivityPositionUpdateResult!]!
+}
+
+type now_paDesigner_ActivityType {
+  value: String
+  name: String
+  icon: String
+  color: String
+  color_category: now_paDesigner_ColorCategory
+  default_activity_ui: String
+  default_macroponent: now_paDesigner_ActivityMacroponentType
+}
+
+type now_paDesigner_ColorCategory {
+  custom_property: String
+}
+
+input now_paDesigner_DocumentIdInput {
+  source: String!
+  source_type: String!
+}
+
+input now_paDesigner_ElementMappingInput {
+  variableValue: String
+  variableMapping: String
+  variableName: String
+  setMapping: Boolean
+  displayValue: String
+}
+
+type now_paDesigner_Error {
+  errorType: now_paDesigner_ErrorType!
+  message: String!
+}
+
+enum now_paDesigner_ErrorType {
+  """User does not have permission"""
+  UNAUTHORIZED
+  """Insert failed for some reason"""
+  INSERT_FAILED
+  """Update failed for some reason"""
+  UPDATE_FAILED
+  """Deletion failed for some reason"""
+  DELETION_FAILED
+}
+
+type now_paDesigner_FieldWithDisplayType {
+  value: String
+  displayValue: String
+}
+
+type now_paDesigner_GlideVarValue {
+  variableValue: String
+  variableMapping: String
+  variableName: String
+  variableDisplayValue: String
+  displayValue: String
+}
+
+type now_paDesigner_Mutation {
+  deleteTimerAttributes(sysId: String!): now_paDesigner_TimerAttributesResult!
+  mutateTimerAttributes(timerAttributes: now_paDesigner_TimerAttributesInput): now_paDesigner_TimerAttributesResult!
+  updateActivityPositions(activities: [now_paDesigner_ActivityPositionUpdate]): now_paDesigner_ActivityPositionResult
+  deleteActivity(sysId: String!): String
+  updateProcessProperties(processProperties: now_paDesigner_ProcessPropertiesInput): now_paDesigner_ProcessPropertiesResult
+}
+
+input now_paDesigner_ProcessPropertiesInput {
+  sysId: String
+  label: String
+  description: String
+  sys_scope: String
+  inputs: [now_paDesigner_ElementMappingInput]
+  triggerInstanceId: String
+  triggerInputs: [now_paDesigner_ElementMappingInput]
+}
+
+union now_paDesigner_ProcessPropertiesResult = now_paDesigner_ProcessPropertiesUpdateResult | now_paDesigner_Error
+
+type now_paDesigner_ProcessPropertiesUpdateResult {
+  label: String
+  description: String
+  triggerInputs: [now_paDesigner_GlideVarValue]
+}
+
+type now_paDesigner_Query {
+  getActivityDefinitions: [now_paDesigner_ActivityDefinition]
+  getActivityStartRules: [now_paDesigner_StartRule]
+  getActivityTypes: [now_paDesigner_ActivityType]
+  getLaneStartRules: [now_paDesigner_StartRule]
+  getTriggerTypes: [now_paDesigner_TriggerType]
+  getVarDictionaryLabelLimit: String
+}
+
+type now_paDesigner_SourceDefinition {
+  name: String
+  access: String
+  type: String
+  sys_id: String
+}
+
+type now_paDesigner_StartRule {
+  value: String
+  name: String
+  displayValue: String
+}
+
+input now_paDesigner_TimerAttributesInput {
+  sys_id: String
+  process_definition: String
+  laneOrActivity: now_paDesigner_DocumentIdInput
+  duration_type: String!
+  timer_schedule: String
+  timer_relative_duration_operator: String
+  timer_duration: now_paDesigner_ElementMappingInput
+  percentage_timer_input_datetime: now_paDesigner_ElementMappingInput
+  timer_percentage: now_paDesigner_ElementMappingInput
+  timer_relative_duration_datetime: now_paDesigner_ElementMappingInput
+}
+
+type now_paDesigner_TimerAttributesResult {
+  sys_id: String
+  duration_type: String
+  source: String
+  source_type: String
+  percentage_timer_input_datetime: now_paDesigner_FieldWithDisplayType
+  timer_percentage: now_paDesigner_FieldWithDisplayType
+  timer_relative_duration_datetime: now_paDesigner_FieldWithDisplayType
+  timer_relative_duration_operator: String
+  timer_schedule: now_paDesigner_FieldWithDisplayType
+  timer_duration: now_paDesigner_FieldWithDisplayType
+}
+
+type now_paDesigner_TriggerType {
+  value: String
+  displayValue: String
+}
+
+type now_quickActions_Action {
+  commandName: String
+  sysId: String
+  name: String
+  acceptsStringParameter: Boolean
+  parameterLabel: String
+  parameterHint: String
+  executionMode: String
+  params: [now_quickActions_Parameter]
+  actionType: String
+  actionGroup: String
+  tableName: String
+}
+
+type now_quickActions_ActionResult {
+  message: String
+  success: Boolean
+  dispatchAction: now_quickActions_SeismicAction
+}
+
+type now_quickActions_ActionToolbarControl {
+  sysID: String
+  name: String
+  iconName: String
+  iconImage: String
+  actionID: String
+  parameterValues: String
+  autoSubmit: Boolean
+  privateEnabled: Boolean
+}
+
+type now_quickActions_AISDetails {
+  title: String
+  titleLabel: String
+  summary: String
+  detailLabelType: String
+  detailLabelSeparator: String
+  detailLabelOne: String
+  detailValueOne: String
+  detailLabelTwo: String
+  detailValueTwo: String
+  textHeaderLabelOne: String
+  textHeaderLabelTwo: String
+  textHeaderLabelThree: String
+  nextPaginationToken: String
+  prevPaginationToken: String
+}
+
+type now_quickActions_Badge {
+  number: Int
+  tooltip: String
+}
+
+type now_quickActions_Details {
+  title: String
+  body: String
+}
+
+type now_quickActions_Mutation {
+  invokeAction(table: String!, sysId: String!, message: String!, context: String!): now_quickActions_ActionResult
+}
+
+type now_quickActions_Parameter {
+  noResultsMessage: String
+  noMatchingResultsMessage: String
+  name: String
+  order: Int
+  queryMode: String
+  sysId: String
+}
+
+type now_quickActions_ParameterSearchResponse {
+  items: [now_quickActions_ParameterSearchResult]
+  dispatchAction: now_quickActions_SeismicAction
+}
+
+type now_quickActions_ParameterSearchResult {
+  displayValue: String
+  value: String
+  details: now_quickActions_Details
+  badge: now_quickActions_Badge
+  aisDetails: now_quickActions_AISDetails
+}
+
+type now_quickActions_Query {
+  actions(table: String!, sysId: String!): [now_quickActions_Action]
+  actionToolbarControls(table: String!, sysId: String!): [now_quickActions_ActionToolbarControl]
+  searchParams(
+    commandName: String!
+    query: String!
+    table: String!
+    sysId: String!
+    index: Int!
+    paginationToken: String
+  ): now_quickActions_ParameterSearchResponse
+  wwnaActions(table: String!, sysId: String!): [now_quickActions_Action]
+}
+
+type now_quickActions_SeismicAction {
+  type: String
+  payload: String
+}
+
+type now_resolutionShaperTimeline_AuditEntry {
+  fieldName: String
+  fieldLabel: String
+  oldValue: String
+  newValue: String
+}
+
+type now_resolutionShaperTimeline_Caller {
+  id: String
+}
+
+type now_resolutionShaperTimeline_Entry {
+  sysCreatedOn: String
+  sysCreatedOnAdjusted: String
+  sysCreatedBy: String
+  presenceUserId: String
+  type: String
+  initials: String
+  auditEntries: [now_resolutionShaperTimeline_AuditEntry]
+  journalEntry: now_resolutionShaperTimeline_JournalEntry
+}
+
+type now_resolutionShaperTimeline_Fulfiller {
+  id: String
+}
+
+type now_resolutionShaperTimeline_JournalEntry {
+  fieldName: String
+  fieldLabel: String
+  sysId: String
+  newValue: String
+}
+
+type now_resolutionShaperTimeline_Query {
+  timeLineData(timelineinput: now_resolutionShaperTimeline_TimelineInput): now_resolutionShaperTimeline_TimelineData
+}
+
+type now_resolutionShaperTimeline_RSConfig {
+  table: String
+  requestorStates: String
+  newState: String
+  closedState: String
+  fulfillerLabel: String
+  callerLabel: String
+  requestLabel: String
+}
+
+type now_resolutionShaperTimeline_TimelineData {
+  resolutionShaperConfig: now_resolutionShaperTimeline_RSConfig
+  entries: [now_resolutionShaperTimeline_Entry]
+  fulfillers: [now_resolutionShaperTimeline_Fulfiller]
+  caller: now_resolutionShaperTimeline_Caller
+}
+
+input now_resolutionShaperTimeline_TimelineInput {
+  table: String!
+  sysId: String!
+  fulfillerRole: String
+  callerField: String
+}
+
+type now_sessionUser_Query {
+  getMatchingRoles(roleNames: [String]!): [String]
+}
+
+type now_snFlowSummary_actionInstance {
+  order: String
+  id: String
+  flowSysId: String
+  uiUniqueIdentifier: String
+  name: String
+  actionTypeSysId: String
+  type: String
+  parent: String
+  parentActionTypeId: String
+  comment: String
+  displayText: String
+  inputs: [now_snFlowSummary_ActionInstanceInput]
+}
+
+type now_snFlowSummary_ActionInstanceInput {
+  actionInstanceSysId: String
+  name: String
+  value: String
+  displayValue: String
+  scriptActive: String
+  label: String
+  type: String
+}
+
+type now_snFlowSummary_composition {
+  id: String
+  order: String
+  parameters: [now_snFlowSummary_compositionParameter]
+}
+
+type now_snFlowSummary_compositionParameter {
+  defaultValue: String
+  label: String
+  mandatory: String
+  name: String
+  order: String
+  type: String
+  value: String
+}
+
+union now_snFlowSummary_Data = now_snFlowSummary_Flow | now_snFlowSummary_Error
+
+type now_snFlowSummary_Error {
+  apiErrorTitle: String
+  apiErrorDetails: String
+}
+
+type now_snFlowSummary_Flow {
+  active: String
+  canWriteProtection: String
+  copiedFrom: String
+  description: String
+  domainId: String
+  domainName: String
+  fUserCanRead: String
+  flowCatalogVaraibleModelId: String
+  id: String
+  internalName: String
+  masterSnapshotId: String
+  name: String
+  protection: String
+  remoteTriggerSysId: String
+  runAs: String
+  scope: String
+  scopeDisplayName: String
+  scopeName: String
+  startingIndexOfErrorHandlingInstances: String
+  status: String
+  type: String
+  updated: String
+  updatedBy: String
+  actionInstances: [now_snFlowSummary_actionInstance]
+  flowLogicInstances: [now_snFlowSummary_flowLogicInstance]
+  inputs: [now_snFlowSummary_flowInput]
+  label_cache: [now_snFlowSummary_label_cache]
+  runWithRoles: now_snFlowSummary_runWithRoles
+  security: now_snFlowSummary_security
+  triggerInstances: [now_snFlowSummary_triggerInstance]
+  outputs: [now_snFlowSummary_flowOutput]
+  flowVariables: [now_snFlowSummary_flowVariable]
+  pharmacy: now_snFlowSummary_pharmacy
+  subflowInstances: [now_snFlowSummary_subflowInstance]
+  stages: [now_snFlowSummary_stage]
+}
+
+type now_snFlowSummary_flowInput {
+  id: String
+  name: String
+  defaultValue: String
+  label: String
+  mandatory: String
+  maxsize: String
+  order: String
+  readOnly: String
+  reference: String
+  reference_display: String
+  type: String
+  typeLabel: String
+}
+
+type now_snFlowSummary_flowLogicDefinition {
+  description: String
+  id: String
+  name: String
+  type: String
+  userCanRead: String
+  visible: String
+  inputs: [now_snFlowSummary_flowLogicDefinitionInput]
+  variables: [now_snFlowSummary_flowLogicDefinitionVariables]
+}
+
+type now_snFlowSummary_flowLogicDefinitionInput {
+  defaultValue: String
+  id: String
+  label: String
+  mandatory: String
+  maxsize: String
+  name: String
+  order: String
+  readOnly: String
+  reference: String
+  reference_display: String
+  type: String
+  typeLabel: String
+}
+
+type now_snFlowSummary_flowLogicDefinitionVariables {
+  display_name: String
+  internal_link: String
+  mandatory: String
+  name: String
+  order: String
+  read_only: String
+  reference: String
+  type: String
+}
+
+type now_snFlowSummary_flowLogicInstance {
+  comment: String
+  definitionId: String
+  flowBlockId: String
+  flowSysId: String
+  id: String
+  order: String
+  parent: String
+  uiUniqueIdentifier: String
+  name: String
+  flowLogicDefinition: now_snFlowSummary_flowLogicDefinition
+  inputs: [now_snFlowSummary_flowLogicInstanceInput]
+  dynamicInputs: [now_snFlowSummary_flowLogicInstanceDynamicInput]
+}
+
+type now_snFlowSummary_flowLogicInstanceDynamicInput {
+  defaultValue: String
+  displayValue: String
+  id: String
+  label: String
+  mandatory: String
+  maxsize: String
+  name: String
+  order: String
+  readOnly: String
+  reference: String
+  referenceTableDisplay: String
+  scriptActive: String
+  type: String
+  typeLabel: String
+  value: String
+}
+
+type now_snFlowSummary_flowLogicInstanceInput {
+  displayValue: String
+  flowLogicInstanceSysId: String
+  id: String
+  name: String
+  scriptActive: String
+  value: String
+  label: String
+  type: String
+  typeLabel: String
+  mandatory: String
+  defaultValue: String
+  readOnly: String
+  maxsize: String
+}
+
+type now_snFlowSummary_flowOutput {
+  id: String
+  name: String
+  defaultValue: String
+  label: String
+  mandatory: String
+  maxsize: String
+  order: String
+  readOnly: String
+  reference: String
+  reference_display: String
+  type: String
+  typeLabel: String
+  value: String
+}
+
+type now_snFlowSummary_flowVariable {
+  defaultDisplayValue: String
+  defaultValue: String
+  displayValue: String
+  id: String
+  label: String
+  mandatory: String
+  maxsize: String
+  name: String
+  order: String
+  readOnly: String
+  reference: String
+  referenceTableDisplay: String
+  scriptActive: String
+  type: String
+  typeLabel: String
+  value: String
+}
+
+type now_snFlowSummary_label_cache {
+  base_type: String
+  label: String
+  name: String
+  type: String
+}
+
+type now_snFlowSummary_pharmacy {
+  pharmacyCompound: [now_snFlowSummary_pharmacyCompound]
+}
+
+type now_snFlowSummary_pharmacyCompound {
+  attachedTo: String
+  id: String
+  order: String
+  prescription: String
+  scopeId: String
+  sourceUiId: String
+  transformDefinitionId: String
+  uiId: String
+  compositions: [now_snFlowSummary_composition]
+}
+
+type now_snFlowSummary_Query {
+  getFlowSummary(flowSysId: String!): now_snFlowSummary_Data
+}
+
+type now_snFlowSummary_runWithRoles {
+  displayValue: String
+  value: String
+}
+
+type now_snFlowSummary_security {
+  fCanRead: String
+  fCanWrite: String
+  fDDAccesssScopes: String
+  fDDInFlowDesigner: String
+}
+
+type now_snFlowSummary_stage {
+  ancestorArrPos: String
+  ancestorStageId: String
+  duration: String
+  flow: String
+  id: String
+  label: String
+  order: String
+  stageId: String
+  type: String
+  value: String
+  componentIndexes: [String]
+  states: now_snFlowSummary_states
+}
+
+type now_snFlowSummary_states {
+  complete: String
+  error: String
+  in_progress: String
+  pending: String
+  skipped: String
+}
+
+type now_snFlowSummary_subFlow {
+  access: String
+  active: String
+  description: String
+  domainId: String
+  domainName: String
+  fIsMasterSnapshot: String
+  fUserCanRead: String
+  flowCatalogVariableModelId: String
+  id: String
+  name: String
+  parentFlow: String
+  protection: String
+  runAs: String
+  scope: String
+  scopeDisplayName: String
+  scopeName: String
+  startingIndexOfErrorHandlingInstances: String
+  status: String
+  type: String
+  updated: String
+  updatedBy: String
+  actionInstances: [now_snFlowSummary_actionInstance]
+  flowLogicInstances: [now_snFlowSummary_flowLogicInstance]
+  inputs: [now_snFlowSummary_flowInput]
+  label_cache: [now_snFlowSummary_label_cache]
+  runWithRoles: now_snFlowSummary_runWithRoles
+  security: now_snFlowSummary_security
+  triggerInstances: [now_snFlowSummary_triggerInstance]
+  outputs: [now_snFlowSummary_flowOutput]
+  flowVariables: [now_snFlowSummary_flowVariable]
+  subflowInstances: [now_snFlowSummary_subflowInstance]
+}
+
+type now_snFlowSummary_subflowInstance {
+  comment: String
+  displayText: String
+  flowSysId: String
+  id: String
+  order: String
+  parent: String
+  subflowSysId: String
+  uiUniqueIdentifier: String
+  inputs: [now_snFlowSummary_subflowInstanceInput]
+  subFlow: now_snFlowSummary_subFlow
+  waitForCompletion: now_snFlowSummary_waitForCompletion
+}
+
+type now_snFlowSummary_subflowInstanceInput {
+  displayValue: String
+  id: String
+  name: String
+  scriptActive: String
+  subFlowInstanceId: String
+  value: String
+  label: String
+  type: String
+  typeLabel: String
+  mandatory: String
+  defaultValue: String
+  readOnly: String
+  maxsize: String
+}
+
+type now_snFlowSummary_triggerInstance {
+  displayText: String
+  fHasDynamicOutputs: String
+  fUserCanRead: String
+  flowSysId: String
+  id: String
+  name: String
+  remoteSysId: String
+  triggerDefinitionId: String
+  type: String
+  inputs: [now_snFlowSummary_triggerInstanceInput]
+  outputs: [now_snFlowSummary_triggerInstanceOutput]
+}
+
+type now_snFlowSummary_triggerInstanceInput {
+  displayField: String
+  displayValue: String
+  fMandatory: String
+  internalType: String
+  label: String
+  name: String
+  order: String
+  scriptActive: String
+  triggerInstanceSysId: String
+  value: String
+}
+
+type now_snFlowSummary_triggerInstanceOutput {
+  label: String
+  name: String
+  order: String
+  type: String
+  scriptActive: String
+  typeLabel: String
+  mandatory: String
+  readOnly: String
+}
+
+type now_snFlowSummary_waitForCompletion {
+  defaultValue: String
+  displayValue: String
+  id: String
+  label: String
+  mandatory: String
+  maxsize: String
+  name: String
+  order: String
+  readOnly: String
+  reference: String
+  referenceTableDisplay: String
+  scriptActive: String
+  type: String
+  typeLable: String
+  value: String
+}
+
+type now_taxonomy_ConnectedContent {
+  id: String
+}
+
+type now_taxonomy_Mutation {
+  createContentMapping(contentId: String!, contentTable: String!, topicId: String!): now_taxonomy_ConnectedContent!
+}
+
+type now_taxonomy_Query {
+  getTaxonomies: [now_taxonomy_Taxonomy]
+  getTopicHierarchy(taxonomyId: String!): [now_taxonomy_Topic]
+}
+
+type now_taxonomy_Taxonomy {
+  id: String
+  name: String
+}
+
+type now_taxonomy_Topic {
+  id: String
+  label: String
+  parent: String
+  items: [now_taxonomy_Topic]
+}
+
+type now_textCommands_Action {
+  commandName: String
+  sysId: String
+  name: String
+  description: String
+  actionType: String
+}
+
+type now_textCommands_ActionResult {
+  header: String
+  message: String
+  templateMessage: now_textCommands_TemplateMessage
+  items: [now_textCommands_ActionResultItems]
+}
+
+union now_textCommands_ActionResultItems = now_textCommands_InsertContentItems | now_textCommands_ReplaceContentItems | now_textCommands_CustomEventItems
+
+type now_textCommands_CustomEventItems {
+  id: String!
+  title: String!
+  displayContent: String!
+  customEvent: String!
+  recommended: String
+  actionPayload: String
+}
+
+type now_textCommands_InsertContentItems {
+  id: String!
+  title: String!
+  displayContent: String!
+  insertContent: String!
+  recommended: String
+  actionPayload: String
+}
+
+type now_textCommands_Mutation {
+  invokeAction(recordTable: String!, recordSysId: String!, commandId: String!, query: String!): now_textCommands_ActionResult
+}
+
+type now_textCommands_Query {
+  actions(recordTable: String!, recordSysId: String!, type: String!, fieldType: String): [now_textCommands_Action]
+}
+
+type now_textCommands_ReplaceContentItems {
+  id: String!
+  title: String!
+  displayContent: String!
+  replaceContent: String!
+  recommended: String
+  actionPayload: String
+}
+
+type now_textCommands_TemplateMessage {
+  illustration: String
+  headingLabel: String
+  content: String
+}
+
+type now_userPreference_Mutation {
+  updateUserPreference(name: String!, value: String): now_userPreference_Preference!
+}
+
+type now_userPreference_Preference {
+  name: String!
+  value: String
+}
+
+type now_userPreference_Query {
+}
+
+type now_uxf_user_EncryptionContext {
+  name: String!
+  sysId: ID!
+}
+
+type now_uxf_user_Presence {
+  user_available: Boolean
+}
+
+type now_uxf_user_Query {
+  presence: now_uxf_user_Presence
+  encryptionContexts: [now_uxf_user_EncryptionContext]
+}
+
+input now_wrapUpSegment_AllowedCodes {
+  code: String
+  translation: [now_wrapUpSegment_Translation]
+  description: String
+}
+
+""" params in snake_case for configuration to be in sync with rest api"""
+input now_wrapUpSegment_Configuration {
+  allowed_codes: [now_wrapUpSegment_AllowedCodes]
+  default_code: String
+  duration: String
+  show_timer: Boolean
+  enable_ai_code: Boolean
+  enable_ai_notes: Boolean
+  use_third_party_ai: Boolean
+  use_ai_code_as_default: Boolean
+}
+
+type now_wrapUpSegment_Mutation {
+  createSegment(
+    agent_sys_id: String!
+    interaction_sys_id: String!
+    opened_on: String
+    wrap_up_configuration_sys_id: String
+    external: Boolean!
+    segmented: Boolean!
+    external_segment_id: String
+    configuration: now_wrapUpSegment_Configuration
+    ai_wrap_up_code: String
+    ai_notes: String
+  ): now_wrapUpSegment_SegmentResult
+  updateSegment(
+    segment_sys_id: String
+    agent_sys_id: String
+    interaction_sys_id: String
+    external_segment_id: String
+    wrap_up_code: String
+    notes: String
+    confirmed_on: String
+    include_session_messages_on_success: Boolean
+  ): now_wrapUpSegment_SegmentResult
+  updateSegmentAiDetails(
+    segment_sys_id: String
+    agent_sys_id: String
+    interaction_sys_id: String
+    external_segment_id: String
+    ai_wrap_up_code: String
+    ai_notes: String
+    is_external_request: Boolean
+  ): now_wrapUpSegment_SegmentResult
+}
+
+type now_wrapUpSegment_Query {
+  segmentById(segment_id: String!): now_wrapUpSegment_SegmentResult
+  segmentByAgentAndInteraction(agent_id: String!, interaction_id: String!): now_wrapUpSegment_SegmentResult
+}
+
+type now_wrapUpSegment_Segment {
+  sys_id: String
+  agent: String
+  interaction: String
+  opened_on: String
+  wrap_up_configuration: now_wrapUpSegment_WrapUpConfiguration
+  external: Boolean
+  segmented: Boolean
+  external_segment_id: String
+  segment_table: String
+  segment_id: String
+  state: String
+  wrap_up_code: now_wrapUpSegment_WrapUpCode
+  notes: String
+  submitted_on: String
+  awaiting_confirmation: Boolean
+  confirmed_on: String
+  timed_out: Boolean
+  ai_wrap_up_code: now_wrapUpSegment_WrapUpCode
+  ai_notes: String
+  ai_wrap_up_code_defined_at: String
+  ai_notes_defined_at: String
+}
+
+type now_wrapUpSegment_SegmentResult {
+  message: String
+  success: Boolean
+  segment: now_wrapUpSegment_Segment
+  sessionMessages: [now_wrapUpSegment_SessionMessage]
+}
+
+type now_wrapUpSegment_SessionMessage {
+  text: String
+  type: String
+}
+
+input now_wrapUpSegment_Translation {
+  language: String
+  code: String
+  description: String
+}
+
+type now_wrapUpSegment_WrapUpCode {
+  code: String
+  description: String
+  active: Boolean
+  external: Boolean
+  sys_id: String
+  translated_code: String
+  translated_description: String
+}
+
+type now_wrapUpSegment_WrapUpConfiguration {
+  name: String
+  sys_id: String
+  enforce_duration: Boolean
+  duration: String
+  show_timer: Boolean
+  conditions: String
+  enable_codes: Boolean
+  allowed_codes: [now_wrapUpSegment_WrapUpCode]
+  default_code: now_wrapUpSegment_WrapUpCode
+  external: Boolean
+  enable_ai_code: Boolean
+  enable_ai_notes: Boolean
+  use_third_party_ai: Boolean
+  use_ai_code_as_default: Boolean
+}

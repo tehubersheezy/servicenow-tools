@@ -1,0 +1,253 @@
+type snNluStudio_query {
+  nlu: snNluStudio_nlu_Query
+}
+
+type snNluStudio_mutation {
+  nlu: snNluStudio_nlu_Mutation
+}
+
+type snNluStudio_nlu_DeleteUtterancesResponse {
+  status: String!
+  deletedUtteranceIds: [String]
+}
+
+type snNluStudio_nlu_EntityCount {
+  count: Int!
+}
+
+input snNluStudio_nlu_FeedbackOptions {
+  addUtteranceToIntent: Boolean
+}
+
+type snNluStudio_nlu_LabelFeedback {
+  text: String!
+  label: String
+  label_reference: String
+  label_table: String
+  label_type: snNluStudio_nlu_LabelType
+}
+
+type snNluStudio_nlu_LabelFeedbackResp {
+  status: String!
+  data: snNluStudio_nlu_LabelFeedback
+  message: String
+}
+
+""" Test Panel Feedback: """
+enum snNluStudio_nlu_LabelType {
+  positive
+  negative
+  irrelevant
+}
+
+type snNluStudio_nlu_LanguageOptions {
+  code: String!
+  thirdPartyTranslate: Boolean
+  machineTranslate: Boolean
+  exportImport: Boolean
+}
+
+type snNluStudio_nlu_LfRequestedItemData {
+  modelSysId: String
+  language: String
+  canRead: Boolean
+  exists: Boolean
+  details: snNluStudio_nlu_LfRequestedItemDetails
+}
+
+type snNluStudio_nlu_LfRequestedItemDetails {
+  status: String
+  isClosed: Boolean
+  sysId: String
+  link: String
+  closedOn: String
+}
+
+type snNluStudio_nlu_LfRequestedItemResponse {
+  status: String!
+  message: String
+  data: [snNluStudio_nlu_LfRequestedItemData]
+}
+
+type snNluStudio_nlu_MappingsData {
+  models: snNluStudio_nlu_NLUGroupMapping!
+  intents: [snNluStudio_nlu_NLUGroupMapping]!
+  entities: [snNluStudio_nlu_NLUGroupMapping]!
+}
+
+""" saveMapings"""
+input snNluStudio_nlu_MappingsInput {
+  models: snNluStudio_nlu_NLUGroupMappingInput!
+  intents: [snNluStudio_nlu_NLUGroupMappingInput]!
+  entities: [snNluStudio_nlu_NLUGroupMappingInput]!
+}
+
+""" getVAMappingDetails:"""
+type snNluStudio_nlu_MappingsResponse {
+  status: String!
+  data: [snNluStudio_nlu_ModelGroup]
+  message: String
+}
+
+type snNluStudio_nlu_ModelData {
+  id: String!
+  name: String!
+  language: String!
+  isPrimary: Boolean
+  intents: [snNluStudio_nlu_NLUObject]!
+  entities: [snNluStudio_nlu_NLUObject]!
+}
+
+type snNluStudio_nlu_ModelDetailsResponse {
+  status: String!
+  sysId: String
+  message: String
+}
+
+type snNluStudio_nlu_ModelGroup {
+  models: [snNluStudio_nlu_ModelData]!
+  mappings: snNluStudio_nlu_MappingsData
+}
+
+type snNluStudio_nlu_ModelLookupCount {
+  count: String
+  status: String
+  error: String
+}
+
+type snNluStudio_nlu_MoveUtterancesToIntentResp {
+  status: String!
+  movedEntityIds: [String]
+}
+
+type snNluStudio_nlu_Mutation {
+  translateModel(modelId: String!, language: String!, mode: String): snNluStudio_nlu_ModelDetailsResponse
+  deleteUtterances(modelId: String!, utteranceIds: [String]!): snNluStudio_nlu_DeleteUtterancesResponse
+  saveMapings(mappings: snNluStudio_nlu_MappingsInput): snNluStudio_nlu_ModelDetailsResponse
+  saveLabelFeedback(
+    nluData: snNluStudio_nlu_NLUData!
+    feedback: snNluStudio_nlu_LabelType!
+    options: snNluStudio_nlu_FeedbackOptions
+  ): snNluStudio_nlu_LabelFeedbackResp
+  moveUtterancesToIntent(
+    srcIntentId: String!
+    targetIntentId: String!
+    utteranceIds: [String]!
+    entityIds: [String]
+  ): snNluStudio_nlu_MoveUtterancesToIntentResp
+  updateUtterance(sysId: String!, utterance: String, intent: String, source: String): snNluStudio_nlu_UpdateUtteranceResponse
+  updateTestUtterance(sysId: String!, utterance: String!, intents: String!, source: String!): snNluStudio_nlu_UpdateTestUtteranceResponse
+}
+
+"""
+ From test panel, we will get:
+ 1. model -> when there is no prediction
+ 2. intent -> for top prediction
+"""
+input snNluStudio_nlu_NLUData {
+  utterance: String!
+  intent: String
+  model: String
+  intent_name: String
+  model_name: String
+}
+
+type snNluStudio_nlu_NLUEditors {
+  firstName: String
+  lastName: String
+  email: String
+  sysId: String
+}
+
+type snNluStudio_nlu_NLUEditorsResponse {
+  status: String
+  editors: [snNluStudio_nlu_NLUEditors]
+}
+
+type snNluStudio_nlu_NLUGroupMapping {
+  primary: String!
+  secondary: [String]!
+}
+
+input snNluStudio_nlu_NLUGroupMappingInput {
+  primary: String!
+  secondary: [String]!
+}
+
+type snNluStudio_nlu_NLUObject {
+  id: String
+  name: String!
+  topic: String
+}
+
+type snNluStudio_nlu_Query {
+  getVAMappings: snNluStudio_nlu_MappingsResponse
+  getTranslationOptions(languages: [String]): snNluStudio_nlu_TranslationOptions
+  getLfRequestedItemDetails(sysIds: [String]!, languages: [String]): snNluStudio_nlu_LfRequestedItemResponse
+  getNLUEditors: snNluStudio_nlu_NLUEditorsResponse
+  getModelLookupCount(modelId: String!): snNluStudio_nlu_ModelLookupCount
+  getUniqueUtterancesForIntent(intentId: String!, utterances: String!): snNluStudio_nlu_UniqueUtterancesForIntentResponse
+  nlu_batch_test_utterance(queryConditions: String!): snNluStudio_nlu_TestUtterancesResponse
+  getEntityCount(modelId: String!): snNluStudio_nlu_EntityCount
+}
+
+type snNluStudio_nlu_TableMetadata {
+  canRead: Boolean
+  canWrite: Boolean
+  canCreate: Boolean
+  canDelete: Boolean
+}
+
+type snNluStudio_nlu_TestUtterance {
+  sys_id: String
+  utterance: String
+  intent: String
+  source: String
+  sys_updated_on: snNluStudio_nlu_UpdatedOn
+  test_set: String
+}
+
+type snNluStudio_nlu_TestUtterancesResponse {
+  status: String!
+  testUtterances: [snNluStudio_nlu_TestUtterance]
+  _table_metadata: snNluStudio_nlu_TableMetadata
+}
+
+""" getTranslationOptions"""
+type snNluStudio_nlu_TranslationOptions {
+  status: String!
+  message: String
+  data: [snNluStudio_nlu_LanguageOptions]
+}
+
+type snNluStudio_nlu_UniqueUtterancesForIntentResponse {
+  status: String!
+  uniqueIds: [String]
+}
+
+type snNluStudio_nlu_UpdatedOn {
+  value: String
+  displayValue: String
+}
+
+type snNluStudio_nlu_UpdateTestUtteranceResponse {
+  status: String!
+  sys_id: String
+  utterance: String
+  intents: String
+  source: String
+  sys_updated_on: String
+}
+
+type snNluStudio_nlu_UpdateUtteranceResponse {
+  status: String!
+  sys_id: String
+  sys_created_on: String
+  sys_updated_on: String
+  utterance: String
+  source: String
+  original_utterance: String
+  primary_utterance: String
+  intent: String
+  sys_policy: String
+}

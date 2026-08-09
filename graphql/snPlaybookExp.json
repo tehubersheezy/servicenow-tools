@@ -1,0 +1,772 @@
+{
+  "namespace": "snPlaybookExp",
+  "endpoint": "/api/now/graphql",
+  "roots": {
+    "query": {
+      "type": "snPlaybookExp_query",
+      "fields": [
+        "playbook"
+      ]
+    },
+    "mutation": {
+      "type": "snPlaybookExp_mutation",
+      "fields": [
+        "playbook"
+      ]
+    }
+  },
+  "typeCount": 16,
+  "types": [
+    {
+      "kind": "SCALAR",
+      "name": "Boolean",
+      "description": "Built-in Boolean",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "ID",
+      "description": "Built-in ID",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_mutation",
+      "description": null,
+      "fields": [
+        {
+          "name": "playbook",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "snPlaybookExp_playbook_Mutation",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_playbook_AgenticPlaybookError",
+      "description": null,
+      "fields": [
+        {
+          "name": "errorType",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "ENUM",
+              "name": "snPlaybookExp_playbook_ErrorType",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "message",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "ENUM",
+      "name": "snPlaybookExp_playbook_ErrorType",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": [
+        {
+          "name": "QUERY_FAILED",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "MUTATION_FAILED",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "MISSING_ARGUMENT",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "FEATURE_INACTIVE",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_playbook_Mutation",
+      "description": null,
+      "fields": [
+        {
+          "name": "triggerPlaybook",
+          "description": null,
+          "args": [
+            {
+              "name": "scopedName",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "parentTable",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "parentRecord",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "onlyIfNoProcessRunning",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "UNION",
+              "name": "snPlaybookExp_playbook_TriggerPlaybookResult",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "launchPlaybook",
+          "description": null,
+          "args": [
+            {
+              "name": "processDefinitionId",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "parentRecord",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "UNION",
+              "name": "snPlaybookExp_playbook_TriggerPlaybookResult",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "updateAgenticPlaybookActivityExecution",
+          "description": null,
+          "args": [
+            {
+              "name": "activityContextId",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "status",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "UNION",
+              "name": "snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionResult",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_playbook_PlaybookContext",
+      "description": null,
+      "fields": [
+        {
+          "name": "sys_id",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "ID",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "title",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "state",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "snPlaybookExp_playbook_State",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "scoped_name",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "parent_table",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "parent_record",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "playbook_id",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "cancellation_reason",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "can_read",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_playbook_Query",
+      "description": null,
+      "fields": [
+        {
+          "name": "getPlaybooksForParentRecord",
+          "description": null,
+          "args": [
+            {
+              "name": "parentTable",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "parentRecord",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "OBJECT",
+              "name": "snPlaybookExp_playbook_PlaybookContext",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_playbook_State",
+      "description": null,
+      "fields": [
+        {
+          "name": "displayValue",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "value",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_playbook_TriggerPlaybookError",
+      "description": null,
+      "fields": [
+        {
+          "name": "errorType",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "ENUM",
+              "name": "snPlaybookExp_playbook_TriggerPlaybookErrorType",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "message",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "parent_table",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "parent_record",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "process_definition_id",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "input",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "ENUM",
+      "name": "snPlaybookExp_playbook_TriggerPlaybookErrorType",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": [
+        {
+          "name": "PARENT_TABLE_NOT_VALID",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "PARENT_RECORD_NOT_FOUND",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "PROCESS_DEFINITION_ID_NOT_VALID",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "TRIGGER_PLAYBOOK_FAILED",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "INSUFFICIENT_PERMISSIONS",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "LAUNCH_PLAYBOOK_FAILED",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "possibleTypes": null
+    },
+    {
+      "kind": "UNION",
+      "name": "snPlaybookExp_playbook_TriggerPlaybookResult",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": [
+        {
+          "kind": "OBJECT",
+          "name": "snPlaybookExp_playbook_PlaybookContext",
+          "ofType": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "snPlaybookExp_playbook_TriggerPlaybookError",
+          "ofType": null
+        }
+      ]
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionPayload",
+      "description": null,
+      "fields": [
+        {
+          "name": "success",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "UNION",
+      "name": "snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionResult",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": [
+        {
+          "kind": "OBJECT",
+          "name": "snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionPayload",
+          "ofType": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "snPlaybookExp_playbook_AgenticPlaybookError",
+          "ofType": null
+        }
+      ]
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snPlaybookExp_query",
+      "description": null,
+      "fields": [
+        {
+          "name": "playbook",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "snPlaybookExp_playbook_Query",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "String",
+      "description": "Built-in String",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    }
+  ]
+}

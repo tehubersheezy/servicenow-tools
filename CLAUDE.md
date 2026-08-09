@@ -6,7 +6,9 @@ A general-purpose workspace for ServiceNow development resources — API tooling
 
 - **`docs/now-sdk/`** — Project guide and complete CLI reference for the `now-sdk` (Fluent) toolchain, including undocumented commands and hidden flags. Symlink or copy `docs/now-sdk/CLAUDE.md` into any `now-sdk` project as its `CLAUDE.md` to load it on every Claude session there. The reference is in `docs/now-sdk/reference.md`.
 - **`openapi/`** — OpenAPI specs exported from the instance, used as reference material for hand-rolling Table API / scoped REST calls. Regenerate with `npm run scrape:openapi` (see below); `_summary.json` is the run report, not a spec.
-- **`sn-api-explorer.html`** — Self-contained HTML explorer for the scraped API specs. A build artifact: never hand-edit; regenerate with `npm run build:explorer` (source: `src/build-explorer.js`) after any re-scrape.
+- **`graphql/`** — The instance's GraphQL schema, exported per namespace as introspection JSON + SDL (`<ns>.json` / `<ns>.graphql`), plus `_gliderecord.json` (compact table→columns index of the auto-generated GlideRecord namespaces) and `_summary.json` (run report). Regenerate with `npm run scrape:graphql` (see below).
+- **`sn-api-explorer.html`** — Self-contained HTML explorer for the scraped OpenAPI specs. A build artifact: never hand-edit; regenerate with `npm run build:explorer` (source: `src/build-explorer.js`) after any re-scrape.
+- **`sn-graphql-explorer.html`** — Same treatment for the GraphQL corpus: searchable schemas + tables, generated sample queries and curl. Build artifact of `npm run build:graphql-explorer` (source: `src/build-graphql-explorer.js`). The two explorers cross-link via each builder's `--xlink` flag.
 - **`src/`** — Node.js scripts for programmatic instance access (CommonJS, uses `@servicenow/sdk`).
 
 ## Environment
@@ -72,8 +74,44 @@ Note that spec richness varies by release — an Australia instance returns `"re
 every operation, where older families populated response schemas. That's the platform's generator,
 not the scraper; a UI export from the same instance is byte-identical.
 
+## GraphQL endpoint
+
+One merged schema at `POST /api/now/graphql` (basic auth works; the platform's GraphQL API
+Explorer is just a GraphiQL client for it). Top-level fields partition it:
+
+- **Scripted namespaces** (`now`, `global`, `snDecisionTable`, …) — one per scope with
+  `sys_graphql_schema` records; each root field is one scripted schema.
+- **Generated namespaces** — `GlideRecord_Query` / `GlideRecord_Mutation` /
+  `GlideAggregateRecord_Query`: a query field per table
+  (`<table>(sys_id, queryConditions, omitCount, pagination)`), CRUD mutations
+  (`insert_/update_/delete_<table>`, one String arg per column), and aggregates
+  (`GlideAggregateRecord_Query(tableName, groupBy, having, …)`). Columns are objects — select
+  `{ value displayValue }`; reference columns add `_reference` to dot-walk.
+
+Gotchas, learned the hard way:
+
+- **graphql-java's "good faith introspection" guard** rejects any query where an introspection
+  meta-field like `__Type.fields` appears more than once (error `BadFaithIntrospection`) — e.g.
+  asking for `queryType { fields }` and `mutationType { fields }` side by side fails. The standard
+  single-fragment introspection query passes.
+- **Full introspection is ~94 MB / ~2 minutes** on a PDI, because the generated namespaces
+  materialize a type per table (~14,500 types). That's why `scrape-graphql` collapses them into
+  `_gliderecord.json` (table → column names + the shared framework types) instead of storing them
+  verbatim, and why the scripted namespaces (~1.5 MB total) are the only part kept in full.
+- A handful of scripted schemas introspect as **empty object types** (fields hidden by scope
+  protection). That's the platform, not the scraper.
+
+## Regenerating the GraphQL corpus
+
+```bash
+npm run scrape:graphql                              # one introspection -> graphql/
+npm run scrape:graphql -- --dry-run                 # list what would be written
+npm run scrape:graphql -- --namespace now           # one scripted namespace (skips _gliderecord)
+npm run build:graphql-explorer                      # rebuild sn-graphql-explorer.html
+```
+
 ## Conventions
 
 - `.env`, `.DS_Store`, `node_modules/`, `.playwright-cli/` are gitignored.
-- OpenAPI specs are reference-only (scraped from the instance, not authored here).
+- The `openapi/` and `graphql/` corpora are reference-only (scraped from the instance, not authored here).
 - Documents under `docs/<topic>/CLAUDE.md` are designed to be loaded as project-level `CLAUDE.md` files in *other* projects (via symlink or copy), not just consumed in-tree.

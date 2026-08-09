@@ -1,0 +1,52 @@
+type snOeSfs_query {
+  sidebarAdminConsole: snOeSfs_sidebarAdminConsole_Query
+  sidebarScriptableGraphql: snOeSfs_sidebarScriptableGraphql_Query
+}
+
+type snOeSfs_mutation {
+  sidebarAdminConsole: snOeSfs_sidebarAdminConsole_Mutation
+  sidebarScriptableGraphql: snOeSfs_sidebarScriptableGraphql_Mutation
+}
+
+type snOeSfs_sidebarAdminConsole_Mutation {
+  saveTeamsConfiguration(parameters: [snOeSfs_sidebarAdminConsole_Parameter]): snOeSfs_sidebarAdminConsole_Result
+  deleteTeamsConfiguration(parameters: [snOeSfs_sidebarAdminConsole_Parameter]): snOeSfs_sidebarAdminConsole_Result
+  resubmitTeamsConfiguration(parameters: [snOeSfs_sidebarAdminConsole_Parameter]): snOeSfs_sidebarAdminConsole_Result
+  submitTeamsConfiguration(parameters: [snOeSfs_sidebarAdminConsole_Parameter]): snOeSfs_sidebarAdminConsole_Result
+}
+
+input snOeSfs_sidebarAdminConsole_Parameter {
+  field: String
+  value: String
+  name: String
+  sysId: String
+}
+
+type snOeSfs_sidebarAdminConsole_Query {
+  dummyField: Boolean
+}
+
+type snOeSfs_sidebarAdminConsole_Result {
+  message: String
+  success: Boolean
+  errorType: String
+}
+
+input snOeSfs_sidebarScriptableGraphql_Feedback {
+  messageId: String!
+  value: String!
+  additionalData: String
+}
+
+type snOeSfs_sidebarScriptableGraphql_Mutation {
+  sendFeedback(feedback: snOeSfs_sidebarScriptableGraphql_Feedback!, genAILogId: String!): Boolean
+}
+
+type snOeSfs_sidebarScriptableGraphql_Query {
+  hasAccessToCreateConversation(documentTable: String!, documentId: String!): snOeSfs_sidebarScriptableGraphql_Result
+  showParticipantSuggestions(documentTable: String, documentId: String): snOeSfs_sidebarScriptableGraphql_Result
+}
+
+type snOeSfs_sidebarScriptableGraphql_Result {
+  result: Boolean
+}

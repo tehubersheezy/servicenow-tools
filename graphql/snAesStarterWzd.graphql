@@ -1,0 +1,21 @@
+type snAesStarterWzd_query {
+  fetchWorkspaceTable: snAesStarterWzd_fetchWorkspaceTable_Query
+}
+
+type snAesStarterWzd_fetchWorkspaceTable_Query {
+  """implement here..."""
+  getTables(scope: String, filterTables: String, initialLoad: Boolean, inputText: String): snAesStarterWzd_fetchWorkspaceTable_tablesData
+}
+
+type snAesStarterWzd_fetchWorkspaceTable_tablesData {
+  inScopeTables: [snAesStarterWzd_fetchWorkspaceTable_tablesDataDetails]
+  outOfScopeTables: [snAesStarterWzd_fetchWorkspaceTable_tablesDataDetails]
+  status: String
+}
+
+type snAesStarterWzd_fetchWorkspaceTable_tablesDataDetails {
+  label: String
+  id: String
+  sys_id: String
+  sublabel: String
+}

@@ -1,0 +1,200 @@
+type snDiagramBuilder_query {
+  BuilderQueries: snDiagramBuilder_BuilderQueries_Query
+}
+
+type snDiagramBuilder_mutation {
+  BuilderQueries: snDiagramBuilder_BuilderQueries_Mutation
+}
+
+type snDiagramBuilder_BuilderQueries_ActionArguments {
+  argumentId: String!
+  name: String!
+  defaultValue: String!
+  direction: String!
+  type: String!
+  order: Int!
+  mandatory: Boolean!
+  actionId: String!
+  actionName: String!
+}
+
+type snDiagramBuilder_BuilderQueries_ActionCategorySet {
+  categories: [snDiagramBuilder_BuilderQueries_Category]
+  actions: [snDiagramBuilder_BuilderQueries_DiagramAction]
+}
+
+type snDiagramBuilder_BuilderQueries_BuilderActions {
+  name: String!
+  id: String!
+  componentTagName: String!
+  enable: Boolean!
+  order: Int
+}
+
+type snDiagramBuilder_BuilderQueries_Category {
+  name: String!
+  sysId: String!
+  icon: String
+  description: String
+  order: String
+  parent: String
+  installed: Boolean
+}
+
+type snDiagramBuilder_BuilderQueries_ConfigurationData {
+  id: String!
+  appScope: String!
+  name: String!
+  props: String
+  theme: String
+  leftPanel: Boolean!
+  leftComponent: String!
+  rightPanel: Boolean!
+  rightComponent: String!
+  header: Boolean!
+  alertsComponent: String!
+  nodeDef: [snDiagramBuilder_BuilderQueries_NodeDefinition]
+  categories: [snDiagramBuilder_BuilderQueries_Category]
+  actions: [snDiagramBuilder_BuilderQueries_BuilderActions]
+  diagramTemplate: String
+  layout: String
+  contentAlignment: String
+  enableDragging: Boolean
+  enableAnimation: Boolean
+  enableSearch: Boolean!
+  diagramOptions: String
+  paletteConfiguration: snDiagramBuilder_BuilderQueries_Palette
+}
+
+type snDiagramBuilder_BuilderQueries_ContextMenuOption {
+  sysId: String!
+  name: String!
+  script: String
+  showOption: String
+  disableOption: String
+}
+
+type snDiagramBuilder_BuilderQueries_DiagramAction {
+  key: String!
+  sysId: String!
+  name: String!
+  icon: String
+  description: String
+  categoryId: String
+  category: String
+  subCategory: String
+  order: String
+  nodeType: snDiagramBuilder_BuilderQueries_NodeType
+  connectors: [snDiagramBuilder_BuilderQueries_NodeConnector]
+  actionDependencies: String
+}
+
+type snDiagramBuilder_BuilderQueries_Extension {
+  sysId: String!
+  name: String!
+  script: String!
+}
+
+type snDiagramBuilder_BuilderQueries_InstanceData {
+  sysId: String!
+  name: String!
+  configuration: snDiagramBuilder_BuilderQueries_ConfigurationData!
+  diagramJSON: String
+  tableName: String!
+  readOnly: Boolean!
+}
+
+type snDiagramBuilder_BuilderQueries_JSONString {
+  content: String
+}
+
+type snDiagramBuilder_BuilderQueries_Mutation {
+  runActionById(actionId: String!, diagramJSON: String!, instanceId: String!): [snDiagramBuilder_BuilderQueries_BuilderActions]
+  deleteInstanceById(instanceId: String!): Boolean!
+}
+
+type snDiagramBuilder_BuilderQueries_NodeConnector {
+  sysId: String!
+  name: String!
+  active: Boolean
+  direction: String!
+  order: String
+  isDynamic: Boolean
+  enablePortContextMenu: Boolean
+}
+
+type snDiagramBuilder_BuilderQueries_NodeDefinition {
+  sysId: String!
+  name: String!
+  description: String
+  category: String
+  subCategory: String
+  order: String
+}
+
+type snDiagramBuilder_BuilderQueries_NodeType {
+  sysId: String!
+  name: String!
+  shapeTemplate: String
+  nodeType: String
+  description: String
+  order: String
+  attributes: [snDiagramBuilder_BuilderQueries_NodeTypeAttribute]
+  allowDelete: Boolean
+  nodeTypeHandlers: [snDiagramBuilder_BuilderQueries_NodeTypeHandler]
+  menuOptions: [snDiagramBuilder_BuilderQueries_ContextMenuOption]
+}
+
+type snDiagramBuilder_BuilderQueries_NodeTypeAttribute {
+  attributeName: String
+  attributeType: String
+  sysId: String
+}
+
+type snDiagramBuilder_BuilderQueries_NodeTypeHandler {
+  sysId: String!
+  type: String!
+  active: Boolean
+  script: String
+}
+
+type snDiagramBuilder_BuilderQueries_Palette {
+  name: String!
+  sysId: String!
+  options: String!
+}
+
+type snDiagramBuilder_BuilderQueries_Query {
+  getConfigById(id: String!): snDiagramBuilder_BuilderQueries_ConfigurationData
+  getActionPickerOnLoadData(configId: String!): snDiagramBuilder_BuilderQueries_ActionCategorySet
+  getActionsByCategory(configId: String!, categoryId: String!): [snDiagramBuilder_BuilderQueries_DiagramAction]
+  getActionsBySearchTerm(configId: String!, searchTerm: String!): snDiagramBuilder_BuilderQueries_ActionCategorySet
+  getInstanceById(id: String!): snDiagramBuilder_BuilderQueries_InstanceData
+  getShapeTemplates(templateIds: [String]!): [snDiagramBuilder_BuilderQueries_ShapeTemplateDetailed]
+  getShapeTemplateJsonById(templateId: String!): snDiagramBuilder_BuilderQueries_JSONString
+  getShapeTemplatesArrayJson(templateIds: [String]!): snDiagramBuilder_BuilderQueries_JSONString
+  getShapeTemplatesArrayJsonForActions(actionIds: [String]!, configId: String): snDiagramBuilder_BuilderQueries_JSONString
+  getShapeTemplatesArrayJsonForNodeTypes(nodeTypeIds: [String]!): snDiagramBuilder_BuilderQueries_JSONString
+  getShapeTemplateJsonForAction(actionId: String!): snDiagramBuilder_BuilderQueries_JSONString
+  getDiagramActionDataById(diagramActionId: String!): snDiagramBuilder_BuilderQueries_DiagramAction
+  getDiagramActionsDataArray(diagramActionIds: [String]): [snDiagramBuilder_BuilderQueries_DiagramAction]
+  getCustomShapes: [snDiagramBuilder_BuilderQueries_Shape]
+  getExtensions: [snDiagramBuilder_BuilderQueries_Extension]
+  getActionArgumentsById(actionId: String!): [snDiagramBuilder_BuilderQueries_ActionArguments]
+  getDiagramActionsByInstanceId(instanceId: String!): [snDiagramBuilder_BuilderQueries_DiagramAction]
+}
+
+type snDiagramBuilder_BuilderQueries_Shape {
+  sysId: String!
+  componentName: String!
+  componentType: String!
+  isCustom: Boolean
+  script: String
+}
+
+type snDiagramBuilder_BuilderQueries_ShapeTemplateDetailed {
+  id: String!
+  type: String!
+  properties: String
+  script: String!
+}

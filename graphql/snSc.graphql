@@ -1,0 +1,100 @@
+type snSc_query {
+  serviceCatalog: snSc_serviceCatalog_Query
+}
+
+type snSc_mutation {
+  serviceCatalog: snSc_serviceCatalog_Mutation
+}
+
+type snSc_serviceCatalog_AIInferredDetails {
+  hasAiInferredValue: Boolean
+}
+
+input snSc_serviceCatalog_KeyValue {
+  name: String!
+  value: String!
+}
+
+type snSc_serviceCatalog_Mutation {
+  saveProducer(
+    recordProducerId: String!
+    requestBody: snSc_serviceCatalog_ProducerRequestBody
+  ): snSc_serviceCatalog_ProducerResponseObject
+  submitProducer(
+    recordProducerId: String!
+    requestBody: snSc_serviceCatalog_ProducerRequestBody
+  ): snSc_serviceCatalog_ProducerResponseObject
+}
+
+input snSc_serviceCatalog_ProducerParentParams {
+  sysparm_parent_table: String
+  sysparm_parent_sys_id: String
+}
+
+input snSc_serviceCatalog_ProducerRequestBody {
+  sysparm_edit_mode: String
+  sysparm_item_guid: String
+  sysparm_target_id: String
+  variables: [snSc_serviceCatalog_KeyValue!]
+  parent_params: snSc_serviceCatalog_ProducerParentParams
+  additional_params: [snSc_serviceCatalog_KeyValue!]
+}
+
+type snSc_serviceCatalog_ProducerResponse {
+  sys_id: String
+  number: String
+  record: String
+  redirect_portal_url: String
+  redirect_url: String
+  table: String
+  redirect_to: String
+  parent_id: String
+  parent_table: String
+}
+
+type snSc_serviceCatalog_ProducerResponseObject {
+  success: Boolean
+  data: snSc_serviceCatalog_ProducerResponse
+  message: String
+}
+
+type snSc_serviceCatalog_Query {
+  validateRegex(regexId: String!, value: String!): snSc_serviceCatalog_RegexInfo
+  validateVariableRegex(questionId: String!, value: String!): snSc_serviceCatalog_RegexInfo
+  getTopicDetails(topicIds: [String]!): [snSc_serviceCatalog_TopicDetails!]
+  getQuestionDetails(questionId: String!): snSc_serviceCatalog_QuestionDetails!
+  getAIInferredDetails(documentId: String, catItemRef: String, actionType: String): snSc_serviceCatalog_AIInferredDetails
+}
+
+type snSc_serviceCatalog_QuestionChoices {
+  value: String!
+  displayValue: String!
+}
+
+type snSc_serviceCatalog_QuestionDetails {
+  type: String!
+  internalType: Int!
+  name: String!
+  validateRegex: String
+  choices: [snSc_serviceCatalog_QuestionChoices]
+  referringRecordId: String
+  referringTable: String!
+  targetRecordId: String!
+  reference: String
+  referenceDisplayField: String
+  listTable: String
+  listTableDisplayField: String
+  refQualifier: String
+}
+
+type snSc_serviceCatalog_RegexInfo {
+  result: Boolean
+  errMsg: String
+}
+
+type snSc_serviceCatalog_TopicDetails {
+  value: String!
+  displayValue: String
+  canRead: Boolean!
+  active: String
+}

@@ -1,0 +1,148 @@
+{
+  "namespace": "snImpactFwk",
+  "endpoint": "/api/now/graphql",
+  "roots": {
+    "query": {
+      "type": "snImpactFwk_query",
+      "fields": [
+        "getDynamicInputMappings"
+      ]
+    }
+  },
+  "typeCount": 5,
+  "types": [
+    {
+      "kind": "OBJECT",
+      "name": "snImpactFwk_getDynamicInputMappings_Data",
+      "description": null,
+      "fields": [
+        {
+          "name": "inputs",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "OBJECT",
+              "name": "snImpactFwk_getDynamicInputMappings_input",
+              "ofType": null
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snImpactFwk_getDynamicInputMappings_input",
+      "description": null,
+      "fields": [
+        {
+          "name": "name",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "pillValue",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snImpactFwk_getDynamicInputMappings_Query",
+      "description": null,
+      "fields": [
+        {
+          "name": "getInputs",
+          "description": null,
+          "args": [
+            {
+              "name": "actionId",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "snImpactFwk_getDynamicInputMappings_Data",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snImpactFwk_query",
+      "description": null,
+      "fields": [
+        {
+          "name": "getDynamicInputMappings",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "snImpactFwk_getDynamicInputMappings_Query",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "String",
+      "description": "Built-in String",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    }
+  ]
+}

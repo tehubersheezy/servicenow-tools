@@ -1,0 +1,50 @@
+type snAce_query {
+  contentBlocks: snAce_contentBlocks_Query
+  formBuilder: snAce_formBuilder_Query
+}
+
+type snAce_contentBlocks_Block {
+  block_id: String
+  id: String
+  parent_block_id: String
+  active: Boolean
+  name: String
+  label: String
+  title: String
+  subtitle: String
+  order: Int
+  type: snAce_contentBlocks_BlockType
+  lazyLoad: Boolean
+  children: [snAce_contentBlocks_Block]
+  props_details: String
+  pageParams: String
+  isRoot: Boolean
+}
+
+type snAce_contentBlocks_BlockType {
+  group: String
+  name: String
+  id: ID
+  route: String
+  macroponent: String
+  props: [snAce_contentBlocks_ElementType]
+}
+
+type snAce_contentBlocks_ElementType {
+  element: String
+  type: String
+}
+
+type snAce_contentBlocks_Query {
+  getBlocks(blockId: String, pageParams: String): [snAce_contentBlocks_Block]
+}
+
+type snAce_formBuilder_Query {
+  getViews(table: String!): [snAce_formBuilder_View]
+}
+
+type snAce_formBuilder_View {
+  id: String
+  name: String
+  label: String
+}

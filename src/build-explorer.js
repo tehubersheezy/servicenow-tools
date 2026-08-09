@@ -18,10 +18,13 @@ const fs = require('fs');
 const path = require('path');
 
 function parseArgs(argv) {
-  const opts = { specs: 'openapi', out: 'sn-api-explorer.html' };
+  // --xlink is the href of the companion GraphQL explorer (the Pages workflow
+  // passes graphql.html; the default matches the local filename).
+  const opts = { specs: 'openapi', out: 'sn-api-explorer.html', xlink: 'sn-graphql-explorer.html' };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--specs') opts.specs = argv[++i];
     else if (argv[i] === '--out') opts.out = argv[++i];
+    else if (argv[i] === '--xlink') opts.xlink = argv[++i];
     else throw new Error('Unknown argument: ' + argv[i]);
   }
   return opts;
@@ -64,6 +67,7 @@ function main() {
     apiCount: specs.length,
     nsCount: nsSet.size,
     opCount,
+    xlink: opts.xlink,
   };
 
   // <-escape so no embedded string can terminate the <script> block.
@@ -144,6 +148,8 @@ const TEMPLATE = `<!doctype html>
   .brand strong { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
   .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); align-self: center; }
   .brand-meta { color: var(--ink-3); font-size: 0.75rem; font-variant-numeric: tabular-nums; }
+  .xlink { color: var(--accent-deep); font-size: 0.75rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .xlink:hover { text-decoration: underline; }
   .searchwrap { flex: 1; display: flex; align-items: center; position: relative; max-width: 44rem; }
   #q {
     width: 100%; font: inherit; font-size: 0.9375rem; color: var(--ink);
@@ -371,7 +377,7 @@ const TEMPLATE = `<!doctype html>
 <body>
 <div class="shell">
   <header>
-    <div class="brand"><span class="dot" aria-hidden="true"></span><strong>SN API Explorer</strong><span class="brand-meta" id="brand-meta"></span></div>
+    <div class="brand"><span class="dot" aria-hidden="true"></span><strong>SN API Explorer</strong><span class="brand-meta" id="brand-meta"></span><a class="xlink" id="xlink">GraphQL explorer →</a></div>
     <div class="searchwrap">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="text" role="combobox" aria-expanded="true" aria-controls="results"
@@ -1117,6 +1123,7 @@ var DATA = "__PAYLOAD__";
   document.getElementById('brand-meta').textContent =
     (META.instance ? META.instance.replace('https://', '').split('.')[0] + ' · ' : '') +
     fmt(META.apiCount) + ' APIs · ' + fmt(META.opCount) + ' endpoints';
+  document.getElementById('xlink').href = META.xlink || 'sn-graphql-explorer.html';
 
   var restored = readHash();
   renderChips();

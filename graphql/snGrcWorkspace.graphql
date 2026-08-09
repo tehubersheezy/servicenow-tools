@@ -1,0 +1,50 @@
+type snGrcWorkspace_query {
+  workQueueAPI: snGrcWorkspace_workQueueAPI_Query
+}
+
+type snGrcWorkspace_workQueueAPI_Query {
+  myTasks(configId: ID!, state: snGrcWorkspace_workQueueAPI_TabState = ALL): snGrcWorkspace_workQueueAPI_Response @deprecated(reason: "No longer supported")
+  groupTasks(configId: ID!, state: snGrcWorkspace_workQueueAPI_TabState = ALL, groupId: ID): snGrcWorkspace_workQueueAPI_Response @deprecated(reason: "No longer supported")
+  myRequests(configId: ID!): snGrcWorkspace_workQueueAPI_Response @deprecated(reason: "No longer supported")
+  watching(configId: ID!): snGrcWorkspace_workQueueAPI_Response @deprecated(reason: "No longer supported")
+  getTasks(
+    configId: ID!
+    tabId: String!
+    state: String
+    groupId: ID
+    useCachedData: Boolean
+  ): snGrcWorkspace_workQueueAPI_Response
+  tabIndex(configId: ID!, tabId: String!): snGrcWorkspace_workQueueAPI_tabIndexResponse
+}
+
+type snGrcWorkspace_workQueueAPI_Response {
+  count: Int!
+  tables: [snGrcWorkspace_workQueueAPI_Table]!
+  order: Int!
+  label: String!
+  filterTypeLabel: String
+}
+
+type snGrcWorkspace_workQueueAPI_tabIndexResponse {
+  index: Int!
+  label: String!
+  active: Boolean!
+}
+
+type snGrcWorkspace_workQueueAPI_Table {
+  name: String
+  label: String
+  count: Int
+  query: String
+  columns: String
+}
+
+enum snGrcWorkspace_workQueueAPI_TabState {
+  NEW
+  WIP
+  OVERDUE
+  APPROVAL
+  REVIEW
+  UNASSIGNED
+  ALL
+}

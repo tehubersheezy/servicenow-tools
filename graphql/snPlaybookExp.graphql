@@ -1,0 +1,77 @@
+type snPlaybookExp_query {
+  playbook: snPlaybookExp_playbook_Query
+}
+
+type snPlaybookExp_mutation {
+  playbook: snPlaybookExp_playbook_Mutation
+}
+
+type snPlaybookExp_playbook_AgenticPlaybookError {
+  errorType: snPlaybookExp_playbook_ErrorType!
+  message: String!
+}
+
+enum snPlaybookExp_playbook_ErrorType {
+  QUERY_FAILED
+  MUTATION_FAILED
+  MISSING_ARGUMENT
+  FEATURE_INACTIVE
+}
+
+type snPlaybookExp_playbook_Mutation {
+  triggerPlaybook(
+    scopedName: String!
+    parentTable: String!
+    parentRecord: ID!
+    onlyIfNoProcessRunning: Boolean
+  ): snPlaybookExp_playbook_TriggerPlaybookResult!
+  launchPlaybook(processDefinitionId: String!, parentRecord: ID, input: String): snPlaybookExp_playbook_TriggerPlaybookResult!
+  updateAgenticPlaybookActivityExecution(activityContextId: String, status: String!): snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionResult!
+}
+
+type snPlaybookExp_playbook_PlaybookContext {
+  sys_id: ID
+  title: String
+  state: snPlaybookExp_playbook_State
+  scoped_name: String
+  parent_table: String
+  parent_record: String
+  playbook_id: String
+  cancellation_reason: String
+  can_read: Boolean
+}
+
+type snPlaybookExp_playbook_Query {
+  getPlaybooksForParentRecord(parentTable: String!, parentRecord: ID!): [snPlaybookExp_playbook_PlaybookContext]
+}
+
+type snPlaybookExp_playbook_State {
+  displayValue: String!
+  value: String!
+}
+
+type snPlaybookExp_playbook_TriggerPlaybookError {
+  errorType: snPlaybookExp_playbook_TriggerPlaybookErrorType!
+  message: String!
+  parent_table: String
+  parent_record: String
+  process_definition_id: String
+  input: String
+}
+
+enum snPlaybookExp_playbook_TriggerPlaybookErrorType {
+  PARENT_TABLE_NOT_VALID
+  PARENT_RECORD_NOT_FOUND
+  PROCESS_DEFINITION_ID_NOT_VALID
+  TRIGGER_PLAYBOOK_FAILED
+  INSUFFICIENT_PERMISSIONS
+  LAUNCH_PLAYBOOK_FAILED
+}
+
+union snPlaybookExp_playbook_TriggerPlaybookResult = snPlaybookExp_playbook_PlaybookContext | snPlaybookExp_playbook_TriggerPlaybookError
+
+type snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionPayload {
+  success: Boolean!
+}
+
+union snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionResult = snPlaybookExp_playbook_UpdateAgenticPlaybookActivityExecutionPayload | snPlaybookExp_playbook_AgenticPlaybookError

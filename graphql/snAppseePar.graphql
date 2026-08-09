@@ -1,0 +1,24 @@
+type snAppseePar_query {
+  appseeParGroupby: snAppseePar_appseeParGroupby_Query
+  appseeParKpis: snAppseePar_appseeParKpis_Query
+}
+
+type snAppseePar_appseeParGroupby_groupbyOption {
+  id: String
+  label: String
+}
+
+type snAppseePar_appseeParGroupby_Query {
+  options(type: String, channel: String): [snAppseePar_appseeParGroupby_groupbyOption]
+  result: String
+}
+
+type snAppseePar_appseeParKpis_appseeKpi {
+  name: String
+  id: String
+}
+
+type snAppseePar_appseeParKpis_Query {
+  kpis(start: Int, count: Int, searchQuery: String): [snAppseePar_appseeParKpis_appseeKpi]
+  result: String
+}

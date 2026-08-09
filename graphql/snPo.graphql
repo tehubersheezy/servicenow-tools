@@ -1,0 +1,959 @@
+type snPo_query {
+  GlideProminTaskMining: snPo_GlideProminTaskMining_Query
+  GlideProminProcessConfigurations: snPo_GlideProminProcessConfigurations_Query
+  GlideProminFindings: snPo_GlideProminFindings_Query
+  GlideProminConfigurations: snPo_GlideProminConfigurations_Query
+  GlidePromin: snPo_GlidePromin_Query
+}
+
+type snPo_mutation {
+  GlideProminTaskMining: snPo_GlideProminTaskMining_Mutation
+  GlideProminProcessConfigurations: snPo_GlideProminProcessConfigurations_Mutation
+  GlideProminFindings: snPo_GlideProminFindings_Mutation
+  GlideProminConfigurations: snPo_GlideProminConfigurations_Mutation
+  GlidePromin: snPo_GlidePromin_Mutation
+}
+
+type snPo_GlidePromin_ActivityFieldDetailsResponse {
+  success: Boolean
+  message: String
+  fieldDetails: snPo_GlidePromin_FieldDetails
+}
+
+type snPo_GlidePromin_AllowedColumnListResponse {
+  success: Boolean
+  message: String
+  fields: [snPo_GlidePromin_ColumnField]
+}
+
+type snPo_GlidePromin_AllowedTable {
+  name: String!
+  label: String!
+}
+
+type snPo_GlidePromin_AllowedTableListResponse {
+  success: Boolean
+  message: String
+  tables: [snPo_GlidePromin_AllowedTable]
+}
+
+type snPo_GlidePromin_ApprovalAnalysisVisibleResponse {
+  success: Boolean
+  message: String
+  visible: Boolean
+}
+
+type snPo_GlidePromin_AutomatedFindingConfigResponse {
+  canCreate: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+}
+
+type snPo_GlidePromin_AutomatedFindingDefsResponse {
+  canCreate: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+}
+
+type snPo_GlidePromin_AutomationDiscoveryIntentsResponse {
+  success: Boolean
+  intents: [snPo_GlidePromin_ListItem]
+}
+
+type snPo_GlidePromin_CapacityBasedLicenseInfoResponse {
+  hasCapacityBasedLicense: Boolean
+  usageLimit: Int
+}
+
+type snPo_GlidePromin_ColumnField {
+  name: String
+  internalType: String
+  label: String
+  referenceTable: String
+}
+
+type snPo_GlidePromin_ConfigError {
+  configuration: String
+  message: String
+}
+
+type snPo_GlidePromin_CopyProjectResponse {
+  success: Boolean
+  message: String
+  newProjectId: ID
+}
+
+type snPo_GlidePromin_CreateAutomatedFindingResponse {
+  success: Boolean
+  message: String
+  entityId: String
+  status: String
+  findingId: String
+}
+
+input snPo_GlidePromin_CreateChildTableRequest {
+  projectId: String
+  parentEntityId: String
+  childTable: String
+}
+
+type snPo_GlidePromin_CreateChildTableResponse {
+  success: Boolean
+  infoMessages: [String]
+  errorMessages: [String]
+  entityId: String
+}
+
+type snPo_GlidePromin_CreateMultipleBreakdownsResponse {
+  success: Boolean
+  message: String
+  errorMessages: [String]
+}
+
+type snPo_GlidePromin_DotwalkFieldPathResponse {
+  success: Boolean
+  message: String
+  path: [snPo_GlidePromin_FieldPath]
+}
+
+type snPo_GlidePromin_DotwalkFieldTableResponse {
+  success: Boolean
+  message: String
+  table: snPo_GlidePromin_AllowedTable
+}
+
+type snPo_GlidePromin_EntityUseCaseState {
+  id: String
+  includeApprovals: snPo_GlidePromin_UseCaseState
+  includeSLABreach: snPo_GlidePromin_UseCaseState
+  childTables: [snPo_GlidePromin_UseCaseChildTables]
+}
+
+type snPo_GlidePromin_FieldDetails {
+  internalType: String
+  referenceTable: String
+  isChoiceTable: Boolean
+  isExternalDataTable: Boolean
+  label: String
+}
+
+type snPo_GlidePromin_FieldPath {
+  source: String
+  internalValue: String
+  displayValue: String
+  reference: String
+}
+
+type snPo_GlidePromin_FieldResponse {
+  canWrite: Boolean
+}
+
+type snPo_GlidePromin_FieldsLabelResponse {
+  success: Boolean
+  fields: [snPo_GlidePromin_ListItem]
+}
+
+type snPo_GlidePromin_FindingDefConstraintResponse {
+  canCreate: Boolean
+  canWrite: Boolean
+}
+
+type snPo_GlidePromin_FindingDefFieldsResponse {
+  copied_from: snPo_GlidePromin_FieldResponse
+}
+
+type snPo_GlidePromin_FindingDefRuleResponse {
+  canCreate: Boolean
+  canWrite: Boolean
+}
+
+type snPo_GlidePromin_FindingDefsResponse {
+  canCreate: Boolean
+  canDelete: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+  fields: snPo_GlidePromin_FindingDefFieldsResponse
+}
+
+type snPo_GlidePromin_GetLabelsResponse {
+  success: Boolean
+  labels: [String]
+}
+
+type snPo_GlidePromin_IdleTimeColumnResponse {
+  perspectiveType: String
+  perspectiveField: String
+  name: String
+  internalType: String
+  label: String
+  referenceTable: String
+}
+
+type snPo_GlidePromin_IdleTimeForProjectResponse {
+  success: Boolean
+  value: Boolean
+  message: String
+}
+
+input snPo_GlidePromin_IdleTimePayload {
+  value: Boolean
+  entityId: String
+  fields: String
+  processId: String
+}
+
+type snPo_GlidePromin_IdleTimeResponse {
+  success: Boolean
+  status: Boolean
+  isIdleTimeConfigValid: Boolean
+  fields: [snPo_GlidePromin_IdleTimeColumnResponse]
+  projectActivityDefinitions: [snPo_GlidePromin_ProjectActivityResponse]
+  message: String
+}
+
+type snPo_GlidePromin_IncludeApprovalAnalysisResponse {
+  success: Boolean
+  message: String
+  infoMessages: [String]
+  entityId: String
+}
+
+input snPo_GlidePromin_LabelsPayload {
+  type: snPo_GlidePromin_LabelType!
+  name: String!
+}
+
+enum snPo_GlidePromin_LabelType {
+  TABLE
+}
+
+type snPo_GlidePromin_ListItem {
+  id: String
+  label: String
+}
+
+type snPo_GlidePromin_Mutation {
+  addUsersToProjectWatchList(projectId: ID, userIds: [ID!]): snPo_GlidePromin_ScriptableResponse
+  createProminEntity(entityPayload: String!): snPo_GlidePromin_ScriptableResponse
+  updateProminEntity(sysId: String!, entityPayload: String!): snPo_GlidePromin_ScriptableResponse
+  createProminActivity(activityPayload: String!): snPo_GlidePromin_ScriptableResponse
+  updateProminActivity(sysId: String!, activityPayload: String!): snPo_GlidePromin_ScriptableResponse
+  createMultipleProminActivities(activityPayload: String!): snPo_GlidePromin_ScriptableResponse
+  createProminBreakdown(breakdownPayload: String!): snPo_GlidePromin_ScriptableResponse
+  updateProminBreakdown(sysId: String!, breakdownPayload: String!): snPo_GlidePromin_ScriptableResponse
+  copyProminProject(projectId: ID!): snPo_GlidePromin_CopyProjectResponse
+  createProminSlaBreachEntity(slaBreachEntityPayload: String!): snPo_GlidePromin_SlaBreachEntityResponse
+  includeApprovalAnalysis(approvalAnalysisPayload: String!): snPo_GlidePromin_IncludeApprovalAnalysisResponse
+  createMultipleBreakdowns(entityId: String!, breakdownFields: [String]!): snPo_GlidePromin_CreateMultipleBreakdownsResponse
+  createProminAutomatedFinding(findingPayload: String!): snPo_GlidePromin_CreateAutomatedFindingResponse
+  updateProminAutomatedFinding(sysId: String!, findingPayload: String!): snPo_GlidePromin_UpdateAutomatedFindingResponse
+  updateProminAutomatedFindingConfig(findingConfigPayload: String!): snPo_GlidePromin_UpdateAutomatedFindingConfigResponse
+  createChildTable(payload: snPo_GlidePromin_CreateChildTableRequest!): snPo_GlidePromin_CreateChildTableResponse
+  includeTouchPointMetrics(payload: snPo_GlidePromin_TouchPointsPayload!): snPo_GlidePromin_TouchPointMetricsResponse
+  generatePlaybookFromVariants(projectId: ID!, playbookLabel: String!, prompt: String!, variants: String!): snPo_GlidePromin_PlaybookGenerationResponse
+  deletePlaybook(sysId: ID!): snPo_GlidePromin_ScriptableResponse
+  includeIdleTimeForProject(payload: snPo_GlidePromin_IdleTimePayload!): snPo_GlidePromin_IdleTimeForProjectResponse
+  removeIdleTimeMetricsForProject(payload: [String]!): Boolean
+}
+
+type snPo_GlidePromin_Permissions {
+  canCreate: Boolean
+  canDelete: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+}
+
+type snPo_GlidePromin_Playbook {
+  id: ID
+  playbookId: String
+  requestId: String
+  name: String
+  createdOn: String
+  createdBy: String
+  state: snPo_GlidePromin_PlaybookState
+  variants: String
+  snapshot: String
+}
+
+type snPo_GlidePromin_PlaybookExecutionsCountResponse {
+  count: String
+}
+
+type snPo_GlidePromin_PlaybookGenerationResponse {
+  message: String
+  success: Boolean
+  sysId: String
+  requestId: String
+  playbookId: String
+}
+
+type snPo_GlidePromin_PlaybookState {
+  value: String
+  label: String
+}
+
+type snPo_GlidePromin_PlaybookStatusResponse {
+  status: Boolean
+}
+
+type snPo_GlidePromin_ProcessConfigResponse {
+  canCreate: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+}
+
+type snPo_GlidePromin_ProjectActivityResponse {
+  field: String
+  sysId: String
+}
+
+type snPo_GlidePromin_ProjectDirtyMessageResponse {
+  success: Boolean
+  message: String
+  status: String
+}
+
+type snPo_GlidePromin_ProjectEntityFieldsResponse {
+  custom_end_condition: snPo_GlidePromin_FieldResponse
+  custom_start_condition: snPo_GlidePromin_FieldResponse
+  external_dataset: snPo_GlidePromin_FieldResponse
+  filter: snPo_GlidePromin_FieldResponse
+  include_approvals: snPo_GlidePromin_FieldResponse
+  report_source: snPo_GlidePromin_FieldResponse
+  source_type: snPo_GlidePromin_FieldResponse
+  table: snPo_GlidePromin_FieldResponse
+}
+
+type snPo_GlidePromin_ProjectEntityResponse {
+  canCreate: Boolean
+  canDelete: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+  fields: snPo_GlidePromin_ProjectEntityFieldsResponse
+}
+
+type snPo_GlidePromin_ProjectInfo {
+  permissions: snPo_GlidePromin_ProjectPermissionsResponse
+  isShared: Boolean
+  autoRetiredMessage: String
+  userInfo: snPo_GlidePromin_UserInfo
+}
+
+type snPo_GlidePromin_ProjectInfoResponse {
+  success: Boolean
+  errorMessage: String
+  projectInfo: snPo_GlidePromin_ProjectInfo
+}
+
+type snPo_GlidePromin_ProjectPermissionsResponse {
+  iscreatorUserPresent: String
+  isMaint: Boolean
+  isCreator: Boolean
+  getLEProgressTypeFieldPresent: Boolean
+  promin_project: snPo_GlidePromin_ProminProjectResponse
+  promin_activity_def: snPo_GlidePromin_Permissions
+  promin_project_entity: snPo_GlidePromin_ProjectEntityResponse
+  promin_breakdown_field: snPo_GlidePromin_Permissions
+  promin_finding_def: snPo_GlidePromin_FindingDefsResponse
+  promin_automated_finding_configuration: snPo_GlidePromin_AutomatedFindingConfigResponse
+  promin_automated_finding: snPo_GlidePromin_AutomatedFindingDefsResponse
+  promin_finding_def_rule: snPo_GlidePromin_FindingDefRuleResponse
+  promin_finding_def_constraint: snPo_GlidePromin_FindingDefConstraintResponse
+  promin_process_def: snPo_GlidePromin_ProcessConfigResponse
+  auto_retire: String
+}
+
+type snPo_GlidePromin_ProjectPlaybooksResponse {
+  success: Boolean
+  errorMessage: String
+  playbooks: [snPo_GlidePromin_Playbook]
+}
+
+type snPo_GlidePromin_ProminIsIsScopeEnabledResponse {
+  result: Boolean
+  message: String
+}
+
+type snPo_GlidePromin_prominIsProjectSharedResponse {
+  result: Boolean
+}
+
+type snPo_GlidePromin_ProminProjectFieldsResponse {
+  auto_retire: snPo_GlidePromin_FieldResponse
+  content_pack: snPo_GlidePromin_FieldResponse
+  goal: snPo_GlidePromin_FieldResponse
+  is_template: snPo_GlidePromin_FieldResponse
+  source: snPo_GlidePromin_FieldResponse
+}
+
+type snPo_GlidePromin_ProminProjectResponse {
+  canCreate: Boolean
+  canDelete: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+  fields: snPo_GlidePromin_ProminProjectFieldsResponse
+}
+
+type snPo_GlidePromin_Query {
+  prominAllowedTableList(
+    sourceType: String
+    includeExternalData: Boolean
+    excludeNonAuditedTables: Boolean
+  ): snPo_GlidePromin_AllowedTableListResponse
+  prominGetTablesRefFields(
+    currentEntityTable: String!
+    referenceEntityTable: String!
+    relationType: String!
+    parentEntitySource: String!
+    childEntitySource: String!
+  ): snPo_GlidePromin_TablesRefFieldsResponse
+  prominAllowedColumnList(tableName: String!, currentTableName: String!, entityId: String): snPo_GlidePromin_AllowedColumnListResponse
+  prominGetActivityFieldDetails(tableName: String!, field: String!): snPo_GlidePromin_ActivityFieldDetailsResponse
+  prominGetProjectDirtyMessage(projectId: String!, currentTableDisplayName: String!): snPo_GlidePromin_ProjectDirtyMessageResponse
+  prominValidateEntityTemplate(entityPayload: String!, templateType: String!): snPo_GlidePromin_ScriptableResponse
+  prominGetUserInfo: snPo_GlidePromin_UserInfoResponse
+  prominProjectPermissions(projectId: String!): snPo_GlidePromin_ProjectPermissionsResponse
+  prominIsProjectShared(projectId: String!): snPo_GlidePromin_prominIsProjectSharedResponse
+  prominIsScopeEnabled(projectId: String!): snPo_GlidePromin_ProminIsIsScopeEnabledResponse
+  prominGetRetiredMessage(projectId: String!): snPo_GlidePromin_RetiredProjectMessageResponse
+  prominGetCapacityBasedLicenseInfo(projectId: String!): snPo_GlidePromin_CapacityBasedLicenseInfoResponse
+  prominGetDotwalkFieldTable(rootTable: String!, field: String!): snPo_GlidePromin_DotwalkFieldTableResponse
+  prominIsSlaVisible(tableNames: String!): snPo_GlidePromin_SlaVisibleMessageResponse
+  prominIsApprovalAnalysisVisible(table: String!, sourceType: String!): snPo_GlidePromin_ApprovalAnalysisVisibleResponse
+  getUseCasesState(projectId: ID!): snPo_GlidePromin_UseCasesStateResponse
+  getProminProjectTables: snPo_GlidePromin_AllowedTableListResponse
+  getLabels(labelsPayload: [snPo_GlidePromin_LabelsPayload]!): snPo_GlidePromin_GetLabelsResponse
+  isPrimaryEntityValid(tableName: String!): snPo_GlidePromin_ScriptableResponse
+  getDotwalkFieldPath(rootTable: String!, field: String!): snPo_GlidePromin_DotwalkFieldPathResponse
+  getTableList(sourceType: String, searchTerm: String): snPo_GlidePromin_TableListResponse
+  getRelatedTables(table: String!, searchTerm: String): snPo_GlidePromin_TableListResponse
+  getFieldsLabel(table: String!, fields: [String]!): snPo_GlidePromin_FieldsLabelResponse
+  getAutomationDiscoveryIntentsByReportId(adReportId: String!): snPo_GlidePromin_AutomationDiscoveryIntentsResponse
+  getProjectInfo(projectId: String): snPo_GlidePromin_ProjectInfoResponse
+  touchPointsStatus(projectId: String!, processId: String): snPo_GlidePromin_TouchPointsStatusResponse
+  getPlaybooksForProject(projectId: String!): snPo_GlidePromin_ProjectPlaybooksResponse
+  idleTimeConfiguration(entityId: String!, processId: String): snPo_GlidePromin_IdleTimeResponse
+  isPlaybookProject(versionId: String, projectId: String): snPo_GlidePromin_PlaybookStatusResponse
+  getPlaybookExecutionsCount(encodedQuery: String): snPo_GlidePromin_PlaybookExecutionsCountResponse
+}
+
+type snPo_GlidePromin_ReferenceField {
+  label: String
+  name: String
+  refTable: String
+}
+
+type snPo_GlidePromin_RetiredProjectMessageResponse {
+  message: String
+}
+
+type snPo_GlidePromin_ScriptableResponse {
+  success: Boolean
+  message: String
+}
+
+type snPo_GlidePromin_SlaBreachEntityResponse {
+  success: Boolean
+  message: String
+  entityId: String
+}
+
+type snPo_GlidePromin_SlaVisibleMessageResponse {
+  success: Boolean
+  result: [snPo_GlidePromin_VisibleTable]
+}
+
+type snPo_GlidePromin_TableListResponse {
+  success: Boolean
+  tables: [snPo_GlidePromin_ListItem]
+  rowCount: Int
+}
+
+type snPo_GlidePromin_TablesRefFieldsResponse {
+  success: Boolean
+  message: String
+  fields: [snPo_GlidePromin_ReferenceField]
+}
+
+type snPo_GlidePromin_TouchPointFieldResponse {
+  label: String
+  id: String
+}
+
+type snPo_GlidePromin_TouchPointMetricsResponse {
+  success: Boolean
+  value: Boolean
+  message: String
+}
+
+input snPo_GlidePromin_TouchPointsPayload {
+  value: Boolean
+  entityId: String
+  fields: String
+  timeRange: String
+  users: String
+}
+
+type snPo_GlidePromin_TouchPointsStatusResponse {
+  success: Boolean
+  status: Boolean
+  fields: [snPo_GlidePromin_TouchPointFieldResponse]
+  newIncomingFields: [snPo_GlidePromin_TouchPointFieldResponse]
+}
+
+type snPo_GlidePromin_UpdateAutomatedFindingConfigResponse {
+  success: Boolean
+  message: String
+  errorMessages: [snPo_GlidePromin_ConfigError]
+}
+
+type snPo_GlidePromin_UpdateAutomatedFindingResponse {
+  success: Boolean
+  message: String
+  status: String
+  findingId: String
+}
+
+type snPo_GlidePromin_UseCaseChildTables {
+  name: String
+  label: String
+  value: Boolean
+  disabled: Boolean
+  dependentEntityIds: [String]
+}
+
+type snPo_GlidePromin_UseCasesStateResponse {
+  success: Boolean
+  message: String
+  entities: [snPo_GlidePromin_EntityUseCaseState]
+}
+
+type snPo_GlidePromin_UseCaseState {
+  value: Boolean
+  visible: Boolean
+  disabled: Boolean
+  dependentEntityIds: [String]
+}
+
+type snPo_GlidePromin_UserInfo {
+  isSnPoAdmin: Boolean
+  isSnPoPowerUser: Boolean
+  isSnPoAnalyst: Boolean
+  isSnAiaViewer: Boolean
+}
+
+type snPo_GlidePromin_UserInfoResponse {
+  success: Boolean
+  userInfo: snPo_GlidePromin_UserInfo
+}
+
+type snPo_GlidePromin_VisibleTable {
+  table: String!
+  visible: Boolean!
+}
+
+type snPo_GlideProminConfigurations_IntegrationPermissions {
+  canCreate: Boolean
+  canRead: Boolean
+}
+
+type snPo_GlideProminConfigurations_Integrations {
+  taskMining: snPo_GlideProminConfigurations_TaskMining
+  cim: snPo_GlideProminConfigurations_ProminPermissions
+  automationCenter: snPo_GlideProminConfigurations_ProminPermissions
+  dynamicTranslation: snPo_GlideProminConfigurations_PluginActive
+  nowAssistForCreator: snPo_GlideProminConfigurations_SkillActive
+}
+
+type snPo_GlideProminConfigurations_Mutation {
+}
+
+type snPo_GlideProminConfigurations_PluginActive {
+  isPluginActive: Boolean
+}
+
+type snPo_GlideProminConfigurations_ProminIntegrationsResponse {
+  integrations: snPo_GlideProminConfigurations_Integrations
+  sysProperties: snPo_GlideProminConfigurations_sysProperties
+}
+
+type snPo_GlideProminConfigurations_ProminPermissions {
+  isPluginActive: Boolean
+  permissions: snPo_GlideProminConfigurations_IntegrationPermissions
+}
+
+type snPo_GlideProminConfigurations_Query {
+  getProminIntegrations: snPo_GlideProminConfigurations_ProminIntegrationsResponse
+}
+
+type snPo_GlideProminConfigurations_SkillActive {
+  isSkillActive: Boolean
+}
+
+type snPo_GlideProminConfigurations_sysProperties {
+  taskMiningBlockedTables: [String]
+  blockedTables: [String]
+  primaryMetric: String
+  secondaryMetric: String
+  entityBgTransparency: String
+  glideInstanceReleaseName: String
+}
+
+type snPo_GlideProminConfigurations_TaskMining {
+  hasTaskMiningRole: Boolean
+  isPluginActive: Boolean
+}
+
+type snPo_GlideProminFindings_Chain {
+  chain: Int
+  includePath: Boolean
+  rules: String
+  nodeToNodeConstraints: String
+}
+
+type snPo_GlideProminFindings_CreateRuleBasedFindingResponse {
+  success: Boolean
+  message: String
+  findingId: String
+  status: String
+}
+
+type snPo_GlideProminFindings_FieldTable {
+  name: String
+  label: String
+}
+
+enum snPo_GlideProminFindings_FindingClass {
+  PROCESS
+  PROJECT
+}
+
+type snPo_GlideProminFindings_FindingField {
+  id: String
+  name: String
+  label: String
+  fieldTable: snPo_GlideProminFindings_FieldTable
+  referenceTable: String
+  isChoiceTable: Boolean
+  internalType: String
+  values: [snPo_GlideProminFindings_FindingFieldValue]
+  predicates: [snPo_GlideProminFindings_Predicates]
+  isStartOrEndField: Boolean
+  isContextualField: Boolean
+}
+
+type snPo_GlideProminFindings_FindingFieldsResponse {
+  success: Boolean
+  message: String
+  fields: [snPo_GlideProminFindings_FindingField]
+}
+
+type snPo_GlideProminFindings_FindingFieldValue {
+  id: String
+  value: String
+  label: String
+}
+
+type snPo_GlideProminFindings_FindingRulesAndConstraintsResponse {
+  success: Boolean
+  chains: [snPo_GlideProminFindings_Chain]
+  viewConfig: snPo_GlideProminFindings_ViewConfig
+}
+
+type snPo_GlideProminFindings_HasIdLabel {
+  id: String
+  label: String
+}
+
+type snPo_GlideProminFindings_Mutation {
+  createRuleBasedFinding(findingPayload: String!): snPo_GlideProminFindings_CreateRuleBasedFindingResponse
+  updateRuleBasedFinding(sysId: ID!, findingPayload: String!): snPo_GlideProminFindings_CreateRuleBasedFindingResponse
+  copyRuleBasedFinding(sysId: ID!): snPo_GlideProminFindings_CreateRuleBasedFindingResponse
+}
+
+type snPo_GlideProminFindings_Predicates {
+  id: String
+  value: String
+  label: String
+  fieldType: String
+}
+
+type snPo_GlideProminFindings_Query {
+  getRuleBasedFindingFields(findingClass: snPo_GlideProminFindings_FindingClass, findingClassId: ID!): snPo_GlideProminFindings_FindingFieldsResponse
+  getFindingRulesAndConstraints(findingDefId: ID!): snPo_GlideProminFindings_FindingRulesAndConstraintsResponse
+  getReferenceValuesLabels(table: String!, values: [String]!, field: String): snPo_GlideProminFindings_ReferenceValuesLabelsResponse
+  getReferenceItems(
+    table: String!
+    field: String
+    searchTerm: String
+    limit: Int
+    queryConditions: String
+    matchStrategy: snPo_GlideProminFindings_SearchMatchStrategy = STARTSWITH
+  ): snPo_GlideProminFindings_ReferenceItemsResponse
+}
+
+type snPo_GlideProminFindings_ReferenceItemsResponse {
+  success: Boolean
+  items: [snPo_GlideProminFindings_HasIdLabel]
+  rowCount: Int
+}
+
+type snPo_GlideProminFindings_ReferenceValuesLabelsResponse {
+  success: Boolean
+  values: [snPo_GlideProminFindings_HasIdLabel]
+}
+
+enum snPo_GlideProminFindings_SearchMatchStrategy {
+  STARTSWITH
+  LIKE
+}
+
+enum snPo_GlideProminFindings_ViewConfig {
+  DEFAULT
+  DYNAMIC
+}
+
+type snPo_GlideProminProcessConfigurations_BasicResponse {
+  success: Boolean
+  error: String
+}
+
+type snPo_GlideProminProcessConfigurations_CategoryChoice {
+  value: String
+  label: String
+  hint: String
+}
+
+type snPo_GlideProminProcessConfigurations_CategoryChoiceResponse {
+  success: Boolean
+  message: String
+  result: [snPo_GlideProminProcessConfigurations_CategoryChoice]
+}
+
+type snPo_GlideProminProcessConfigurations_ControlFlowField {
+  category: String
+  values: String
+  id: String
+}
+
+type snPo_GlideProminProcessConfigurations_ControlFlowFieldMapping {
+  success: Boolean
+  message: String
+  result: snPo_GlideProminProcessConfigurations_ControlFlowFieldMappingPayload
+}
+
+type snPo_GlideProminProcessConfigurations_ControlFlowFieldMappingPayload {
+  PROVIDER: snPo_GlideProminProcessConfigurations_ControlFlowField
+  REQUESTER: snPo_GlideProminProcessConfigurations_ControlFlowField
+  ANOTHER_PROCESS: snPo_GlideProminProcessConfigurations_ControlFlowField
+  AWAITING_CLOSURE: snPo_GlideProminProcessConfigurations_ControlFlowField
+  COMPLETED: snPo_GlideProminProcessConfigurations_ControlFlowField
+}
+
+type snPo_GlideProminProcessConfigurations_CreateClusteringDefinitionResponse {
+  success: Boolean
+  error: String
+  createdClusteringSolutionName: String
+}
+
+type snPo_GlideProminProcessConfigurations_DeleteProcessConfigurationsResponse {
+  success: Boolean
+  unableToDeleteConfigs: [String]
+}
+
+enum snPo_GlideProminProcessConfigurations_ExcludeType {
+  TEAMS
+  USERS
+}
+
+type snPo_GlideProminProcessConfigurations_ExportUpdateSetResponse {
+  success: Boolean
+  error: String
+  message: String
+}
+
+type snPo_GlideProminProcessConfigurations_Field {
+  id: String
+  fieldName: String
+  grouped: Boolean
+  includeInNewProject: Boolean
+  perspectiveType: String
+}
+
+type snPo_GlideProminProcessConfigurations_GetTableColumnsResponse {
+  success: Boolean
+  message: String
+  result: [snPo_GlideProminProcessConfigurations_HasIdLabel]
+}
+
+type snPo_GlideProminProcessConfigurations_HasIdLabel {
+  id: String
+  label: String
+}
+
+type snPo_GlideProminProcessConfigurations_Mutation {
+  createProminProcessConfiguration(table: String!, isContentPack: Boolean!): snPo_GlideProminProcessConfigurations_NewConfigurationRespone
+  saveProcessConfig(
+    sysId: String!
+    processConfigPayload: snPo_GlideProminProcessConfigurations_ProcessConfigPayload!
+  ): snPo_GlideProminProcessConfigurations_SaveProcessConfigResponse
+  createClusteringDefinition(table: String!, name: String!, fields: [String!]): snPo_GlideProminProcessConfigurations_CreateClusteringDefinitionResponse
+  createChildTableConfig(
+    processDefId: String!
+    table: String!
+    sourceField: String!
+    targetField: String!
+  ): snPo_GlideProminProcessConfigurations_BasicResponse
+  updateChildTableConfig(childConfigId: String!, sourceField: String!): snPo_GlideProminProcessConfigurations_BasicResponse
+  deleteChildTableConfig(childConfigId: String!): snPo_GlideProminProcessConfigurations_BasicResponse
+  upsertProcessPerspectiveField(
+    processId: String!
+    fieldPayload: snPo_GlideProminProcessConfigurations_PerspectiveFieldPayload!
+  ): snPo_GlideProminProcessConfigurations_PerspectiveFieldResponse
+  deleteProcessPerspectiveField(id: String!): snPo_GlideProminProcessConfigurations_PerspectiveFieldResponse
+  deleteFindingDef(findingIds: String!, table: String!): snPo_GlideProminProcessConfigurations_BasicResponse
+  mutateProcessCategoryKPI(
+    processId: String!
+    payload: snPo_GlideProminProcessConfigurations_ProcessCategoryKpiPayload!
+  ): snPo_GlideProminProcessConfigurations_ProcessCategoryResponse
+  deleteProcessConfigurations(processIds: [String]!, isContentPack: Boolean!): snPo_GlideProminProcessConfigurations_DeleteProcessConfigurationsResponse
+  upsertControlFlowFieldMapping(processId: String!, fieldPayload: String!): snPo_GlideProminProcessConfigurations_ControlFlowFieldMapping
+  saveExcludeDataFilters(
+    processId: String!
+    excludeType: snPo_GlideProminProcessConfigurations_ExcludeType
+    table: String!
+    filterQuery: String!
+  ): snPo_GlideProminProcessConfigurations_SaveProcessConfigResponse
+  exportToUpdateset(id: String!): snPo_GlideProminProcessConfigurations_ExportUpdateSetResponse
+}
+
+type snPo_GlideProminProcessConfigurations_NewConfigurationRespone {
+  success: Boolean
+  message: String
+  configId: String
+}
+
+input snPo_GlideProminProcessConfigurations_PerspectiveFieldPayload {
+  fieldId: String
+  fieldName: String!
+  fieldLabel: String
+  includeInNewProject: Boolean
+  perspectiveType: snPo_GlideProminProcessConfigurations_PerspectiveType
+  grouped: Boolean
+}
+
+type snPo_GlideProminProcessConfigurations_PerspectiveFieldResponse {
+  success: Boolean
+  message: String
+  field: snPo_GlideProminProcessConfigurations_Field
+}
+
+enum snPo_GlideProminProcessConfigurations_PerspectiveType {
+  CONTROL_FLOW
+  RESOURCE_GROUP
+  RESOURCE_USER
+  OTHER
+}
+
+input snPo_GlideProminProcessConfigurations_ProcessCategoryKpiPayload {
+  id: String
+  category: String
+  impactedKpis: String
+}
+
+type snPo_GlideProminProcessConfigurations_ProcessCategoryResponse {
+  message: String
+  success: Boolean
+  categoryId: String
+}
+
+input snPo_GlideProminProcessConfigurations_ProcessConfigPayload {
+  work_note_field_name: String
+  ad_field: String
+  ad_taxonomy: String
+  auto_run_rca: String
+  work_note_transition_time_range: String
+  system_generated_users: String
+  rca_fields: String
+  enable_ad: Boolean
+  clustering_solution_def: String
+  system_generated_user_display_values: String
+  system_generated_user_values: String
+  importance_field: String
+  classification_fields: String
+  par_dashboard_id: String
+  auto_run_ad: Boolean
+  work_note_min_length: String
+  work_note_max_length: String
+  touch_point_fields: String
+  touch_point_excluded_users: String
+  touch_point_time_range: Int
+  enable_touch_point: Boolean
+  enable_task_mining: Boolean
+  aa_field: String
+  aa_excluded_user_display_values: String
+  aa_excluded_user_values: String
+}
+
+type snPo_GlideProminProcessConfigurations_ProcessPermissionsResponse {
+  canCreate: Boolean
+  canRead: Boolean
+  canWrite: Boolean
+  canDelete: Boolean
+  canCreateContentPack: Boolean
+  canWriteContentPack: Boolean
+  canDeleteContentPack: Boolean
+  canReadClusteringDefinitions: Boolean
+}
+
+type snPo_GlideProminProcessConfigurations_Query {
+  getTableColumns(table: String!, types: [String!]): snPo_GlideProminProcessConfigurations_GetTableColumnsResponse
+  prominProcessPermissions: snPo_GlideProminProcessConfigurations_ProcessPermissionsResponse
+  getProcessKPICategoryChoices(sysParamQuery: String!): snPo_GlideProminProcessConfigurations_CategoryChoiceResponse
+  getTableColumnChoices(table: String!, field: String!): snPo_GlideProminProcessConfigurations_TableColumnChoicesResponse
+  getTableMetadata(table: String!): snPo_GlideProminProcessConfigurations_TableMetadataResponse
+}
+
+type snPo_GlideProminProcessConfigurations_SaveProcessConfigResponse {
+  success: Boolean
+  message: String
+  errorMessages: [String]
+}
+
+type snPo_GlideProminProcessConfigurations_TableColumnChoicesResponse {
+  success: Boolean
+  message: String
+  result: [snPo_GlideProminProcessConfigurations_CategoryChoice]
+}
+
+type snPo_GlideProminProcessConfigurations_TableMetadata {
+  audit: Boolean
+}
+
+type snPo_GlideProminProcessConfigurations_TableMetadataResponse {
+  success: Boolean
+  errors: [String]
+  metadata: snPo_GlideProminProcessConfigurations_TableMetadata
+}
+
+type snPo_GlideProminTaskMining_Mutation {
+  updateTaskMiningProjectId(usersCollectorTaskIdentifier: String!, taskMiningProjectId: String!): snPo_GlideProminTaskMining_UpdateTaskMiningProjectIdResponse
+}
+
+type snPo_GlideProminTaskMining_Query {
+  getTaskMiningProjectDetails(usersCollectorTaskIdentifier: String!): snPo_GlideProminTaskMining_TaskMiningProjectDetailsResponse
+}
+
+type snPo_GlideProminTaskMining_TaskMiningProjectDetailsResponse {
+  processMiningProjectId: String
+  trackerId: String
+  projectDescription: String
+  projectName: String
+  status: String
+  message: String
+}
+
+type snPo_GlideProminTaskMining_UpdateTaskMiningProjectIdResponse {
+  success: Boolean
+  message: String
+}

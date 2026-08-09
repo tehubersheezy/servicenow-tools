@@ -1,0 +1,248 @@
+type AppUIBSiteMap_query {
+  sitemap: AppUIBSiteMap_sitemap_Query
+}
+
+type AppUIBSiteMap_mutation {
+  sitemap: AppUIBSiteMap_sitemap_Mutation
+}
+
+type AppUIBSiteMap_sitemap_Audience {
+  applicability: AppUIBSiteMap_sitemap_Display
+  active: AppUIBSiteMap_sitemap_DisplayBoolean
+  order: AppUIBSiteMap_sitemap_DisplayNumeric
+  sys_id: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Scope
+  domain: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+}
+
+input AppUIBSiteMap_sitemap_AudienceInput {
+  sysId: String
+  audienceId: String!
+  active: Boolean = true
+  order: Int = 0
+  remove: Boolean = false
+}
+
+type AppUIBSiteMap_sitemap_Button {
+  toolbarId: ID!
+  order: Int
+  icon: String
+  label: String
+  route: String
+  viewportRoute: String
+  group: String
+}
+
+input AppUIBSiteMap_sitemap_ButtonInput {
+  toolbarId: ID!
+  order: Int = 0
+  icon: String!
+  label: String!
+  route: String
+  viewportRoute: String
+  group: String!
+}
+
+type AppUIBSiteMap_sitemap_Display {
+  value: String
+  displayValue: String
+}
+
+type AppUIBSiteMap_sitemap_DisplayBoolean {
+  value: Boolean
+  displayValue: String
+}
+
+type AppUIBSiteMap_sitemap_DisplayNumeric {
+  value: Int
+  displayValue: String
+}
+
+type AppUIBSiteMap_sitemap_Footer {
+  primaryFooter: Boolean
+  secondaryFooter: Boolean
+  sys_id: String
+  link: String
+  table: String
+  scope: AppUIBSiteMap_sitemap_Display
+  domain: AppUIBSiteMap_sitemap_Display
+  sys_policy: String
+  sys_updated_on: String
+  sys_updated_by: String
+}
+
+type AppUIBSiteMap_sitemap_Header {
+  notifications: Boolean
+  navigationMenu: Boolean
+  globalSearch: Boolean
+  globalSearchPrivate: Boolean
+  globalSearchPublic: Boolean
+  sys_id: String
+  link: String
+  table: String
+  scope: AppUIBSiteMap_sitemap_Display
+  domain: AppUIBSiteMap_sitemap_Display
+  sys_policy: String
+  sys_updated_on: String
+  sys_updated_by: String
+}
+
+type AppUIBSiteMap_sitemap_Macroponent {
+  name: AppUIBSiteMap_sitemap_Display
+  layout: AppUIBSiteMap_sitemap_Display
+  composition: AppUIBSiteMap_sitemap_Display
+  sys_id: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Scope
+}
+
+type AppUIBSiteMap_sitemap_Mutation {
+  headerUpdate(
+    experienceId: String!
+    notifications: Boolean
+    navigationMenu: Boolean
+    globalSearch: Boolean
+    globalSearchPrivate: Boolean
+    globalSearchPublic: Boolean
+  ): AppUIBSiteMap_sitemap_Header
+  footerUpdate(experienceId: String!, primaryFooter: Boolean, secondaryFooter: Boolean): AppUIBSiteMap_sitemap_Footer
+  toolbarUpdate(experienceId: String!, buttons: [AppUIBSiteMap_sitemap_ButtonInput]): [AppUIBSiteMap_sitemap_Toolbar]
+  searchUpdate(experienceId: String!, selectedSearchSource: String): AppUIBSiteMap_sitemap_Search
+  primaryThemeUpsert(appConfigId: String!, primaryThemeId: String, no_domain: Boolean): AppUIBSiteMap_sitemap_PrimaryTheme
+  audienceUpsert(
+    screenId: String!
+    audiences: [AppUIBSiteMap_sitemap_AudienceInput]
+    no_domain: Boolean
+  ): [AppUIBSiteMap_sitemap_Audience]
+}
+
+type AppUIBSiteMap_sitemap_PrimaryTheme {
+  theme: AppUIBSiteMap_sitemap_Display
+  sys_id: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Display
+  domain: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+}
+
+type AppUIBSiteMap_sitemap_Query {
+  header(experienceId: ID!): AppUIBSiteMap_sitemap_Header
+  footer(experienceId: ID!): AppUIBSiteMap_sitemap_Footer
+  search(experienceId: ID!): AppUIBSiteMap_sitemap_Search
+  toolbar(experienceId: ID!): AppUIBSiteMap_sitemap_Toolbar
+  screens(sys_id: String, query_conditions: String, no_domain: Boolean): [AppUIBSiteMap_sitemap_Screen]
+  subroute(
+    sys_id: String
+    query_conditions: String
+    element_id: String
+    no_domain: Boolean
+  ): AppUIBSiteMap_sitemap_SubRoute
+}
+
+type AppUIBSiteMap_sitemap_Route {
+  name: AppUIBSiteMap_sitemap_Display
+  order: AppUIBSiteMap_sitemap_DisplayNumeric
+  app_config: AppUIBSiteMap_sitemap_Display
+  parent_macroponent: AppUIBSiteMap_sitemap_Display
+  parent_macroponent_composition_element_id: AppUIBSiteMap_sitemap_Display
+  route_type: AppUIBSiteMap_sitemap_Display
+  extension_point: AppUIBSiteMap_sitemap_Display
+  optional_parameters: AppUIBSiteMap_sitemap_Display
+  fields: AppUIBSiteMap_sitemap_Display
+  screen_type: AppUIBSiteMap_sitemap_ScreenType
+  parent_screen: AppUIBSiteMap_sitemap_Screen
+  sys_id: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Scope
+  package: AppUIBSiteMap_sitemap_Display
+}
+
+type AppUIBSiteMap_sitemap_Scope {
+  value: String
+  displayValue: String
+  scopeName: String
+}
+
+type AppUIBSiteMap_sitemap_Screen {
+  active: AppUIBSiteMap_sitemap_DisplayBoolean
+  audiences: [AppUIBSiteMap_sitemap_Audience]
+  name: AppUIBSiteMap_sitemap_Display
+  order: AppUIBSiteMap_sitemap_DisplayNumeric
+  screen_condition: AppUIBSiteMap_sitemap_Display
+  screen_type: AppUIBSiteMap_sitemap_Display
+  macroponent: AppUIBSiteMap_sitemap_Macroponent
+  screenConditionCount: Int
+  sys_overrides: AppUIBSiteMap_sitemap_Display
+  sys_id: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Scope
+  domain: AppUIBSiteMap_sitemap_Display
+  package: AppUIBSiteMap_sitemap_Display
+}
+
+type AppUIBSiteMap_sitemap_ScreenCollection {
+  name: AppUIBSiteMap_sitemap_Display
+  routes: [AppUIBSiteMap_sitemap_Route]
+  sys_id: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Scope
+}
+
+type AppUIBSiteMap_sitemap_ScreenType {
+  name: AppUIBSiteMap_sitemap_Display
+  screens: [AppUIBSiteMap_sitemap_Screen]
+  sys_id: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Scope
+}
+
+type AppUIBSiteMap_sitemap_Search {
+  selectedSearchSource: String
+  sys_id: String
+  link: String
+  table: String
+  scope: AppUIBSiteMap_sitemap_Display
+  domain: AppUIBSiteMap_sitemap_Display
+  sys_policy: String
+  sys_updated_on: String
+  sys_updated_by: String
+}
+
+type AppUIBSiteMap_sitemap_SubRoute {
+  name: AppUIBSiteMap_sitemap_Display
+  macroponent: AppUIBSiteMap_sitemap_Macroponent
+  screen_collection: AppUIBSiteMap_sitemap_ScreenCollection
+  sys_id: AppUIBSiteMap_sitemap_Display
+  sys_updated_on: AppUIBSiteMap_sitemap_Display
+  sys_updated_by: AppUIBSiteMap_sitemap_Display
+  sys_policy: AppUIBSiteMap_sitemap_Display
+  scope: AppUIBSiteMap_sitemap_Scope
+  domain: AppUIBSiteMap_sitemap_Display
+  routes: [AppUIBSiteMap_sitemap_Route]
+}
+
+type AppUIBSiteMap_sitemap_Toolbar {
+  buttons: [AppUIBSiteMap_sitemap_Button]
+  sys_id: String
+  link: String
+  table: String
+  scope: AppUIBSiteMap_sitemap_Display
+  domain: AppUIBSiteMap_sitemap_Display
+  sys_policy: String
+  sys_updated_on: String
+  sys_updated_by: String
+}

@@ -1,0 +1,19 @@
+type snOmnichInteract_query {
+  emailSessionTabs: snOmnichInteract_emailSessionTabs_Query
+}
+
+type snOmnichInteract_emailSessionTabs_GetAllTabInfoType {
+  results: [snOmnichInteract_emailSessionTabs_TabDetailType]
+}
+
+type snOmnichInteract_emailSessionTabs_Query {
+  getAllTabDetails(records: [String]): snOmnichInteract_emailSessionTabs_GetAllTabInfoType
+}
+
+type snOmnichInteract_emailSessionTabs_TabDetailType {
+  count: Int
+  interactionId: String
+  lastMsgRead: String
+  lastMsgSent: String
+  lastEmailReceived: String
+}

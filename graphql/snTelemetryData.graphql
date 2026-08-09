@@ -1,0 +1,24 @@
+type snTelemetryData_query {
+  telemetryDataConnectorKpis: snTelemetryData_telemetryDataConnectorKpis_Query
+  telemetryPARGroupby: snTelemetryData_telemetryPARGroupby_Query
+}
+
+type snTelemetryData_telemetryDataConnectorKpis_Query {
+  kpis(start: Int, count: Int, searchQuery: String): [snTelemetryData_telemetryDataConnectorKpis_telemetryKpis]
+  result: String
+}
+
+type snTelemetryData_telemetryDataConnectorKpis_telemetryKpis {
+  name: String
+  id: String
+}
+
+type snTelemetryData_telemetryPARGroupby_groupbyOption {
+  id: String
+  label: String
+}
+
+type snTelemetryData_telemetryPARGroupby_Query {
+  options(serviceName: String, metricName: String): [snTelemetryData_telemetryPARGroupby_groupbyOption]
+  result: String
+}

@@ -1,0 +1,361 @@
+type snNluWorkbench_query {
+  nlu_advanced: snNluWorkbench_nlu_advanced_Query
+}
+
+type snNluWorkbench_mutation {
+  nlu_advanced: snNluWorkbench_nlu_advanced_Mutation
+}
+
+type snNluWorkbench_nlu_advanced_CapabilityResponse {
+  status: String!
+  nluProperties: [snNluWorkbench_nlu_advanced_NluProperty]
+}
+
+type snNluWorkbench_nlu_advanced_ConflictCountResp {
+  status: String!
+  count: Int
+  executionId: String
+  message: String
+}
+
+input snNluWorkbench_nlu_advanced_ConflictFilter {
+  showModerate: Boolean
+  hideReviewed: Boolean
+}
+
+type snNluWorkbench_nlu_advanced_ConflictPairsData {
+  critical: [snNluWorkbench_nlu_advanced_UtterancePair]
+  high: [snNluWorkbench_nlu_advanced_UtterancePair]
+}
+
+type snNluWorkbench_nlu_advanced_ConflictPairsResponse {
+  status: String!
+  message: String
+  data: snNluWorkbench_nlu_advanced_ConflictPairsData
+}
+
+enum snNluWorkbench_nlu_advanced_ConflictType {
+  critical
+  warning
+  high
+}
+
+type snNluWorkbench_nlu_advanced_CopyTestSetResponse {
+  status: String
+  data: snNluWorkbench_nlu_advanced_CopyTestSetStat
+}
+
+type snNluWorkbench_nlu_advanced_CopyTestSetStat {
+  inserts: Int!
+  total: Int!
+}
+
+type snNluWorkbench_nlu_advanced_DeleteTestUtterancesResponse {
+  status: String
+  count: Int
+}
+
+type snNluWorkbench_nlu_advanced_ExpertFeedbackgetIntentList {
+  optimizeData: snNluWorkbench_nlu_advanced_ModelOptimizeInfo
+  labeledCountSinceLastOptimized: Int
+  intents: [snNluWorkbench_nlu_advanced_ExpertFeedbackIntentData]
+}
+
+type snNluWorkbench_nlu_advanced_ExpertFeedbackgetIntentListResponse {
+  status: String!
+  message: String
+  data: snNluWorkbench_nlu_advanced_ExpertFeedbackgetIntentList
+}
+
+type snNluWorkbench_nlu_advanced_ExpertFeedbackIntentData {
+  intentId: String!
+  name: String!
+  label: String!
+  reviewers: [snNluWorkbench_nlu_advanced_ExpertFeedbackReviewer]
+  reviewProgress: snNluWorkbench_nlu_advanced_ExpertFeedbackProgress
+}
+
+type snNluWorkbench_nlu_advanced_ExpertFeedbackModelData {
+  modelId: String!
+  displayName: String!
+  intentCount: Int!
+  name: String!
+  language: String!
+  lastTunedOn: String
+}
+
+type snNluWorkbench_nlu_advanced_ExpertFeedbackModelList {
+  modelList: [snNluWorkbench_nlu_advanced_ExpertFeedbackModelData]
+  hasPublishedModels: Boolean
+  uncategorizedUtterances: snNluWorkbench_nlu_advanced_ExpertFeedbackProgress
+}
+
+type snNluWorkbench_nlu_advanced_ExpertFeedbackModelListResponse {
+  status: String!
+  message: String
+  data: snNluWorkbench_nlu_advanced_ExpertFeedbackModelList
+}
+
+type snNluWorkbench_nlu_advanced_ExpertFeedbackProgress {
+  todo: Int
+  done: Int
+  further_review: Int
+}
+
+""" [TBD]"""
+type snNluWorkbench_nlu_advanced_ExpertFeedbackReviewer {
+  userId: String
+  userName: String
+}
+
+type snNluWorkbench_nlu_advanced_IntentData {
+  id: String!
+  name: String!
+}
+
+type snNluWorkbench_nlu_advanced_ModelOptimizationResponse {
+  status: String
+  count: Int
+  message: String
+  data: [snNluWorkbench_nlu_advanced_ModelOptimizationResult]
+}
+
+type snNluWorkbench_nlu_advanced_ModelOptimizationResult {
+  utterance: String
+  expectedIntent: String
+  currentPredictions: String
+  optimizedPredictions: String
+}
+
+type snNluWorkbench_nlu_advanced_ModelOptimizeInfo {
+  executionId: String
+  definitionId: String
+  status: String
+  lastTrainedVersionOptimizedOn: String
+  latestModelPublished: Boolean
+}
+
+type snNluWorkbench_nlu_advanced_ModelSupportedLanguage {
+  status: String
+  message: String
+  data: [String]
+}
+
+type snNluWorkbench_nlu_advanced_ModelVersionResponse {
+  version: String!
+}
+
+type snNluWorkbench_nlu_advanced_Mutation {
+  updateBatchTestSetStatus(testSetId: String!, stageTable: String!): String
+  updateFeedback(selectedIntent: String!, feedbackConfig: String!): snNluWorkbench_nlu_advanced_UpdateFeedbackResponse
+  copyLabeledDataToBatchTest(modelId: String!, modelName: String!, testSetId: String!): snNluWorkbench_nlu_advanced_TestSetQualityResponse
+  deleteTestUtterances(testUttrIds: [String]!): snNluWorkbench_nlu_advanced_DeleteTestUtterancesResponse
+  copyTestSetData(sourceId: String!, targetId: String!): snNluWorkbench_nlu_advanced_CopyTestSetResponse
+}
+
+type snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeList {
+  id: String!
+  createdOn: String!
+  groupedUtterance: String
+  modelName: String
+  outcome: String
+  prediction: String
+  utterance: String!
+}
+
+type snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeListResponse {
+  status: String!
+  count: Int
+  message: String
+  data: [snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeList]
+}
+
+type snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeStat {
+  singleCorrect: Int!
+  correctAmongMultiple: Int!
+  singleIncorrect: Int!
+  incorrectAmongMultiple: Int!
+  noPrediction: Int!
+  singleUnknown: Int!
+  unsupported: Int!
+}
+
+type snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeStatResponse {
+  status: String!
+  data: snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeStat
+}
+
+type snNluWorkbench_nlu_advanced_NluProperty {
+  name: String!
+  value: String!
+}
+
+type snNluWorkbench_nlu_advanced_Notification {
+  type: String
+  message: String
+}
+
+type snNluWorkbench_nlu_advanced_OptNotificationsResponse {
+  status: String
+  message: String
+  notifications: [snNluWorkbench_nlu_advanced_Notification]
+}
+
+type snNluWorkbench_nlu_advanced_OutcomeCount {
+  id: String
+  title: String
+  value: Int
+}
+
+type snNluWorkbench_nlu_advanced_QualityValue {
+  total: Int
+  covered: Int
+  coverage: Float
+}
+
+type snNluWorkbench_nlu_advanced_Query {
+  getModelOptimizationChanges(
+    executionId: String!
+    currentOutcome: [String]!
+    optimizedOutcome: String!
+    offset: Int!
+    limit: Int!
+    sortBy: String!
+    sortOrder: String!
+  ): snNluWorkbench_nlu_advanced_ModelOptimizationResponse
+  getOptimizationNotifications(executionId: String!): snNluWorkbench_nlu_advanced_OptNotificationsResponse
+  getTestRunData(executionId: String!): snNluWorkbench_nlu_advanced_TestRunDataResponse
+  getTestRunDataWithLabel(modelId: String!): snNluWorkbench_nlu_advanced_TestRunDataResponseWithLabel
+  getSuportedLanguages(releaseFeature: String!): snNluWorkbench_nlu_advanced_ModelSupportedLanguage
+  getConflictsCount(modelId: String!, type: snNluWorkbench_nlu_advanced_ConflictType): snNluWorkbench_nlu_advanced_ConflictCountResp
+  getConflictsCountForIntent(intentId: String!, type: snNluWorkbench_nlu_advanced_ConflictType): snNluWorkbench_nlu_advanced_ConflictCountResp
+  getConflictPairs(
+    executionId: String!
+    intentPair: [String]!
+    filters: snNluWorkbench_nlu_advanced_ConflictFilter
+    scope: String
+  ): snNluWorkbench_nlu_advanced_ConflictPairsResponse
+  getBatchTestReportInfo(modelId: String!, isOptimize: Boolean, trainedVersion: String): snNluWorkbench_nlu_advanced_ReportInfo
+  getTestSetQuality(models: [String]!, testSetId: String!, isOptimize: Boolean!): snNluWorkbench_nlu_advanced_TestSetQualityResponse
+  getTestCoverage(model: String!): snNluWorkbench_nlu_advanced_QualityValue
+  getExpertFeedbackModelList: snNluWorkbench_nlu_advanced_ExpertFeedbackModelListResponse
+  getExpertFeedbackIntentList(modelId: String): snNluWorkbench_nlu_advanced_ExpertFeedbackgetIntentListResponse
+  getNLUPerformanceOutcomeList(
+    selectedIds: [String]!
+    encodedQuery: String!
+    includeDynamicTranslation: String!
+    offset: Int!
+    limit: Int!
+  ): snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeListResponse
+  getNLUPerformanceOutcomeStat(encodedQuery: String!, includeDynamicTranslation: String!): snNluWorkbench_nlu_advanced_NLUPerformanceOutcomeStatResponse
+  getUnsupportedUtteranceCount(encodedQuery: String!): snNluWorkbench_nlu_advanced_UnsupportedUtteranceCountResponse
+  getModelVersion(modelId: String!): snNluWorkbench_nlu_advanced_ModelVersionResponse
+  getCapability(language: String!, modelVersion: String!): snNluWorkbench_nlu_advanced_CapabilityResponse
+  getTestUtteranceCount(modelId: String!, intentName: String!): snNluWorkbench_nlu_advanced_TestUtteranceCountResponse
+  getSkippedUtterancesCountForClone(modelId: String!, testSetId: String!): snNluWorkbench_nlu_advanced_SkippedUtteranceCountResponse
+}
+
+type snNluWorkbench_nlu_advanced_ReportData {
+  definitionId: String
+  executionId: String
+  status: String
+  hasCompletedReport: Boolean
+}
+
+type snNluWorkbench_nlu_advanced_ReportInfo {
+  status: String
+  reportInfo: snNluWorkbench_nlu_advanced_ReportData
+}
+
+type snNluWorkbench_nlu_advanced_SkippedUtteranceCountResponse {
+  count: Int
+}
+
+type snNluWorkbench_nlu_advanced_TestRunData {
+  currentCorrect: Int
+  currentCorrectAmongMultiple: Int
+  currentIncorrect: Int
+  currentSkipped: Int
+  recommendedCorrect: Int
+  recommendedCorrectAmongMultiple: Int
+  recommendedIncorrect: Int
+  recommendedSkipped: Int
+}
+
+type snNluWorkbench_nlu_advanced_TestRunDataResponse {
+  status: String
+  message: String
+  data: snNluWorkbench_nlu_advanced_TestRunData
+}
+
+type snNluWorkbench_nlu_advanced_TestRunDataResponseWithLabel {
+  status: String
+  message: String
+  data: snNluWorkbench_nlu_advanced_TestRunDataWithLabel
+}
+
+type snNluWorkbench_nlu_advanced_TestRunDataWithLabel {
+  definitionId: String
+  executionId: String
+  selected_type: String
+  status: String
+  trainedVersion: String
+  publishedVersion: String
+  testTrainedVersion: String
+  current: [snNluWorkbench_nlu_advanced_OutcomeCount]
+  optimized: [snNluWorkbench_nlu_advanced_OutcomeCount]
+  isModelOptimizedEnough: Boolean
+}
+
+type snNluWorkbench_nlu_advanced_TestSetQualityData {
+  name: String
+  type: String
+  value: snNluWorkbench_nlu_advanced_QualityValue
+  message: String
+  skipedUtterances: String
+  title: String
+}
+
+type snNluWorkbench_nlu_advanced_TestSetQualityResponse {
+  status: String
+  message: String
+  data: snNluWorkbench_nlu_advanced_TestSetQualityResponseData
+}
+
+type snNluWorkbench_nlu_advanced_TestSetQualityResponseData {
+  qualityCheck: String
+  qualityData: [snNluWorkbench_nlu_advanced_TestSetQualityData]
+}
+
+type snNluWorkbench_nlu_advanced_TestUtteranceCountResponse {
+  status: String
+  message: String
+  count: Int
+}
+
+type snNluWorkbench_nlu_advanced_UnsupportedUtteranceCountResponse {
+  status: String!
+  count: Int!
+}
+
+type snNluWorkbench_nlu_advanced_UpdateFeedbackResponse {
+  status: String
+  message: String
+  reviewProgress: snNluWorkbench_nlu_advanced_ExpertFeedbackProgress
+}
+
+type snNluWorkbench_nlu_advanced_UtteranceData {
+  id: String!
+  text: String!
+  original: String
+  readOnly: Boolean
+}
+
+type snNluWorkbench_nlu_advanced_UtterancePair {
+  sysId: String
+  ignored: Boolean
+  utterance1: snNluWorkbench_nlu_advanced_UtteranceData
+  utterance2: snNluWorkbench_nlu_advanced_UtteranceData
+  intent1: snNluWorkbench_nlu_advanced_IntentData
+  intent2: snNluWorkbench_nlu_advanced_IntentData
+}

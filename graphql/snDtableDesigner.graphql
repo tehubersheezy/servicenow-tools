@@ -1,0 +1,307 @@
+type snDtableDesigner_query {
+  decisionInput: snDtableDesigner_decisionInput_Query
+  decision: snDtableDesigner_decision_Query
+  comparisonDisplayValue: snDtableDesigner_comparisonDisplayValue_Query
+  decisionCondition: snDtableDesigner_decisionCondition_Query
+}
+
+type snDtableDesigner_mutation {
+  decisionInput: snDtableDesigner_decisionInput_Mutation
+  decision: snDtableDesigner_decision_Mutation
+  decisionCondition: snDtableDesigner_decisionCondition_Mutation
+}
+
+type snDtableDesigner_comparisonDisplayValue_ChoiceDisplayResponse {
+  type: String
+  missingChoices: [String]
+  displayValue: String
+  conditionSysId: String
+  decisionSysId: String
+}
+
+type snDtableDesigner_comparisonDisplayValue_Query {
+  getReferenceDisplayValue(
+    tableName: String!
+    sysId: String!
+    conditionSysId: String
+    decisionSysId: String
+  ): snDtableDesigner_comparisonDisplayValue_ReferenceDisplayResponse
+  getChoiceDisplayValue(
+    name: String!
+    element: String!
+    choiceValues: String!
+    conditionSysId: String
+    decisionSysId: String
+  ): snDtableDesigner_comparisonDisplayValue_ChoiceDisplayResponse
+}
+
+type snDtableDesigner_comparisonDisplayValue_ReferenceDisplayResponse {
+  type: String
+  displayValue: String
+  conditionSysId: String
+  decisionSysId: String
+}
+
+type snDtableDesigner_decision_AnswerElementValue {
+  name: String
+  value: String
+  displayValue: String
+}
+
+type snDtableDesigner_decision_DecisionAnswerField {
+  value: String
+  displayValue: String
+  answerElementValues: [snDtableDesigner_decision_AnswerElementValue]
+}
+
+type snDtableDesigner_decision_DecisionDetails {
+  active: Boolean
+  sys_id: String
+  label: String
+  condition: String
+  decision_table: snDtableDesigner_decision_DecisionField
+  answer: snDtableDesigner_decision_DecisionAnswerField
+  default_answer: Boolean
+  sys_name: String
+  sys_scope: snDtableDesigner_decision_DecisionField
+  input_table: String
+  order: Int
+  marked_for_deletion: Boolean
+}
+
+type snDtableDesigner_decision_DecisionField {
+  value: String
+  displayValue: String
+}
+
+type snDtableDesigner_decision_Mutation {
+  syncDecisionsFromDelta(sys_id: String!, delta: String!, answerTable: String!): String
+  deleteObsoleteDecisions(sys_id: String!): String
+}
+
+type snDtableDesigner_decision_ObsoleteDecisionDetails {
+  sys_id: String
+  sys_scope: snDtableDesigner_decision_DecisionField
+}
+
+type snDtableDesigner_decision_Query {
+  getDecisionsByDecisionTable(
+    sys_id: String!
+    first_row: Int
+    last_row: Int
+    default_answer: String!
+    delta: String
+  ): [snDtableDesigner_decision_DecisionDetails]
+  getObsoleteDecisionsByDecisionTable(sys_id: String!): [snDtableDesigner_decision_ObsoleteDecisionDetails]
+}
+
+input snDtableDesigner_decisionCondition_CreateDecisionConditionInput {
+  label: String!
+  decision_input: String!
+  decision_table: String!
+  order: Int!
+  type: String!
+  description: String
+  field: String
+  field_label: String
+  default_operator: String!
+  field_parent_table: String
+  reference: String
+  parent: String
+  sys_scope: String
+}
+
+type snDtableDesigner_decisionCondition_DecisionConditionDeleteResponse {
+  status: String
+  errorCode: String
+  errorMessage: String
+}
+
+type snDtableDesigner_decisionCondition_DecisionConditionDetails {
+  sys_id: String
+  label: String
+  decision_input: snDtableDesigner_decisionCondition_DecisionConditionField
+  decision_table: snDtableDesigner_decisionCondition_DecisionConditionField
+  order: Int
+  type: snDtableDesigner_decisionCondition_TypeResponse
+  description: String
+  field: String
+  field_label: String
+  sys_scope: snDtableDesigner_decisionCondition_DecisionConditionField
+  default_operator: String
+  reference: snDtableDesigner_decisionCondition_ReferenceTable
+  field_parent_table: String
+  parent: snDtableDesigner_decisionCondition_DecisionConditionField
+}
+
+type snDtableDesigner_decisionCondition_DecisionConditionField {
+  value: String
+  displayValue: String
+}
+
+union snDtableDesigner_decisionCondition_DecisionConditionResponse = snDtableDesigner_decisionCondition_Error | snDtableDesigner_decisionCondition_DecisionConditionDetails
+
+type snDtableDesigner_decisionCondition_Error {
+  status: String
+  errorCode: String
+  errorMessage: String
+}
+
+type snDtableDesigner_decisionCondition_Mutation {
+  createDecisionCondition(
+    decisionCondition: snDtableDesigner_decisionCondition_CreateDecisionConditionInput!
+  ): snDtableDesigner_decisionCondition_DecisionConditionResponse
+  updateDecisionCondition(
+    sys_id: String!
+    decisionCondition: snDtableDesigner_decisionCondition_UpdateDecisionConditionInput
+  ): snDtableDesigner_decisionCondition_DecisionConditionResponse
+  deleteDecisionCondition(sys_id: String!): snDtableDesigner_decisionCondition_DecisionConditionDeleteResponse
+}
+
+type snDtableDesigner_decisionCondition_Query {
+  getDecisionConditionsByDecisionTable(sys_id: String!, delta: String): [snDtableDesigner_decisionCondition_DecisionConditionDetails]
+}
+
+type snDtableDesigner_decisionCondition_ReferenceTable {
+  value: String
+  displayValue: String
+}
+
+type snDtableDesigner_decisionCondition_TypeResponse {
+  value: String
+  displayValue: String
+}
+
+input snDtableDesigner_decisionCondition_UpdateDecisionConditionInput {
+  label: String
+  decision_input: String
+  decision_table: String
+  order: Int
+  type: String
+  description: String
+  field: String
+  field_label: String
+  default_operator: String
+  field_parent_table: String
+  reference: String
+  parent: String
+  sys_scope: String
+}
+
+type snDtableDesigner_decisionInput_ChoiceResponse {
+  sys_id: snDtableDesigner_decisionInput_GlideField
+  name: snDtableDesigner_decisionInput_GlideField
+  label: snDtableDesigner_decisionInput_GlideField
+  value: snDtableDesigner_decisionInput_GlideField
+  sequence: snDtableDesigner_decisionInput_GlideField
+  element: snDtableDesigner_decisionInput_GlideField
+  hint: snDtableDesigner_decisionInput_GlideField
+  dependent_value: snDtableDesigner_decisionInput_GlideField
+  language: snDtableDesigner_decisionInput_GlideField
+}
+
+input snDtableDesigner_decisionInput_CreateDecisionInput {
+  model: String
+  internal_type: String
+  label: String
+  element: String
+  mandatory: String
+  max_length: String
+  order: String
+  choice: String
+  choice_table: String
+  choice_field: String
+  reference: String
+  reference_qual_condition: String
+  active: String
+  display: String
+  read_only: String
+  parent: String
+  sys_scope: String
+}
+
+type snDtableDesigner_decisionInput_DecisionInputDeleteResponse {
+  sys_id: String
+  modified_count: Int
+}
+
+type snDtableDesigner_decisionInput_DecisionInputDetails {
+  sys_class_name: snDtableDesigner_decisionInput_GlideField
+  sys_id: snDtableDesigner_decisionInput_GlideField
+  internal_type: snDtableDesigner_decisionInput_GlideField
+  reference: snDtableDesigner_decisionInput_GlideField
+  sys_scope: snDtableDesigner_decisionInput_GlideField
+  element: snDtableDesigner_decisionInput_GlideField
+  max_length: snDtableDesigner_decisionInput_GlideIntField
+  name: snDtableDesigner_decisionInput_GlideField
+  label: snDtableDesigner_decisionInput_GlideField
+  active: snDtableDesigner_decisionInput_GlideBooleanField
+  mandatory: snDtableDesigner_decisionInput_GlideBooleanField
+  order: snDtableDesigner_decisionInput_GlideIntField
+  choice: snDtableDesigner_decisionInput_GlideField
+  choices: [snDtableDesigner_decisionInput_ChoiceResponse]
+  reference_qual: snDtableDesigner_decisionInput_GlideField
+  reference_qual_condition: snDtableDesigner_decisionInput_GlideField
+  choice_field: snDtableDesigner_decisionInput_GlideFieldName
+  choice_table: snDtableDesigner_decisionInput_GlideFieldName
+  parent: snDtableDesigner_decisionInput_GlideField
+  model: snDtableDesigner_decisionInput_GlideField
+}
+
+union snDtableDesigner_decisionInput_DecisionInputResponse = snDtableDesigner_decisionInput_Error | snDtableDesigner_decisionInput_DecisionInputDetails
+
+type snDtableDesigner_decisionInput_Error {
+  status: String
+  errorCode: String
+  errorMessage: String
+}
+
+type snDtableDesigner_decisionInput_GlideBooleanField {
+  value: Boolean
+  displayValue: String
+}
+
+type snDtableDesigner_decisionInput_GlideField {
+  value: String
+  displayValue: String
+}
+
+type snDtableDesigner_decisionInput_GlideFieldName {
+  value: String
+  displayValue: String
+}
+
+type snDtableDesigner_decisionInput_GlideIntField {
+  value: Int
+  displayValue: String
+}
+
+type snDtableDesigner_decisionInput_Mutation {
+  createDecisionInput(decisionInput: snDtableDesigner_decisionInput_CreateDecisionInput!): snDtableDesigner_decisionInput_DecisionInputResponse
+  updateDecisionInput(
+    sys_id: String!
+    decisionInput: snDtableDesigner_decisionInput_UpdateDecisionInput
+  ): snDtableDesigner_decisionInput_DecisionInputResponse
+  deleteDecisionInput(sys_id: String!): snDtableDesigner_decisionInput_DecisionInputDeleteResponse
+}
+
+type snDtableDesigner_decisionInput_Query {
+  getDecisionInputsByDecisionTable(sys_id: String!, delta: String): [snDtableDesigner_decisionInput_DecisionInputDetails]
+}
+
+input snDtableDesigner_decisionInput_UpdateDecisionInput {
+  internal_type: String
+  label: String
+  element: String
+  parent: String
+  model: String
+  mandatory: String
+  max_length: String
+  order: String
+  reference: String
+  reference_qual_condition: String
+  choice: String
+  choice_table: String
+  choice_field: String
+  sys_scope: String
+}

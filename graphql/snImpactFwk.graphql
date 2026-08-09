@@ -1,0 +1,16 @@
+type snImpactFwk_query {
+  getDynamicInputMappings: snImpactFwk_getDynamicInputMappings_Query
+}
+
+type snImpactFwk_getDynamicInputMappings_Data {
+  inputs: [snImpactFwk_getDynamicInputMappings_input]
+}
+
+type snImpactFwk_getDynamicInputMappings_input {
+  name: String
+  pillValue: String
+}
+
+type snImpactFwk_getDynamicInputMappings_Query {
+  getInputs(actionId: String!): snImpactFwk_getDynamicInputMappings_Data
+}

@@ -1,0 +1,33 @@
+type snKmWsUib_query {
+  relatedContent: snKmWsUib_relatedContent_Query
+}
+
+type snKmWsUib_relatedContent_Field {
+  displayValue: String
+  value: String
+  label: String
+  type: String
+  name: String
+}
+
+type snKmWsUib_relatedContent_Item {
+  displayField: String
+  id: String
+  link: String
+  order: Int
+  secondaryFields: [snKmWsUib_relatedContent_Field]
+}
+
+type snKmWsUib_relatedContent_Query {
+  getRelatedArticles(
+    maxRecords: Int
+    displayField: String
+    secondaryFields: String
+    knowledgeBase: ID
+    articleId: ID
+    sourceId: ID!
+    sourceTable: String!
+    sourceColumn: String!
+    targetColumn: String!
+  ): [snKmWsUib_relatedContent_Item]
+}

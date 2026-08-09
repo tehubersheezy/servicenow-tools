@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "scrape:openapi": "node src/scrape-openapi.js",
+    "scrape:graphql": "node src/scrape-graphql.js",
     "build:explorer": "node src/build-explorer.js",
+    "build:graphql-explorer": "node src/build-graphql-explorer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

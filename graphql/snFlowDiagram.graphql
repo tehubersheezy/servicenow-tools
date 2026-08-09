@@ -1,0 +1,88 @@
+type snFlowDiagram_query {
+  flowDiagram: snFlowDiagram_flowDiagram_Query
+}
+
+type snFlowDiagram_flowDiagram_ActionProperty {
+  name: String!
+  key: String!
+  sysId: String!
+  description: String
+  icon: String
+  category: String
+  categoryId: String
+  subCategory: String
+  order: Int
+  nodeType: snFlowDiagram_flowDiagram_NodeType
+  connectors: [snFlowDiagram_flowDiagram_Connector]
+  additionalProperties: snFlowDiagram_flowDiagram_AdditionalProperty
+}
+
+type snFlowDiagram_flowDiagram_ActionPropertyResponse {
+  actionProperties: [snFlowDiagram_flowDiagram_ActionProperty]
+  errors: [String]
+}
+
+type snFlowDiagram_flowDiagram_AdditionalProperty {
+  allowChildren: Boolean
+  iconBackground: String
+}
+
+type snFlowDiagram_flowDiagram_Connector {
+  active: Boolean
+  name: String
+  direction: String
+  order: String
+  sysId: String
+  fromMaxLinks: String
+  toMaxLinks: String
+  connectorPort: snFlowDiagram_flowDiagram_ConnectorPort
+}
+
+type snFlowDiagram_flowDiagram_ConnectorPort {
+  shapeTemplate: String
+  active: Boolean
+  offsetX: String
+  offsetY: String
+  spot: snFlowDiagram_flowDiagram_Spot
+}
+
+type snFlowDiagram_flowDiagram_MenuOption {
+  sysId: String
+  name: String
+  script: String
+  showOption: String
+  displayName: String
+  icon: String
+}
+
+type snFlowDiagram_flowDiagram_NodeType {
+  active: String
+  description: String
+  shapeTemplate: String
+  nodeType: String
+  sysId: String
+  allowDelete: Boolean
+  menuOptions: [snFlowDiagram_flowDiagram_MenuOption]
+  nodeTypeHandlers: [snFlowDiagram_flowDiagram_NodeTypeHandler]
+}
+
+type snFlowDiagram_flowDiagram_NodeTypeHandler {
+  script: String
+  type: String
+}
+
+type snFlowDiagram_flowDiagram_Query {
+  getActionPropertyMap(actionIdMap: String!): snFlowDiagram_flowDiagram_ActionPropertyResponse!
+  getTranslatedFlowFromDatabase(flowSysId: String!): snFlowDiagram_flowDiagram_Response!
+}
+
+type snFlowDiagram_flowDiagram_Response {
+  data: String!
+  errors: [String]!
+}
+
+type snFlowDiagram_flowDiagram_Spot {
+  sysId: String
+  x: String
+  y: String
+}

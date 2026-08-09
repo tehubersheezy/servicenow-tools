@@ -1,0 +1,115 @@
+type snExpSettings_query {
+  settings: snExpSettings_settings_Query
+}
+
+type snExpSettings_mutation {
+  settings: snExpSettings_settings_Mutation
+}
+
+type snExpSettings_settings_Button {
+  sysId: ID!
+  order: Int
+  icon: String
+  label: String
+  route: String
+  viewportRoute: String
+  group: String
+}
+
+input snExpSettings_settings_ButtonInput {
+  sysId: ID!
+  order: Int!
+  icon: String!
+  label: String!
+  route: String
+  viewportRoute: String
+  group: String!
+  deleted: Boolean
+  new: Boolean
+}
+
+type snExpSettings_settings_General {
+  title: String!
+  description: String
+  path: String!
+}
+
+type snExpSettings_settings_Mutation {
+  themeUpdate(sysId: ID!, primaryThemeId: ID!): snExpSettings_settings_ThemeResponse
+  generalUpdate(sysId: ID!, title: String!, description: String, path: String!): snExpSettings_settings_General
+  navigationUpdate(sysId: ID!, menu: Boolean!, footerTop: Boolean!, footerBottom: Boolean!): snExpSettings_settings_Navigation
+  toolbarUpdate(sysId: ID, buttons: [snExpSettings_settings_ButtonInput]): snExpSettings_settings_Toolbar
+  utilitiesUpdate(
+    sysId: ID!
+    notifications: Boolean!
+    globalSearch: Boolean!
+    selectedSearchSource: ID!
+  ): snExpSettings_settings_Utilities
+  searchUpdate(sysId: ID!, searchPublic: Boolean!, searchPrivate: Boolean!): snExpSettings_settings_Search
+}
+
+type snExpSettings_settings_Navigation {
+  headerSysId: ID!
+  menu: Boolean!
+  footerTop: Boolean!
+  footerBottom: Boolean!
+  menuSysId: ID!
+  footerSysId: ID!
+}
+
+type snExpSettings_settings_Query {
+  theme(sysId: ID!): snExpSettings_settings_ThemeResponse
+  toolbar(sysId: ID!): snExpSettings_settings_Toolbar
+  utilities(sysId: ID!): snExpSettings_settings_Utilities
+  navigation(sysId: ID!): snExpSettings_settings_Navigation
+  search(sysId: ID!): snExpSettings_settings_Search
+  settings(sysId: ID!): snExpSettings_settings_Settings
+}
+
+type snExpSettings_settings_Route {
+  id: String
+  label: String
+}
+
+type snExpSettings_settings_Search {
+  sysId: ID!
+  searchPublic: Boolean!
+  searchPrivate: Boolean!
+}
+
+type snExpSettings_settings_SearchSource {
+  id: ID!
+  label: String!
+}
+
+type snExpSettings_settings_Settings {
+  panelSysId: ID!
+  applicationType: String!
+}
+
+type snExpSettings_settings_Theme {
+  id: ID!
+  label: String!
+  order: Int
+}
+
+type snExpSettings_settings_ThemeResponse {
+  panelSysId: ID!
+  primaryThemeId: ID
+  themes: [snExpSettings_settings_Theme]
+}
+
+type snExpSettings_settings_Toolbar {
+  sysId: ID!
+  routes: [snExpSettings_settings_Route]
+  buttons: [snExpSettings_settings_Button]
+}
+
+type snExpSettings_settings_Utilities {
+  headerSysId: ID!
+  searchSysId: ID!
+  notifications: Boolean!
+  globalSearch: Boolean!
+  selectedSearchSource: String
+  searchSources: [snExpSettings_settings_SearchSource]
+}

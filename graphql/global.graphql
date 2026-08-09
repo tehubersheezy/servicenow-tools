@@ -1,0 +1,1370 @@
+type global_query {
+  DataResource: global_DataResource_Query
+  metrics: global_metrics_Query
+  snFlowDesigner: global_snFlowDesigner_Query
+  snTriggerDesigner: global_snTriggerDesigner_Query
+}
+
+type global_mutation {
+  metrics: global_metrics_Mutation
+  snFlowDesigner: global_snFlowDesigner_Mutation
+  snTriggerDesigner: global_snTriggerDesigner_Mutation
+}
+
+input global_DataResource_Binding {
+  address: [String]
+  category: String
+}
+
+type global_DataResource_DataResourceDataSet {
+  sysId: String
+  status: String
+  executionTime: String
+  executionResult: String
+  errors: [global_DataResource_Error]
+}
+
+type global_DataResource_Error {
+  message: String
+  errorType: String
+  locations: [Int]
+  validationErrorType: String
+}
+
+input global_DataResource_ExecutionRequestNode {
+  sysId: String
+  type: String
+  priority: String
+  instanceId: String
+  parentResourceId: String
+  inputValues: [global_DataResource_InputValues]
+}
+
+input global_DataResource_InputValues {
+  type: String
+  name: String
+  value: String
+  binding: global_DataResource_Binding
+}
+
+type global_DataResource_Query {
+  DataResourceDataSet(data: [global_DataResource_ExecutionRequestNode]!): [global_DataResource_DataResourceDataSet]
+}
+
+input global_metrics_ClientInteraction {
+  interactionId: String!
+  application: String!
+  applicationId: String!
+  type: String!
+  name: String
+  referrer: String
+  pageLoadTime: Float
+  timeToInteraction: Float
+  totalUiTime: Float
+  pageName: String
+  interruption: String
+  clientCacheHitRate: Float
+  data: String
+  uiTimeBeforeLoad: Float
+  uiTimeAfterLoad: Float
+  networkTime: Float
+  uiPolicyTime: Float
+  clientScriptsTime: Float
+  uxfDataBrokerRequestCount: Int
+  uxfDataBrokerTotalTime: Float
+  uxfDataBrokerExecutionCount: Int
+  events: [global_metrics_Event]
+  uxfClientScriptCount: Int
+  uxfClientScriptTime: Float
+  uxfPreProcessedDataBrokerCount: Int
+  uxfPreProcessedDataBrokerTime: Float
+  uxfViewportScriptConditionTotalTime: Float
+  uxfViewportScriptConditionCount: Int
+  uxfViewportRouteScriptConditionTotalTime: Float
+  uxfViewportRouteScriptConditionCount: Int
+  uxfPageProcessorTime: Float
+  uxfScreenRoute: String
+  uxfScreenFields: String
+  uxfScreenParams: String
+  ucCacheHit: Int
+  ucCacheMiss: Int
+  ucCacheStale: Int
+  ucCacheError: Int
+  ucCacheBuildTime: Float
+  ucCacheHitRate: Float
+  pageVarientSysId: String
+  contentDownloadTime: Float
+}
+
+type global_metrics_ClientInteractionType {
+  interactionId: String
+  application: String
+  applicationId: String
+  type: String!
+  name: String
+  referrer: String
+  pageLoadTime: Float
+  timeToInteraction: Float
+  totalUiTime: Float
+  pageName: String
+  interruption: String
+  clientCacheHitRate: Float
+  data: String
+  uiTimeBeforeLoad: Float
+  uiTimeAfterLoad: Float
+  networkTime: Float
+  uiPolicyTime: Float
+  clientScriptsTime: Float
+  events: [global_metrics_EventType]
+  transactions: [global_metrics_TransactionType]
+  uxfClientScriptCount: Int
+  uxfClientScriptTime: Float
+  uxfDataBrokerRequestCount: Int
+  uxfDataBrokerExecutionCount: Int
+  uxfDataBrokerTotalTime: Float
+  uxfPreProcessedDataBrokerCount: Int
+  uxfPreProcessedDataBrokerTime: Float
+  uxfViewportScriptConditionTotalTime: Float
+  uxfViewportScriptConditionCount: Int
+  uxfViewportRouteScriptConditionTotalTime: Float
+  uxfViewportRouteScriptConditionCount: Int
+  uxfPageProcessorTime: Float
+  uxfScreenRoute: String
+  uxfScreenFields: String
+  uxfScreenParams: String
+  ucCacheHit: Int
+  ucCacheMiss: Int
+  ucCacheStale: Int
+  ucCacheError: Int
+  ucCacheBuildTime: Float
+  ucCacheHitRate: Float
+  contentDownloadTime: Float
+}
+
+input global_metrics_Event {
+  id: String
+  type: String
+  name: String
+  time: Float
+  componentName: String
+  meta: String
+  seismicId: String
+  definitionId: String
+  definitionIdTable: String
+}
+
+type global_metrics_EventType {
+  id: String
+  type: String
+  name: String
+  time: Int
+  componentName: String
+  meta: String
+  seismicId: String
+  definitionId: String
+  definitionIdTable: String
+}
+
+type global_metrics_Mutation {
+  interaction(interaction: global_metrics_ClientInteraction): String
+}
+
+input global_metrics_Paging {
+  offset: Int
+  limit: Int
+}
+
+type global_metrics_Query {
+  interactions(paging: global_metrics_Paging): [global_metrics_ClientInteractionType]
+}
+
+type global_metrics_TransactionType {
+  url: String
+  userAgent: String
+  responseTime: Int
+  networkTime: Int
+  sqlTime: Int
+  sqlCount: Int
+  businessRuleTime: Int
+  businessRuleCount: Int
+}
+
+input global_snFlowDesigner_ActionInstance {
+  actionType: global_snFlowDesigner_ActionTypeDefinition
+  actionTypeSysId: String
+  aliasIds: [String]
+  aliasOverride: global_snFlowDesigner_AliasOverrideInput
+  comment: String
+  compiledSnapshot: String
+  deleted: Boolean
+  metadata: String
+  displayText: String
+  domainId: String
+  flowSysId: String
+  flowBlock: [global_snFlowDesigner_ComponentInstance]
+  generationSource: String
+  attributes: String
+  id: String
+  inputs: [global_snFlowDesigner_ActionInstanceValue]
+  name: String
+  order: String
+  outputs: [global_snFlowDesigner_FlowDesignVariable]
+  parent: String
+  parentActionTypeSysId: String
+  pharmacy: global_snFlowDesigner_Pharmacy
+  scope: String
+  snapshot: Boolean
+  status: String
+  uiUniqueIdentifier: String
+  type: String
+  copiedFrom: String
+  parentActionTypeId: String
+  flowVersion: String
+  uiComponentIndex: Int
+  parentUiId: String
+  internalName: String
+}
+
+input global_snFlowDesigner_ActionInstanceInput {
+  insert: [global_snFlowDesigner_ActionInstance]
+  update: [global_snFlowDesigner_ActionInstance]
+  delete: [String]
+}
+
+input global_snFlowDesigner_ActionInstanceValue {
+  actionInstanceSysId: String
+  id: String
+  name: String
+  value: global_snFlowDesigner_InstanceInputValue
+  displayValue: global_snFlowDesigner_InstanceInputValue
+  children: [global_snFlowDesigner_ActionInstanceValue]
+  parameter: global_snFlowDesigner_FlowDesignParameter
+  displayField: String
+  scriptActive: Boolean
+  script: [global_snFlowDesigner_ScriptInput]
+  scriptAsJsonString: String
+}
+
+input global_snFlowDesigner_ActionTypeDefinition {
+  access: String
+  action_template: String
+  active: Boolean
+  annotation: String
+  attributes: String
+  authored_version: Int
+  callable_by_client_api: Boolean
+  category: String
+  category_order: Int
+  compiler_build: String
+  copied_from: String
+  description: String
+  displayName: String
+  domainName: String
+  engine_major_version: Int
+  entitled: Boolean
+  flow_priority: String
+  id: String
+  ih_action: Boolean
+  inputs: [global_snFlowDesigner_FlowDesignParameter]
+  internal_name: String
+  is_snapshot: Boolean
+  latest_snapshot: String
+  master: String
+  name: String
+  natlang: String
+  outputs: [global_snFlowDesigner_FlowDesignVariable]
+  parent_action: String
+  pharmacy: global_snFlowDesigner_Pharmacy
+  protection: String
+  quiescence: String
+  scope: String
+  scopelabel: String
+  scopelogo: String
+  scopename: String
+  scopeProtectionPolicyReadOnly: Boolean
+  security: global_snFlowDesigner_Security
+  state: String
+  system: Boolean
+  type: String
+  userCanRead: Boolean
+  labelCacheAsJsonString: String
+}
+
+type global_snFlowDesigner_AliasOverride {
+  aliasOverrideMappings: [global_snFlowDesigner_AliasOverrideMapping]
+}
+
+input global_snFlowDesigner_AliasOverrideInput {
+  aliasOverrideMappings: [global_snFlowDesigner_AliasOverrideMappingInput]
+}
+
+type global_snFlowDesigner_AliasOverrideMapping {
+  id: String
+  sourceTable: String
+  sourceID: String
+  sourceAlias: String
+  targetAlias: String
+}
+
+input global_snFlowDesigner_AliasOverrideMappingInput {
+  id: String
+  sourceTable: String
+  sourceID: String
+  sourceAlias: String
+  targetAlias: String
+}
+
+input global_snFlowDesigner_AliasOverrideMappingsInput {
+  insert: [global_snFlowDesigner_AliasOverrideMappingInput]
+  update: [global_snFlowDesigner_AliasOverrideMappingInput]
+  delete: [String]
+}
+
+input global_snFlowDesigner_AnswerElementValue {
+  value: String
+  table: String
+  label: String
+  type: String
+  answerElementName: String
+}
+
+input global_snFlowDesigner_ComplexObjectParameter {
+  id: String
+  label: String
+  name: String
+  type: String
+  type_label: String
+  hint: String
+  order: Int
+  extended: Boolean
+  mandatory: Boolean
+  readonly: Boolean
+  maxsize: Int
+  data_structure: String
+  reference: String
+  reference_display: String
+  ref_qual: String
+  choices: [global_snFlowDesigner_SimpleChoice]
+  defaultChoices: [global_snFlowDesigner_SimpleChoice]
+  choiceOption: String
+  table: String
+  columnName: String
+  defaultValue: String
+  defaultDisplayValue: String
+  use_dependent: Boolean
+  dependent_on: Boolean
+  show_ref_finder: Boolean
+  local: Boolean
+  searchField: String
+  attributes: String
+  sys_class_name: String
+  comments: String
+  uiDisplayType: String
+  uiDisplayTypeLabel: String
+  dynamic: global_snFlowDesigner_InputActionInstance
+  internal_link: String
+  children: [global_snFlowDesigner_ComplexObjectParameter]
+  placeholder: String
+  complexObjectValue: global_snFlowDesigner_InstanceValue
+  scriptAsJsonString: String
+  value: String
+  display_value: String
+  scriptActive: Boolean
+  script: [global_snFlowDesigner_ScriptInput]
+  parent: String
+  fieldFacetMap: String
+  uiType: String
+  uiTypeLabel: String
+}
+
+type global_snFlowDesigner_ComponentChanges {
+  inserts: [global_snFlowDesigner_EntityMetadata]
+  updates: [String]
+  deletes: [String]
+}
+
+input global_snFlowDesigner_ComponentInstance {
+  id: String
+  flowSysId: String
+  order: String
+  displayText: String
+  uiUniqueIdentifier: String
+  deleted: Boolean
+  metadata: String
+  snapshot: Boolean
+  parentUiId: String
+  parent: String
+  domainId: String
+  comment: String
+  scope: String
+  flowBlock: [global_snFlowDesigner_ComponentInstance]
+  copiedFrom: String
+  generationSource: String
+  flowVersion: String
+  uiComponentIndex: Int
+  type: String
+  name: String
+  internalName: String
+}
+
+input global_snFlowDesigner_DecisionAnswer {
+  value: String
+  table: String
+  label: String
+  multipleAnswerRecord: Boolean
+  answerElementValues: [global_snFlowDesigner_AnswerElementValue]
+}
+
+input global_snFlowDesigner_DecisionTableInformation {
+  display_value: String
+  decision_answers: [global_snFlowDesigner_DecisionAnswer]
+  active: Boolean
+}
+
+type global_snFlowDesigner_EntityMetadata {
+  uiUniqueIdentifier: String
+  order: Int
+  sysId: String
+}
+
+input global_snFlowDesigner_Flow {
+  access: String
+  actionInstances: [global_snFlowDesigner_ActionInstance]
+  active: Boolean
+  aliasOverride: global_snFlowDesigner_AliasOverrideInput
+  annotation: String
+  attributes: String
+  authoredOnReleaseVersion: Int
+  canWriteProtection: Boolean
+  category: String
+  clientCallable: Boolean
+  clientSessionId: String
+  compilerBuild: String
+  copiedFrom: String
+  created: String
+  deleted: Boolean
+  deletedActions: [global_snFlowDesigner_ActionInstance]
+  deletedFlowLogics: [global_snFlowDesigner_FlowLogicInstance]
+  description: String
+  domainId: String
+  domainName: String
+  flowCatalogVariableModelId: String
+  flowCatalogVariables: [global_snFlowDesigner_FlowDesignParameter]
+  flowEngineVersion: Int
+  flowLogicInstances: [global_snFlowDesigner_FlowLogicInstance]
+  flowPriority: String
+  flowVariables: [global_snFlowDesigner_FlowDesignVariable]
+  id: String
+  inputs: [global_snFlowDesigner_FlowDesignParameter]
+  internalName: String
+  isFlowEntitled: Boolean
+  isPublished: Boolean
+  jsonSnapshot: Boolean
+  label_cache: [global_snFlowDesigner_LabelCache]
+  labelCacheAsJsonString: String
+  latestSnapshot: String
+  masterSnapshot: Boolean
+  name: String
+  natlang: String
+  outputs: [global_snFlowDesigner_FlowDesignVariable]
+  pharmacy: global_snFlowDesigner_Pharmacy
+  parentFlow: String
+  protection: String
+  remoteTriggerSysId: String
+  runAs: String
+  runWithRoles: global_snFlowDesigner_FlowRoles
+  scope: String
+  scopeDisplayName: String
+  scopeLogo: String
+  scopeName: String
+  scopeProtectionPolicyReadOnly: Boolean
+  security: global_snFlowDesigner_Security
+  serviceCatalogCallable: Boolean
+  snapshot: Boolean
+  stages: [global_snFlowDesigner_FlowStage]
+  status: String
+  startingIndexOfErrorHandlingInstances: Int
+  subflowInstances: [global_snFlowDesigner_SubflowInstance]
+  type: String
+  updated: String
+  updatedBy: String
+  userCanRead: Boolean
+  userHasRolesAssignedToFlow: Boolean
+}
+
+type global_snFlowDesigner_FlowChangeSummary {
+  id: String
+  aliasOverride: global_snFlowDesigner_AliasOverride
+  triggerInstances: global_snFlowDesigner_ComponentChanges
+  flowVariables: global_snFlowDesigner_ComponentChanges
+  stages: global_snFlowDesigner_ComponentChanges
+  actions: global_snFlowDesigner_ComponentChanges
+  flowLogics: global_snFlowDesigner_ComponentChanges
+  subflows: global_snFlowDesigner_ComponentChanges
+  inputs: global_snFlowDesigner_ComponentChanges
+  outputs: global_snFlowDesigner_ComponentChanges
+}
+
+input global_snFlowDesigner_FlowDesignParameter {
+  id: String
+  label: String
+  name: String
+  type: String
+  type_label: String
+  hint: String
+  order: Int
+  extended: Boolean
+  mandatory: Boolean
+  readonly: Boolean
+  maxsize: Int
+  data_structure: String
+  reference: String
+  reference_display: String
+  ref_qual: String
+  choices: [global_snFlowDesigner_SimpleChoice]
+  defaultChoices: [global_snFlowDesigner_SimpleChoice]
+  choiceOption: String
+  table: String
+  columnName: String
+  defaultValue: String
+  defaultDisplayValue: String
+  use_dependent: Boolean
+  dependent_on: String
+  internal_link: String
+  show_ref_finder: Boolean
+  local: Boolean
+  searchField: String
+  attributes: String
+  sys_class_name: String
+  comments: String
+  uiDisplayType: String
+  uiDisplayTypeLabel: String
+  dynamic: global_snFlowDesigner_InputActionInstance
+  children: [global_snFlowDesigner_ComplexObjectParameter]
+  placeholder: String
+  uiType: String
+  uiTypeLabel: String
+}
+
+input global_snFlowDesigner_FlowDesignParameterInput {
+  insert: [global_snFlowDesigner_FlowDesignParameter]
+  update: [global_snFlowDesigner_FlowDesignParameter]
+  delete: [String]
+}
+
+input global_snFlowDesigner_FlowDesignVariable {
+  id: String
+  label: String
+  name: String
+  type: String
+  type_label: String
+  hint: String
+  order: Int
+  extended: Boolean
+  mandatory: Boolean
+  readonly: Boolean
+  maxsize: Int
+  data_structure: String
+  reference: String
+  reference_display: String
+  ref_qual: String
+  choices: [global_snFlowDesigner_SimpleChoice]
+  defaultChoices: [global_snFlowDesigner_SimpleChoice]
+  choiceOption: String
+  table: String
+  columnName: String
+  defaultValue: String
+  defaultDisplayValue: String
+  use_dependent: Boolean
+  dependent_on: String
+  show_ref_finder: Boolean
+  local: Boolean
+  searchField: String
+  attributes: String
+  sys_class_name: String
+  comments: String
+  uiDisplayType: String
+  uiDisplayTypeLabel: String
+  dynamic: global_snFlowDesigner_InputActionInstance
+  internal_link: String
+  children: [global_snFlowDesigner_ComplexObjectParameter]
+  placeholder: String
+  complexObjectValue: global_snFlowDesigner_InstanceValue
+  scriptAsJsonString: String
+  value: String
+  display_value: String
+  scriptActive: Boolean
+  script: [global_snFlowDesigner_ScriptInput]
+  uiType: String
+  uiTypeLabel: String
+}
+
+input global_snFlowDesigner_FlowLogicDefinition {
+  id: String
+  name: String
+  description: String
+  connectedTo: String
+  quiescence: String
+  compilationClass: String
+  order: Int
+  inputs: [global_snFlowDesigner_FlowDesignParameter]
+  variables: String
+  type: String
+  visible: Boolean
+  attributes: String
+  userCanRead: Boolean
+  category: String
+}
+
+input global_snFlowDesigner_FlowLogicInstance {
+  id: String
+  name: String
+  order: String
+  displayText: String
+  uiUniqueIdentifier: String
+  deleted: Boolean
+  snapshot: Boolean
+  parent: String
+  metadata: String
+  domainId: String
+  comment: String
+  scope: String
+  copiedFrom: String
+  flowSysId: String
+  inputs: [global_snFlowDesigner_InstanceValue]
+  status: String
+  compiledSnapshot: String
+  pharmacy: global_snFlowDesigner_Pharmacy
+  outputsToAssign: [global_snFlowDesigner_InstanceValue]
+  variables: [global_snFlowDesigner_InstanceValue]
+  flowBlockId: String
+  flowBlock: [global_snFlowDesigner_ComponentInstance]
+  generationSource: String
+  attributes: String
+  connectedTo: String
+  quiescence: String
+  definitionId: String
+  workflowReference: String
+  workflowInputs: [global_snFlowDesigner_InstanceValue]
+  workflowInformation: String
+  decisionTableReference: String
+  decisionTableInputs: [global_snFlowDesigner_InstanceValue]
+  dynamicInputs: [global_snFlowDesigner_FlowDesignVariable]
+  dynamicOutputs: [global_snFlowDesigner_FlowDesignVariable]
+  decisionTableInformation: global_snFlowDesigner_DecisionTableInformation
+  flowVariables: [global_snFlowDesigner_InstanceValue]
+  flowLogicDefinition: global_snFlowDesigner_FlowLogicDefinition
+  childBlockDefinition: global_snFlowDesigner_FlowLogicDefinition
+  type: String
+  flowVersion: String
+  uiComponentIndex: Int
+  parentUiId: String
+  afterTopLevelCatch: Boolean
+  internalName: String
+}
+
+input global_snFlowDesigner_FlowLogicInstanceInput {
+  insert: [global_snFlowDesigner_FlowLogicInstance]
+  update: [global_snFlowDesigner_FlowLogicInstance]
+  delete: [String]
+}
+
+input global_snFlowDesigner_FlowPatch {
+  flowId: String!
+  properties: global_snFlowDesigner_FlowPropertiesInput
+  aliasOverride: global_snFlowDesigner_AliasOverrideMappingsInput
+  flowVariables: global_snFlowDesigner_FlowVariableInput
+  pharmacy: global_snFlowDesigner_PharmacyInput
+  labelCache: global_snFlowDesigner_LabelCacheInput
+  triggerInstances: global_snFlowDesigner_TriggerInstanceInput
+  stages: global_snFlowDesigner_FlowStageInput
+  actions: global_snFlowDesigner_ActionInstanceInput
+  flowLogics: global_snFlowDesigner_FlowLogicInstanceInput
+  subflows: global_snFlowDesigner_SubflowInstanceInput
+  inputs: global_snFlowDesigner_FlowDesignParameterInput
+  outputs: global_snFlowDesigner_FlowVariableInput
+}
+
+input global_snFlowDesigner_FlowProperties {
+  name: String
+}
+
+input global_snFlowDesigner_FlowPropertiesInput {
+  update: [global_snFlowDesigner_FlowProperties]
+}
+
+input global_snFlowDesigner_FlowRoles {
+  value: String
+  displayValue: String
+}
+
+input global_snFlowDesigner_FlowStage {
+  id: String
+  stageId: String
+  componentIndexes: [Int]
+  label: String
+  value: String
+  type: String
+  parent: String
+  duration: String
+  ancestorStageId: String
+  ancestorCompId: String
+  ancestralIfElseLogic: String
+  ancestorArrPos: String
+  states: [global_snFlowDesigner_FlowStageState]
+  flow: String
+  alwaysShow: Boolean
+  order: Int
+}
+
+input global_snFlowDesigner_FlowStageInput {
+  insert: [global_snFlowDesigner_FlowStage]
+  update: [global_snFlowDesigner_FlowStage]
+  delete: [String]
+}
+
+input global_snFlowDesigner_FlowStageState {
+  name: String
+  label: String
+}
+
+input global_snFlowDesigner_FlowVariableInput {
+  insert: [global_snFlowDesigner_FlowDesignVariable]
+  update: [global_snFlowDesigner_FlowDesignVariable]
+  delete: [String]
+}
+
+input global_snFlowDesigner_GlideChoice {
+  image: String
+  label: String
+  missing: Boolean
+  parameters: String
+  rawLabel: String
+  reference: Boolean
+  selected: Boolean
+  used: Boolean
+  value: String
+}
+
+input global_snFlowDesigner_InputActionInstance {
+  inputId: String
+  id: String
+  actionId: String
+  inputs: [global_snFlowDesigner_FlowDesignVariable]
+  actionInternalName: String
+  actionScope: String
+}
+
+input global_snFlowDesigner_InstanceInputValue {
+  value: String
+  schemaless: Boolean
+  schemalessValue: String
+}
+
+input global_snFlowDesigner_InstanceValue {
+  id: String
+  name: String
+  displayField: String
+  value: global_snFlowDesigner_InstanceInputValue
+  displayValue: global_snFlowDesigner_InstanceInputValue
+  children: [global_snFlowDesigner_InstanceValue]
+  parameter: global_snFlowDesigner_FlowDesignParameter
+  scriptActive: Boolean
+  script: [global_snFlowDesigner_ScriptInput]
+  scriptAsJsonString: String
+}
+
+input global_snFlowDesigner_LabelCache {
+  name: String
+  label: String
+  reference: String
+  reference_display: String
+  type: String
+  base_type: String
+  parent_table_name: String
+  column_name: String
+  choices: [global_snFlowDesigner_SimpleChoice]
+  usedInstances: [global_snFlowDesigner_LabelCacheUsage]
+  attributes: String
+}
+
+input global_snFlowDesigner_LabelCacheInput {
+  insert: [global_snFlowDesigner_LabelCache]
+  update: [global_snFlowDesigner_LabelCache]
+  delete: [String]
+}
+
+input global_snFlowDesigner_LabelCacheUsage {
+  uiUniqueIdentifier: String
+  inputName: String
+}
+
+type global_snFlowDesigner_Mutation {
+  flow(flowPatch: global_snFlowDesigner_FlowPatch!): global_snFlowDesigner_FlowChangeSummary
+  safeEdit(safeEditInput: global_snFlowDesigner_SafeEditInput): global_snFlowDesigner_SafeEditOutput
+}
+
+input global_snFlowDesigner_Pharmacy {
+  pharmacyCompound: [global_snFlowDesigner_PharmacyCompound]
+}
+
+input global_snFlowDesigner_PharmacyCompound {
+  id: String
+  uiId: String
+  sourceUiId: String
+  order: Int
+  prescription: String
+  transformDefinitionId: String
+  compositions: [global_snFlowDesigner_TransformComposition]
+  scopeId: String
+  attachedTo: String
+  extraInfo: String
+}
+
+input global_snFlowDesigner_PharmacyInput {
+  insert: [global_snFlowDesigner_PharmacyCompound]
+  update: [global_snFlowDesigner_PharmacyCompound]
+  delete: [String]
+}
+
+type global_snFlowDesigner_Query {
+  uiSection(name: String, sysId: String): global_snFlowDesigner_UISection
+  safeEdit(safeEditInput: global_snFlowDesigner_SafeEditInput): global_snFlowDesigner_SafeEditOutput
+}
+
+type global_snFlowDesigner_SafeEditDelete {
+  deleteSuccess: Boolean
+  id: String
+}
+
+input global_snFlowDesigner_SafeEditInput {
+  upsert: global_snFlowDesigner_SafeEditUpsertInput
+  delete: String
+  read: String
+}
+
+type global_snFlowDesigner_SafeEditOutput {
+  status: global_snFlowDesigner_SafeEditStatus
+  deleteResult: global_snFlowDesigner_SafeEditDelete
+}
+
+type global_snFlowDesigner_SafeEditStatus {
+  canUserEdit: Boolean
+  currentEditor: String
+  clientFlowStale: Boolean
+}
+
+input global_snFlowDesigner_SafeEditUpsertInput {
+  flowId: String
+  lastUpdated: String
+}
+
+input global_snFlowDesigner_ScriptInput {
+  inputName: String
+  scriptActive: Boolean
+  showScript: Boolean
+  encodedScript: String
+}
+
+input global_snFlowDesigner_Security {
+  can_read: Boolean
+  can_write: Boolean
+  reason: String
+  valid_delegated_developer_data: Boolean
+  delegated_developer_in_flow_designer: Boolean
+  delegated_developer_access_scopes: String
+  has_recommendations_access: Boolean
+  can_cancel_execution: String
+}
+
+input global_snFlowDesigner_SimpleChoice {
+  label: String
+  order: Int
+  value: String
+}
+
+input global_snFlowDesigner_SubflowInstance {
+  aliasIds: [String]
+  comment: String
+  copiedFrom: String
+  deleted: Boolean
+  metadata: String
+  displayText: String
+  flowBlock: [global_snFlowDesigner_ComponentInstance]
+  generationSource: String
+  attributes: String
+  flowSysId: String
+  id: String
+  inputs: [global_snFlowDesigner_SubflowInstanceValue]
+  outputs: [global_snFlowDesigner_FlowDesignVariable]
+  name: String
+  order: String
+  parent: String
+  scope: String
+  snapshot: Boolean
+  compiledSnapshot: String
+  parentSubFlowId: String
+  aliasOverride: global_snFlowDesigner_AliasOverrideInput
+  subflowSysId: String
+  uiUniqueIdentifier: String
+  waitForCompletion: global_snFlowDesigner_FlowDesignVariable
+  subFlow: global_snFlowDesigner_Flow
+  type: String
+  flowVersion: String
+  uiComponentIndex: Int
+  parentUiId: String
+  domainId: String
+  contextRecord: [global_snFlowDesigner_FlowDesignVariable]
+  showStages: global_snFlowDesigner_FlowDesignVariable
+  internalName: String
+}
+
+input global_snFlowDesigner_SubflowInstanceInput {
+  insert: [global_snFlowDesigner_SubflowInstance]
+  update: [global_snFlowDesigner_SubflowInstance]
+  delete: [String]
+}
+
+input global_snFlowDesigner_SubflowInstanceValue {
+  subFlowInstanceId: String
+  displayValue: global_snFlowDesigner_InstanceInputValue
+  id: String
+  name: String
+  parameter: global_snFlowDesigner_FlowDesignParameter
+  scriptActive: Boolean
+  value: global_snFlowDesigner_InstanceInputValue
+  children: [global_snFlowDesigner_SubflowInstanceValue]
+  displayField: String
+  script: [global_snFlowDesigner_ScriptInput]
+  scriptAsJsonString: String
+}
+
+input global_snFlowDesigner_TransformComposition {
+  id: String
+  transformType: String
+  transformDefinition: String
+  order: Int
+  parameters: [global_snFlowDesigner_TransformParameters]
+}
+
+input global_snFlowDesigner_TransformParameters {
+  id: String
+  name: String
+  label: String
+  order: Int
+  attributes: String
+  value: String
+  type: String
+  defaultValue: String
+  typeLabel: String
+  mandatory: Boolean
+  choices: [global_snFlowDesigner_SimpleChoice]
+}
+
+input global_snFlowDesigner_TriggerDefinition {
+  id: String
+  name: String
+  description: String
+  scope: String
+  scopeName: String
+  scopeLabel: String
+  scopeLogo: String
+  active: Boolean
+  inputs: [global_snFlowDesigner_FlowDesignParameter]
+  outputs: [global_snFlowDesigner_FlowDesignVariable]
+  type: String
+  category: String
+  attributes: String
+  order: Int
+}
+
+input global_snFlowDesigner_TriggerInstance {
+  comment: String
+  deleted: Boolean
+  displayText: String
+  flowSysId: String
+  id: String
+  inputs: [global_snFlowDesigner_TriggerInstanceValue]
+  outputs: [global_snFlowDesigner_TriggerInstanceOutput]
+  name: String
+  remoteSysId: String
+  triggerType: String
+  triggerDefinitionId: String
+  type: String
+  hasDynamicOutputs: Boolean
+  triggerDefinition: global_snFlowDesigner_TriggerDefinition
+  publishedVersion: String
+  metadata: String
+  flowVersion: String
+}
+
+input global_snFlowDesigner_TriggerInstanceInput {
+  insert: [global_snFlowDesigner_TriggerInstance]
+  update: [global_snFlowDesigner_TriggerInstance]
+  delete: [String!]
+}
+
+input global_snFlowDesigner_TriggerInstanceOutput {
+  id: String
+  name: String
+  value: String
+  displayValue: String
+  children: [global_snFlowDesigner_InstanceValue]
+  parameter: global_snFlowDesigner_FlowDesignParameter
+  displayField: String
+  scriptActive: Boolean
+  script: [global_snFlowDesigner_ScriptInput]
+  type: String
+  order: Int
+  label: String
+  dependent: String
+}
+
+input global_snFlowDesigner_TriggerInstanceValue {
+  id: String
+  name: String
+  value: global_snFlowDesigner_InstanceInputValue
+  displayValue: global_snFlowDesigner_InstanceInputValue
+  parameter: global_snFlowDesigner_FlowDesignParameter
+  children: [global_snFlowDesigner_InstanceValue]
+  displayField: String
+  scriptActive: Boolean
+  script: [global_snFlowDesigner_ScriptInput]
+  triggerInstanceSysId: String
+  label: String
+  internalType: String
+  dependent: String
+  choiceList: [global_snFlowDesigner_GlideChoice]
+  mandatory: Boolean
+  fromTemplate: Boolean
+  templateValue: String
+  order: Int
+  valueSysId: String
+  field_name: String
+  type: String
+  scriptAsJsonString: String
+}
+
+type global_snFlowDesigner_UIElement {
+  sysId: String
+  label: String
+  order: Int
+  name: String
+  attributes: String
+  type: String
+}
+
+type global_snFlowDesigner_UISection {
+  sysId: String
+  order: Int
+  name: String
+  label: String
+  sections: [global_snFlowDesigner_UISection]
+  elements: [global_snFlowDesigner_UIElement]
+}
+
+input global_snTriggerDesigner_ChoiceParameter {
+  name: String
+}
+
+input global_snTriggerDesigner_ComplexObjectParameter {
+  id: String
+  label: String
+  name: String
+  type: String
+  type_label: String
+  hint: String
+  order: Int
+  extended: Boolean
+  mandatory: Boolean
+  placeholder: String
+  readonly: Boolean
+  maxsize: Int
+  children: [global_snTriggerDesigner_ComplexObjectParameter]
+  data_structure: String
+  reference: String
+  reference_display: String
+  ref_qual: String
+  choices: [global_snTriggerDesigner_SimpleChoice]
+  defaultChoices: [global_snTriggerDesigner_SimpleChoice]
+  choiceOption: String
+  table: String
+  columnName: String
+  default_value: String
+  defaultDisplayValue: String
+  use_dependent: Boolean
+  dependent_on: String
+  internal_link: String
+  show_ref_finder: Boolean
+  local: Boolean
+  searchField: String
+  attributes: String
+  sys_class_name: String
+  dynamic: global_snTriggerDesigner_InputActionInstance
+  uiDisplayType: String
+  uiDisplayTypeLabel: String
+  parent: String
+  fieldFacetMap: String
+  value: String
+  canDragNDrop: Boolean
+  childExpanded: Boolean
+  defaultValue: String
+  display_value: String
+  script: global_snTriggerDesigner_ScriptInput
+  scriptActive: Boolean
+}
+
+type global_snTriggerDesigner_ErrorDetail {
+  errorMessage: String
+  errorCode: String
+  hasInvalidTableError: Boolean
+  missedMandatoryFields: [String]
+}
+
+input global_snTriggerDesigner_ExternalTriggerDefinitionPatch {
+  externalTriggerInputValues: [global_snTriggerDesigner_FlowDesignParameter]
+  externalTriggerOutputValues: [global_snTriggerDesigner_FlowDesignVariable]
+  condition: String
+  outputJSON: String
+}
+
+input global_snTriggerDesigner_FlowDesignParameter {
+  attributes: String
+  children: [global_snTriggerDesigner_ComplexObjectParameter]
+  choices: [global_snTriggerDesigner_SimpleChoice]
+  choiceOption: String
+  choiceList: [global_snTriggerDesigner_GlideChoice]
+  columnName: String
+  comments: String
+  data_structure: String
+  defaultChoices: [global_snTriggerDesigner_SimpleChoice]
+  defaultDisplayValue: String
+  defaultValue: String
+  dependent_on: String
+  dynamic: global_snTriggerDesigner_InputActionInstance
+  extended: Boolean
+  hint: String
+  id: String
+  internal_link: String
+  label: String
+  local: Boolean
+  mandatory: Boolean
+  maxsize: Int
+  name: String
+  order: Int
+  placeholder: String
+  readonly: Boolean
+  ref_qual: String
+  reference: String
+  reference_display: String
+  searchField: String
+  show_ref_finder: Boolean
+  sys_class_name: String
+  table: String
+  type: String
+  type_label: String
+  uiType: String
+  uiTypeLabel: String
+  use_dependent: Boolean
+}
+
+input global_snTriggerDesigner_FlowDesignVariable {
+  id: String
+  label: String
+  name: String
+  type: String
+  type_label: String
+  hint: String
+  order: Int
+  extended: Boolean
+  mandatory: Boolean
+  placeholder: String
+  readonly: Boolean
+  maxsize: Int
+  children: [global_snTriggerDesigner_ComplexObjectParameter]
+  data_structure: String
+  reference: String
+  reference_display: String
+  ref_qual: String
+  choices: [global_snTriggerDesigner_SimpleChoice]
+  defaultChoices: [global_snTriggerDesigner_SimpleChoice]
+  choiceOption: String
+  table: String
+  columnName: String
+  defaultValue: String
+  defaultDisplayValue: String
+  use_dependent: Boolean
+  dependent_on: String
+  internal_link: String
+  show_ref_finder: Boolean
+  local: Boolean
+  searchField: String
+  attributes: String
+  sys_class_name: String
+  dynamic: global_snTriggerDesigner_InputActionInstance
+  uiDisplayType: String
+  uiDisplayTypeLabel: String
+  parent: String
+  fieldFacetMap: String
+  value: String
+  display_value: String
+  scriptActive: Boolean
+  complexObjectValue: global_snTriggerDesigner_InstanceValue
+  script: global_snTriggerDesigner_ScriptInput
+}
+
+input global_snTriggerDesigner_GlideChoice {
+  image: String
+  label: String
+  missing: Boolean
+  parameters: global_snTriggerDesigner_ChoiceParameter
+  rawLabel: String
+  reference: Boolean
+  selected: Boolean
+  used: Boolean
+  value: String
+}
+
+input global_snTriggerDesigner_InputActionInstance {
+  inputId: String
+  id: String
+  actionId: String
+  inputs: [global_snTriggerDesigner_FlowDesignVariable]
+  actionInternalName: String
+  actionScope: String
+}
+
+input global_snTriggerDesigner_InstanceInputValue {
+  value: String
+  schemaless: Boolean
+  schemalessValue: String
+}
+
+input global_snTriggerDesigner_InstanceValue {
+  id: String
+  name: String
+  value: global_snTriggerDesigner_InstanceInputValue
+  displayValue: global_snTriggerDesigner_InstanceInputValue
+  children: [global_snTriggerDesigner_InstanceValue]
+  parameter: global_snTriggerDesigner_FlowDesignParameter
+  displayField: String
+  scriptActive: Boolean
+  script: global_snTriggerDesigner_ScriptInput
+}
+
+type global_snTriggerDesigner_Mutation {
+  triggerDefinition(
+    triggerDefinitionPatch: global_snTriggerDesigner_TriggerDefinitionPatch!
+    isAutoSaveReq: Boolean
+  ): global_snTriggerDesigner_TriggerPartialSaveResult
+  triggerSafeEdit(triggerSafeEditInput: global_snTriggerDesigner_TriggerSafeEditInput!): global_snTriggerDesigner_TriggerSafeEditOutput
+}
+
+type global_snTriggerDesigner_Query {
+  triggerSafeEdit(triggerSafeEditInput: global_snTriggerDesigner_TriggerSafeEditInput!): global_snTriggerDesigner_TriggerSafeEditOutput
+  triggerDefinition(id: String!, recordClassName: String!, draft: Boolean): global_snTriggerDesigner_TriggerDefinition
+}
+
+input global_snTriggerDesigner_ScriptInput {
+  inputName: String
+  scriptActive: Boolean
+  showScript: Boolean
+  encodedScript: String
+}
+
+input global_snTriggerDesigner_SimpleChoice {
+  label: String
+  order: Int
+  value: String
+}
+
+type global_snTriggerDesigner_TriggerDefinition {
+  id: String
+  name: String
+  description: String
+  scope: String
+  scopeName: String
+  scopeLabel: String
+  scopeLogo: String
+  active: String
+  type: String
+  category: String
+  attributes: String
+  order: String
+  publishedTriggerId: String
+  triggerCategory: String
+  parent: String
+  state: String
+  conditions: String
+  externalEventSourceId: String
+  triggerDefinition: String
+  triggerValues: [global_snTriggerDesigner_TriggerInputValueType]
+  templateProperties: String
+  annotation: String
+  accessibleFrom: String
+  createdOn: String
+  createdBy: String
+  updatedOn: String
+  updatedBy: String
+}
+
+input global_snTriggerDesigner_TriggerDefinitionPatch {
+  id: String!
+  recordClassName: String!
+  scope: String!
+  annotation: String
+  name: String
+  description: String
+  type: String
+  triggerCategory: String
+  sourceTrigger: String
+  triggerTemplatePatch: global_snTriggerDesigner_TriggerTemplatePatch
+  externalTriggerPatch: global_snTriggerDesigner_ExternalTriggerDefinitionPatch
+}
+
+input global_snTriggerDesigner_TriggerInputValue {
+  name: String
+  label: String
+  type: String
+  displayValue: String
+  value: String
+  readOnly: Boolean
+  extendable: Boolean
+}
+
+type global_snTriggerDesigner_TriggerInputValueType {
+  name: String
+  label: String
+  type: String
+  displayValue: String
+  value: String
+  readOnly: Boolean
+  extendable: Boolean
+}
+
+type global_snTriggerDesigner_TriggerPartialSaveResult {
+  id: String
+  success: Boolean
+  errorDetail: global_snTriggerDesigner_ErrorDetail
+}
+
+input global_snTriggerDesigner_TriggerSafeEditInput {
+  upsert: String
+  read: String
+  delete: String
+}
+
+type global_snTriggerDesigner_TriggerSafeEditOutput {
+  status: global_snTriggerDesigner_TriggerSafeEditStatus
+}
+
+type global_snTriggerDesigner_TriggerSafeEditStatus {
+  canUserEdit: Boolean
+  currentEditor: String
+}
+
+input global_snTriggerDesigner_TriggerTemplatePatch {
+  triggerInputValues: [global_snTriggerDesigner_TriggerInputValue!]
+  triggerTemplateProperties: String
+  triggerDefinition: String
+}

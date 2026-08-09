@@ -1,0 +1,353 @@
+type snDecisionTable_query {
+  choiceField: snDecisionTable_choiceField_Query
+  answerElement: snDecisionTable_answerElement_Query
+  decisionTable: snDecisionTable_decisionTable_Query
+  decisionAnswer: snDecisionTable_decisionAnswer_Query
+  referenceChoice: snDecisionTable_referenceChoice_Query
+  decisionTableUser: snDecisionTable_decisionTableUser_Query
+  decisionChoice: snDecisionTable_decisionChoice_Query
+  sysProperties: snDecisionTable_sysProperties_Query
+}
+
+type snDecisionTable_mutation {
+  answerElement: snDecisionTable_answerElement_Mutation
+  decisionTable: snDecisionTable_decisionTable_Mutation
+  decisionAnswer: snDecisionTable_decisionAnswer_Mutation
+  decisionChoice: snDecisionTable_decisionChoice_Mutation
+}
+
+type snDecisionTable_answerElement_AnswerElementDetails {
+  sys_class_name: snDecisionTable_answerElement_GlideField
+  sys_id: snDecisionTable_answerElement_GlideField
+  internal_type: snDecisionTable_answerElement_GlideField
+  reference: snDecisionTable_answerElement_GlideField
+  sys_scope: snDecisionTable_answerElement_GlideField
+  element: snDecisionTable_answerElement_GlideField
+  description: String
+  max_length: snDecisionTable_answerElement_GlideIntField
+  name: snDecisionTable_answerElement_GlideField
+  label: snDecisionTable_answerElement_GlideField
+  order: snDecisionTable_answerElement_GlideIntField
+  choice: snDecisionTable_answerElement_GlideField
+  choices: [snDecisionTable_answerElement_ChoiceResponse]
+  choice_table: snDecisionTable_answerElement_GlideFieldName
+  choice_field: snDecisionTable_answerElement_GlideFieldName
+  reference_qual_condition: snDecisionTable_answerElement_GlideField
+  model: snDecisionTable_answerElement_GlideField
+  parent: snDecisionTable_answerElement_GlideField
+  active: snDecisionTable_answerElement_GlideField
+  comments: snDecisionTable_answerElement_GlideField
+}
+
+type snDecisionTable_answerElement_ChoiceResponse {
+  sys_id: snDecisionTable_answerElement_GlideField
+  name: snDecisionTable_answerElement_GlideField
+  label: snDecisionTable_answerElement_GlideField
+  value: snDecisionTable_answerElement_GlideField
+  sequence: snDecisionTable_answerElement_GlideField
+  element: snDecisionTable_answerElement_GlideField
+  hint: snDecisionTable_answerElement_GlideField
+  dependent_value: snDecisionTable_answerElement_GlideField
+  language: snDecisionTable_answerElement_GlideField
+}
+
+input snDecisionTable_answerElement_CreateDecisionAnswerElement {
+  model: String
+  parent: String
+  internal_type: String
+  label: String
+  element: String
+  max_length: String
+  order: String
+  choice: String
+  choice_table: String
+  choice_field: String
+  reference: String
+  reference_qual_condition: String
+  active: String
+  comments: String
+  sys_scope: String
+}
+
+type snDecisionTable_answerElement_DecisionAnswerElementDeleteResponse {
+  sys_id: String
+  modified_count: Int
+}
+
+union snDecisionTable_answerElement_DecisionAnswerElementResponse = snDecisionTable_answerElement_Error | snDecisionTable_answerElement_AnswerElementDetails
+
+type snDecisionTable_answerElement_Error {
+  status: String
+  errorCode: String
+  errorMessage: String
+}
+
+type snDecisionTable_answerElement_GlideField {
+  value: String
+  displayValue: String
+}
+
+type snDecisionTable_answerElement_GlideFieldName {
+  value: String
+  displayValue: String
+}
+
+type snDecisionTable_answerElement_GlideIntField {
+  value: Int
+  displayValue: String
+}
+
+type snDecisionTable_answerElement_Mutation {
+  createDecisionAnswerElement(
+    decisionAnswerElement: snDecisionTable_answerElement_CreateDecisionAnswerElement!
+  ): snDecisionTable_answerElement_DecisionAnswerElementResponse
+  updateDecisionAnswerElement(
+    sys_id: String!
+    decisionAnswerElement: snDecisionTable_answerElement_UpdateDecisionAnswerElement
+  ): snDecisionTable_answerElement_DecisionAnswerElementResponse
+  deleteDecisionAnswerElement(sys_id: String!): snDecisionTable_answerElement_DecisionAnswerElementDeleteResponse
+}
+
+type snDecisionTable_answerElement_Query {
+  getAnswerElementsOfDecisionTable(sys_id: String!, delta: String): [snDecisionTable_answerElement_AnswerElementDetails]
+}
+
+input snDecisionTable_answerElement_UpdateDecisionAnswerElement {
+  internal_type: String
+  label: String
+  element: String
+  parent: String
+  model: String
+  max_length: String
+  order: String
+  reference: String
+  reference_qual_condition: String
+  choice: String
+  choice_table: String
+  choice_field: String
+  sys_scope: String
+  comments: String
+}
+
+type snDecisionTable_choiceField_ChoiceFieldResponse {
+  sys_id: snDecisionTable_choiceField_GlideField
+  column_label: snDecisionTable_choiceField_GlideField
+  element: snDecisionTable_choiceField_GlideField
+}
+
+type snDecisionTable_choiceField_GlideField {
+  value: String
+  displayValue: String
+}
+
+type snDecisionTable_choiceField_Query {
+  getChoiceFields(choice_table: String!, choice_filter: String!): [snDecisionTable_choiceField_ChoiceFieldResponse]
+}
+
+input snDecisionTable_decisionAnswer_answerElementValuesDetailsInput {
+  decisionQuestionSysId: String!
+  answerElementValues: [snDecisionTable_decisionAnswer_answerElementValuesInput]!
+  label: String
+}
+
+input snDecisionTable_decisionAnswer_answerElementValuesInput {
+  name: String!
+  value: String!
+}
+
+type snDecisionTable_decisionAnswer_answerElementValuesResponse {
+  decisionQuestionSysId: String!
+  answerSysId: String!
+}
+
+type snDecisionTable_decisionAnswer_Mutation {
+  getOrCreateMultiAnswerRecord(
+    decisionTableSysId: String!
+    answerElementValues: [snDecisionTable_decisionAnswer_answerElementValuesInput]
+    label: String
+  ): String!
+  getOrCreateMultiAnswerRecords(
+    decisionTableSysId: String!
+    answerElementValuesDetails: [snDecisionTable_decisionAnswer_answerElementValuesDetailsInput]!
+  ): [snDecisionTable_decisionAnswer_answerElementValuesResponse]!
+}
+
+type snDecisionTable_decisionAnswer_Query {
+}
+
+input snDecisionTable_decisionChoice_CreateDecisionChoice {
+  element: String
+  name: String
+  label: String
+  value: String
+  sequence: String
+  language: String
+}
+
+type snDecisionTable_decisionChoice_DecisionChoiceDeleteResponse {
+  sys_id: String
+  modified_count: Int
+}
+
+type snDecisionTable_decisionChoice_DecisionChoiceDetails {
+  sys_id: snDecisionTable_decisionChoice_GlideField
+  name: snDecisionTable_decisionChoice_GlideField
+  label: snDecisionTable_decisionChoice_GlideField
+  value: snDecisionTable_decisionChoice_GlideField
+  sequence: snDecisionTable_decisionChoice_GlideField
+  element: snDecisionTable_decisionChoice_GlideField
+  hint: snDecisionTable_decisionChoice_GlideField
+  dependent_value: snDecisionTable_decisionChoice_GlideField
+  language: snDecisionTable_decisionChoice_GlideField
+}
+
+union snDecisionTable_decisionChoice_DecisionChoiceResponse = snDecisionTable_decisionChoice_Error | snDecisionTable_decisionChoice_DecisionChoiceDetails
+
+type snDecisionTable_decisionChoice_Error {
+  status: String
+  errorCode: String
+  errorMessage: String
+}
+
+type snDecisionTable_decisionChoice_GlideField {
+  value: String
+  displayValue: String
+}
+
+type snDecisionTable_decisionChoice_Mutation {
+  createDecisionChoice(decisionChoice: snDecisionTable_decisionChoice_CreateDecisionChoice!): snDecisionTable_decisionChoice_DecisionChoiceResponse
+  updateDecisionChoice(
+    sys_id: String!
+    decisionChoice: snDecisionTable_decisionChoice_UpdateDecisionChoice
+  ): snDecisionTable_decisionChoice_DecisionChoiceResponse
+  deleteDecisionChoice(sys_id: String!): snDecisionTable_decisionChoice_DecisionChoiceDeleteResponse
+}
+
+type snDecisionTable_decisionChoice_Query {
+}
+
+input snDecisionTable_decisionChoice_UpdateDecisionChoice {
+  label: String
+  value: String
+  sequence: String
+}
+
+input snDecisionTable_decisionTable_CreateDecisionTable {
+  name: String
+  description: String
+  enable_publishing: String
+  answer_table: String
+  sys_scope: String
+  access: String
+  active: String
+  status: String
+  execution: String
+  parent: String
+  delta: String
+}
+
+type snDecisionTable_decisionTable_DecisionTableDeleteResponse {
+  sys_id: String
+  modified_count: Int
+}
+
+type snDecisionTable_decisionTable_DecisionTableDetails {
+  name: snDecisionTable_decisionTable_GlideField
+  description: snDecisionTable_decisionTable_GlideField
+  label: snDecisionTable_decisionTable_GlideField
+  active: snDecisionTable_decisionTable_GlideBooleanField
+  answer_table: snDecisionTable_decisionTable_GlideField
+  answer_type: snDecisionTable_decisionTable_GlideField
+  reference_qualifier: snDecisionTable_decisionTable_GlideField
+  access: snDecisionTable_decisionTable_GlideField
+  delta: snDecisionTable_decisionTable_GlideField
+  enable_publishing: snDecisionTable_decisionTable_GlideBooleanField
+  sys_id: snDecisionTable_decisionTable_GlideField
+  status: snDecisionTable_decisionTable_GlideField
+  execution: snDecisionTable_decisionTable_GlideField
+  sys_scope: snDecisionTable_decisionTable_GlideField
+  sys_created_on: snDecisionTable_decisionTable_GlideField
+  sys_class_name: snDecisionTable_decisionTable_GlideField
+  sys_domain: snDecisionTable_decisionTable_GlideField
+  sys_policy: snDecisionTable_decisionTable_GlideField
+}
+
+union snDecisionTable_decisionTable_DecisionTableResponse = snDecisionTable_decisionTable_Error | snDecisionTable_decisionTable_DecisionTableDetails
+
+type snDecisionTable_decisionTable_Error {
+  errorStatus: String
+  errorCode: String
+  errorMessage: String
+}
+
+type snDecisionTable_decisionTable_GlideBooleanField {
+  value: Boolean
+  displayValue: String
+}
+
+type snDecisionTable_decisionTable_GlideField {
+  value: String
+  displayValue: String
+}
+
+type snDecisionTable_decisionTable_Mutation {
+  createDecisionTable(
+    sys_class_name: String!
+    decisionTable: snDecisionTable_decisionTable_CreateDecisionTable!
+  ): snDecisionTable_decisionTable_DecisionTableResponse
+  updateDecisionTable(
+    sys_class_name: String!
+    sys_id: String!
+    decisionTable: snDecisionTable_decisionTable_UpdateDecisionTable!
+  ): snDecisionTable_decisionTable_DecisionTableResponse
+  deleteDecisionTable(sys_id: String!): snDecisionTable_decisionTable_DecisionTableDeleteResponse
+}
+
+type snDecisionTable_decisionTable_Query {
+}
+
+input snDecisionTable_decisionTable_UpdateDecisionTable {
+  name: String
+  description: String
+  enable_publishing: String
+  answer_table: String
+  sys_scope: String
+  access: String
+  active: String
+  status: String
+  execution: String
+  delta: String
+}
+
+type snDecisionTable_decisionTableUser_Query {
+  hasRole(role_name: String!): Boolean
+  hasDelegatedAccess: Boolean
+  scopeIdsAccessibleByDelegatedDev: [String]
+  currentSessionDomain: String
+  getUserLocale: String
+}
+
+type snDecisionTable_referenceChoice_ChoiceResponse {
+  sys_id: snDecisionTable_referenceChoice_GlideField
+  name: snDecisionTable_referenceChoice_GlideField
+  label: snDecisionTable_referenceChoice_GlideField
+  value: snDecisionTable_referenceChoice_GlideField
+  sequence: snDecisionTable_referenceChoice_GlideField
+  element: snDecisionTable_referenceChoice_GlideField
+  hint: snDecisionTable_referenceChoice_GlideField
+  dependent_value: snDecisionTable_referenceChoice_GlideField
+  language: snDecisionTable_referenceChoice_GlideField
+}
+
+type snDecisionTable_referenceChoice_GlideField {
+  value: String
+  displayValue: String
+}
+
+type snDecisionTable_referenceChoice_Query {
+  getChoices(table_name: String!, element_name: String!, languages: [String]): [snDecisionTable_referenceChoice_ChoiceResponse]
+}
+
+type snDecisionTable_sysProperties_Query {
+  getSysPropertyValue(sys_property_name: String!, default_value: String): String
+}

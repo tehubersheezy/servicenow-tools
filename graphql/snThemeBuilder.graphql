@@ -1,0 +1,465 @@
+type snThemeBuilder_query {
+  themeBuilder: snThemeBuilder_themeBuilder_Query
+}
+
+type snThemeBuilder_mutation {
+  themeBuilder: snThemeBuilder_themeBuilder_Mutation
+}
+
+type snThemeBuilder_themeBuilder_AdditionalColor {
+  hook: String!
+  value: String!
+}
+
+input snThemeBuilder_themeBuilder_AdditionalColorInput {
+  hook: String
+  value: String
+}
+
+type snThemeBuilder_themeBuilder_BooleanType {
+  value: Boolean!
+}
+
+union snThemeBuilder_themeBuilder_BooleanTypeResult = snThemeBuilder_themeBuilder_BooleanType | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_Color {
+  primary: String
+  neutral: String
+  secondary: String
+  additional: [snThemeBuilder_themeBuilder_AdditionalColor]
+}
+
+input snThemeBuilder_themeBuilder_ColorInput {
+  primary: String
+  neutral: String
+  secondary: String
+}
+
+type snThemeBuilder_themeBuilder_ColorsStyle implements snThemeBuilder_themeBuilder_Style {
+  id: ID
+  type: String
+  name: String
+  style: String
+  generatedColors: String
+  colors: snThemeBuilder_themeBuilder_Color
+  updatedOn: String
+  createdOn: String
+}
+
+union snThemeBuilder_themeBuilder_ColorsStyleResult = snThemeBuilder_themeBuilder_ColorsStyle | snThemeBuilder_themeBuilder_Logger
+
+input snThemeBuilder_themeBuilder_ComponentOverrideProperty {
+  id: String!
+  value: String
+  hook: String
+  component: String
+  type: String!
+  isRevert: Boolean
+}
+
+type snThemeBuilder_themeBuilder_ComponentPropertyResult {
+  style: String
+  customization: snThemeBuilder_themeBuilder_Customization
+}
+
+union snThemeBuilder_themeBuilder_ComponentUpdateResult = snThemeBuilder_themeBuilder_ComponentPropertyResult | snThemeBuilder_themeBuilder_Logger
+
+input snThemeBuilder_themeBuilder_CreateDuplicateThemeInput {
+  id: String!
+}
+
+input snThemeBuilder_themeBuilder_CreateLogoInput {
+  styleId: ID!
+  file: String!
+  fileName: String!
+  fileType: String!
+}
+
+input snThemeBuilder_themeBuilder_CreateThemeInput {
+  name: String!
+  description: String
+}
+
+input snThemeBuilder_themeBuilder_CreateVariantInput {
+  name: String!
+  groupName: String!
+  themeId: String
+  isDark: Boolean
+  colors: snThemeBuilder_themeBuilder_ColorInput
+  variantStyle: String
+}
+
+type snThemeBuilder_themeBuilder_CustomFont {
+  typography: snThemeBuilder_themeBuilder_TypographyStyle
+  customization: snThemeBuilder_themeBuilder_Customization
+}
+
+union snThemeBuilder_themeBuilder_CustomFontResult = snThemeBuilder_themeBuilder_CustomFont | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_Customization {
+  id: String!
+  value: String!
+}
+
+union snThemeBuilder_themeBuilder_CustomizationResult = snThemeBuilder_themeBuilder_Customization | snThemeBuilder_themeBuilder_Logger
+
+input snThemeBuilder_themeBuilder_DeleteCustomFontsInput {
+  fontIds: [ID]!
+  themeId: String!
+}
+
+input snThemeBuilder_themeBuilder_DeleteThemeInput {
+  id: String!
+}
+
+input snThemeBuilder_themeBuilder_DeleteVariantInput {
+  id: String!
+  themeId: String!
+}
+
+type snThemeBuilder_themeBuilder_Domain {
+  id: String
+  label: String
+  path: String
+}
+
+enum snThemeBuilder_themeBuilder_ErrorType {
+  critical
+  warning
+  info
+}
+
+type snThemeBuilder_themeBuilder_Experience {
+  id: ID
+  title: String
+  uri: String
+}
+
+input snThemeBuilder_themeBuilder_FileMetaData {
+  fontWeight: String
+  fontStyle: String
+  fontFamily: String
+  fontSubfamily: String
+  fontFileName: String
+}
+
+type snThemeBuilder_themeBuilder_Font {
+  value: String
+}
+
+type snThemeBuilder_themeBuilder_FontAsset {
+  name: String
+  url: String
+  properties: snThemeBuilder_themeBuilder_FontProperties
+  assetId: ID
+  m2mStyleAssetId: String
+}
+
+type snThemeBuilder_themeBuilder_FontProperties {
+  style: String
+  weight: String
+  subFamily: String
+}
+
+input snThemeBuilder_themeBuilder_FontsInput {
+  font: String!
+  metadata: snThemeBuilder_themeBuilder_FileMetaData!
+}
+
+type snThemeBuilder_themeBuilder_IllustrationStyle {
+  imagery: snThemeBuilder_themeBuilder_ImageryStyle
+  customization: snThemeBuilder_themeBuilder_Customization
+}
+
+union snThemeBuilder_themeBuilder_IllustrationStyleResult = snThemeBuilder_themeBuilder_IllustrationStyle | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_ImageryStyle implements snThemeBuilder_themeBuilder_Style {
+  id: ID
+  type: String
+  name: String
+  style: String
+  logos: [snThemeBuilder_themeBuilder_Logo]
+  updatedOn: String
+  createdOn: String
+}
+
+union snThemeBuilder_themeBuilder_ImageryStyleResult = snThemeBuilder_themeBuilder_ImageryStyle | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_Logger {
+  messageType: snThemeBuilder_themeBuilder_ErrorType!
+  message: String
+}
+
+type snThemeBuilder_themeBuilder_Logo {
+  assetId: ID
+  props: String
+  file: String
+  fileName: String
+  fileType: String
+  m2mStyleAssetId: String
+  attachmentId: String
+}
+
+type snThemeBuilder_themeBuilder_M2MUXAppTheme {
+  order: Int
+  id: String
+  isPublished: Boolean
+  isDuplicateThemeRecordExistInM2MAppTheme: Boolean
+  theme: snThemeBuilder_themeBuilder_Theme
+}
+
+union snThemeBuilder_themeBuilder_M2MUXAppThemeResult = snThemeBuilder_themeBuilder_M2MUXAppTheme | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_MobileApp {
+  id: ID
+  name: String
+  mobileTheme: snThemeBuilder_themeBuilder_Theme
+  sysScope: String
+  mobileThemeName: String
+  isThemeBuilderTheme: Boolean
+}
+
+type snThemeBuilder_themeBuilder_MultiThemeInfo {
+  m2mAppThemeExists: Boolean
+  m2mAppThemeEntriesExist: Boolean
+}
+
+type snThemeBuilder_themeBuilder_Mutation {
+  createTheme(createThemeInput: snThemeBuilder_themeBuilder_CreateThemeInput!): snThemeBuilder_themeBuilder_ThemeResult
+  deleteTheme(deleteThemeInput: snThemeBuilder_themeBuilder_DeleteThemeInput!): snThemeBuilder_themeBuilder_StringTypeResult
+  createDuplicateTheme(
+    createDuplicateThemeInput: snThemeBuilder_themeBuilder_CreateDuplicateThemeInput!
+  ): snThemeBuilder_themeBuilder_ThemeResult
+  updateTheme(updateThemeInput: snThemeBuilder_themeBuilder_UpdateThemeInput!): snThemeBuilder_themeBuilder_ThemeResult
+  updateBrandColors(updateBrandColorsInput: snThemeBuilder_themeBuilder_UpdateBrandColorsInput!): snThemeBuilder_themeBuilder_ColorsStyleResult
+  updateAdditionalBrandColors(
+    updateAdditionalBrandColorsInput: snThemeBuilder_themeBuilder_UpdateAdditionalBrandColorsInput!
+  ): snThemeBuilder_themeBuilder_ColorsStyleResult
+  updateShape(updateShapeInput: snThemeBuilder_themeBuilder_UpdateShapeInput!): snThemeBuilder_themeBuilder_ShapeStyleResult
+  updateTypography(updateTypographyInput: snThemeBuilder_themeBuilder_UpdateTypographyInput!): snThemeBuilder_themeBuilder_TypographyStyleResult
+  updateGroupName(themeId: String!, groupName: String!): snThemeBuilder_themeBuilder_CustomizationResult
+  getCustomization(themeId: ID!): snThemeBuilder_themeBuilder_CustomizationResult
+  createLogo(createLogoInput: snThemeBuilder_themeBuilder_CreateLogoInput!): snThemeBuilder_themeBuilder_ImageryStyleResult
+  updateLogo(updateLogoInput: snThemeBuilder_themeBuilder_UpdateLogoInput!): snThemeBuilder_themeBuilder_StringTypeResult
+  removeLogo(removeLogoInput: snThemeBuilder_themeBuilder_RemoveLogoInput!): snThemeBuilder_themeBuilder_BooleanTypeResult
+  updateColorOverride(
+    updateColorOverrideInput: snThemeBuilder_themeBuilder_UpdateColorOverrideInput!
+  ): snThemeBuilder_themeBuilder_ColorsStyleResult
+  updateComponentProp(updateComponentPropInput: snThemeBuilder_themeBuilder_UpdateComponentPropInput): snThemeBuilder_themeBuilder_ComponentUpdateResult
+  updateComponentFontProperties(
+    updateComponentFontPropertiesInput: snThemeBuilder_themeBuilder_UpdateComponentFontPropertiesInput
+  ): snThemeBuilder_themeBuilder_ComponentUpdateResult
+  addFeedback(feedback: String!): Boolean
+  updateThemeRecordForMobile(themeId: String!): Boolean
+  createVariant(createVariantInput: snThemeBuilder_themeBuilder_CreateVariantInput!): snThemeBuilder_themeBuilder_ThemeResult
+  deleteVariant(deleteVariantInput: snThemeBuilder_themeBuilder_DeleteVariantInput!): snThemeBuilder_themeBuilder_ThemeResult
+  publishTheme(themeId: String!, newOrder: Int!): snThemeBuilder_themeBuilder_M2MUXAppThemeResult
+  unpublishTheme(m2mAppThemeId: String!): snThemeBuilder_themeBuilder_M2MUXAppThemeResult
+  updateThemeOrder(themeId: String!, order: Int!): snThemeBuilder_themeBuilder_M2MUXAppThemeResult
+  uploadIllustration(uploadIllustrationInput: snThemeBuilder_themeBuilder_UploadIllustrationInput!): snThemeBuilder_themeBuilder_IllustrationStyleResult
+  revertIllustrationOverride(revertIllustrationInput: snThemeBuilder_themeBuilder_RevertIllustrationInput!): snThemeBuilder_themeBuilder_IllustrationStyleResult
+  uploadCustomFonts(uploadCustomFontsInput: snThemeBuilder_themeBuilder_UploadCustomFontsInput!): snThemeBuilder_themeBuilder_CustomFontResult
+  deleteCustomFontFamily(
+    deleteCustomFontFamilyInput: snThemeBuilder_themeBuilder_DeleteCustomFontsInput!
+  ): snThemeBuilder_themeBuilder_CustomFontResult
+}
+
+input snThemeBuilder_themeBuilder_Property {
+  id: String!
+  value: String!
+}
+
+type snThemeBuilder_themeBuilder_Query {
+  getTheme(id: ID!): snThemeBuilder_themeBuilder_M2MUXAppThemeResult
+  getAllExperiences: [snThemeBuilder_themeBuilder_Experience]
+  getAllThemeNames(encodedQuery: String): [snThemeBuilder_themeBuilder_ThemeName]
+  getAllThemes(encodedQuery: String, start: Int, pageSize: Int): snThemeBuilder_themeBuilder_ThemePaginationResult
+  getCustomization(themeId: ID!): snThemeBuilder_themeBuilder_CustomizationResult
+  getMobileApps: [snThemeBuilder_themeBuilder_MobileApp]
+  getCompanyUILogosrc(companyId: ID!): snThemeBuilder_themeBuilder_Logo
+  getMultiThemeInfo: snThemeBuilder_themeBuilder_MultiThemeInfo
+}
+
+input snThemeBuilder_themeBuilder_RemoveLogoInput {
+  m2mStyleAssetId: ID!
+}
+
+input snThemeBuilder_themeBuilder_RevertIllustrationInput {
+  styleId: ID!
+  themeId: String!
+  tokenId: String!
+}
+
+type snThemeBuilder_themeBuilder_Scope {
+  id: String
+  label: String
+}
+
+type snThemeBuilder_themeBuilder_Shape {
+  value: String
+}
+
+type snThemeBuilder_themeBuilder_ShapeStyle implements snThemeBuilder_themeBuilder_Style {
+  id: ID
+  type: String
+  name: String
+  style: String
+  corner: snThemeBuilder_themeBuilder_Shape
+  updatedOn: String
+  createdOn: String
+}
+
+union snThemeBuilder_themeBuilder_ShapeStyleResult = snThemeBuilder_themeBuilder_ShapeStyle | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_StringType {
+  value: String!
+}
+
+union snThemeBuilder_themeBuilder_StringTypeResult = snThemeBuilder_themeBuilder_StringType | snThemeBuilder_themeBuilder_Logger
+
+interface snThemeBuilder_themeBuilder_Style {
+  id: ID
+  type: String
+  name: String
+  style: String
+  updatedOn: String
+  createdOn: String
+}
+
+type snThemeBuilder_themeBuilder_Theme {
+  id: ID
+  name: String
+  description: String
+  styles: [snThemeBuilder_themeBuilder_Style]
+  updatedOn: String
+  createdOn: String
+  createdBy: String
+  updatedBy: String
+  domain: snThemeBuilder_themeBuilder_Domain
+  scope: snThemeBuilder_themeBuilder_Scope
+  customization: snThemeBuilder_themeBuilder_Customization
+}
+
+type snThemeBuilder_themeBuilder_ThemeName {
+  id: String
+  name: String
+  groupName: String
+  variants: [snThemeBuilder_themeBuilder_ThemeNameVariant]
+}
+
+type snThemeBuilder_themeBuilder_ThemeNameVariant {
+  id: String
+  name: String
+}
+
+type snThemeBuilder_themeBuilder_ThemePaginationResult {
+  rowCount: Int
+  hasNext: Boolean
+  hasNonThemeBuilderThemes: Boolean
+  themes: [snThemeBuilder_themeBuilder_M2MUXAppTheme]
+}
+
+union snThemeBuilder_themeBuilder_ThemeResult = snThemeBuilder_themeBuilder_Theme | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_TypographyStyle implements snThemeBuilder_themeBuilder_Style {
+  typography: snThemeBuilder_themeBuilder_Font
+  id: ID
+  type: String
+  name: String
+  style: String
+  updatedOn: String
+  createdOn: String
+  fonts: [snThemeBuilder_themeBuilder_FontAsset]
+}
+
+union snThemeBuilder_themeBuilder_TypographyStyleResult = snThemeBuilder_themeBuilder_TypographyStyle | snThemeBuilder_themeBuilder_Logger
+
+type snThemeBuilder_themeBuilder_UnknownStyle implements snThemeBuilder_themeBuilder_Style {
+  id: ID
+  type: String
+  name: String
+  style: String
+  updatedOn: String
+  createdOn: String
+}
+
+input snThemeBuilder_themeBuilder_UpdateAdditionalBrandColorsInput {
+  id: ID!
+  additional: [snThemeBuilder_themeBuilder_AdditionalColorInput]
+  themeId: ID!
+  isVariant: Boolean
+}
+
+input snThemeBuilder_themeBuilder_UpdateBrandColorsInput {
+  id: ID!
+  themeId: ID!
+  primary: String
+  secondary: String
+  neutral: String
+  isSecondaryColorUpdated: Boolean
+  propertyOverrides: [snThemeBuilder_themeBuilder_Property!]
+  isVariant: Boolean
+}
+
+input snThemeBuilder_themeBuilder_UpdateColorOverrideInput {
+  id: ID!
+  themeId: ID!
+  override: snThemeBuilder_themeBuilder_Property!
+  propertyOverrides: [snThemeBuilder_themeBuilder_Property!]
+  isVariant: Boolean
+  isRevert: Boolean
+}
+
+input snThemeBuilder_themeBuilder_UpdateComponentFontPropertiesInput {
+  id: ID!
+  themeId: ID!
+  isVariant: Boolean
+  override: [snThemeBuilder_themeBuilder_ComponentOverrideProperty!]
+  isRevert: Boolean
+  fontFamily: String
+}
+
+input snThemeBuilder_themeBuilder_UpdateComponentPropInput {
+  id: ID!
+  themeId: ID!
+  isVariant: Boolean
+  override: snThemeBuilder_themeBuilder_ComponentOverrideProperty
+  isRevert: Boolean
+}
+
+input snThemeBuilder_themeBuilder_UpdateLogoInput {
+  assetId: ID!
+  file: String!
+  fileName: String!
+  fileType: String!
+}
+
+input snThemeBuilder_themeBuilder_UpdateShapeInput {
+  id: ID!
+  properties: [snThemeBuilder_themeBuilder_Property!]!
+}
+
+input snThemeBuilder_themeBuilder_UpdateThemeInput {
+  id: ID!
+  name: String!
+  description: String
+}
+
+input snThemeBuilder_themeBuilder_UpdateTypographyInput {
+  id: ID!
+  properties: [snThemeBuilder_themeBuilder_Property!]!
+}
+
+input snThemeBuilder_themeBuilder_UploadCustomFontsInput {
+  fontsPayload: [snThemeBuilder_themeBuilder_FontsInput]!
+  themeId: String!
+}
+
+input snThemeBuilder_themeBuilder_UploadIllustrationInput {
+  styleId: ID!
+  file: String!
+  fileName: String!
+  fileType: String!
+  tokenId: String!
+  themeId: String!
+}

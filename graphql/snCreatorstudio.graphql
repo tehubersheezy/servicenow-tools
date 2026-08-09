@@ -1,0 +1,823 @@
+type snCreatorstudio_query {
+  formSubmission: snCreatorstudio_formSubmission_Query
+  automation: snCreatorstudio_automation_Query
+  requestForm: snCreatorstudio_requestForm_Query
+  requestApp: snCreatorstudio_requestApp_Query
+}
+
+type snCreatorstudio_mutation {
+  formSubmission: snCreatorstudio_formSubmission_Mutation
+  requestForm: snCreatorstudio_requestForm_Mutation
+  requestApp: snCreatorstudio_requestApp_Mutation
+}
+
+type snCreatorstudio_automation_Activity {
+  sysId: String
+  caption: snCreatorstudio_automation_DisplayableString
+  order: Int
+}
+
+type snCreatorstudio_automation_DisplayableString {
+  value: String
+  displayValue: String
+}
+
+type snCreatorstudio_automation_Query {
+  getUsersByGroupId(groupId: ID!, resultLimit: Int, additionalQueryString: String): snCreatorstudio_automation_UsersByGroup
+  getActivities: [snCreatorstudio_automation_Activity]
+}
+
+type snCreatorstudio_automation_User {
+  value: String
+  displayValue: String
+}
+
+type snCreatorstudio_automation_UsersByGroup {
+  users: [snCreatorstudio_automation_User]
+  totalMatchesCount: Int
+}
+
+type snCreatorstudio_formSubmission_Category {
+  label: String
+  id: ID
+  order: Int
+  description: String
+  filteredLists: [snCreatorstudio_formSubmission_InitialFilteredList]
+}
+
+type snCreatorstudio_formSubmission_Column {
+  id: String
+  label: String
+}
+
+input snCreatorstudio_formSubmission_CreateFilteredListPayload {
+  title: String!
+  table: String!
+  category: ID!
+  order: String!
+}
+
+type snCreatorstudio_formSubmission_DeletedFilteredList {
+  filteredListID: String!
+  category: String!
+}
+
+union snCreatorstudio_formSubmission_deletedFilteredListResult = snCreatorstudio_formSubmission_DeletedFilteredList | snCreatorstudio_formSubmission_Error
+
+type snCreatorstudio_formSubmission_Error {
+  message: String!
+  errorType: String!
+}
+
+type snCreatorstudio_formSubmission_FilteredList {
+  label: String
+  id: ID
+  order: Int
+  active: Boolean
+  table: snCreatorstudio_formSubmission_Table
+  categoryId: String
+  columns: String
+  condition: String
+  selectedColumns: [snCreatorstudio_formSubmission_Column]
+  defaultColumns: [snCreatorstudio_formSubmission_Column]
+}
+
+union snCreatorstudio_formSubmission_FilteredListResult = snCreatorstudio_formSubmission_FilteredList | snCreatorstudio_formSubmission_Error
+
+type snCreatorstudio_formSubmission_InitialFilteredList {
+  label: String
+  id: ID
+  order: Int
+  table: snCreatorstudio_formSubmission_Table
+}
+
+type snCreatorstudio_formSubmission_List {
+  list: [snCreatorstudio_formSubmission_Category]
+}
+
+union snCreatorstudio_formSubmission_ListResult = snCreatorstudio_formSubmission_List | snCreatorstudio_formSubmission_Error
+
+type snCreatorstudio_formSubmission_Mutation {
+  createFilteredList(
+    appSysID: ID!
+    payload: snCreatorstudio_formSubmission_CreateFilteredListPayload!
+  ): snCreatorstudio_formSubmission_FilteredListResult
+  updateFilteredList(sysId: ID!, payload: snCreatorstudio_formSubmission_UpdateFilteredListPayload!): snCreatorstudio_formSubmission_FilteredListResult
+  reorderFilteredList(
+    appSysID: ID!
+    payload: [snCreatorstudio_formSubmission_ReorderFilteredListPayload]!
+  ): snCreatorstudio_formSubmission_ReorderFilteredListResult
+  deleteFilteredList(appSysID: ID!, sysId: ID!): snCreatorstudio_formSubmission_deletedFilteredListResult
+}
+
+type snCreatorstudio_formSubmission_Query {
+  getList(appSysID: ID!): snCreatorstudio_formSubmission_ListResult
+  getFilteredListByID(filteredListID: ID!): snCreatorstudio_formSubmission_FilteredListResult
+}
+
+type snCreatorstudio_formSubmission_ReorderFilteredList {
+  filteredList: [snCreatorstudio_formSubmission_ReorderListResponse]
+}
+
+input snCreatorstudio_formSubmission_ReorderFilteredListPayload {
+  category: String
+  order: String
+  id: ID!
+}
+
+union snCreatorstudio_formSubmission_ReorderFilteredListResult = snCreatorstudio_formSubmission_ReorderFilteredList | snCreatorstudio_formSubmission_Error
+
+type snCreatorstudio_formSubmission_ReorderListResponse {
+  category: String
+  order: String
+  id: ID!
+  label: String
+}
+
+type snCreatorstudio_formSubmission_Table {
+  label: String
+  id: String
+  canRead: Boolean
+}
+
+input snCreatorstudio_formSubmission_UpdateFilteredListPayload {
+  title: String
+  active: Boolean
+  columns: String
+  condition: String
+  order: String
+}
+
+type snCreatorstudio_requestApp_AgentRole {
+  sysId: ID!
+  label: String
+}
+
+type snCreatorstudio_requestApp_ApplicationPaginated {
+  results: [snCreatorstudio_requestApp_Applicaton]
+  pagination: snCreatorstudio_requestApp_Pagination
+  applicationsCount: snCreatorstudio_requestApp_ApplicationsCount
+}
+
+type snCreatorstudio_requestApp_ApplicationsCount {
+  totalAppCount: Int
+  totalOwnedAppCount: Int
+  totalSharedAppCount: Int
+  totalBookmarkedAppCount: Int
+}
+
+type snCreatorstudio_requestApp_Applicaton {
+  name: String
+  description: String
+  icon: String
+  color: String
+  created: snCreatorstudio_requestApp_Created
+  createdBy: String
+  canRead: Boolean
+  sysId: String
+  lastAccessed: snCreatorstudio_requestApp_LastAccessed
+}
+
+input snCreatorstudio_requestApp_AppRequestPayload {
+  sortField: String
+  sortOrder: snCreatorstudio_requestApp_SortOrder
+  currentPage: Int
+  pageSize: Int
+  filter: snCreatorstudio_requestApp_Filter
+  searchProperties: snCreatorstudio_requestApp_SearchProperties
+}
+
+type snCreatorstudio_requestApp_Created {
+  value: String
+  displayValue: String
+}
+
+input snCreatorstudio_requestApp_CreateNewRequestAppRequestPayload {
+  name: String!
+  description: String!
+  additionalComments: String
+  url: String!
+}
+
+""" Error data types"""
+type snCreatorstudio_requestApp_Error {
+  errorType: String!
+  message: String!
+  tableName: String
+  sysId: String
+  scopeId: String
+}
+
+enum snCreatorstudio_requestApp_Filter {
+  ALL
+  SHARED
+  OWNED
+  BOOKMARKS
+}
+
+union snCreatorstudio_requestApp_GetApplications = snCreatorstudio_requestApp_ApplicationPaginated | snCreatorstudio_requestApp_Error
+
+union snCreatorstudio_requestApp_GetNewRequestAppRequestResult = snCreatorstudio_requestApp_NewRequestAppRequest | snCreatorstudio_requestApp_Error
+
+union snCreatorstudio_requestApp_GetProcessResult = snCreatorstudio_requestApp_ProcessDefinition | snCreatorstudio_requestApp_Error
+
+""" Resolver result types"""
+union snCreatorstudio_requestApp_GetRequestAppResult = snCreatorstudio_requestApp_RequestApp | snCreatorstudio_requestApp_Error
+
+union snCreatorstudio_requestApp_GetServiceResult = snCreatorstudio_requestApp_Service | snCreatorstudio_requestApp_Error
+
+type snCreatorstudio_requestApp_LastAccessed {
+  value: String
+  displayValue: String
+}
+
+type snCreatorstudio_requestApp_Mutation {
+  createNewRequestAppRequest(payload: snCreatorstudio_requestApp_CreateNewRequestAppRequestPayload!): snCreatorstudio_requestApp_GetNewRequestAppRequestResult
+  updateRequestApp(payload: snCreatorstudio_requestApp_UpdateRequestAppPayload!): snCreatorstudio_requestApp_UpdateRequestAppResult
+  prepareForDeletion(payload: snCreatorstudio_requestApp_PrepareForDeletionPayload!): snCreatorstudio_requestApp_PrepareForDeletionResult
+}
+
+type snCreatorstudio_requestApp_NewRequestAppRequest {
+  sysId: String
+}
+
+type snCreatorstudio_requestApp_Pagination {
+  totalRecordCount: Int
+  totalPageCount: Int
+  currentPage: Int
+  pageSize: Int
+}
+
+input snCreatorstudio_requestApp_PrepareForDeletionPayload {
+  sysId: String!
+}
+
+union snCreatorstudio_requestApp_PrepareForDeletionResult = snCreatorstudio_requestApp_RequestApp | snCreatorstudio_requestApp_Error
+
+type snCreatorstudio_requestApp_ProcessDefinition {
+  sysId: String
+  label: String
+  active: String
+  status: String
+  designerState: String
+}
+
+type snCreatorstudio_requestApp_Query {
+  getRequestApp(
+    scopeId: String!
+    filterConditions: snCreatorstudio_requestApp_RequestAppQueryFilterConditions
+  ): snCreatorstudio_requestApp_GetRequestAppResult
+  getApplications(
+    payload: snCreatorstudio_requestApp_AppRequestPayload!
+    isAppCountRequired: Boolean
+  ): snCreatorstudio_requestApp_GetApplications
+}
+
+type snCreatorstudio_requestApp_RequestApp {
+  sysId: String
+  name: String
+  description: String
+  logo: String
+  icon: String
+  color: String
+  version: String
+  scopeId: String
+  scope: String
+  createdOn: String
+  createdBy: String
+  requestTable: String
+  requestTableLabel: String
+  requestTableInfo: snCreatorstudio_requestApp_RequestTableInfo
+  agentRoles: [snCreatorstudio_requestApp_AgentRole]
+  isDeleting: Boolean
+  services: [snCreatorstudio_requestApp_GetServiceResult]
+  processes: [snCreatorstudio_requestApp_GetProcessResult]
+}
+
+input snCreatorstudio_requestApp_RequestAppQueryFilterConditions {
+  services: String
+  processes: String
+}
+
+type snCreatorstudio_requestApp_RequestTableInfo {
+  supportsRequestTypeTriggerCondition: Boolean
+  canRead: Boolean
+  scopeMatchesApp: Boolean
+}
+
+input snCreatorstudio_requestApp_SearchProperties {
+  keyword: String
+}
+
+type snCreatorstudio_requestApp_Service {
+  sysId: String
+  name: String
+  scopeId: String
+  state: String
+  stateValue: String
+  active: String
+  isCheckedOut: String
+  requestTable: String
+  formImageUrl: String
+  publishedRef: String
+}
+
+enum snCreatorstudio_requestApp_SortOrder {
+  ASC
+  DESC
+}
+
+input snCreatorstudio_requestApp_UpdateRequestAppPayload {
+  sysId: String!
+  name: String
+  description: String
+  icon: String
+  color: String
+}
+
+union snCreatorstudio_requestApp_UpdateRequestAppResult = snCreatorstudio_requestApp_RequestApp | snCreatorstudio_requestApp_Error
+
+input snCreatorstudio_requestForm_AiPayload {
+  targetRPTable: String
+  catalogItemDescription: String
+  wizardId: String
+  templateId: String
+  isTemplateMandatory: Boolean
+  parentRecordTable: String
+  parentRecordId: String
+  mode: String
+  sysparm_item_guid: String
+  sysparm_edit_mode: String
+  sysparm_target_id: String
+  parent_params: snCreatorstudio_requestForm_ParentParams
+  additional_params: [snCreatorstudio_requestForm_NameValuePair]
+  variables: [snCreatorstudio_requestForm_NameValuePair]
+}
+
+type snCreatorstudio_requestForm_AiResponse {
+  cat_item_id: String
+}
+
+union snCreatorstudio_requestForm_CancelCheckoutRecordProducerResult = snCreatorstudio_requestForm_CancelRecordProducerResult | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_CancelRecordProducerResult {
+  success: Boolean
+}
+
+type snCreatorstudio_requestForm_CheckedOutRecordProducer {
+  sysId: String
+}
+
+union snCreatorstudio_requestForm_CheckoutRecordProducerResult = snCreatorstudio_requestForm_CheckedOutRecordProducer | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_Choice {
+  recurringPriceCurrency: String
+  price: Float
+  index: Int
+  recurringPrice: Float
+  label: String
+  value: String
+  priceCurrency: String
+}
+
+input snCreatorstudio_requestForm_ChoiceInput {
+  index: Int
+  label: String!
+  value: String!
+}
+
+input snCreatorstudio_requestForm_ChoicePayload {
+  recurringPriceCurrency: String
+  price: Float
+  index: Int
+  recurringPrice: Float
+  label: String
+  value: String
+  priceCurrency: String
+}
+
+type snCreatorstudio_requestForm_Container {
+  sysId: ID
+  questionText: String
+  displayTitle: Boolean
+  active: Boolean
+  mandatory: Boolean
+  type: String
+  name: String
+  order: String
+  layout: String
+  attributes: String
+}
+
+input snCreatorstudio_requestForm_ContainerPayload {
+  type: String
+  catItem: String
+  sysId: ID
+  sectionText: String
+  displayType: String
+  displayTitle: Boolean
+  id: ID
+  active: Boolean
+  name: String
+  order: String
+  layout: String
+  attributes: String
+  columnCount: String
+}
+
+type snCreatorstudio_requestForm_ContainerResponse {
+  containerStart: snCreatorstudio_requestForm_Container
+  containerEnd: snCreatorstudio_requestForm_Container
+  containerSplit: snCreatorstudio_requestForm_Container
+}
+
+union snCreatorstudio_requestForm_ContainerResult = snCreatorstudio_requestForm_ContainerResponse | snCreatorstudio_requestForm_Error
+
+input snCreatorstudio_requestForm_DeleteCatalogUIPolicyPayload {
+  sysIds: [String]
+}
+
+type snCreatorstudio_requestForm_DeleteCatalogUIPolicyResponse {
+  success: Boolean
+}
+
+union snCreatorstudio_requestForm_DeleteCatalogUIPolicyResult = snCreatorstudio_requestForm_DeleteCatalogUIPolicyResponse | snCreatorstudio_requestForm_Error
+
+input snCreatorstudio_requestForm_DeleteContainerPayload {
+  sysIds: String
+  catItem: String
+}
+
+type snCreatorstudio_requestForm_DeleteContainerResponse {
+  success: Boolean
+}
+
+union snCreatorstudio_requestForm_DeleteContainerResult = snCreatorstudio_requestForm_DeleteContainerResponse | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_DynamicValueField {
+  value: String
+  displayValue: String
+}
+
+type snCreatorstudio_requestForm_Error {
+  message: String!
+  errorType: String!
+}
+
+union snCreatorstudio_requestForm_GenerateAndPersistRequestFormResult = snCreatorstudio_requestForm_AiResponse | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_Mutation {
+  updateRecordProducer(
+    sysId: String!
+    payload: snCreatorstudio_requestForm_UpdateRecordProducerPayload!
+  ): snCreatorstudio_requestForm_RecordProducerResult
+  saveQuestion(payload: snCreatorstudio_requestForm_QuestionPayload!): snCreatorstudio_requestForm_QuestionResult
+  saveContainer(payload: snCreatorstudio_requestForm_ContainerPayload!): snCreatorstudio_requestForm_ContainerResult
+  saveQuestionSet(payload: snCreatorstudio_requestForm_QuestionSetPayload!): snCreatorstudio_requestForm_QuestionSetResult
+  reorderQuestions(payload: snCreatorstudio_requestForm_ReorderPayload!): snCreatorstudio_requestForm_ReorderResult
+  publishRecordProducer(sysId: String!, options: snCreatorstudio_requestForm_PublishOptions): snCreatorstudio_requestForm_PublishRecordProducerResult
+  cancelCheckoutRecordProducer(sysId: String!): snCreatorstudio_requestForm_CancelCheckoutRecordProducerResult
+  checkoutRecordProducer(sysId: String!): snCreatorstudio_requestForm_CheckoutRecordProducerResult
+  generateAndPersistRequestForm(payload: snCreatorstudio_requestForm_AiPayload!): snCreatorstudio_requestForm_GenerateAndPersistRequestFormResult
+  deleteContainer(payload: snCreatorstudio_requestForm_DeleteContainerPayload!): snCreatorstudio_requestForm_DeleteContainerResult
+  deleteCatalogUIPolicies(payload: snCreatorstudio_requestForm_DeleteCatalogUIPolicyPayload!): snCreatorstudio_requestForm_DeleteCatalogUIPolicyResult
+}
+
+input snCreatorstudio_requestForm_NameValuePair {
+  name: String
+  value: String
+}
+
+input snCreatorstudio_requestForm_ParentParams {
+  sysparm_parent_table: String
+  sysparm_parent_sys_id: String
+}
+
+type snCreatorstudio_requestForm_PublishedRecordProducer {
+  sysId: String
+}
+
+input snCreatorstudio_requestForm_PublishOptions {
+  active: Boolean
+}
+
+union snCreatorstudio_requestForm_PublishRecordProducerResult = snCreatorstudio_requestForm_PublishedRecordProducer | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_Query {
+  getRecordProducer(sysId: String!, requireTableMatch: Boolean): snCreatorstudio_requestForm_RecordProducerResult
+  getTopics(
+    taxonomy: String
+    pageSize: Int
+    offset: Int
+    parentTopic: String
+    searchTerm: String
+    topLevel: Boolean
+  ): snCreatorstudio_requestForm_TopicsResult
+  getTemplates(pageSize: Int, offset: Int, searchTerm: String): snCreatorstudio_requestForm_TemplatesResult
+  getText2CatalogInfo: snCreatorstudio_requestForm_Text2CatalogInfoResult
+}
+
+type snCreatorstudio_requestForm_Question {
+  sysId: ID
+  questionText: String
+  helpText: String
+  instructions: String
+  mapToField: Boolean
+  displayTitle: Boolean
+  includeNone: Boolean
+  validateRegex: String
+  active: Boolean
+  mandatory: Boolean
+  type: String
+  name: String
+  order: String
+  layout: String
+  attributes: String
+  choices: [snCreatorstudio_requestForm_Choice]
+  readOnly: Boolean
+  hidden: Boolean
+  doNotSelectFirst: Boolean
+  table: String
+  reference: String
+  referenceQual: String
+  lookupTable: String
+  lookupValue: String
+  lookupLabel: String
+  richText: String
+}
+
+input snCreatorstudio_requestForm_QuestionPayload {
+  type: String
+  catItem: String
+  sysId: ID
+  questionText: String
+  helpText: String
+  instructions: String
+  mapToField: Boolean
+  displayType: String
+  displayTitle: Boolean
+  id: ID
+  active: Boolean
+  name: String
+  order: String
+  layout: String
+  attributes: String
+  mandatory: Boolean
+  field: String
+  choices: [snCreatorstudio_requestForm_ChoiceInput]
+  readOnly: Boolean
+  hidden: Boolean
+  defaultValue: String
+  includeNone: Boolean
+  doNotSelectFirst: Boolean
+  reference: String
+  referenceQual: String
+  listTable: String
+  lookupTable: String
+  lookupValue: String
+  lookupLabel: String
+  richText: String
+  validateRegex: String
+  dynamicValueDotWalkPath: String
+  dynamicValueField: String
+}
+
+union snCreatorstudio_requestForm_QuestionResult = snCreatorstudio_requestForm_Question | snCreatorstudio_requestForm_Error
+
+input snCreatorstudio_requestForm_QuestionSetPayload {
+  variableSet: String!
+  updatedVariableSet: String
+  catItem: String!
+  order: String
+}
+
+type snCreatorstudio_requestForm_QuestionSetResponse {
+  sysId: String
+  variableSet: String
+  catItem: String
+  order: String
+}
+
+union snCreatorstudio_requestForm_QuestionSetResult = snCreatorstudio_requestForm_QuestionSetResponse | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_RecordProducer {
+  sysId: String
+  shortDescription: String
+  picture: String
+  icon: String
+  description: String
+  type: String
+  sysClassName: String
+  contentType: String
+  name: String
+  variables: [snCreatorstudio_requestForm_Variable]
+  scTemplateId: String
+  scTemplateLabel: String
+  publishedRef: String
+  publishedSysUpdatedOn: String
+  publishedSysUpdatedBy: String
+  attachmentMandatory: String
+  hideAttachment: String
+  state: String
+  stateValue: String
+  formImageUrl: String
+}
+
+union snCreatorstudio_requestForm_RecordProducerResult = snCreatorstudio_requestForm_RecordProducer | snCreatorstudio_requestForm_Error
+
+input snCreatorstudio_requestForm_ReorderPayload {
+  recordProducerId: ID!
+  questions: [snCreatorstudio_requestForm_VariablePayload]
+}
+
+union snCreatorstudio_requestForm_ReorderResult = snCreatorstudio_requestForm_Variables | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_Template {
+  sysId: String
+  shortDescription: String
+  catItem: String
+  name: String
+  useTemplateScope: Boolean
+  availableFor: String
+}
+
+type snCreatorstudio_requestForm_Templates {
+  _rowCount: Int
+  templates: [snCreatorstudio_requestForm_Template]
+}
+
+union snCreatorstudio_requestForm_TemplatesResult = snCreatorstudio_requestForm_Templates | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_Text2CatalogInfo {
+  isText2CatalogSetUp: Boolean
+  isUserNowAssistCreator: Boolean
+}
+
+union snCreatorstudio_requestForm_Text2CatalogInfoResult = snCreatorstudio_requestForm_Text2CatalogInfo | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_Topic {
+  name: String
+  topicPath: String
+  sysId: String
+  parentTopic: String
+  taxonomy: String
+  hasChildren: Boolean
+}
+
+type snCreatorstudio_requestForm_Topics {
+  topics: [snCreatorstudio_requestForm_Topic]
+  offset: Int
+  pageSize: Int
+}
+
+union snCreatorstudio_requestForm_TopicsResult = snCreatorstudio_requestForm_Topics | snCreatorstudio_requestForm_Error
+
+type snCreatorstudio_requestForm_UiPolicy {
+  sysId: String
+  shortDescription: String
+  catalogConditions: String
+  appliesCatalog: Boolean
+  appliesReqItem: Boolean
+  appliesScTask: Boolean
+  actions: [snCreatorstudio_requestForm_UiPolicyAction]
+}
+
+type snCreatorstudio_requestForm_UiPolicyAction {
+  catalogItem: String
+  catalogVariable: String
+  cleared: String
+  disabled: String
+  displayValue: String
+  field: String
+  fieldMessage: String
+  fieldMessageType: String
+  mandatory: String
+  order: Int
+  sysId: String
+  uiPolicy: String
+  value: String
+  valueAction: String
+  visible: String
+}
+
+input snCreatorstudio_requestForm_UiPolicyActionPayload {
+  catalogItem: String
+  catalogVariable: String
+  cleared: String
+  disabled: String
+  displayValue: String
+  field: String
+  fieldMessage: String
+  fieldMessageType: String
+  mandatory: String
+  order: Int
+  sysId: String
+  uiPolicy: String
+  value: String
+  valueAction: String
+  visible: String
+}
+
+input snCreatorstudio_requestForm_UiPolicyPayload {
+  actions: [snCreatorstudio_requestForm_UiPolicyActionPayload]
+  appliesCatalog: Boolean
+  appliesReqItem: Boolean
+  appliesScTask: Boolean
+  catalogConditions: String
+  shortDescription: String
+  sysId: String
+}
+
+input snCreatorstudio_requestForm_UpdateRecordProducerPayload {
+  name: String
+  shortDescription: String
+  description: String
+  picture: String
+  hideAttachment: String
+  attachmentMandatory: String
+  createDefaultQuestions: Boolean
+}
+
+type snCreatorstudio_requestForm_Variable {
+  active: Boolean
+  label: String
+  type: Int
+  mandatory: Boolean
+  displayValue: String
+  friendlyType: String
+  displayType: String
+  renderLabel: Boolean
+  readOnly: Boolean
+  name: String
+  attributes: String
+  id: String
+  choices: [snCreatorstudio_requestForm_Choice]
+  value: String
+  helpText: String
+  instructions: String
+  maxLength: Int
+  order: Int
+  children: [snCreatorstudio_requestForm_Variable]
+  containerType: String
+  columnCount: Int
+  containerSplitId: ID
+  containerEndId: ID
+  hasSplit: Boolean
+  hidden: Boolean
+  includeNone: Boolean
+  validateRegex: String
+  doNotSelectFirst: Boolean
+  reference: String
+  referenceQual: String
+  table: String
+  lookupTable: String
+  lookupValue: String
+  lookupLabel: String
+  uiPolicies: [snCreatorstudio_requestForm_UiPolicy]
+  dynamicValueDotWalkPath: String
+  dynamicValueField: snCreatorstudio_requestForm_DynamicValueField
+}
+
+input snCreatorstudio_requestForm_VariablePayload {
+  active: Boolean!
+  label: String
+  type: Int!
+  mandatory: Boolean
+  includeNone: Boolean
+  displayValue: String
+  friendlyType: String!
+  displayType: String
+  renderLabel: Boolean
+  readOnly: Boolean
+  name: String!
+  attributes: String
+  id: String!
+  choices: [snCreatorstudio_requestForm_ChoicePayload]
+  value: String
+  helpText: String
+  instructions: String
+  maxLength: Int
+  order: Int
+  children: [snCreatorstudio_requestForm_VariablePayload]
+  containerType: String
+  columnCount: Int
+  containerSplitId: ID
+  containerEndId: ID
+  hasSplit: Boolean
+  hidden: Boolean
+  doNotSelectFirst: Boolean
+  reference: String
+  referenceQual: String
+  table: String
+  lookupTable: String
+  lookupValue: String
+  lookupLabel: String
+  validateRegex: String
+  uiPolicies: [snCreatorstudio_requestForm_UiPolicyPayload]
+  dynamicValueDotWalkPath: String
+  dynamicValueField: String
+}
+
+type snCreatorstudio_requestForm_Variables {
+  variables: [snCreatorstudio_requestForm_Variable]
+}

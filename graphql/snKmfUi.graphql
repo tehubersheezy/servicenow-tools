@@ -1,0 +1,180 @@
+type snKmfUi_query {
+  resolution: snKmfUi_resolution_Query
+  status: snKmfUi_status_Query
+}
+
+type snKmfUi_resolution_KMFComponent {
+  """ Component health."""
+  health: snKmfUi_resolution_KMFHealthStatus!
+  warnings: [String]
+}
+
+type snKmfUi_resolution_KMFComponentEjbca {
+  """ Component health."""
+  health: snKmfUi_resolution_KMFHealthStatus!
+  warnings: [String]
+  children: snKmfUi_resolution_KMFRootComponentEjbca
+}
+
+type snKmfUi_resolution_KMFComponentInstancePKI {
+  """ Component health."""
+  health: snKmfUi_resolution_KMFHealthStatus!
+  warnings: [String]
+  children: snKmfUi_resolution_KMFRootComponentInstancePKI
+}
+
+type snKmfUi_resolution_KMFComponentVault {
+  """ Component health."""
+  health: snKmfUi_resolution_KMFHealthStatus!
+  warnings: [String]
+  children: snKmfUi_resolution_KMFRootComponentVault
+}
+
+type snKmfUi_resolution_KMFHealth {
+  """ Overall health."""
+  health: snKmfUi_resolution_KMFHealthStatus!
+  warnings: [String]
+  """ Type of instance this check is running on."""
+  instanceType: snKmfUi_resolution_KMFInstanceType!
+  """ Date at which the check was run."""
+  date: String!
+  """ Components"""
+  children: snKmfUi_resolution_KMFRootComponent!
+}
+
+enum snKmfUi_resolution_KMFHealthStatus {
+  RED
+  YELLOW
+  GREEN
+  GRAY
+}
+
+enum snKmfUi_resolution_KMFInstanceType {
+  DEVELOPER
+  THUNDERDOME
+  DATACENTER
+  SELF_HOSTED
+  TEST_INSTANCE
+  UNKNOWN
+}
+
+type snKmfUi_resolution_KMFRootComponent {
+  KEY_SECURE: snKmfUi_resolution_KMFComponent!
+  FILE_KEY_STORE: snKmfUi_resolution_KMFComponent!
+  GLIDE_ENCRYPTER: snKmfUi_resolution_KMFComponent!
+  IKEK: snKmfUi_resolution_KMFComponent!
+  IHMAC: snKmfUi_resolution_KMFComponent!
+  EJBCA_PKI: snKmfUi_resolution_KMFComponentEjbca!
+  VAULT_PKI: snKmfUi_resolution_KMFComponentVault!
+  INSTANCE_PKI: snKmfUi_resolution_KMFComponentInstancePKI!
+}
+
+type snKmfUi_resolution_KMFRootComponentEjbca {
+  LDAP: snKmfUi_resolution_KMFComponent!
+  IAEK: snKmfUi_resolution_KMFComponent!
+  ISK: snKmfUi_resolution_KMFComponent!
+}
+
+type snKmfUi_resolution_KMFRootComponentInstancePKI {
+  ISSUING_CERTIFICATE: snKmfUi_resolution_KMFComponent!
+  ICSK: snKmfUi_resolution_KMFComponent!
+  CRL_ENDPOINT: snKmfUi_resolution_KMFComponent!
+}
+
+type snKmfUi_resolution_KMFRootComponentVault {
+  VAULT_CONNECTIVITY: snKmfUi_resolution_KMFComponent!
+  IAEK: snKmfUi_resolution_KMFComponent!
+  ISK: snKmfUi_resolution_KMFComponent!
+}
+
+type snKmfUi_resolution_Query {
+  resolve: snKmfUi_resolution_KMFHealth
+}
+
+type snKmfUi_status_KMFComponent {
+  """ Component health."""
+  health: snKmfUi_status_KMFHealthStatus!
+  warnings: [String]
+}
+
+type snKmfUi_status_KMFComponentEjbca {
+  """ Component health."""
+  health: snKmfUi_status_KMFHealthStatus!
+  warnings: [String]
+  children: snKmfUi_status_KMFRootComponentEjbca
+}
+
+type snKmfUi_status_KMFComponentInstancePKI {
+  """ Component health."""
+  health: snKmfUi_status_KMFHealthStatus!
+  warnings: [String]
+  children: snKmfUi_status_KMFRootComponentInstancePKI
+}
+
+type snKmfUi_status_KMFComponentVault {
+  """ Component health."""
+  health: snKmfUi_status_KMFHealthStatus!
+  warnings: [String]
+  children: snKmfUi_status_KMFRootComponentVault
+}
+
+type snKmfUi_status_KMFHealth {
+  """ Overall health."""
+  health: snKmfUi_status_KMFHealthStatus!
+  warnings: [String]
+  """ Type of instance this check is running on."""
+  instanceType: snKmfUi_status_KMFInstanceType!
+  """ Date at which the check was run."""
+  date: String!
+  """ Components"""
+  children: snKmfUi_status_KMFRootComponent!
+}
+
+enum snKmfUi_status_KMFHealthStatus {
+  RED
+  YELLOW
+  GREEN
+  GRAY
+}
+
+enum snKmfUi_status_KMFInstanceType {
+  DEVELOPER
+  THUNDERDOME
+  DATACENTER
+  SELF_HOSTED
+  TEST_INSTANCE
+  UNKNOWN
+}
+
+type snKmfUi_status_KMFRootComponent {
+  KEY_SECURE: snKmfUi_status_KMFComponent!
+  FILE_KEY_STORE: snKmfUi_status_KMFComponent!
+  GLIDE_ENCRYPTER: snKmfUi_status_KMFComponent!
+  IKEK: snKmfUi_status_KMFComponent!
+  IHMAC: snKmfUi_status_KMFComponent!
+  EJBCA_PKI: snKmfUi_status_KMFComponentEjbca!
+  VAULT_PKI: snKmfUi_status_KMFComponentVault!
+  INSTANCE_PKI: snKmfUi_status_KMFComponentInstancePKI!
+}
+
+type snKmfUi_status_KMFRootComponentEjbca {
+  LDAP: snKmfUi_status_KMFComponent!
+  IAEK: snKmfUi_status_KMFComponent!
+  ISK: snKmfUi_status_KMFComponent!
+}
+
+type snKmfUi_status_KMFRootComponentInstancePKI {
+  ISSUING_CERTIFICATE: snKmfUi_status_KMFComponent!
+  ICSK: snKmfUi_status_KMFComponent!
+  CRL_ENDPOINT: snKmfUi_status_KMFComponent!
+}
+
+type snKmfUi_status_KMFRootComponentVault {
+  VAULT_CONNECTIVITY: snKmfUi_status_KMFComponent!
+  IAEK: snKmfUi_status_KMFComponent!
+  ISK: snKmfUi_status_KMFComponent!
+}
+
+type snKmfUi_status_Query {
+  health: snKmfUi_status_KMFHealth
+}

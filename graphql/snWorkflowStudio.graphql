@@ -1,0 +1,31 @@
+type snWorkflowStudio_query {
+  workflowStudio: snWorkflowStudio_workflowStudio_Query
+}
+
+type snWorkflowStudio_workflowStudio_AppUpgradeInfo {
+  current: String
+  latest: String
+  isUpgradable: Boolean
+}
+
+type snWorkflowStudio_workflowStudio_ExamplePrompts {
+  FLOW: [String]
+  SUBFLOW: [String]
+}
+
+type snWorkflowStudio_workflowStudio_Query {
+  hasRole(role_name: String!): Boolean
+  isPluginInstalled(plugin_name: String!): Boolean
+  isPropertyDisabled(property_name: String!): Boolean
+  getBuilderVersion(builder_name: String!): String
+  isAppUpgradeAvailable(builder_name: String!): snWorkflowStudio_workflowStudio_AppUpgradeInfo
+  hasFlowGenerationAccess: Boolean
+  hasFlowImageGenerationAccess: Boolean
+  flowGenerationExampleAiPrompts: snWorkflowStudio_workflowStudio_ExamplePrompts
+  hasPlaybookGenerationAccess: Boolean
+  fdFixedQuery: String
+  isUpgradeSystemBusy: Boolean
+  isConversationalPreviewTableExists(table_name: String!): Boolean
+  isNowAssistCreatorEnabled: Boolean
+  isSkillText2FlowActive: Boolean
+}
