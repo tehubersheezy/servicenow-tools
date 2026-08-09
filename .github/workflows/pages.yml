@@ -25,8 +25,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      # The explorer is fully self-contained; the site is just this one file.
-      - run: mkdir -p dist && node src/build-explorer.js --out dist/index.html
+      # The explorer is fully self-contained; the specs ride along so each
+      # API's "Source <file>.json" link resolves on the public site too.
+      - run: |
+          mkdir -p dist
+          node src/build-explorer.js --out dist/index.html
+          cp -R openapi dist/openapi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

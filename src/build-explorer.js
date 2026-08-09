@@ -866,7 +866,14 @@ var DATA = "__PAYLOAD__";
     about.appendChild(ah);
     if (op.api.desc) about.appendChild(el('p', 'desc', op.api.desc));
     var metaLine = el('p', 'meta-line');
-    metaLine.appendChild(document.createTextNode('Source ' + op.api.file));
+    metaLine.appendChild(document.createTextNode('Source '));
+    // Relative link works locally (file next to openapi/) and on Pages (the
+    // deploy workflow copies openapi/ into the site). Filenames are \\w . -
+    // only (see scrape-openapi.js slug), so no URL-encoding is needed.
+    var srcLink = el('a', null, op.api.file);
+    srcLink.href = 'openapi/' + op.api.file;
+    srcLink.target = '_blank'; srcLink.rel = 'noopener';
+    metaLine.appendChild(srcLink);
     if (op.api.docs) {
       metaLine.appendChild(document.createTextNode(' · '));
       var a = el('a', null, 'product docs');
