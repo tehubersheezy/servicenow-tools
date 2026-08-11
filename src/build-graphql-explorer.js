@@ -90,13 +90,18 @@ function loadCorpus(corpusDir) {
     const raw = JSON.parse(fs.readFileSync(path.join(corpusDir, '_gliderecord.json'), 'utf8'));
     const framework = {};
     for (const t of raw.frameworkTypes) framework[t.name] = compactType(t);
+    // Ship table names + column counts only. The full typed column lists
+    // (~350k entries) live in _gliderecord.json — embedding them here would
+    // triple the page for data the detail pane can point at instead.
+    const tables = {};
+    for (const [name, cols] of Object.entries(raw.tables)) tables[name] = cols.length;
     glide = {
       queryArgs: raw.queryArgs.map(compactArg),
       aggregateArgs: raw.aggregateArgs.map(compactArg),
       tableMetaFields: raw.tableMetaFields,
       referenceFieldMeta: raw.referenceFieldMeta,
       framework,
-      tables: raw.tables,
+      tables,
       noMut: raw.tablesWithoutMutations,
     };
   } catch { /* optional */ }
@@ -538,18 +543,20 @@ var DATA = "__PAYLOAD__";
   }
   ops.forEach(function (op) { op.hay = buildHay(op); });
 
+  // Tables ship as name -> column count. The typed column lists (choice /
+  // journal / reference-target codes) live in graphql/_gliderecord.json —
+  // deliberately not embedded, so search matches table names, not columns.
   var tables = [];
   if (GLIDE) {
     Object.keys(GLIDE.tables).forEach(function (name) {
-      var cols = GLIDE.tables[name];
       var op = {
         id: ops.length + tables.length,
         ns: 'GlideRecord',
         kind: 'TABLE',
         name: name,
-        cols: cols,
-        desc: cols.length + ' columns',
-        hay: ('table ' + name + ' ' + cols.join(' ')).toLowerCase()
+        colCount: GLIDE.tables[name],
+        desc: GLIDE.tables[name] + ' columns',
+        hay: ('table ' + name).toLowerCase()
       };
       tables.push(op);
     });
@@ -733,9 +740,7 @@ var DATA = "__PAYLOAD__";
         var pathSpan = el('span', 'path');
         markNodes(pathSpan, op.name, tokens);
         row.appendChild(pathSpan);
-        var sub = op.kind === 'TABLE'
-          ? op.cols.slice(0, 8).join(', ')
-          : op.desc;
+        var sub = op.desc;
         if (sub) {
           var d = el('span', 'opdesc');
           markNodes(d, sub, tokens);
@@ -848,41 +853,37 @@ var DATA = "__PAYLOAD__";
   }
 
   // ---- Table (GlideRecord) codegen ----
-  function pickSampleCols(cols) {
-    var preferred = ['number', 'short_description', 'name', 'state', 'sys_updated_on'];
-    var out = [];
-    preferred.forEach(function (p) { if (cols.indexOf(p) !== -1) out.push(p); });
-    for (var i = 0; i < cols.length && out.length < 4; i++) {
-      if (out.indexOf(cols[i]) === -1 && cols[i] !== 'sys_id') out.push(cols[i]);
-    }
-    return out;
-  }
-
+  // Column lists are not embedded (see the tables comment above), so samples
+  // use field_name as the stand-in selection.
   function tableQuery(tb) {
-    var lines = ['query {', '  GlideRecord_Query {',
+    return ['query {', '  GlideRecord_Query {',
       '    ' + tb.name + '(queryConditions: "ORDERBYDESCsys_updated_on", pagination: { limit: 5 }) {',
-      '      _rowCount', '      _results {', '        sys_id { value }'];
-    pickSampleCols(tb.cols).forEach(function (c) {
-      lines.push('        ' + c + ' { value displayValue }');
-    });
-    lines.push('      }', '    }', '  }', '}');
-    return lines.join('\\n');
+      '      _rowCount', '      _results {', '        sys_id { value }',
+      '        field_name { value displayValue }   # one block per column you want',
+      '      }', '    }', '  }', '}'].join('\\n');
   }
 
   function tableGetQuery(tb) {
-    var lines = ['query {', '  GlideRecord_Query {',
-      '    ' + tb.name + '(sys_id: "...") {', '      _results {', '        sys_id { value }'];
-    pickSampleCols(tb.cols).forEach(function (c) {
-      lines.push('        ' + c + ' { value displayValue }');
-    });
-    lines.push('      }', '    }', '  }', '}');
-    return lines.join('\\n');
+    return ['query {', '  GlideRecord_Query {',
+      '    ' + tb.name + '(sys_id: "...") {', '      _results {', '        sys_id { value }',
+      '        field_name { value displayValue }',
+      '      }', '    }', '  }', '}'].join('\\n');
+  }
+
+  function tableSchemaQuery(tb) {
+    return ['query {', '  GlideRecord_Query {',
+      '    ' + tb.name + '(pagination: { limit: 1 }) {',
+      '      _table_metadata { label plural canRead canWrite canCreate canDelete auditWanted }',
+      '      _results {',
+      '        field_name {',
+      '          label', '          internalType', '          isMandatory', '          canWrite',
+      '          _choices { value displayValue }   # choice columns only',
+      '        }',
+      '      }', '    }', '  }', '}'].join('\\n');
   }
 
   function tableAggregate(tb) {
-    var groupCol = tb.cols.indexOf('state') !== -1 ? 'state'
-      : tb.cols.indexOf('sys_class_name') !== -1 ? 'sys_class_name'
-      : tb.cols[0] || 'sys_id';
+    var groupCol = 'field_name';
     return ['query {',
       '  GlideAggregateRecord_Query(tableName: "' + tb.name + '", groupBy: ["' + groupCol + '"]) {',
       '    totalCount', '    totalGroupsCount', '    aggregates {', '      count',
@@ -897,13 +898,7 @@ var DATA = "__PAYLOAD__";
       var del = selectionLines('GlideRecord_DeleteMutationOutputType', GLIDE.framework, 3, ['GlideRecord_DeleteMutationOutputType']);
       lines = lines.concat(del.length ? del : ['      __typename']);
     } else {
-      var writable = ['short_description', 'name', 'description', 'comments'];
-      var col = null;
-      for (var i = 0; i < writable.length && !col; i++) {
-        if (tb.cols.indexOf(writable[i]) !== -1) col = writable[i];
-      }
-      col = col || pickSampleCols(tb.cols)[0] || tb.cols[0] || 'short_description';
-      var args = verb === 'update' ? '(sys_id: "...", ' + col + ': "...")' : '(' + col + ': "...")';
+      var args = verb === 'update' ? '(sys_id: "...", field_name: "...")' : '(field_name: "...")';
       lines.push('    ' + verb + '_' + tb.name + args + ' {');
       lines.push('      sys_id { value }');
     }
@@ -1230,9 +1225,11 @@ var DATA = "__PAYLOAD__";
     inner.appendChild(title);
 
     var hasMut = GLIDE.noMut.indexOf(tb.name) === -1;
-    inner.appendChild(el('p', 'op-desc', tb.cols.length + ' columns · query via GlideRecord_Query.' + tb.name +
+    inner.appendChild(el('p', 'op-desc', tb.colCount + ' columns · query via GlideRecord_Query.' + tb.name +
       (hasMut ? ' · mutations insert_/update_/delete_' + tb.name : ' · no mutations exposed') +
-      '. Every column is an object — select { value displayValue } on it; reference columns also have _reference to dot-walk.'));
+      '. Every column is a typed wrapper — select { value displayValue } plus dictionary metadata ' +
+      '(label, internalType, isMandatory, canRead/canWrite). Choice columns add _choices, reference columns ' +
+      'add _reference to dot-walk, and _table_metadata answers table-level ACLs for the calling user.'));
 
     var query = tableQuery(tb);
     var actions = el('div', 'actions');
@@ -1248,6 +1245,7 @@ var DATA = "__PAYLOAD__";
 
     inner.appendChild(snippetBlock('Query records', 'encoded query + pagination', query));
     inner.appendChild(snippetBlock('Get by sys_id', null, tableGetQuery(tb)));
+    inner.appendChild(snippetBlock('Schema discovery', 'labels, ACL verdicts, choice lists — needs \\u2265 1 readable row', tableSchemaQuery(tb)));
     inner.appendChild(snippetBlock('Aggregate', 'count by group — also avg/min/max/sum(field: "...")', tableAggregate(tb)));
     if (hasMut) {
       inner.appendChild(snippetBlock('Insert', 'one String argument per column', tableMutation(tb, 'insert')));
@@ -1258,18 +1256,27 @@ var DATA = "__PAYLOAD__";
 
     var colSec = el('section', 'block');
     var ch = el('h2', null, 'Columns ');
-    ch.appendChild(el('span', 'sub', String(tb.cols.length)));
+    ch.appendChild(el('span', 'sub', String(tb.colCount)));
     colSec.appendChild(ch);
-    var wrap = el('div', 'cols-wrap');
-    tb.cols.forEach(function (c) { wrap.appendChild(el('span', 'colname', c)); });
-    colSec.appendChild(wrap);
+    colSec.appendChild(el('p', 'cols-wrap', 'Column lists aren\\u2019t embedded in this page (6,000+ tables would triple it). ' +
+      'The typed list — which columns are choices, journals, or references and their targets — is in ' +
+      'graphql/_gliderecord.json (see its columnEncoding legend), or ask the instance directly with the Schema discovery query above.'));
     inner.appendChild(colSec);
 
     var fw = el('section', 'block');
-    fw.appendChild(el('h2', null, 'Field wrapper'));
-    fw.appendChild(el('p', 'cols-wrap', 'Selectable on every column: ' +
-      (GLIDE.framework.GlideRecord_FieldType_String ? GLIDE.framework.GlideRecord_FieldType_String.f.map(function (f) { return f.n; }).join(' · ') : 'value · displayValue') +
-      '. Reference columns add: _reference (the target table\\u2019s record).'));
+    fw.appendChild(el('h2', null, 'Field wrappers'));
+    fw.appendChild(el('p', 'cols-wrap', 'Every column is an object carrying its value and dictionary metadata. On all columns: ' +
+      (GLIDE.framework.GlideRecord_FieldType_String ? GLIDE.framework.GlideRecord_FieldType_String.f.map(function (f) { return f.n; }).join(' · ') : 'value · displayValue') + '.'));
+    if (GLIDE.framework.GlideRecord_ChoiceListFieldType) {
+      fw.appendChild(el('p', 'cols-wrap', 'Choice columns additionally: ' +
+        GLIDE.framework.GlideRecord_ChoiceListFieldType.f
+          .filter(function (f) { return !GLIDE.framework.GlideRecord_FieldType_String || !GLIDE.framework.GlideRecord_FieldType_String.f.some(function (g) { return g.n === f.n; }); })
+          .map(function (f) { return f.n; }).join(' · ') +
+        ' — _choices { value displayValue } is the live choice list, evaluated in record context.'));
+    }
+    fw.appendChild(el('p', 'cols-wrap', 'Reference columns add: _reference (the target table\\u2019s record — server-side dot-walk). ' +
+      'Journal columns (comments, work_notes) render the full formatted entry stream in displayValue — readable wherever the record is, ' +
+      'even when sys_journal_field itself is ACL-blocked. Field metadata hangs off _results rows: an empty result set yields no field-level metadata.'));
     inner.appendChild(fw);
 
     var about = el('section', 'api-about');

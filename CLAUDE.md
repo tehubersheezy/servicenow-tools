@@ -86,8 +86,15 @@ Explorer is just a GraphiQL client for it). Top-level fields partition it:
   `GlideAggregateRecord_Query`: a query field per table
   (`<table>(sys_id, queryConditions, omitCount, pagination)`), CRUD mutations
   (`insert_/update_/delete_<table>`, one String arg per column), and aggregates
-  (`GlideAggregateRecord_Query(tableName, groupBy, having, …)`). Columns are objects — select
-  `{ value displayValue }`; reference columns add `_reference` to dot-walk.
+  (`GlideAggregateRecord_Query(tableName, groupBy, having, …)` →
+  `aggregates { groupBy { field value displayValue } count avg min max sum countDistinct }`).
+  Columns are *typed* wrapper objects (string/choice/journal/reference/… — see `columnEncoding`
+  in `graphql/_gliderecord.json`) carrying the value plus dictionary metadata: select
+  `{ value displayValue label internalType isMandatory canRead canWrite }`. Choice columns add
+  `_choices { value displayValue }` (live, record-context choice list); reference columns add
+  `_reference` to dot-walk; each table query also has
+  `_table_metadata { label plural canRead canWrite canCreate canDelete auditWanted }` with ACLs
+  evaluated for the calling user — schema discovery without touching `sys_dictionary`.
 
 Gotchas, learned the hard way:
 
@@ -101,6 +108,17 @@ Gotchas, learned the hard way:
   verbatim, and why the scripted namespaces (~1.5 MB total) are the only part kept in full.
 - A handful of scripted schemas introspect as **empty object types** (fields hidden by scope
   protection). That's the platform, not the scraper.
+- **Field metadata and `_choices` hang off `_results` rows** — they're read from a record
+  instance, so an empty (or fully ACL-filtered) result set yields no field-level metadata.
+  Zero-row schema discovery still needs `sys_dictionary` / `sys_choice`.
+- **`insert_`/`update_` mutations can return `null` `_rowCount`/`_results` even on success.**
+  Re-query to confirm a write landed.
+- **Journal fields (comments/work notes):** `sys_journal_field` is row-ACL'd for non-admins
+  (`_rowCount` leaks the count but `_results` comes back empty — the classic ACL signature), and
+  aggregates on it are denied outright. Non-admin (e.g. itil) access is via the *parent record's*
+  `comments` / `work_notes` / `comments_and_work_notes` columns, whose `displayValue` renders the
+  full entry stream (`YYYY-MM-DD HH:MM:SS - Author (Type)\n<text>\n\n`, timestamps in the calling
+  user's timezone).
 
 ## Regenerating the GraphQL corpus
 

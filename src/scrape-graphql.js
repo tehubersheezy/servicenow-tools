@@ -20,11 +20,13 @@
  *                                      — the types reachable from that
  *                                      namespace's query/mutation roots.
  *   graphql/_gliderecord.json          compact index of the generated
- *                                      namespaces: table -> column names, the
- *                                      uniform query/mutation/aggregate arg
- *                                      patterns, and the shared framework
- *                                      types — everything needed to write a
- *                                      query, without 90 MB of repetition.
+ *                                      namespaces: table -> typed columns
+ *                                      (choice/journal/reference-target codes,
+ *                                      see columnEncoding), the uniform
+ *                                      query/mutation/aggregate arg patterns,
+ *                                      and the shared framework types —
+ *                                      everything needed to write a query,
+ *                                      without 90 MB of repetition.
  *   graphql/_summary.json              run report (not a schema).
  *
  * Gotcha learned the hard way: graphql-java's "good faith introspection"
@@ -208,6 +210,36 @@ function buildGlideRecordIndex(schema, byName) {
   const mutationRoot = byName.get('GlideRecord_MutationType');
   const mutationNames = new Set((mutationRoot ? mutationRoot.fields : []).map((f) => f.name));
 
+  // Column encoding: every column is wrapped in a typed object, and the type
+  // tells you what the column *is* (choice, journal, reference target, …).
+  // Bare name = plain string field (the overwhelming majority); otherwise the
+  // name carries a `:code` suffix. Kept as suffixes-on-strings rather than
+  // objects so the file stays a compact machine index (~350k columns).
+  const COLUMN_CODES = {
+    GlideRecord_FieldType_String: null,           // bare name
+    GlideRecord_FieldType_Long: 'l',
+    GlideRecord_FieldType_Float: 'f',
+    GlideRecord_FieldType_Glide_Boolean: 'b',
+    GlideRecord_FieldType_ID: 'id',
+    GlideRecord_ChoiceListFieldType: 'c',
+    GlideRecord_JournalFieldType: 'j',
+    GlideRecord_CurrencyFieldType: 'cur',
+    GlideRecord_DocumentIdFieldType: 'doc',
+    GlideRecord_GlideVarFieldType: 'var',
+  };
+  const REF_TYPE = /^GlideRecord_ReferenceFieldType_(.+)$/;
+
+  function encodeColumn(field) {
+    const typeName = namedType(field.type);
+    const ref = typeName && typeName.match(REF_TYPE);
+    if (ref) return field.name + ':r=' + ref[1];
+    if (typeName in COLUMN_CODES) {
+      const code = COLUMN_CODES[typeName];
+      return code ? field.name + ':' + code : field.name;
+    }
+    return field.name + ':?' + typeName;                // unknown wrapper — keep it visible
+  }
+
   const tables = {};
   const tablesWithoutMutations = [];
   let sampleQueryField = null;
@@ -226,7 +258,7 @@ function buildGlideRecordIndex(schema, byName) {
       if (resultsType) {
         columns = resultsType.fields
           .filter((x) => !x.name.startsWith('_'))
-          .map((x) => x.name);
+          .map(encodeColumn);
       }
     }
     tables[f.name] = columns;
@@ -271,9 +303,32 @@ function buildGlideRecordIndex(schema, byName) {
       + 'Every table gets: a query field GlideRecord_Query.<table>(sys_id, queryConditions, omitCount, pagination), '
       + 'and mutations insert_<table> / update_<table> / delete_<table> on GlideRecord_Mutation '
       + '(one String argument per column; update/delete take sys_id). '
-      + 'Aggregates go through GlideAggregateRecord_Query(tableName, queryConditions, groupBy, having, orderBy, …). '
-      + 'Column values are objects — select { value displayValue } on each; reference columns additionally '
-      + 'offer _reference to dot-walk into the target table.',
+      + 'Aggregates go through GlideAggregateRecord_Query(tableName, queryConditions, groupBy, having, orderBy, …) '
+      + 'returning aggregates { groupBy { field value displayValue } count avg min max sum countDistinct }. '
+      + 'Every column is a typed wrapper object (see columnEncoding for the per-column kind) carrying the value '
+      + 'AND its dictionary metadata: { value displayValue label internalType isMandatory canRead canWrite canCreate }. '
+      + 'Choice columns add _choices { value displayValue } (the live choice list, evaluated in record context); '
+      + 'reference columns add _reference to dot-walk into the target table\'s results type; journal columns '
+      + '(comments/work_notes) render the full formatted entry stream in displayValue. Each table query also '
+      + 'exposes _table_metadata { label plural canRead canWrite canCreate canDelete auditWanted … } with ACLs '
+      + 'evaluated for the calling user — schema discovery without touching sys_dictionary. '
+      + 'Caveats: field metadata and _choices hang off _results rows, so an empty (or fully ACL-filtered) result '
+      + 'yields no field-level metadata; and insert_/update_ mutations can return null _rowCount/_results even on '
+      + 'success — re-query to confirm a write. Full wrapper shapes are in frameworkTypes.',
+    columnEncoding: {
+      '<name>': 'string field',
+      '<name>:l': 'long/integer',
+      '<name>:f': 'float',
+      '<name>:b': 'boolean',
+      '<name>:id': 'sys_id',
+      '<name>:c': 'choice list (has _choices)',
+      '<name>:j': 'journal (comments/work_notes stream)',
+      '<name>:cur': 'currency',
+      '<name>:doc': 'document id',
+      '<name>:var': 'glide var',
+      '<name>:r=<table>': 'reference to <table> (has _reference)',
+      '<name>:?<Type>': 'unrecognized wrapper type',
+    },
     queryArgs: sampleQueryField ? sampleQueryField.args : [],
     aggregateArgs: aggField ? aggField.args : [],
     tableMetaFields: tableMetaFields || [],
