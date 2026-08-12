@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The ServiceNow GraphQL API: A Practical Guide</title>
+<meta name="description" content="ServiceNow ships a GraphQL endpoint that most integrators never touch, because almost all documentation and tooling points at the REST Table API. That's a shame, because for read-heavy work the GraphQL surface does several things the Table API structurally cannot: fetch many tables in one request, r">
+<style>
+  :root {
+    --bg: oklch(1 0 0);
+    --panel: oklch(0.974 0.005 335);
+    --panel-2: oklch(0.955 0.008 335);
+    --line: oklch(0.906 0.008 335);
+    --line-soft: oklch(0.936 0.006 335);
+    --ink: oklch(0.24 0.012 335);
+    --ink-2: oklch(0.42 0.016 335);
+    --ink-3: oklch(0.52 0.02 335);
+    --accent: oklch(0.5 0.132 335);
+    --accent-deep: oklch(0.4 0.114 335);
+    --accent-wash: oklch(0.962 0.03 335);
+    --accent-wash-2: oklch(0.93 0.055 335);
+    --shadow-md: 0 1px 2px oklch(0.24 0.012 335 / 0.06), 0 4px 16px oklch(0.24 0.012 335 / 0.07);
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: var(--sans); color: var(--ink); background: var(--bg);
+    font-size: 0.9375rem; line-height: 1.7; font-kerning: normal;
+    -webkit-text-size-adjust: 100%;
+  }
+  pre, code { font-family: var(--sans); }
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+  :focus { outline: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 1.25rem;
+    padding: 0.65rem 1.25rem;
+    border-bottom: 1px solid var(--line); background: var(--bg);
+  }
+  .brand { display: flex; align-items: baseline; gap: 0.6rem; white-space: nowrap; }
+  .brand strong { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
+  .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); align-self: center; }
+  .brand-meta { color: var(--ink-3); font-size: 0.75rem; }
+  .head-links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; }
+  .xlink { color: var(--accent-deep); font-size: 0.75rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .xlink:hover { text-decoration: underline; }
+
+  /* ---------- Layout ---------- */
+  .page {
+    display: grid; grid-template-columns: minmax(0, 44rem) 14rem;
+    gap: 4.5rem; justify-content: center;
+    padding: 3rem 1.5rem 6rem; margin: 0 auto;
+  }
+  @media (max-width: 68rem) {
+    .page { grid-template-columns: minmax(0, 44rem); }
+    .toc { display: none; }
+  }
+
+  /* ---------- TOC ---------- */
+  .toc { font-size: 0.8125rem; }
+  .toc-inner { position: sticky; top: 4.5rem; max-height: calc(100vh - 6rem); overflow-y: auto; }
+  .toc-head {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-3); margin: 0.35rem 0 0.65rem;
+  }
+  .toc ul { list-style: none; margin: 0; padding: 0; }
+  .toc li { margin: 0; }
+  .toc a {
+    display: block; color: var(--ink-3); text-decoration: none;
+    padding: 0.28rem 0.75rem; border-left: 2px solid var(--line-soft);
+    transition: color 150ms ease-out, border-color 150ms ease-out;
+  }
+  .toc a:hover { color: var(--ink); }
+  .toc a.active { color: var(--accent-deep); border-left-color: var(--accent); font-weight: 600; }
+
+  /* ---------- Article ---------- */
+  article { min-width: 0; }
+  h1 {
+    font-size: 2rem; line-height: 1.2; font-weight: 750; letter-spacing: -0.02em;
+    margin: 0 0 1.1rem;
+  }
+  .lede { font-size: 1.0625rem; line-height: 1.75; color: var(--ink-2); margin: 0 0 1rem; }
+  h2 {
+    font-size: 1.375rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.015em;
+    margin: 3rem 0 0.85rem; padding-top: 2.25rem; border-top: 1px solid var(--line-soft);
+  }
+  h3 { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.01em; margin: 2rem 0 0.6rem; }
+  h2 code, h3 code { font-size: 0.92em; }
+  p { margin: 0 0 1rem; }
+  ul, ol { margin: 0 0 1rem; padding-left: 1.35rem; }
+  li { margin: 0.35rem 0; }
+  li ul { margin: 0.35rem 0 0.1rem; }
+  strong { font-weight: 650; }
+
+  code {
+    background: var(--panel-2); border: 1px solid var(--line-soft); border-radius: 5px;
+    padding: 0.06em 0.32em; font-size: 0.9em; font-weight: 500; color: var(--ink);
+    overflow-wrap: break-word;
+  }
+
+  /* ---------- Code blocks ---------- */
+  .codeblock {
+    margin: 0 0 1.25rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--panel); overflow: hidden; box-shadow: var(--shadow-md);
+  }
+  .codebar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.42rem 1rem; background: var(--panel-2); border-bottom: 1px solid var(--line-soft);
+  }
+  .codebar .lang {
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+  .codebar .lang-plain { color: var(--ink-3); }
+  .codebar .copy {
+    font-size: 0.6875rem; font-weight: 600; color: var(--ink-3);
+    padding: 0.1rem 0.5rem; border: 1px solid var(--line); border-radius: 5px; background: var(--bg);
+    transition: color 150ms ease-out, border-color 150ms ease-out;
+  }
+  .codebar .copy:hover { color: var(--accent-deep); border-color: var(--accent-wash-2); }
+  .codebar .copy.done { color: var(--accent-deep); border-color: var(--accent-wash-2); background: var(--accent-wash); }
+  .codeblock pre {
+    margin: 0; padding: 0.9rem 1rem; overflow-x: auto;
+    font-size: 0.85rem; line-height: 1.6; color: var(--ink);
+  }
+  .codeblock pre code { background: none; border: 0; padding: 0; font-size: inherit; font-weight: 400; }
+
+  /* ---------- Tables ---------- */
+  .tablewrap { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
+  th {
+    text-align: left; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-3); background: var(--panel);
+    padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--line);
+  }
+  td { padding: 0.5rem 0.9rem; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line); padding: 1.25rem;
+    text-align: center; color: var(--ink-3); font-size: 0.75rem;
+  }
+  footer a { color: var(--accent-deep); font-weight: 600; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media print {
+    header, .toc, footer, .codebar .copy { display: none; }
+    .page { grid-template-columns: 1fr; padding: 0; }
+    .codeblock { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="dot"></span>
+    <strong>ServiceNow GraphQL</strong>
+    <span class="brand-meta">a practical guide</span>
+  </div>
+  <nav class="head-links">
+    <a class="xlink" href="sn-graphql-explorer.html">GraphQL Explorer</a>
+    <a class="xlink" href="sn-api-explorer.html">REST API Explorer</a>
+    <a class="xlink" href="https://github.com/tehubersheezy/servicenow-tools">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <article>
+<h1>The ServiceNow GraphQL API: A Practical Guide</h1>
+<p class="lede">ServiceNow ships a GraphQL endpoint that most integrators never touch, because almost all documentation and tooling points at the REST Table API. That's a shame, because for read-heavy work the GraphQL surface does several things the Table API structurally cannot: fetch many tables in one request, return total counts alongside a page, dot-walk references server-side, and hand you field metadata — labels, mandatory flags, live ACL verdicts, even choice lists — inline with the data.</p>
+<p>This guide is tool-agnostic: everything below is plain HTTP you can issue from curl, Postman, or any GraphQL client. Examples were verified against a Washington-era+ Personal Developer Instance; the generated schema described here has been stable across recent releases.</p>
+<h2 id="when-to-use-graphql-vs-the-table-api">When to use GraphQL vs. the Table API</h2>
+<p>Use <strong>GraphQL</strong> when you want:</p>
+<ul><li>several tables or several queries in one round trip;</li><li>a total count with the page (<code>_rowCount</code>);</li><li>per-field display-value control;</li><li>structured dot-walking through references;</li><li>field/table metadata, ACL verdicts, or choice lists inline;</li><li>comments/work notes for many records in one request.</li></ul>
+<p>Stay on <strong>REST</strong> for:</p>
+<ul><li>writes you need to confirm from the response;</li><li>attachments, import sets, and every procedural API (CICD, Performance Analytics scorecards, Change Management state operations) — none of those have a GraphQL surface;</li><li>streaming/eventing (use the Table API + polling, or the AMB record-watcher channel the UI uses).</li></ul>
+<p>Everything on those lists is unpacked below.</p>
+<h2 id="the-endpoint">The endpoint</h2>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang lang-plain">Text</span><button class="copy" type="button">Copy</button></figcaption><pre>POST https://&lt;instance&gt;.service-now.com/api/now/graphql
+Content-Type: application/json</pre></figure>
+<p>Authentication is whatever your instance's REST APIs accept — basic auth and OAuth bearer tokens both work, with the same users, roles, and ACLs as the Table API. The request body is standard GraphQL-over-HTTP:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">JSON</span><button class="copy" type="button">Copy</button></figcaption><pre>{
+  &quot;query&quot;: &quot;query ($id: String!) { ... }&quot;,
+  &quot;variables&quot;: { &quot;id&quot;: &quot;...&quot; },
+  &quot;operationName&quot;: &quot;OptionalWhenMultipleOps&quot;
+}</pre></figure>
+<p>There is also a GraphiQL client built into the platform: <strong>System Web Services → GraphQL → GraphQL API Explorer</strong>, which is the easiest place to experiment interactively.</p>
+<h2 id="what-s-in-the-schema">What's in the schema</h2>
+<p>The merged schema served by that one endpoint has two kinds of content:</p>
+<ul><li><strong>Scripted namespaces</strong> (<code>now</code>, <code>global</code>, <code>sn*</code>): hand-written APIs backing specific ServiceNow features — chat, Playbook, Flow Designer tooling. Unless you're building against one of those features, skip them.</li><li><strong>Generated namespaces</strong> — the reason to be here:<ul><li><code>GlideRecord_Query.&lt;table&gt;</code> — a query field for <em>every</em> table (~6,200 on a stock instance),</li><li><code>GlideRecord_Mutation.insert_&lt;table&gt; / update_&lt;table&gt; / delete_&lt;table&gt;</code>,</li><li><code>GlideAggregateRecord_Query</code> — server-side aggregates.</li></ul></li></ul>
+<h3 id="introspection-is-off-by-default">Introspection is off by default</h3>
+<p>Introspection is disabled out of the box and gated by two system properties (<strong>System Web Services → GraphQL → Properties</strong>), both <code>false</code> by default:</p>
+<ul><li><code>glide.graphql.introspection_enabled</code> — introspective queries against the scripted schemas. Even when enabled, the caller needs the <code>graphql_schema_admin</code> role.</li><li><code>glide.graphql.glide_record_schema.introspection_enabled</code> — same for the generated GlideRecord schema (the ~6,200-table surface).</li></ul>
+<p>Flip them on a PDI or sub-production instance while you explore, and leave them <strong>off in production</strong> — ServiceNow's own docs say plainly: &quot;Do not use introspective queries in a production environment.&quot; An open schema hands any authenticated caller a complete map of your tables and mutations, and full introspection is also expensive to compute (see below). Your integration doesn't need it at runtime: queries and mutations work fine with introspection disabled.</p>
+<p>Two practical warnings when you do introspect: the full introspection response is enormous (tens of megabytes — every table gets several generated types) and takes minutes to compute. Introspect once and cache it, or introspect narrowly with <code>__type(name: &quot;...&quot;)</code>. Also note the server rejects introspection documents that mention a meta-field like <code>__Type.fields</code> more than once (&quot;bad faith introspection&quot;), so stick to the standard single-fragment introspection query.</p>
+<h2 id="reading-records">Reading records</h2>
+<p>The basic query shape, for one table:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query {
+  GlideRecord_Query {
+    incident(
+      queryConditions: &quot;active=true^ORDERBYDESCsys_updated_on&quot;,
+      pagination: { limit: 5, offset: 0 }
+    ) {
+      _rowCount
+      _results {
+        number { value }
+        short_description { value }
+        state { value displayValue }
+      }
+    }
+  }
+}</pre></figure>
+<p>Things to know:</p>
+<ul><li><strong><code>queryConditions</code> is the encoded-query syntax</strong> you already use in <code>sysparm_query</code>: <code>^</code> for AND, <code>^OR</code>, <code>LIKE</code>, <code>IN</code>, dot-walked conditions, <code>ORDERBY</code>/<code>ORDERBYDESC</code>, <code>javascript:gs.daysAgoStart(7)</code> — all of it.</li><li><strong><code>sys_id: &quot;...&quot;</code> instead of <code>queryConditions</code></strong> fetches one record. Either way, <code>_results</code> is always an array.</li><li><strong>Every column is an object, not a scalar.</strong> You select <code>value</code> (the raw stored value), <code>displayValue</code> (the human rendering), or both, <em>per field</em> — unlike REST's all-or-nothing <code>sysparm_display_value</code>. Remember that <code>displayValue</code> for dates is rendered in the calling user's timezone and date format, while <code>value</code> is UTC.</li><li><strong><code>_rowCount</code> is the total match count</strong>, independent of your pagination limit — the number the Table API can't give you without a second call to the Aggregate API. Pass <code>omitCount: true</code> to skip computing it on huge tables.</li><li><strong>Unselected fields simply don't appear.</strong> There is no default field set.</li></ul>
+<h3 id="passing-values-safely-use-variables">Passing values safely: use variables</h3>
+<p>Don't splice user input into the document. GraphQL variables exist for this:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">JSON</span><button class="copy" type="button">Copy</button></figcaption><pre>{
+  &quot;query&quot;: &quot;query ($id: String!) { GlideRecord_Query { incident(sys_id: $id) { _results { number { value } } } } }&quot;,
+  &quot;variables&quot;: { &quot;id&quot;: &quot;47a91e3c2f8acf107efd1d707fa4e387&quot; }
+}</pre></figure>
+<p>Encoded query strings can be variables too (<code>$qc: String!</code> → <code>queryConditions: $qc</code>).</p>
+<h3 id="many-tables-one-request">Many tables, one request</h3>
+<p>This is GraphQL's headline feature and it works exactly as you'd hope — aliases let you hit the same table twice under different conditions, and aggregates can ride along (see below):</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query {
+  GlideRecord_Query {
+    p1: incident(queryConditions: &quot;active=true^priority=1&quot;) {
+      _rowCount
+      _results { number { value } }
+    }
+    p2: incident(queryConditions: &quot;active=true^priority=2&quot;) { _rowCount }
+    sys_user(queryConditions: &quot;active=true&quot;, pagination: { limit: 3 }) {
+      _results { user_name { value } }
+    }
+  }
+}</pre></figure>
+<h3 id="dot-walking-through-references">Dot-walking through references</h3>
+<p>Reference columns carry a <code>_reference</code> field that opens the target table's full type — pick any fields there, including further references:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query {
+  GlideRecord_Query {
+    incident(queryConditions: &quot;active=true&quot;, pagination: { limit: 5 }) {
+      _results {
+        number { value }
+        assigned_to {
+          displayValue
+          _reference {
+            email { value }
+            manager { displayValue }
+          }
+        }
+      }
+    }
+  }
+}</pre></figure>
+<p>REST can dot-walk in <code>sysparm_fields</code>, but you get flat strings; here you get structured nesting with per-field control at every level.</p>
+<h2 id="schema-discovery-built-into-the-data">Schema discovery built into the data</h2>
+<p>The generated types carry the data dictionary with them, evaluated <strong>for the calling user</strong> — often more useful than querying <code>sys_dictionary</code>/<code>sys_choice</code> yourself.</p>
+<p><strong>Table level</strong> — available on every table query:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query {
+  GlideRecord_Query {
+    incident(pagination: { limit: 1 }) {
+      _table_metadata { label plural canRead canWrite canCreate canDelete auditWanted }
+    }
+  }
+}</pre></figure>
+<p>Those <code>can*</code> fields are live ACL verdicts: &quot;can I create incidents?&quot; answered before you try.</p>
+<p><strong>Field level</strong> — every column object also exposes <code>label</code>, <code>internalType</code>, <code>isMandatory</code>, <code>canRead</code>/<code>canWrite</code>/<code>canCreate</code>, and (on choice fields) the choice list:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query {
+  GlideRecord_Query {
+    incident(pagination: { limit: 1 }) {
+      _results {
+        state {
+          label internalType isMandatory canWrite
+          _choices { value displayValue }
+        }
+        assigned_to { label referenceTableName }
+      }
+    }
+  }
+}</pre></figure>
+<p>Returns <code>State</code> / <code>integer</code> / the six state choices with their labels, and <code>assigned_to → sys_user</code>. Choice lists are evaluated in record context, so dependent choices resolve the way the form would show them — and the empty &quot;None&quot; option is included, which the raw <code>sys_choice</code> table omits.</p>
+<p><strong>The one caveat:</strong> field-level metadata hangs off <code>_results</code> rows, so you need at least one row you're allowed to read (hence the <code>limit: 1</code> carrier row). An empty or fully ACL-filtered table gives you nothing at the field level — fall back to <code>sys_dictionary</code> for that case.</p>
+<h2 id="aggregates">Aggregates</h2>
+<p><code>GlideAggregateRecord_Query</code> is a root field of its own — note the arguments are on the field itself:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query {
+  GlideAggregateRecord_Query(
+    tableName: &quot;incident&quot;,
+    queryConditions: &quot;active=true&quot;,
+    groupBy: [&quot;state&quot;]
+  ) {
+    totalCount
+    totalGroupsCount
+    aggregates {
+      groupBy { field value displayValue }
+      count
+    }
+  }
+}</pre></figure>
+<p>Each group row offers <code>count</code>, <code>avg</code>, <code>min</code>, <code>max</code>, <code>sum</code>, and <code>countDistinct</code>; the root also takes <code>having</code>, <code>orderBy</code>, and <code>groupPagination</code>. Because it's just another root field, an aggregate can share a request with record reads.</p>
+<h2 id="comments-and-work-notes-journal-fields">Comments and work notes (journal fields)</h2>
+<p>Worth its own section, because the access model surprises everyone.</p>
+<p>Journal entries (comments, work notes) are stored one-per-row in <code>sys_journal_field</code> — the record itself stores nothing. That table is <strong>ACL-locked for non-admin roles</strong>: query it as an <code>itil</code> user and you get the row <em>count</em> with an empty result set (the count leaks through row ACLs; the rows don't), and the aggregate route is denied outright.</p>
+<p>What every role that can read the record <em>can</em> read is the record's rendered journal columns:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query ($id: String!) {
+  GlideRecord_Query {
+    incident(sys_id: $id) {
+      _results {
+        comments { displayValue }
+        work_notes { displayValue }
+        comments_and_work_notes { displayValue }
+      }
+    }
+  }
+}</pre></figure>
+<p><code>displayValue</code> is the full entry stream — every entry, newest first, formatted as:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang lang-plain">Text</span><button class="copy" type="button">Copy</button></figcaption><pre>2026-08-11 10:40:20 - Abey Ahmad (Work notes)
+the note text
+
+2026-08-10 07:40:58 - Abey Ahmad (Comments)
+an earlier comment</pre></figure>
+<p>It's parseable (header line = timestamp, <code> - </code>, author, parenthesized field label; entries separated by a blank line), with two caveats: timestamps are in the calling user's timezone and date format, and it's a rendering, not rows. If your integration user has admin-level read on <code>sys_journal_field</code>, query it directly instead for exact rows:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>query ($qc: String!) {
+  GlideRecord_Query {
+    sys_journal_field(queryConditions: $qc, pagination: { limit: 100 }) {
+      _results {
+        element { value }          # &quot;comments&quot; | &quot;work_notes&quot;
+        value { value }            # the note text
+        sys_created_on { value }   # UTC
+        sys_created_by { value }   # username
+      }
+    }
+  }
+}</pre></figure>
+<p>with <code>$qc = &quot;element_id=&lt;record_sys_id&gt;^ORDERBYDESCsys_created_on&quot;</code>.</p>
+<h2 id="mutations-and-why-you-should-be-careful">Mutations — and why you should be careful</h2>
+<p>Every table gets <code>insert_</code>, <code>update_</code>, and <code>delete_</code> mutations, one String argument per column; <code>update_</code>/<code>delete_</code> take <code>sys_id</code>. Journal fields accept input like any other column, so this adds a work note:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">GraphQL</span><button class="copy" type="button">Copy</button></figcaption><pre>mutation ($id: String!) {
+  GlideRecord_Mutation {
+    update_incident(sys_id: $id, work_notes: &quot;checked the router&quot;) {
+      _rowCount
+      _results { number { value } }
+    }
+  }
+}</pre></figure>
+<p>Two hard-won cautions:</p>
+<ol><li><strong>A successful mutation can return <code>_rowCount: null, _results: null</code>.</strong> You cannot reliably confirm a write from the mutation response — re-query the record (or the journal table) to verify. If your stack already speaks the REST Table API, a defensible policy is: <em>reads via GraphQL where it wins, writes via REST</em>, because REST reliably echoes the written record.</li><li><strong>Update semantics are partial</strong> (PATCH-like). There is no replace/PUT-style mutation — which, given how dangerous blanking omitted fields would be, is a feature.</li></ol>
+<h2 id="error-handling-the-trap-that-catches-everyone">Error handling: the trap that catches everyone</h2>
+<p>GraphQL reports failure <strong>in-band</strong>. A query with a typo'd field, a validation problem, or an ACL denial still returns <strong>HTTP 200</strong> — the failure is in an <code>errors</code> array in the body, sometimes alongside partial <code>data</code>:</p>
+<figure class="codeblock"><figcaption class="codebar"><span class="lang">JSON</span><button class="copy" type="button">Copy</button></figcaption><pre>{
+  &quot;data&quot;: null,
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Validation error (FieldUndefined@[x]) : Field 'x' in type 'QueryType' is undefined&quot;,
+      &quot;errorType&quot;: &quot;ValidationError&quot;
+    }
+  ]
+}</pre></figure>
+<p>If your HTTP client only checks status codes, every failed query looks like a success. Always check for a non-empty <code>errors</code> array before trusting <code>data</code>. (HTTP-level failures still happen for transport and auth problems — a bad credential is a real 401.)</p>
+<p>Related: an ACL-filtered read <em>also</em> looks like success. <code>_rowCount</code> above zero with an empty <code>_results</code> is the signature of row-level ACLs removing everything — the GraphQL equivalent of the UI's &quot;rows removed due to security constraints&quot; — not an empty table.</p>
+<h2 id="quick-reference">Quick reference</h2>
+<div class="tablewrap"><table><thead><tr><th>Concept</th><th>Where</th></tr></thead><tbody><tr><td>Endpoint</td><td><code>POST /api/now/graphql</code></td></tr><tr><td>Read</td><td><code>GlideRecord_Query.&lt;table&gt;(sys_id | queryConditions, pagination, omitCount)</code></td></tr><tr><td>Results</td><td><code>_rowCount</code>, <code>_results[] { &lt;col&gt; { value displayValue } }</code></td></tr><tr><td>References</td><td><code>&lt;col&gt; { _reference { ... } }</code></td></tr><tr><td>Choices</td><td><code>&lt;col&gt; { _choices { value displayValue } }</code></td></tr><tr><td>Table meta</td><td><code>_table_metadata { label plural canRead canWrite canCreate canDelete }</code></td></tr><tr><td>Aggregates</td><td><code>GlideAggregateRecord_Query(tableName, queryConditions, groupBy, having, orderBy)</code></td></tr><tr><td>Write</td><td><code>GlideRecord_Mutation.insert_/update_/delete_&lt;table&gt;</code> — verify by re-query</td></tr><tr><td>Errors</td><td>in-band: HTTP 200 + <code>errors[]</code>; check it every time</td></tr></tbody></table></div>
+  </article>
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc-inner">
+      <div class="toc-head">On this page</div>
+      <ul>
+        <li><a href="#when-to-use-graphql-vs-the-table-api">When to use GraphQL vs. the Table API</a></li>
+        <li><a href="#the-endpoint">The endpoint</a></li>
+        <li><a href="#what-s-in-the-schema">What's in the schema</a></li>
+        <li><a href="#reading-records">Reading records</a></li>
+        <li><a href="#schema-discovery-built-into-the-data">Schema discovery built into the data</a></li>
+        <li><a href="#aggregates">Aggregates</a></li>
+        <li><a href="#comments-and-work-notes-journal-fields">Comments and work notes (journal fields)</a></li>
+        <li><a href="#mutations-and-why-you-should-be-careful">Mutations — and why you should be careful</a></li>
+        <li><a href="#error-handling-the-trap-that-catches-everyone">Error handling: the trap that catches everyone</a></li>
+        <li><a href="#quick-reference">Quick reference</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<footer>
+  Part of <a href="https://github.com/tehubersheezy/servicenow-tools">servicenow-tools</a> —
+  companion to the <a href="sn-graphql-explorer.html">GraphQL Explorer</a> and
+  <a href="sn-api-explorer.html">REST API Explorer</a>.
+</footer>
+<script>
+  document.querySelectorAll('.codeblock .copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.closest('.codeblock').querySelector('pre').textContent;
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        btn.classList.add('done');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1400);
+      });
+    });
+  });
+
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var byId = {};
+  tocLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var current = null;
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        if (current) current.classList.remove('active');
+        current = byId[e.target.id];
+        if (current) current.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+  document.querySelectorAll('article h2[id]').forEach(function (h) { observer.observe(h); });
+</script>
+</body>
+</html>

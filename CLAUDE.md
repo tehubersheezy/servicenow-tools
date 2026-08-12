@@ -5,11 +5,14 @@ A general-purpose workspace for ServiceNow development resources — API tooling
 ## Layout
 
 - **`docs/now-sdk/`** — Project guide and complete CLI reference for the `now-sdk` (Fluent) toolchain, including undocumented commands and hidden flags. Symlink or copy `docs/now-sdk/CLAUDE.md` into any `now-sdk` project as its `CLAUDE.md` to load it on every Claude session there. The reference is in `docs/now-sdk/reference.md`.
+- **`docs/graphql-guide.md`** — Tool-agnostic guide to the `/api/now/graphql` endpoint: `GlideRecord_Query`/`_Mutation`, encoded queries, dot-walking via `_reference`, inline schema/ACL metadata, aggregates, journal-field access, mutation caveats (writes can return null counts — verify by re-query), and in-band errors (HTTP 200 + `errors[]`). Source of the built guide page.
 - **`docs/workflow-authoring.md`** — How to create/update Playbooks (PAD, via GraphQL `now { pad }`) and Flows (Flow Designer, via the undocumented `/api/now/processflow/*` REST API). Verified live; covers payload shapes, gotchas, and the raw `sys_pd_*` / `sys_hub_*` table fallbacks.
+- **`docs/catalog-variables.md`** — Updating catalog variables on tasks/RITMs via the undocumented `PUT /api/sn_sc/servicecatalog/variables/{table_name}/{sys_id}` (works for itil users; Table API writes to `sc_item_option` 403 for them). Verified live; covers the flat body shape, the silent-no-op failure modes, and record-producer (`question_answer`) variables.
 - **`openapi/`** — OpenAPI specs exported from the instance, used as reference material for hand-rolling Table API / scoped REST calls. Regenerate with `npm run scrape:openapi` (see below); `_summary.json` is the run report, not a spec.
 - **`graphql/`** — The instance's GraphQL schema, exported per namespace as introspection JSON + SDL (`<ns>.json` / `<ns>.graphql`), plus `_gliderecord.json` (compact table→columns index of the auto-generated GlideRecord namespaces) and `_summary.json` (run report). Regenerate with `npm run scrape:graphql` (see below).
 - **`sn-api-explorer.html`** — Self-contained HTML explorer for the scraped OpenAPI specs. A build artifact: never hand-edit; regenerate with `npm run build:explorer` (source: `src/build-explorer.js`) after any re-scrape.
 - **`sn-graphql-explorer.html`** — Same treatment for the GraphQL corpus: searchable schemas + tables, generated sample queries and curl. Build artifact of `npm run build:graphql-explorer` (source: `src/build-graphql-explorer.js`). The two explorers cross-link via each builder's `--xlink` flag.
+- **`sn-graphql-guide.html`** — Rendered page for `docs/graphql-guide.md`. Build artifact: never hand-edit; edit the markdown and regenerate with `npm run build:guide` (source: `src/build-guide.js`, dependency-free like the other builders — CI runs it without npm install).
 - **`src/`** — Node.js scripts for programmatic instance access (CommonJS, uses `@servicenow/sdk`).
 
 ## Environment

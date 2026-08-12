@@ -31,6 +31,7 @@ jobs:
           mkdir -p dist
           node src/build-explorer.js --out dist/index.html --xlink graphql.html
           node src/build-graphql-explorer.js --out dist/graphql.html --xlink ./
+          node src/build-guide.js --out dist/graphql-guide.html --xlink-rest ./ --xlink-graphql graphql.html
           cp -R openapi dist/openapi
           cp -R graphql dist/graphql
       - uses: actions/configure-pages@v5
