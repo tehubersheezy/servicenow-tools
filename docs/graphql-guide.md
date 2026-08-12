@@ -11,19 +11,29 @@ page, dot-walk references server-side, and hand you field metadata — labels,
 mandatory flags, live ACL verdicts, even choice lists — inline with the data.
 
 This guide is tool-agnostic: everything below is plain HTTP you can issue from
-curl, Postman, or any GraphQL client. Examples were verified against a
-Washington-era+ Personal Developer Instance; the generated schema described
-here has been stable across recent releases.
+curl, Postman, or any GraphQL client. Examples were verified live against an
+**Australia Patch 2** instance; the generated schema described here has been
+stable across recent releases.
 
 ## When to use GlideRecord GraphQL vs. the Table API
 
+> **The two headline wins.** One round trip for what would be N Table API
+> calls — several tables, several filters, aggregates, even several
+> **mutations** in a single request — and **live ACL verdicts** riding inline
+> with the data: `canRead`, `canWrite`, `canCreate`, `canDelete` at table and
+> field level, evaluated for the calling user, answered before you attempt
+> anything.
+
 Use **GlideRecord over GraphQL** when you want:
 
-- several tables or several queries in one round trip;
+- **several queries — or several mutations — in one round trip**: what takes
+  N sequential Table API calls is one HTTP request here;
+- **ACL verdicts and field metadata inline** — labels, mandatory flags,
+  choice lists, and per-user `can*` checks, without touching
+  `sys_dictionary` or trial-and-erroring a 403;
 - a total count with the page (`_rowCount`);
 - per-field display-value control;
 - structured dot-walking through references;
-- field/table metadata, ACL verdicts, or choice lists inline;
 - comments/work notes for many records in one request.
 
 Stay on **the Table API** for:
@@ -160,7 +170,8 @@ Encoded query strings can be variables too (`$qc: String!` →
 
 This is GraphQL's headline feature and it works exactly as you'd hope —
 aliases let you hit the same table twice under different conditions, and
-aggregates can ride along (see below):
+aggregates can ride along (see below). Mutations batch the same way (see
+[Mutations](#mutations-and-why-you-should-be-careful)):
 
 ```graphql
 query {
@@ -359,6 +370,33 @@ mutation ($id: String!) {
   }
 }
 ```
+
+### Mutations batch too
+
+Aliases work in mutations exactly as in queries, so several writes — across
+several tables — go out as one request:
+
+```graphql
+mutation ($p1: String!, $dup: String!) {
+  GlideRecord_Mutation {
+    noteRouter: update_incident(sys_id: $p1, work_notes: "checked the router") {
+      _results { number { value } }
+    }
+    closeDup: update_incident(sys_id: $dup, state: "7", close_code: "Duplicate",
+                              close_notes: "dupe of INC0010001") {
+      _results { number { value } }
+    }
+    logIt: insert_u_integration_log(u_source: "netops-bot", u_message: "swept P1 queue") {
+      _rowCount
+    }
+  }
+}
+```
+
+What would be three Table API calls — two PATCHes and a POST — is one round
+trip. Each aliased field reports its own in-band error if it fails, so check
+the `errors` array (see below) *and* verify the writes; the null-result
+caveat next applies to every one of them.
 
 Two hard-won cautions:
 

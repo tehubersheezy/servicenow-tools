@@ -14,8 +14,8 @@
  * Dependency-free (fs/path only) like the other builders — CI runs it
  * without npm install. The markdown support is deliberately the subset the
  * guide actually uses: #/##/### headings, paragraphs, fenced code blocks,
- * one level of nested lists (- / 1.), pipe tables with \| escapes, and
- * inline `code` / **bold** / *italic*.
+ * one level of nested lists (- / 1.), blockquote callouts, pipe tables with
+ * \| escapes, and inline `code` / **bold** / *italic* / [links](href).
  */
 const fs = require('fs');
 const path = require('path');
@@ -59,6 +59,10 @@ function inline(s) {
     stash.push(`<code>${c}</code>`);
     return `\x00${stash.length - 1}\x00`;
   });
+  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, text, href) => {
+    stash.push(`<a href="${href}">${text}</a>`);
+    return `\x00${stash.length - 1}\x00`;
+  });
   out = out.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
   out = out.replace(/\x00(\d+)\x00/g, (m, i) => stash[+i]);
@@ -88,6 +92,13 @@ function parseBlocks(md) {
     if (m) {
       blocks.push({ type: 'heading', level: m[1].length, text: m[2] });
       i++;
+      continue;
+    }
+
+    if (/^>/.test(line)) {
+      const buf = [];
+      while (i < lines.length && /^>/.test(lines[i])) buf.push(lines[i++].replace(/^>\s?/, ''));
+      blocks.push({ type: 'callout', text: buf.join(' ') });
       continue;
     }
 
@@ -175,6 +186,8 @@ function render(blocks) {
       } else {
         out.push(`<p>${inline(b.text)}</p>`);
       }
+    } else if (b.type === 'callout') {
+      out.push(`<aside class="callout">${inline(b.text)}</aside>`);
     } else if (b.type === 'code') {
       const label = LANG_LABELS[b.lang] || '';
       out.push(
@@ -310,6 +323,18 @@ function page({ html, toc, title, lede }, opts) {
   li { margin: 0.35rem 0; }
   li ul { margin: 0.35rem 0 0.1rem; }
   strong { font-weight: 650; }
+
+  .callout {
+    margin: 0 0 1.25rem; padding: 0.9rem 1.1rem;
+    background: var(--accent-wash); border: 1px solid var(--accent-wash-2);
+    border-left: 3px solid var(--accent); border-radius: 10px;
+    color: var(--ink); line-height: 1.7;
+  }
+  .callout strong { color: var(--accent-deep); }
+  .callout code { background: var(--bg); border-color: var(--accent-wash-2); }
+
+  a { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--accent); }
 
   code {
     background: var(--panel-2); border: 1px solid var(--line-soft); border-radius: 5px;
