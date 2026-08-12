@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The ServiceNow GraphQL API: A Practical Guide</title>
-<meta name="description" content="ServiceNow ships a GraphQL endpoint that most integrators never touch, because almost all documentation and tooling points at the REST Table API. That's a shame, because for read-heavy work the GraphQL surface does several things the Table API structurally cannot: fetch many tables in one request, r">
+<title>GlideRecord over GraphQL: A Practical Alternative to the Table API</title>
+<meta name="description" content="Inside ServiceNow's GraphQL endpoint lives a generated **GlideRecord schema**: query, insert, update, and delete fields for every table on the instance — the same records you'd reach through the REST Table API, on the same auth and ACLs. Most integrators never touch it, because almost all documentat">
 <style>
   :root {
     --bg: oklch(1 0 0);
@@ -159,7 +159,7 @@
   <div class="brand">
     <span class="dot"></span>
     <strong>ServiceNow GraphQL</strong>
-    <span class="brand-meta">a practical guide</span>
+    <span class="brand-meta">GlideRecord vs. the Table API</span>
   </div>
   <nav class="head-links">
     <a class="xlink" href="sn-graphql-explorer.html">GraphQL Explorer</a>
@@ -169,13 +169,13 @@
 </header>
 <div class="page">
   <article>
-<h1>The ServiceNow GraphQL API: A Practical Guide</h1>
-<p class="lede">ServiceNow ships a GraphQL endpoint that most integrators never touch, because almost all documentation and tooling points at the REST Table API. That's a shame, because for read-heavy work the GraphQL surface does several things the Table API structurally cannot: fetch many tables in one request, return total counts alongside a page, dot-walk references server-side, and hand you field metadata — labels, mandatory flags, live ACL verdicts, even choice lists — inline with the data.</p>
+<h1>GlideRecord over GraphQL: A Practical Alternative to the Table API</h1>
+<p class="lede">Inside ServiceNow's GraphQL endpoint lives a generated <strong>GlideRecord schema</strong>: query, insert, update, and delete fields for every table on the instance — the same records you'd reach through the REST Table API, on the same auth and ACLs. Most integrators never touch it, because almost all documentation and tooling points at the Table API. That's a shame, because for read-heavy work GlideRecord-over-GraphQL does several things the Table API structurally cannot: fetch many tables in one request, return total counts alongside a page, dot-walk references server-side, and hand you field metadata — labels, mandatory flags, live ACL verdicts, even choice lists — inline with the data.</p>
 <p>This guide is tool-agnostic: everything below is plain HTTP you can issue from curl, Postman, or any GraphQL client. Examples were verified against a Washington-era+ Personal Developer Instance; the generated schema described here has been stable across recent releases.</p>
-<h2 id="when-to-use-graphql-vs-the-table-api">When to use GraphQL vs. the Table API</h2>
-<p>Use <strong>GraphQL</strong> when you want:</p>
+<h2 id="when-to-use-gliderecord-graphql-vs-the-table-api">When to use GlideRecord GraphQL vs. the Table API</h2>
+<p>Use <strong>GlideRecord over GraphQL</strong> when you want:</p>
 <ul><li>several tables or several queries in one round trip;</li><li>a total count with the page (<code>_rowCount</code>);</li><li>per-field display-value control;</li><li>structured dot-walking through references;</li><li>field/table metadata, ACL verdicts, or choice lists inline;</li><li>comments/work notes for many records in one request.</li></ul>
-<p>Stay on <strong>REST</strong> for:</p>
+<p>Stay on <strong>the Table API</strong> for:</p>
 <ul><li>writes you need to confirm from the response;</li><li>attachments, import sets, and every procedural API (CICD, Performance Analytics scorecards, Change Management state operations) — none of those have a GraphQL surface;</li><li>streaming/eventing (use the Table API + polling, or the AMB record-watcher channel the UI uses).</li></ul>
 <p>Everything on those lists is unpacked below.</p>
 <h2 id="the-endpoint">The endpoint</h2>
@@ -188,9 +188,9 @@ Content-Type: application/json</pre></figure>
   &quot;operationName&quot;: &quot;OptionalWhenMultipleOps&quot;
 }</pre></figure>
 <p>There is also a GraphiQL client built into the platform: <strong>System Web Services → GraphQL → GraphQL API Explorer</strong>, which is the easiest place to experiment interactively.</p>
-<h2 id="what-s-in-the-schema">What's in the schema</h2>
-<p>The merged schema served by that one endpoint has two kinds of content:</p>
-<ul><li><strong>Scripted namespaces</strong> (<code>now</code>, <code>global</code>, <code>sn*</code>): hand-written APIs backing specific ServiceNow features — chat, Playbook, Flow Designer tooling. Unless you're building against one of those features, skip them.</li><li><strong>Generated namespaces</strong> — the reason to be here:<ul><li><code>GlideRecord_Query.&lt;table&gt;</code> — a query field for <em>every</em> table (~6,200 on a stock instance),</li><li><code>GlideRecord_Mutation.insert_&lt;table&gt; / update_&lt;table&gt; / delete_&lt;table&gt;</code>,</li><li><code>GlideAggregateRecord_Query</code> — server-side aggregates.</li></ul></li></ul>
+<h2 id="where-gliderecord-lives-in-the-schema">Where GlideRecord lives in the schema</h2>
+<p>The merged schema served by that one endpoint has two kinds of content, and this guide is about the second:</p>
+<ul><li><strong>Scripted namespaces</strong> (<code>now</code>, <code>global</code>, <code>sn*</code>): hand-written APIs backing specific ServiceNow features — chat, Playbook, Flow Designer tooling. Unless you're building against one of those features, skip them.</li><li><strong>The generated GlideRecord namespaces</strong> — the Table API's records, as GraphQL:<ul><li><code>GlideRecord_Query.&lt;table&gt;</code> — a query field for <em>every</em> table (~6,200 on a stock instance),</li><li><code>GlideRecord_Mutation.insert_&lt;table&gt; / update_&lt;table&gt; / delete_&lt;table&gt;</code>,</li><li><code>GlideAggregateRecord_Query</code> — server-side aggregates.</li></ul></li></ul>
 <h3 id="introspection-is-off-by-default">Introspection is off by default</h3>
 <p>Introspection is disabled out of the box and gated by two system properties (<strong>System Web Services → GraphQL → Properties</strong>), both <code>false</code> by default:</p>
 <ul><li><code>glide.graphql.introspection_enabled</code> — introspective queries against the scripted schemas. Even when enabled, the caller needs the <code>graphql_schema_admin</code> role.</li><li><code>glide.graphql.glide_record_schema.introspection_enabled</code> — same for the generated GlideRecord schema (the ~6,200-table surface).</li></ul>
@@ -366,9 +366,9 @@ an earlier comment</pre></figure>
     <div class="toc-inner">
       <div class="toc-head">On this page</div>
       <ul>
-        <li><a href="#when-to-use-graphql-vs-the-table-api">When to use GraphQL vs. the Table API</a></li>
+        <li><a href="#when-to-use-gliderecord-graphql-vs-the-table-api">When to use GlideRecord GraphQL vs. the Table API</a></li>
         <li><a href="#the-endpoint">The endpoint</a></li>
-        <li><a href="#what-s-in-the-schema">What's in the schema</a></li>
+        <li><a href="#where-gliderecord-lives-in-the-schema">Where GlideRecord lives in the schema</a></li>
         <li><a href="#reading-records">Reading records</a></li>
         <li><a href="#schema-discovery-built-into-the-data">Schema discovery built into the data</a></li>
         <li><a href="#aggregates">Aggregates</a></li>

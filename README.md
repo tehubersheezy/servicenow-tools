@@ -8,7 +8,7 @@ Both are single self-contained HTML files — no server, no login, no build step
 
 - **[REST API Explorer](https://tehubersheezy.github.io/servicenow-tools/)** — every REST API on the instance, searchable in seconds. Type a word, arrow-key through results, copy a ready-to-run `curl`. On the reference instance: **342 APIs · 90 namespaces · 1,635 endpoints.**
 - **[GraphQL Explorer](https://tehubersheezy.github.io/servicenow-tools/graphql.html)** — the instance's GraphQL surface, which is otherwise almost undocumented: **112 scripted schemas across 26 namespaces**, plus auto-generated query and full CRUD coverage of **6,189 tables**. Every result generates a runnable query and matching `curl`.
-- **[The ServiceNow GraphQL API: A Practical Guide](https://tehubersheezy.github.io/servicenow-tools/graphql-guide.html)** — a tool-agnostic article on `/api/now/graphql`: reading records with encoded queries, dot-walking, inline schema/ACL metadata, aggregates, journal fields, mutation caveats, and the in-band error trap. Companion prose to the GraphQL Explorer.
+- **[GlideRecord over GraphQL: A Practical Alternative to the Table API](https://tehubersheezy.github.io/servicenow-tools/graphql-guide.html)** — a tool-agnostic article on the generated GlideRecord schema in `/api/now/graphql` and when to prefer it over the REST Table API: encoded queries, dot-walking, inline schema/ACL metadata, aggregates, journal fields, mutation caveats, and the in-band error trap. Companion prose to the GraphQL Explorer.
 
 The pages cross-link to each other. All are **build artifacts** — the explorers regenerated from the scraped corpora, the guide from `docs/graphql-guide.md`, never hand-edited — so they never drift from their sources.
 

@@ -375,7 +375,7 @@ function page({ html, toc, title, lede }, opts) {
   <div class="brand">
     <span class="dot"></span>
     <strong>ServiceNow GraphQL</strong>
-    <span class="brand-meta">a practical guide</span>
+    <span class="brand-meta">GlideRecord vs. the Table API</span>
   </div>
   <nav class="head-links">
     <a class="xlink" href="${esc(opts.xlinkGraphql)}">GraphQL Explorer</a>

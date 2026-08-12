@@ -1,21 +1,23 @@
-# The ServiceNow GraphQL API: A Practical Guide
+# GlideRecord over GraphQL: A Practical Alternative to the Table API
 
-ServiceNow ships a GraphQL endpoint that most integrators never touch, because
-almost all documentation and tooling points at the REST Table API. That's a
-shame, because for read-heavy work the GraphQL surface does several things the
-Table API structurally cannot: fetch many tables in one request, return total
-counts alongside a page, dot-walk references server-side, and hand you field
-metadata — labels, mandatory flags, live ACL verdicts, even choice lists —
-inline with the data.
+Inside ServiceNow's GraphQL endpoint lives a generated **GlideRecord schema**:
+query, insert, update, and delete fields for every table on the instance —
+the same records you'd reach through the REST Table API, on the same auth and
+ACLs. Most integrators never touch it, because almost all documentation and
+tooling points at the Table API. That's a shame, because for read-heavy work
+GlideRecord-over-GraphQL does several things the Table API structurally
+cannot: fetch many tables in one request, return total counts alongside a
+page, dot-walk references server-side, and hand you field metadata — labels,
+mandatory flags, live ACL verdicts, even choice lists — inline with the data.
 
 This guide is tool-agnostic: everything below is plain HTTP you can issue from
 curl, Postman, or any GraphQL client. Examples were verified against a
 Washington-era+ Personal Developer Instance; the generated schema described
 here has been stable across recent releases.
 
-## When to use GraphQL vs. the Table API
+## When to use GlideRecord GraphQL vs. the Table API
 
-Use **GraphQL** when you want:
+Use **GlideRecord over GraphQL** when you want:
 
 - several tables or several queries in one round trip;
 - a total count with the page (`_rowCount`);
@@ -24,7 +26,7 @@ Use **GraphQL** when you want:
 - field/table metadata, ACL verdicts, or choice lists inline;
 - comments/work notes for many records in one request.
 
-Stay on **REST** for:
+Stay on **the Table API** for:
 
 - writes you need to confirm from the response;
 - attachments, import sets, and every procedural API (CICD, Performance
@@ -58,14 +60,16 @@ There is also a GraphiQL client built into the platform: **System Web
 Services → GraphQL → GraphQL API Explorer**, which is the easiest place to
 experiment interactively.
 
-## What's in the schema
+## Where GlideRecord lives in the schema
 
-The merged schema served by that one endpoint has two kinds of content:
+The merged schema served by that one endpoint has two kinds of content, and
+this guide is about the second:
 
 - **Scripted namespaces** (`now`, `global`, `sn*`): hand-written APIs backing
   specific ServiceNow features — chat, Playbook, Flow Designer tooling.
   Unless you're building against one of those features, skip them.
-- **Generated namespaces** — the reason to be here:
+- **The generated GlideRecord namespaces** — the Table API's records, as
+  GraphQL:
   - `GlideRecord_Query.<table>` — a query field for *every* table
     (~6,200 on a stock instance),
   - `GlideRecord_Mutation.insert_<table> / update_<table> / delete_<table>`,
