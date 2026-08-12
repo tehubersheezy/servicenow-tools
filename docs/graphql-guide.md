@@ -17,12 +17,14 @@ stable across recent releases.
 
 ## When to use GlideRecord GraphQL vs. the Table API
 
-> **The two headline wins.** One round trip for what would be N Table API
+> **The headline wins.** One round trip for what would be N Table API
 > calls — several tables, several filters, aggregates, even several
-> **mutations** in a single request — and **live ACL verdicts** riding inline
+> **mutations** in a single request. **Live ACL verdicts** riding inline
 > with the data: `canRead`, `canWrite`, `canCreate`, `canDelete` at table and
 > field level, evaluated for the calling user, answered before you attempt
-> anything.
+> anything. And **journal access**: the full comments/work-notes stream for
+> any user who can read the record — history the Table API won't give a
+> non-admin caller at all.
 
 Use **GlideRecord over GraphQL** when you want:
 
@@ -31,10 +33,12 @@ Use **GlideRecord over GraphQL** when you want:
 - **ACL verdicts and field metadata inline** — labels, mandatory flags,
   choice lists, and per-user `can*` checks, without touching
   `sys_dictionary` or trial-and-erroring a 403;
+- **comments and work notes, programmatically, as a non-admin** — the one
+  record surface REST effectively locks you out of (see the journal
+  section);
 - a total count with the page (`_rowCount`);
 - per-field display-value control;
-- structured dot-walking through references;
-- comments/work notes for many records in one request.
+- structured dot-walking through references.
 
 Stay on **the Table API** for:
 
@@ -295,7 +299,12 @@ share a request with record reads.
 
 ## Comments and work notes (journal fields)
 
-Worth its own section, because the access model surprises everyone.
+> **Why this section matters.** For a non-admin user there is **no working
+> Table API route to journal history**: the record's journal columns come
+> back empty over REST (nothing is stored on the record), and the backing
+> table is ACL-locked. The rendered `displayValue` below is the only
+> user-level programmatic way to read a record's comment and work-note
+> stream — for many itil-role integrations it justifies GraphQL by itself.
 
 Journal entries (comments, work notes) are stored one-per-row in
 `sys_journal_field` — the record itself stores nothing. That table is
