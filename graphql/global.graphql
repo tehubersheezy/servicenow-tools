@@ -1,12 +1,10 @@
 type global_query {
   DataResource: global_DataResource_Query
-  metrics: global_metrics_Query
   snFlowDesigner: global_snFlowDesigner_Query
   snTriggerDesigner: global_snTriggerDesigner_Query
 }
 
 type global_mutation {
-  metrics: global_metrics_Mutation
   snFlowDesigner: global_snFlowDesigner_Mutation
   snTriggerDesigner: global_snTriggerDesigner_Mutation
 }
@@ -49,144 +47,6 @@ input global_DataResource_InputValues {
 
 type global_DataResource_Query {
   DataResourceDataSet(data: [global_DataResource_ExecutionRequestNode]!): [global_DataResource_DataResourceDataSet]
-}
-
-input global_metrics_ClientInteraction {
-  interactionId: String!
-  application: String!
-  applicationId: String!
-  type: String!
-  name: String
-  referrer: String
-  pageLoadTime: Float
-  timeToInteraction: Float
-  totalUiTime: Float
-  pageName: String
-  interruption: String
-  clientCacheHitRate: Float
-  data: String
-  uiTimeBeforeLoad: Float
-  uiTimeAfterLoad: Float
-  networkTime: Float
-  uiPolicyTime: Float
-  clientScriptsTime: Float
-  uxfDataBrokerRequestCount: Int
-  uxfDataBrokerTotalTime: Float
-  uxfDataBrokerExecutionCount: Int
-  events: [global_metrics_Event]
-  uxfClientScriptCount: Int
-  uxfClientScriptTime: Float
-  uxfPreProcessedDataBrokerCount: Int
-  uxfPreProcessedDataBrokerTime: Float
-  uxfViewportScriptConditionTotalTime: Float
-  uxfViewportScriptConditionCount: Int
-  uxfViewportRouteScriptConditionTotalTime: Float
-  uxfViewportRouteScriptConditionCount: Int
-  uxfPageProcessorTime: Float
-  uxfScreenRoute: String
-  uxfScreenFields: String
-  uxfScreenParams: String
-  ucCacheHit: Int
-  ucCacheMiss: Int
-  ucCacheStale: Int
-  ucCacheError: Int
-  ucCacheBuildTime: Float
-  ucCacheHitRate: Float
-  pageVarientSysId: String
-  contentDownloadTime: Float
-}
-
-type global_metrics_ClientInteractionType {
-  interactionId: String
-  application: String
-  applicationId: String
-  type: String!
-  name: String
-  referrer: String
-  pageLoadTime: Float
-  timeToInteraction: Float
-  totalUiTime: Float
-  pageName: String
-  interruption: String
-  clientCacheHitRate: Float
-  data: String
-  uiTimeBeforeLoad: Float
-  uiTimeAfterLoad: Float
-  networkTime: Float
-  uiPolicyTime: Float
-  clientScriptsTime: Float
-  events: [global_metrics_EventType]
-  transactions: [global_metrics_TransactionType]
-  uxfClientScriptCount: Int
-  uxfClientScriptTime: Float
-  uxfDataBrokerRequestCount: Int
-  uxfDataBrokerExecutionCount: Int
-  uxfDataBrokerTotalTime: Float
-  uxfPreProcessedDataBrokerCount: Int
-  uxfPreProcessedDataBrokerTime: Float
-  uxfViewportScriptConditionTotalTime: Float
-  uxfViewportScriptConditionCount: Int
-  uxfViewportRouteScriptConditionTotalTime: Float
-  uxfViewportRouteScriptConditionCount: Int
-  uxfPageProcessorTime: Float
-  uxfScreenRoute: String
-  uxfScreenFields: String
-  uxfScreenParams: String
-  ucCacheHit: Int
-  ucCacheMiss: Int
-  ucCacheStale: Int
-  ucCacheError: Int
-  ucCacheBuildTime: Float
-  ucCacheHitRate: Float
-  contentDownloadTime: Float
-}
-
-input global_metrics_Event {
-  id: String
-  type: String
-  name: String
-  time: Float
-  componentName: String
-  meta: String
-  seismicId: String
-  definitionId: String
-  definitionIdTable: String
-}
-
-type global_metrics_EventType {
-  id: String
-  type: String
-  name: String
-  time: Int
-  componentName: String
-  meta: String
-  seismicId: String
-  definitionId: String
-  definitionIdTable: String
-}
-
-type global_metrics_Mutation {
-  interaction(interaction: global_metrics_ClientInteraction): String
-}
-
-input global_metrics_Paging {
-  offset: Int
-  limit: Int
-}
-
-type global_metrics_Query {
-  interactions(paging: global_metrics_Paging): [global_metrics_ClientInteractionType]
-}
-
-type global_metrics_TransactionType {
-  url: String
-  userAgent: String
-  responseTime: Int
-  networkTime: Int
-  sqlTime: Int
-  sqlCount: Int
-  businessRuleTime: Int
-  businessRuleCount: Int
 }
 
 input global_snFlowDesigner_ActionInstance {

@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IPS User State — Read",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_ip_survey/ips_state": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

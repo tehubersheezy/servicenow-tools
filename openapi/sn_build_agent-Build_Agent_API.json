@@ -362,6 +362,39 @@
         ],
         "responses": {}
       }
+    },
+    "/api/sn_build_agent/build_agent_api/{scopeId}/getIsGeneratedByBA": {
+      "get": {
+        "description": "Get value of isGeneratedByBA from sys_app_info given an app sysId",
+        "parameters": [
+          {
+            "name": "scopeId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/api/sn_build_agent/build_agent_api/{scopeId}/sysAppInfo": {
+      "post": {
+        "description": "Creates or updates a sys-app-info record for the current application scope with ",
+        "parameters": [
+          {
+            "name": "scopeId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
     }
   },
   "components": {

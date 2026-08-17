@@ -47,6 +47,32 @@
         "responses": {}
       }
     },
+    "/api/sn_udc/collection/file/collections": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      },
+      "patch": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
+    },
     "/api/sn_udc/collection/{collectionSysId}": {
       "post": {
         "description": "",

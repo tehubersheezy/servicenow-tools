@@ -41,6 +41,20 @@
         },
         "responses": {}
       }
+    },
+    "/api/sn_experiment_core/experiments/toggle-opt-out": {
+      "put": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {},
+            "application/xml": {},
+            "text/xml": {}
+          }
+        },
+        "responses": {}
+      }
     }
   },
   "components": {

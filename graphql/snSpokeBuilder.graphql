@@ -1,0 +1,11 @@
+type snSpokeBuilder_query {
+  spokeGenerator: snSpokeBuilder_spokeGenerator_Query
+}
+
+type snSpokeBuilder_spokeGenerator_Query {
+  getSysPropertyValue(propertyName: String!, defaultValue: String): String
+  hasRole(roleName: String!): Boolean
+  isPluginInstalled(pluginName: String!): Boolean
+  isPluginEntitled(pluginName: String!): Boolean
+  isSkillEnabled(skillId: String!): Boolean
+}

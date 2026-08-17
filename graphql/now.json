@@ -22257,6 +22257,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "configuration",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "now_wrapUpSegment_Configuration",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "type": {

@@ -2281,6 +2281,7 @@ type now_wrapUpSegment_Mutation {
     notes: String
     confirmed_on: String
     include_session_messages_on_success: Boolean
+    configuration: now_wrapUpSegment_Configuration
   ): now_wrapUpSegment_SegmentResult
   updateSegmentAiDetails(
     segment_sys_id: String

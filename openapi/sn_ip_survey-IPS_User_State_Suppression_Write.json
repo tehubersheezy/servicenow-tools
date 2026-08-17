@@ -1,0 +1,33 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IPS User State — Suppression Write",
+    "description": "",
+    "version": "latest"
+  },
+  "externalDocs": {
+    "url": ""
+  },
+  "servers": [
+    {
+      "url": "https://dev421992.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/sn_ip_survey/ips_suppression": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

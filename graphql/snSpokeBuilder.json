@@ -1,0 +1,214 @@
+{
+  "namespace": "snSpokeBuilder",
+  "endpoint": "/api/now/graphql",
+  "roots": {
+    "query": {
+      "type": "snSpokeBuilder_query",
+      "fields": [
+        "spokeGenerator"
+      ]
+    }
+  },
+  "typeCount": 4,
+  "types": [
+    {
+      "kind": "SCALAR",
+      "name": "Boolean",
+      "description": "Built-in Boolean",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snSpokeBuilder_query",
+      "description": null,
+      "fields": [
+        {
+          "name": "spokeGenerator",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "snSpokeBuilder_spokeGenerator_Query",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "snSpokeBuilder_spokeGenerator_Query",
+      "description": null,
+      "fields": [
+        {
+          "name": "getSysPropertyValue",
+          "description": null,
+          "args": [
+            {
+              "name": "propertyName",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "defaultValue",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "hasRole",
+          "description": null,
+          "args": [
+            {
+              "name": "roleName",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "isPluginInstalled",
+          "description": null,
+          "args": [
+            {
+              "name": "pluginName",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "isPluginEntitled",
+          "description": null,
+          "args": [
+            {
+              "name": "pluginName",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "isSkillEnabled",
+          "description": null,
+          "args": [
+            {
+              "name": "skillId",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "String",
+      "description": "Built-in String",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    }
+  ]
+}
